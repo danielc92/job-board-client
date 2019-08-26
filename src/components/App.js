@@ -74,12 +74,12 @@ export default class App extends Component {
 
         <Container>
           <Segment padded="very">
-            <Header as="h1">Features</Header>
-            <Grid columns={3} stackable>
+            <Header as="h1" textAlign="center">Features</Header>
+            <Grid columns={4} stackable>
               <Grid.Row>
                 {
                   featureData.map(item => (
-                    <Grid.Column style={{ textAlign: "center", padding: "1rem"}}>
+                    <Grid.Column style={{ textAlign: "center"}}>
                       <Icon name={item.icon} size="big"/>
                       <Header as={featureHeader}>{ item.title }</Header>
                       <p>{ item.content }</p>
