@@ -5,9 +5,11 @@ import {
   Header,
   Message,
   Grid,
+  Image,
   Container,
   Icon
 } from 'semantic-ui-react';
+import image from '../images/undraw_Job_hunt_tinb.svg'
 
 export default class App extends Component {
 
@@ -40,15 +42,40 @@ export default class App extends Component {
 
     return (
       <React.Fragment>
-         
-        <Message style={{textAlign:"center"}} color="green">This application is currently under development phase.</Message>
+         <Container>
+         <Message style={{textAlign:"center"}} color="blue">This application is currently in <strong>development</strong> phase.</Message>
+         </Container>
+        
 
         <ReactNav></ReactNav>
-       
+        
+
+        <Container>
+          <Segment padded="very">
+          <Grid divided='vertically' stackable>
+          <Grid.Row columns={2}>
+            <Grid.Column verticalAlign="middle">
+              <Header as="h1" style={{fontSize: '3rem'}}>
+                Data driven job board.
+                <Header.Subheader>
+                Irure nostrud ea aliqua incididunt ex irure sint excepteur.
+                </Header.Subheader>
+              </Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Image size="medium" src={image} />
+            </Grid.Column>
+            
+          </Grid.Row>
+          </Grid>
+          </Segment>
+        </Container>
+
+
         <Container>
           <Segment padded="very">
             <Header as="h1">Features</Header>
-            <Grid columns={3}>
+            <Grid columns={3} stackable>
               <Grid.Row>
                 {
                   featureData.map(item => (
