@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Container, Button } from 'semantic-ui-react';
 
 export default class ReactNav extends Component {
     
@@ -16,30 +16,46 @@ export default class ReactNav extends Component {
         const { activeItem } = this.state;
 
         return (
-            <Menu pointing secondary>
+            <Container>
+            <Menu pointing>
           <Menu.Item
             name='home'
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           />
-          <Menu.Item
-            name='messages'
-            active={activeItem === 'messages'}
+           <Menu.Item
+            name='post'
+            active={activeItem === 'post'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name='friends'
-            active={activeItem === 'friends'}
+            name='seek'
+            active={activeItem === 'seek'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='news'
+            active={activeItem === 'news'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name='analytics'
+            active={activeItem === 'analytics'}
             onClick={this.handleItemClick}
           />
           <Menu.Menu position='right'>
-            <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
-            />
+            <Menu.Item>
+                <div>
+                <Button primary>Login</Button>
+                <Button secondary>Sign out</Button>
+
+                </div>
+               
+            </Menu.Item>
+      
           </Menu.Menu>
         </Menu>
+        </Container>
         )
     }
 }
