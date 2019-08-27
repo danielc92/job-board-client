@@ -11,7 +11,7 @@ import {
 export default class ReactFooter extends Component {
     render() {
         return (
-            <Segment color="blue" inverted style={{ padding: '5em 0em', margin: '0' }}>
+            <Segment color="blue" inverted style={{ borderRadius:'0', padding: '5em 0em', margin: '0' }}>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>

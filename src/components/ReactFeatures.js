@@ -22,10 +22,16 @@ class ReactFeatures extends Component {
             title: "Data driven",
             content: "Optimised search results. CV Free."
           },
+          {
+            icon: "star",
+            title: "Rate and review",
+            content: "Rate applications"
+          },
           { 
-          icon: "chart line", 
-          title:"Analytics", 
-          content:"Gain insights into the job market."}]
+            icon: "chart line", 
+            title:"Analytics", 
+            content:"Gain insights into the job market."
+          }]
       }
 
     render() {
@@ -36,10 +42,23 @@ class ReactFeatures extends Component {
             <Segment style={{ padding: '7em 0em', margin: '0' }}>
             <Container>
               <Header as="h1" textAlign="center" style={{marginBottom: '5rem'}}>Features</Header>
-              <Grid columns={4} stackable>
+              <Grid padded columns={3} stackable>
                 <Grid.Row>
                   {
-                    featureData.map(item => (
+                    featureData.slice(0, 3).map(item => (
+                      
+                      <Grid.Column style={{ textAlign: "center"}}>
+                        <Icon color={this.props.theme} name={item.icon} size="big"/>
+                        <Header as={featureHeader}>{ item.title }</Header>
+                        <p>{ item.content }</p>
+                      </Grid.Column>
+                
+                    ))
+                  }
+                </Grid.Row>
+                <Grid.Row>
+                  {
+                    featureData.slice(3, 7).map(item => (
                       
                       <Grid.Column style={{ textAlign: "center"}}>
                         <Icon color={this.props.theme} name={item.icon} size="big"/>
