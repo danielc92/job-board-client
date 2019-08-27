@@ -2,16 +2,18 @@ import React, { Component } from 'react'
 import ReactMenu from './ReactMenu';
 import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactFooter from './ReactFooter';
+import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
-
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 
 class App extends Component {
   
   render() {
 
     return (
+      <Router>
       <React.Fragment>
 
         {/* Small message box indicating state of development*/}
@@ -21,12 +23,14 @@ class App extends Component {
         <ReactMenu/>
         
         {/* Components for home route */}
-        <ReactHomeContainer/>
+        <Route path="/" exact component={ReactHomeContainer}/>
+        <Route path="/news" exact component={ReactNews}/>
 
         {/* Footer */}
         <ReactFooter/>
 
       </React.Fragment>
+      </Router>
     )
   }
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Container, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 
 export default class ReactMenu extends Component {
     
@@ -22,6 +24,8 @@ export default class ReactMenu extends Component {
           style={{ margin: '0'}}>
             <Container>
               <Menu.Item
+                as={Link}
+                to="/"
                 name='home'
                 active={activeItem === 'home'}
                 onClick={this.handleItemClick}
@@ -37,6 +41,8 @@ export default class ReactMenu extends Component {
                 onClick={this.handleItemClick}
               />
               <Menu.Item
+                as={Link}
+                to="/news"
                 name='news'
                 active={activeItem === 'news'}
                 onClick={this.handleItemClick}
