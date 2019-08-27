@@ -16,8 +16,9 @@ export default class ReactNav extends Component {
         const { activeItem } = this.state;
 
         return (
-            <Container>
-            <Menu pointing>
+            
+            <Menu pointing style={{ margin: '0'}}>
+              <Container>
           <Menu.Item
             name='home'
             active={activeItem === 'home'}
@@ -54,8 +55,8 @@ export default class ReactNav extends Component {
             </Menu.Item>
       
           </Menu.Menu>
+          </Container>
         </Menu>
-        </Container>
         )
     }
 }

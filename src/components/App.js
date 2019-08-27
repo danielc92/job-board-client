@@ -14,7 +14,7 @@ import {
   Icon
 } from 'semantic-ui-react';
 
-import image from '../images/undraw_Job_hunt_tinb.svg'
+import image from '../images/undraw_interview_rmcf.svg'
 
 class App extends Component {
 
@@ -47,8 +47,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <Button primary onClick={this.props.propsLoginUser}> click me</Button>
-         <Container>
+        <Container>
          <Message style={{textAlign:"center"}} color="blue">This application is currently in <strong>development</strong> phase.</Message>
          </Container>
         
@@ -56,8 +55,9 @@ class App extends Component {
         <ReactNav></ReactNav>
         
 
-        <Container>
-          <Segment padded="very">
+        
+        <Segment style={{margin: '0', padding: '5rem 0rem'}}>
+          <Container>
           <Grid divided='vertically' stackable>
           <Grid.Row columns={2}>
             <Grid.Column verticalAlign="middle">
@@ -74,12 +74,14 @@ class App extends Component {
             
           </Grid.Row>
           </Grid>
+          </Container>
           </Segment>
-        </Container>
+        
 
 
-        <Container>
-          <Segment padded="very">
+        
+          <Segment style={{ padding: '5em 0em', margin: '0' }}>
+          <Container>
             <Header as="h1" textAlign="center">Features</Header>
             <Grid columns={4} stackable>
               <Grid.Row>
@@ -94,10 +96,11 @@ class App extends Component {
                 }
               </Grid.Row>
             </Grid>
+            </Container>
           </Segment>
-        </Container>
+        
 
-        <Segment color="blue" inverted style={{ padding: '5em 0em' }}>
+        <Segment color="blue" inverted style={{ padding: '5em 0em', margin: '0' }}>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>
