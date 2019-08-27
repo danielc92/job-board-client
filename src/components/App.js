@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ReactNav from './ReactNav';
+import { connect } from 'react-redux';
+
 import {
   Segment,
   Header,
@@ -23,7 +25,7 @@ export default class App extends Component {
       },
       {
         icon: "user",
-        title: "Something for everyone",
+        title: "Profile based",
         content: "Optimized for job hunters and employers."
       },
       {

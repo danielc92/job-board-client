@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from 'semantic-ui-react';
 
-function PrivacyStatement() {
+function ReactPrivacy() {
     return (
         <div>
             <Header as="h2"></Header>
@@ -14,4 +14,4 @@ Commodo ullamco culpa aliquip incididunt. Irure cillum labore commodo in ad repr
     )
 }
 
-export default PrivacyStatement
+export default ReactPrivacy
