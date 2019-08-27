@@ -17,7 +17,9 @@ export default class ReactMenu extends Component {
 
         return (
             
-          <Menu pointing style={{ margin: '0'}}>
+          <Menu 
+          pointing 
+          style={{ margin: '0'}}>
             <Container>
               <Menu.Item
                 name='home'
@@ -25,13 +27,13 @@ export default class ReactMenu extends Component {
                 onClick={this.handleItemClick}
               />
               <Menu.Item
-                name='post'
-                active={activeItem === 'post'}
+                name='create'
+                active={activeItem === 'create'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
-                name='seek'
-                active={activeItem === 'seek'}
+                name='find'
+                active={activeItem === 'find'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item

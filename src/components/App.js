@@ -1,39 +1,27 @@
 import React, { Component } from 'react'
 import ReactMenu from './ReactMenu';
-import ReactHero from './ReactHero';
-import ReactFeatures from './ReactFeatures';
+import ReactHomeContainer from './ReactHomeContainer';
 import ReactFooter from './ReactFooter';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
-import {
-  Segment,
-  Header,
-  Message,
-  Grid,
-  Image,
-  Container
-} from 'semantic-ui-react';
+import { Message } from 'semantic-ui-react';
 
 
 class App extends Component {
-
   
   render() {
 
     return (
       <React.Fragment>
-        <Container>
-          <Message style={{textAlign:"center"}} color="blue">This application is currently in <strong>development</strong> phase.</Message>
-        </Container>
+
+        {/* Small message box indicating state of development*/}
+        <Message style={{textAlign:"center", borderRadius:'0', margin: '0'}} color="green">This application is currently in <strong>development</strong> phase.</Message>
         
         {/* Navigation Menu */}
         <ReactMenu/>
         
-        {/* Hero (split into two panes) */}
-        <ReactHero/>
-        
-        {/* Features */}
-        <ReactFeatures/>
+        {/* Components for home route */}
+        <ReactHomeContainer/>
 
         {/* Footer */}
         <ReactFooter/>
