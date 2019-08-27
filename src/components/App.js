@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactNav from './ReactNav';
 import { connect } from 'react-redux';
-
 import {
   Segment,
   Header,
@@ -11,9 +10,10 @@ import {
   Container,
   Icon
 } from 'semantic-ui-react';
+
 import image from '../images/undraw_Job_hunt_tinb.svg'
 
-export default class App extends Component {
+class App extends Component {
 
   state = {
     featureHeader: "h3",
@@ -97,3 +97,12 @@ export default class App extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    data: state
+  }
+}
+
+
+export default connect()(App)
