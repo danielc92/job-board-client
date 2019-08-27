@@ -39,7 +39,12 @@ class ReactFeatures extends Component {
         const { featureHeader, featureData } = this.state;
 
         return (
-            <Segment style={{ padding: '7em 0em', margin: '0' }}>
+            <Segment style={{ 
+              backgroundColor: '#f9f9f9',
+              padding: '7em 0em', 
+              margin: '0', 
+              border: 'none', 
+              boxShadow:'none' }}>
             <Container>
               <Header as="h1" textAlign="center" style={{marginBottom: '5rem'}}>Features</Header>
               <Grid padded columns={3} stackable>

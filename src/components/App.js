@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactMenu from './ReactMenu';
-import ReactHomeContainer from './ReactHomeContainer';
+import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactFooter from './ReactFooter';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';

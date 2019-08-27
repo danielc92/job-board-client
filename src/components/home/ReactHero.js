@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import {
     Grid, Container, Segment, Header, Image
 } from 'semantic-ui-react';
-import image from '../images/undraw_interview_rmcf.svg'
+import image from '../../images/undraw_interview_rmcf.svg'
 
 
 
 export default class ReactHero extends Component {
     render() {
         return (
-            <Segment style={{margin: '0', padding: '7rem 0rem'}}>
+            <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
                 <Container>
                     <Grid divided='vertically' stackable>
                     <Grid.Row columns={2}>
@@ -22,7 +22,7 @@ export default class ReactHero extends Component {
                         </Header>
                         </Grid.Column>
                         <Grid.Column>
-                        <Image size="medium" src={image} />
+                        <Image src={image} />
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>
