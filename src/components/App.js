@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
-import ReactNav from './ReactNav';
+import ReactMenu from './ReactMenu';
+import ReactFooter from './ReactFooter';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
 import {
   Segment,
   Header,
   Message,
-  Button,
   Grid,
   Image,
-  List,
   Container,
   Icon
 } from 'semantic-ui-react';
-
 import image from '../images/undraw_interview_rmcf.svg'
+
 
 class App extends Component {
 
@@ -77,62 +76,12 @@ class App extends Component {
           </Container>
           </Segment>
         
+          {/* Features */}
+          <ReactFeatures/>
 
+          {/* Footer */}
+          <ReactFooter/>
 
-        
-          <Segment style={{ padding: '5em 0em', margin: '0' }}>
-          <Container>
-            <Header as="h1" textAlign="center">Features</Header>
-            <Grid columns={4} stackable>
-              <Grid.Row>
-                {
-                  featureData.map(item => (
-                    <Grid.Column style={{ textAlign: "center"}}>
-                      <Icon name={item.icon} size="big"/>
-                      <Header as={featureHeader}>{ item.title }</Header>
-                      <p>{ item.content }</p>
-                    </Grid.Column>
-                  ))
-                }
-              </Grid.Row>
-            </Grid>
-            </Container>
-          </Segment>
-        
-
-        <Segment color="blue" inverted style={{ padding: '5em 0em', margin: '0' }}>
-      <Container>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
-              <List link inverted>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'></List.Item>
-                <List.Item as='a'></List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Documentation' />
-              <List link inverted>
-                <List.Item as='a'>Terms and conditions</List.Item>
-                <List.Item as='a'>Privacy</List.Item>
-                <List.Item as='a'>FAQ</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                Footer Header
-              </Header>
-              <p>
-                Irure ad proident qui duis quis consectetur est. Minim officia voluptate duis veniam enim ut cupidatat enim laborum officia do in incididunt ea. Veniam eu aliqua qui sunt laboris laborum non deserunt. Voluptate occaecat ea aute dolore irure.
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </Segment>
-        
       </React.Fragment>
     )
   }
