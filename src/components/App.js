@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
+import './App.css'
+
 
 class App extends Component {
   

@@ -55,11 +55,9 @@ export default class ReactMenu extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item>
                     <div>
-                    <Button primary>Login</Button>
-                    <Button secondary>Sign out</Button>
-
+                      <Button primary>Login</Button>
+                      <Button secondary>Register</Button>
                     </div>
-                  
                 </Menu.Item>
             </Menu.Menu>
           </Container>

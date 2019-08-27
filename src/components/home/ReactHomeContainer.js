@@ -3,7 +3,9 @@ import ReactHero from './ReactHero';
 import ReactFeatures from './ReactFeatures';
 
 export default class ReactHomeContainer extends Component {
+
     render() {
+        
         return (
             <React.Fragment>
 
