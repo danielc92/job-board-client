@@ -53,7 +53,6 @@ export default class ReactMenu extends Component {
                     </div>
                   
                 </Menu.Item>
-          
             </Menu.Menu>
           </Container>
         </Menu>
