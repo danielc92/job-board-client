@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import ReactNav from './ReactNav';
 import { connect } from 'react-redux';
+import { loginUser, logoutUser } from '../actions/auth';
 import {
   Segment,
   Header,
   Message,
+  Button,
   Grid,
   Image,
+  List,
   Container,
   Icon
 } from 'semantic-ui-react';
@@ -44,6 +47,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
+        <Button primary onClick={this.props.propsLoginUser}> click me</Button>
          <Container>
          <Message style={{textAlign:"center"}} color="blue">This application is currently in <strong>development</strong> phase.</Message>
          </Container>
@@ -92,6 +96,39 @@ class App extends Component {
             </Grid>
           </Segment>
         </Container>
+
+        <Segment color="blue" inverted style={{ padding: '5em 0em' }}>
+      <Container>
+        <Grid divided inverted stackable>
+          <Grid.Row>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='About' />
+              <List link inverted>
+                <List.Item as='a'>Contact Us</List.Item>
+                <List.Item as='a'></List.Item>
+                <List.Item as='a'></List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='Documentation' />
+              <List link inverted>
+                <List.Item as='a'>Terms and conditions</List.Item>
+                <List.Item as='a'>Privacy</List.Item>
+                <List.Item as='a'>FAQ</List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={7}>
+              <Header as='h4' inverted>
+                Footer Header
+              </Header>
+              <p>
+                Irure ad proident qui duis quis consectetur est. Minim officia voluptate duis veniam enim ut cupidatat enim laborum officia do in incididunt ea. Veniam eu aliqua qui sunt laboris laborum non deserunt. Voluptate occaecat ea aute dolore irure.
+              </p>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
+    </Segment>
         
       </React.Fragment>
     )
@@ -100,9 +137,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    data: state
+    auth: state.auth
   }
 }
 
+const mapActionsToProps = {
+  propsLoginUser: loginUser,
+  propsLogoutUser: logoutUser
+}
 
-export default connect()(App)
+export default connect(mapStateToProps, mapActionsToProps)(App)
