@@ -23,7 +23,7 @@ class ReactLogin extends Component {
         const { email, password } = this.state;
 
         ((email.length > 0) & (password.length >0)) ?
-            this.props.propsLoginUser() :
+            this.props.propsLoginUser(email, password) :
             this.setState({error: "You have to enter a password and email"})
     }
 

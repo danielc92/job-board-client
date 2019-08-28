@@ -1,17 +1,14 @@
 import jobApi from '../api';
 
-export const loginUser = () => async (dispatch, getState) => {
-    const data = { 
-        email : "test@test.com", 
-        password: "12345a678"}
+export const loginUser = (email, password) => async (dispatch, getState) => {
+    const data = { email, password }
     
     try {
         const response = await jobApi.post('api/auth/login', data)
         dispatch({
-            type: "LOGGED IN",
+            type: "LOGIN_SUCCESS",
             payload: {
-                value: true,
-                token: response.data.token
+                token: response.data.token['x-auth-token']
             }
         })
     }
@@ -27,7 +24,7 @@ export const loginUser = () => async (dispatch, getState) => {
 
 export function logoutUser() {
     return {
-        type: 'LOGGED OUT',
+        type: 'LOGOUT_SUCCESS',
         payload: {
             value: false
         }
