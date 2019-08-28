@@ -12,12 +12,24 @@ class ReactRegister extends Component {
         last_name: ""
     }
 
+    handleInputChange = (e) => {
+        const { value, name } = e.target;
+        this.setState({[name]: value})
+    }
+
     render() {
-        const { email, password, confirm_password, first_name, last_name } = this.state 
+        
+        const { 
+            email, 
+            password, 
+            confirm_password, 
+            first_name, 
+            last_name } = this.state 
+        
         return (
             <Container>
-                <Segment>
-                    <Header>Registration Page</Header>
+                <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
+                    <Header as="h1">Join the community</Header>
                     <Form>
                     <Form.Input
                         icon="at"
@@ -33,8 +45,8 @@ class ReactRegister extends Component {
                         iconPosition="left"
                         onChange={this.handleInputChange}
                         placeholder="Enter password here..." 
-                        label="Email" 
-                        value={email}
+                        label="Password" 
+                        value={password}
                         name="email"/>
             
                     <Form.Input
@@ -42,27 +54,32 @@ class ReactRegister extends Component {
                         iconPosition="left"
                         onChange={this.handleInputChange}
                         placeholder="Enter password again..." 
-                        label="Email" 
-                        value={email}
-                        name="email"/>
+                        label="Confirm Password" 
+                        value={confirm_password}
+                        name="confirm_password"/>
         
                     <Form.Input
                         icon="lock"
                         iconPosition="left"
                         onChange={this.handleInputChange}
-                        placeholder="Enter first name..." 
+                        placeholder="Jane" 
                         label="First name" 
-                        value={email}
+                        value={first_name}
                         name="first_name"/>
 
                     <Form.Input
                         icon="lock"
                         iconPosition="left"
                         onChange={this.handleInputChange}
-                        placeholder="Enter password again..." 
+                        placeholder="Doe" 
                         label="Last name" 
-                        value={email}
+                        value={last_name}
                         name="last_name"/>
+
+                    <Form.Button 
+                    size="large" 
+                    color="green">Create account</Form.Button>
+
                     </Form>
                 </Segment>
             </Container>
