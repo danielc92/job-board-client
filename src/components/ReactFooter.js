@@ -9,10 +9,10 @@ import {
 import { connect } from 'react-redux';
 
 
-export default class ReactFooter extends Component {
+class ReactFooter extends Component {
     render() {
         return (
-            <Segment color="blue" inverted style={{ borderRadius:'0', padding: '5em 0em', margin: '0' }}>
+            <Segment color={this.props.theme} inverted style={{ borderRadius:'0', padding: '5em 0em', margin: '0' }}>
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>
@@ -47,5 +47,13 @@ export default class ReactFooter extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    theme: state.theme
+  }
+}
+
+export default connect(mapStateToProps)(ReactFooter)
 
 
