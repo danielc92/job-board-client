@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactMenu from './ReactMenu';
+import ReactLogin from './account/ReactLogin';
 import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactFooter from './ReactFooter';
 import ReactNews from './news/ReactNews';
@@ -27,6 +28,7 @@ class App extends Component {
         {/* Components for home route */}
         <Route path="/" exact component={ReactHomeContainer}/>
         <Route path="/news" exact component={ReactNews}/>
+        <Route path="/login" exact component={ReactLogin}/>
 
         {/* Footer */}
         <ReactFooter/>
