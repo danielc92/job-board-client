@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu, Container, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logoutUser } from '../actions/auth';
 
 
 class ReactMenu extends Component {
@@ -62,9 +63,23 @@ class ReactMenu extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item>
                     <div>
-                      <Button 
+                      { this.props.auth.isAuthenticated ? 
+                      <Button
+                      color="green"
+                      onClick={this.props.propsLogoutUser}
+                      >
+                        Logout
+                      </Button>
+                        :
+                        <Button 
                       primary
-                      >Login</Button>
+                      as={Link}
+                      to="/login"
+                      >
+                      Login
+                      </Button>
+                        }
+                      
                       <Button 
                       secondary>Register</Button>
                     </div>
@@ -80,7 +95,10 @@ const mapStateToProps = (state) => {
   return {
     auth : state.auth
   }
-
 }
 
-export default connect(mapStateToProps)(ReactMenu);
+const mapActionsToProps = {
+  propsLogoutUser: logoutUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(ReactMenu);

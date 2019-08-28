@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Segment, Message, Container, Header } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/auth';
 
 
-export default class ReactLogin extends Component {
+class ReactLogin extends Component {
     
     state = {
         email:"",
@@ -16,13 +18,14 @@ export default class ReactLogin extends Component {
     }
 
     handleSubmit = (e) => {
+
         e.preventDefault()
+
         const { email, password } = this.state;
-        if ((email.length > 0) & (password.length >0)) {
-            console.log('Logged in')
-        } else {
+
+        ((email.length > 0) & (password.length >0)) ?
+            this.props.propsLoginUser() :
             this.setState({error: "You have to enter a password and email"})
-        }
     }
 
     render() {
@@ -64,3 +67,8 @@ export default class ReactLogin extends Component {
         )
     }
 }
+
+const mapActionsToProps = {
+    propsLoginUser: loginUser
+}
+export default connect(null, mapActionsToProps)(ReactLogin)
