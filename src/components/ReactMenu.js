@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Menu, Container, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
-export default class ReactMenu extends Component {
+class ReactMenu extends Component {
     
     state = {
         activeItem: 'home'
@@ -55,8 +56,11 @@ export default class ReactMenu extends Component {
               <Menu.Menu position='right'>
                 <Menu.Item>
                     <div>
-                      <Button primary>Login</Button>
-                      <Button secondary>Register</Button>
+                      <Button 
+                      primary
+                      >Login</Button>
+                      <Button 
+                      secondary>Register</Button>
                     </div>
                 </Menu.Item>
             </Menu.Menu>
@@ -65,3 +69,12 @@ export default class ReactMenu extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth : state.auth
+  }
+
+}
+
+export default connect(mapStateToProps)(ReactMenu);

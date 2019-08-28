@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Form, Segment, Icon, Grid,  Container, Header } from 'semantic-ui-react';
+import { Form, Segment, Message, Container, Header } from 'semantic-ui-react';
 
 
 export default class ReactLogin extends Component {
     
     state = {
         email:"",
-        password:""
+        password:"",
+        error: ""
     }
 
     handleInputChange = (e) => {
@@ -16,7 +17,12 @@ export default class ReactLogin extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log('Submitted')
+        const { email, password } = this.state;
+        if ((email.length > 0) & (password.length >0)) {
+            console.log('Logged in')
+        } else {
+            this.setState({error: "You have to enter a password and email"})
+        }
     }
 
     render() {
@@ -43,6 +49,14 @@ export default class ReactLogin extends Component {
                         value={password}
                         placeholder="Enter password here..."
                         name="password"/>
+
+                    <Message
+                    warning
+                    visible={this.state.error.length > 0}
+                    header="Action forbidden"
+                    content={this.state.error}>
+                    </Message>
+
                     <Form.Button primary>Submit</Form.Button>
                 </Form>
             </Segment>
