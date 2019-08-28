@@ -33,6 +33,7 @@ class App extends Component {
         <Route path="/analytics" exact component={NothingHereYet}/>
         <Route path="/news" exact component={ReactNews}/>
         <Route path="/login" exact component={ReactLogin}/>
+        <Route path="/register" exact component={ReactRegister}/>
 
         {/* Footer */}
         <ReactFooter/>
