@@ -23,6 +23,7 @@ class ReactMenu extends Component {
             
           <Menu 
           pointing 
+          stackable
           style={{ margin: '0'}}>
             <Container>
               <Menu.Item
@@ -65,14 +66,14 @@ class ReactMenu extends Component {
                     <div>
                       { this.props.auth.isAuthenticated ? 
                       <Button
-                      color="green"
+                      color={this.props.theme}
                       onClick={this.props.propsLogoutUser}
                       >
                         Logout
                       </Button>
                         :
                         <Button 
-                      primary
+                      color={this.props.theme}
                       as={Link}
                       to="/login"
                       >
@@ -80,9 +81,11 @@ class ReactMenu extends Component {
                       </Button>
                         }
                       
-                      <Button 
-                      secondary>Register</Button>
+                      
                     </div>
+                </Menu.Item>
+                <Menu.Item>
+                  <Button secondary>Register</Button>
                 </Menu.Item>
             </Menu.Menu>
           </Container>
@@ -93,7 +96,8 @@ class ReactMenu extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth : state.auth
+    auth : state.auth,
+    theme: state.theme
   }
 }
 
