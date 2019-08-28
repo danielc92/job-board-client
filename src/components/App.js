@@ -17,8 +17,8 @@ class App extends Component {
   render() {
 
     return (
-      <Router>
-      <React.Fragment>
+      <div>
+        <Router>    
 
         {/* Small message box indicating state of development*/}
         <Message style={{textAlign:"center", borderRadius:'0', margin: '0'}} color="green">This application is currently in <strong>development</strong> phase.</Message>
@@ -36,9 +36,10 @@ class App extends Component {
 
         {/* Footer */}
         <ReactFooter/>
-
-      </React.Fragment>
+        
       </Router>
+      </div>
+      
     )
   }
 }

@@ -18,9 +18,7 @@ class ReactLogin extends Component {
     }
 
     handleSubmit = (e) => {
-
         e.preventDefault()
-
         const { email, password } = this.state;
 
         ((email.length > 0) & (password.length >0)) ?
@@ -32,9 +30,10 @@ class ReactLogin extends Component {
         const { email, password }= this.state;
         return (
             <Container style={{ minHeight: '60vh'}}>      
-            <Segment padded="very">
-                <Header as="h3">Login Page</Header>
-                <Form onSubmit={this.handleSubmit}>
+            <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
+                <Header as="h1">Login Page</Header>
+                <p>Unlock all the features by creating an account and signing in.</p>
+                <Form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}}>
                     <Form.Input
                         icon="at"
                         iconPosition="left"
@@ -60,7 +59,7 @@ class ReactLogin extends Component {
                     content={this.state.error}>
                     </Message>
 
-                    <Form.Button primary>Submit</Form.Button>
+                    <Form.Button size="large" primary>Submit</Form.Button>
                 </Form>
             </Segment>
             </Container>
