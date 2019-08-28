@@ -85,7 +85,10 @@ class ReactMenu extends Component {
                     </div>
                 </Menu.Item>
                 <Menu.Item>
-                  <Button secondary>Register</Button>
+                  <Button 
+                  as={Link} 
+                  to="/register" 
+                  secondary>Register</Button>
                 </Menu.Item>
             </Menu.Menu>
           </Container>

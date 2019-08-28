@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactMenu from './ReactMenu';
 import ReactLogin from './account/ReactLogin';
+import ReactRegister from './account/ReactRegister';
 import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactFooter from './ReactFooter';
 import ReactNews from './news/ReactNews';

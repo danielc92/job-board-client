@@ -3,7 +3,17 @@ import { connect } from 'react-redux';
 import { Container, Segment, Form, Header } from 'semantic-ui-react';
 
 class ReactRegister extends Component {
+
+    state = {
+        email: "",
+        password: "",
+        confirm_password: "",
+        first_name: "",
+        last_name: ""
+    }
+
     render() {
+        const { email, password, confirm_password, first_name, last_name } = this.state 
         return (
             <Container>
                 <Segment>
