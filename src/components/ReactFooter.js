@@ -36,7 +36,7 @@ export default class ReactFooter extends Component {
                 Footer Header
               </Header>
               <p>
-                Irure ad proident qui duis quis consectetur est. Minim officia voluptate duis veniam enim ut cupidatat enim laborum officia do in incididunt ea. Veniam eu aliqua qui sunt laboris laborum non deserunt. Voluptate occaecat ea aute dolore irure.
+                Irure i Veniam eu aliqua qui sunt laboris laborum non deserunt. Voluptate occaecat ea aute dolore irure.
               </p>
             </Grid.Column>
           </Grid.Row>

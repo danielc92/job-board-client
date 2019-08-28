@@ -32,11 +32,15 @@ class ReactMenu extends Component {
                 onClick={this.handleItemClick}
               />
               <Menu.Item
+                as={Link}
+                to="/create-jobs"
                 name='create'
                 active={activeItem === 'create'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
+                as={Link}
+                to="/view-jobs"
                 name='find'
                 active={activeItem === 'find'}
                 onClick={this.handleItemClick}
@@ -49,6 +53,8 @@ class ReactMenu extends Component {
                 onClick={this.handleItemClick}
               />
               <Menu.Item
+                as={Link}
+                to="/analytics"
                 name='analytics'
                 active={activeItem === 'analytics'}
                 onClick={this.handleItemClick}

@@ -9,6 +9,7 @@ import { loginUser, logoutUser } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 import './App.css'
+import NothingHereYet from './placeholder/NothingHereYet';
 
 
 class App extends Component {
@@ -27,6 +28,9 @@ class App extends Component {
         
         {/* Components for home route */}
         <Route path="/" exact component={ReactHomeContainer}/>
+        <Route path="/view-jobs" exact component={NothingHereYet}/>
+        <Route path="/create-jobs" exact component={NothingHereYet}/>
+        <Route path="/analytics" exact component={NothingHereYet}/>
         <Route path="/news" exact component={ReactNews}/>
         <Route path="/login" exact component={ReactLogin}/>
 
