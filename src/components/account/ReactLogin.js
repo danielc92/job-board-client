@@ -60,7 +60,7 @@ class ReactLogin extends Component {
                     content={this.state.error}>
                     </Message>
 
-                    <Form.Button size="large" primary>Submit</Form.Button>
+                    <Form.Button color="green" size="large">Submit</Form.Button>
                 </Form>
             </Segment>
             </Container>

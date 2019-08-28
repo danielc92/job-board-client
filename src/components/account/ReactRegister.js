@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Segment, Form, Header } from 'semantic-ui-react';
+import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
 
 class ReactRegister extends Component {
 
@@ -17,6 +17,11 @@ class ReactRegister extends Component {
         this.setState({[name]: value})
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('Submitted register form')
+    }
+
     render() {
         
         const { 
@@ -30,7 +35,7 @@ class ReactRegister extends Component {
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                     <Header as="h1">Join the community</Header>
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                     <Form.Input
                         icon="at"
                         iconPosition="left"
@@ -47,7 +52,7 @@ class ReactRegister extends Component {
                         placeholder="Enter password here..." 
                         label="Password" 
                         value={password}
-                        name="email"/>
+                        name="password"/>
             
                     <Form.Input
                         icon="lock"
@@ -59,7 +64,7 @@ class ReactRegister extends Component {
                         name="confirm_password"/>
         
                     <Form.Input
-                        icon="lock"
+                        icon="user circle"
                         iconPosition="left"
                         onChange={this.handleInputChange}
                         placeholder="Jane" 
@@ -68,7 +73,7 @@ class ReactRegister extends Component {
                         name="first_name"/>
 
                     <Form.Input
-                        icon="lock"
+                        icon="user circle"
                         iconPosition="left"
                         onChange={this.handleInputChange}
                         placeholder="Doe" 
@@ -81,6 +86,17 @@ class ReactRegister extends Component {
                     color="green">Create account</Form.Button>
 
                     </Form>
+
+                    <Message
+                    color={this.props.theme}
+                    header="Tips"
+                    list={[
+                        'criteria for something goes here 1', 
+                        'criteria for something goes here 2', 
+                        'criteria for something goes here 3']}>
+
+                    </Message>
+
                 </Segment>
             </Container>
         )
