@@ -1,4 +1,4 @@
-export const themeReducer = (state="blue", action) => {
+export const themeReducer = (state="violet", action) => {
     switch(action.type) {
         default:
             return state

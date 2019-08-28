@@ -1,5 +1,5 @@
-export function loginUser() {
-    return {
+export const loginUser = () => async (dispatch, getState) => {
+    const response = await return {
         type: 'LOGIN',
         payload: {
             value: true

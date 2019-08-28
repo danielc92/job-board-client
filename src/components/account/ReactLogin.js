@@ -13,8 +13,9 @@ class ReactLogin extends Component {
     }
 
     handleInputChange = (e) => {
-        this.setState({[e.target.name]:e.target.value.trim()})
-        console.log(this.state)
+        const { name, value} = e.target;
+        let trimmed_value = value.trim()
+        this.setState({ [name] : trimmed_value })
     }
 
     handleSubmit = (e) => {

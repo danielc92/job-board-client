@@ -6,6 +6,7 @@ import {
     Header,
     Segment
 } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
 
 export default class ReactFooter extends Component {
@@ -46,3 +47,5 @@ export default class ReactFooter extends Component {
         )
     }
 }
+
+

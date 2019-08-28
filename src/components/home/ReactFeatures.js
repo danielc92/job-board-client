@@ -46,7 +46,9 @@ class ReactFeatures extends Component {
               border: 'none', 
               boxShadow:'none' }}>
             <Container>
-              <Header as="h1" textAlign="center" style={{marginBottom: '5rem'}}>Features</Header>
+              <Header as="h1" textAlign="center" style={{marginBottom: '5rem'}}>
+                What we can do for you
+                </Header>
               <Grid padded columns={3} stackable>
                 <Grid.Row>
                   {
