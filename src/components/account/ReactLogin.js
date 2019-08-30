@@ -63,17 +63,17 @@ class ReactLogin extends Component {
                         name="password"/>
 
                     <Message
-                    color="yellow"
-                    visible={this.state.error}
-                    header="Action forbidden"
-                    content="Email and password is required to login.">
+                        warning
+                        visible={this.state.error}
+                        header="Action forbidden"
+                        content="Email and password is required to login.">
                     </Message>
                     
                     <Message
-                    color="red"
-                    header="Failed to login."
-                    content="Please check your credentials are correct, and try again."
-                    visible={this.props.auth.error}>
+                        error
+                        header="Failed to login."
+                        content="Please check your credentials are correct, and try again."
+                        visible={this.props.auth.error}>
                     </Message>
 
                     <Form.Button color="green" size="large">Submit</Form.Button>
