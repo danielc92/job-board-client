@@ -14,7 +14,7 @@ export const loginUser = (email, password) => async (dispatch, getState) => {
     }
     catch(error) {
         dispatch({
-            type: "LOGIN FAILURE",
+            type: "LOGIN_FAILURE",
             payload: {
                 message: "Incorrect credentials were supplied."
             }

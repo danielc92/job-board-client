@@ -68,7 +68,13 @@ class ReactLogin extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
 const mapActionsToProps = {
     propsLoginUser: loginUser
 }
-export default connect(null, mapActionsToProps)(ReactLogin)
+export default connect(mapStateToProps, mapActionsToProps)(ReactLogin)

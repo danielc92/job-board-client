@@ -35,6 +35,16 @@ class ReactRegister extends Component {
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                     <Header as="h1">Join the community</Header>
+                    <Message
+                    color={this.props.theme}
+                    header="Tips"
+                    list={[
+                        'criteria for something goes here 1', 
+                        'criteria for something goes here 2', 
+                        'criteria for something goes here 3']}>
+
+                    </Message>
+                    
                     <Form onSubmit={this.handleSubmit}>
                     <Form.Input
                         icon="at"
@@ -87,15 +97,7 @@ class ReactRegister extends Component {
 
                     </Form>
 
-                    <Message
-                    color={this.props.theme}
-                    header="Tips"
-                    list={[
-                        'criteria for something goes here 1', 
-                        'criteria for something goes here 2', 
-                        'criteria for something goes here 3']}>
-
-                    </Message>
+                    
 
                 </Segment>
             </Container>
