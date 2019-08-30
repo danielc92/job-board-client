@@ -66,16 +66,16 @@ class ReactMenu extends Component {
                     <div>
                       { this.props.auth.isAuthenticated ? 
                       <Button
-                      color={this.props.theme}
-                      onClick={this.props.propsLogoutUser}
+                        color={this.props.theme}
+                        onClick={this.props.propsLogoutUser}
                       >
                         Logout
                       </Button>
                         :
-                        <Button 
-                      color={this.props.theme}
-                      as={Link}
-                      to="/login"
+                      <Button 
+                        color={this.props.theme}
+                        as={Link}
+                        to="/login"
                       >
                       Login
                       </Button>
@@ -84,12 +84,13 @@ class ReactMenu extends Component {
                       
                     </div>
                 </Menu.Item>
+                { !this.props.auth.isAuthenticated ? 
                 <Menu.Item>
                   <Button 
                   as={Link} 
                   to="/register" 
                   secondary>Register</Button>
-                </Menu.Item>
+                </Menu.Item> : null }
             </Menu.Menu>
           </Container>
         </Menu>
