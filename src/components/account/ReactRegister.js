@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerUser} from '../../actions/auth';
+import { registerUser } from '../../actions/register';
 import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
 import { 
     EmailValidator, 
@@ -53,8 +53,16 @@ class ReactRegister extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state)
-        
+        const { errors, email, password, first_name, last_name } = this.state
+        if (errors.length === 0) {
+            console.log('Attempting to register user')
+            this.props.propsRegisterUser(email, 
+                password,
+                first_name,
+                last_name)
+        }else {
+            console.log('Validation has failed.')
+        }
     }
 
     componentDidMount() {
@@ -62,6 +70,7 @@ class ReactRegister extends Component {
     }
 
     render() {
+        console.log(this.props.register)
         const { 
             errors,
             email, 
@@ -134,6 +143,21 @@ class ReactRegister extends Component {
                         visible={errors.length > 0}>
                     </Message>
 
+                    <Message
+                        success
+                        header="Success"
+                        visible={this.props.register.success & !this.props.error}
+                        content={this.props.register.message}>
+
+                    </Message>
+
+                    <Message
+                        error
+                        header="Error occured"
+                        visible={this.props.register.error}
+                        content={this.props.register.message}>
+
+                    </Message>
                     </Form>
 
                 </Segment>
@@ -145,12 +169,12 @@ class ReactRegister extends Component {
 const mapStateToProps = (state) => {
     return {
         theme: state.theme,
-        auth: state.auth
+        register: state.register
     }
 }
 
-const mapActionsToProps = () => {
-
+const mapActionsToProps = {
+    propsRegisterUser: registerUser
 }
 
-export default connect(mapStateToProps)(ReactRegister)
+export default connect(mapStateToProps, mapActionsToProps)(ReactRegister)

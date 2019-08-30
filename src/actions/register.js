@@ -1,3 +1,4 @@
+import jobApi from '../api';
 
 export const registerUser = (email, password, first_name, last_name) => async (dispatch, getState) => {
     
