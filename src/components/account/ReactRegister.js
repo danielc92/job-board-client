@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { registerUser} from '../../actions/auth';
 import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
 import { 
     EmailValidator, 
@@ -143,8 +144,13 @@ class ReactRegister extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        theme: state.theme
+        theme: state.theme,
+        auth: state.auth
     }
+}
+
+const mapActionsToProps = () => {
+
 }
 
 export default connect(mapStateToProps)(ReactRegister)
