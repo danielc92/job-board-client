@@ -31,3 +31,12 @@ export function logoutUser() {
         }
     }
 }
+
+export function loginRefresh() {
+    return {
+        type: 'LOGIN_REFRESH',
+        payload: {
+            value: true
+        }
+    }
+}

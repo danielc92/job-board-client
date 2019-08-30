@@ -7,6 +7,7 @@ export const authReducer = (state={}, action) => {
     const { type, payload } = action;
 
     switch(type) {
+        
         case "LOGIN_SUCCESS":
             localStorage.setItem(TOKEN_NAME, payload.token)
             const decoded = jwt_decode(payload.token)
@@ -15,7 +16,16 @@ export const authReducer = (state={}, action) => {
                 error: false,
                 error_message: null,
                 user: { ...decoded }
-                
+            }
+
+        case "LOGIN_REFRESH":
+            const token = localStorage.getItem(TOKEN_NAME)
+            const decoded = jwt_decode(token)
+            return {
+                isAuthenticated: true,
+                error: false,
+                error_message: null,
+                user: { ...decoded }
             }
 
         case "LOGIN_FAILURE":
