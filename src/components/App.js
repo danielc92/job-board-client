@@ -8,7 +8,7 @@ import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
 
@@ -18,8 +18,7 @@ class App extends Component {
   render() {
 
     return (
-      <div>
-        <Router>    
+      <div>  
 
         {/* Small message box indicating state of development*/}
         <Message style={{textAlign:"center", borderRadius:'0', margin: '0'}} color="green">This application is currently in <strong>development</strong> phase.</Message>
@@ -38,8 +37,7 @@ class App extends Component {
 
         {/* Footer */}
         <ReactFooter/>
-        
-      </Router>
+    
       </div>
       
     )

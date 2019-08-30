@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, Segment, Message, Container, Header } from 'semantic-ui-react';
+import { Form, Button, Segment, Message, Container, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
+import { Redirect } from 'react-router-dom';
 
 
 class ReactLogin extends Component {
@@ -9,7 +10,7 @@ class ReactLogin extends Component {
     state = {
         email:"",
         password:"",
-        error: ""
+        error: false
     }
 
     handleInputChange = (e) => {
@@ -22,15 +23,23 @@ class ReactLogin extends Component {
         e.preventDefault()
         const { email, password } = this.state;
 
-        ((email.length > 0) & (password.length >0)) ?
-            this.props.propsLoginUser(email, password) :
-            this.setState({error: "You have to enter a password and email"})
+        if ((email.length > 0) & (password.length >0)) {
+            this.props.propsLoginUser(email, password)
+            this.setState({error: false})
+        } else {
+            this.setState({error: true})
+        }  
+    }
+
+    componentDidMount() {
+        console.log('Mounted')
+        return <Redirect to="/"/>
     }
 
     render() {
         const { email, password }= this.state;
         return (
-            <Container style={{ minHeight: '60vh'}}>      
+            <Container style={{ minHeight: '60vh'}}>     
             <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
                 <Header as="h1">Login Page</Header>
                 <p>Unlock all the features by creating an account and signing in.</p>
@@ -54,10 +63,17 @@ class ReactLogin extends Component {
                         name="password"/>
 
                     <Message
-                    warning
-                    visible={this.state.error.length > 0}
+                    color="yellow"
+                    visible={this.state.error}
                     header="Action forbidden"
-                    content={this.state.error}>
+                    content="Email and password is required to login.">
+                    </Message>
+                    
+                    <Message
+                    color="red"
+                    header="Failed to login."
+                    content="Please check your credentials are correct, and try again."
+                    visible={this.props.auth.error}>
                     </Message>
 
                     <Form.Button color="green" size="large">Submit</Form.Button>
@@ -77,4 +93,6 @@ const mapStateToProps = state => {
 const mapActionsToProps = {
     propsLoginUser: loginUser
 }
+
 export default connect(mapStateToProps, mapActionsToProps)(ReactLogin)
+
