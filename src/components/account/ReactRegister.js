@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
+import { EmailValidator, StringValidator} from '../../helpers/validation';
+
 
 class ReactRegister extends Component {
 
@@ -56,6 +58,7 @@ class ReactRegister extends Component {
                         name="email"/>
                     
                     <Form.Input
+                        type="password"
                         icon="lock"
                         iconPosition="left"
                         onChange={this.handleInputChange}
@@ -65,6 +68,7 @@ class ReactRegister extends Component {
                         name="password"/>
             
                     <Form.Input
+                        type="password"
                         icon="lock"
                         iconPosition="left"
                         onChange={this.handleInputChange}

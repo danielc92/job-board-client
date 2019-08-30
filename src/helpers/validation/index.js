@@ -1,11 +1,61 @@
-export const StringValidator = (string, minLength, maxLength) => {
+export const StringValidator = (string, minLength, maxLength, tag) => {
     
     let errors = []
     let trimmed = string.trim()
     let length = trimmed.length
     
     if (length > maxLength || length < minLength) {
-        errors.push(`Value must be between ${minLength} and ${maxLength} characters long.`)
+        errors.push(`${tag} must be between ${minLength} and ${maxLength} characters long.`)
+    }
+
+    return errors
+}
+
+export const EmailValidator = (string, minLength, maxLength) => {
+
+    let errors = []
+    let trimmed = string.trim()
+    let length = trimmed.length
+    
+    if (length > maxLength || length < minLength) {
+        errors.push(`Email must be between ${minLength} and ${maxLength} characters long.`)
+    }
+
+    //REGEX SOURCE: https://emailregex.com/
+    if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(trimmed)) {
+        errors.push('Invalid email address.')
+    }
+
+    return errors
+}
+
+export const PasswordValidator = (string, minLength, maxLength, minUnique) => {
+    
+    let errors = []
+    let trimmed = string.trim()
+    let length = trimmed.length
+    
+    // Check Length
+    if (length > maxLength || length < minLength) {
+        errors.push(`Password must be between ${minLength} and ${maxLength} characters long.`)
+    }
+
+    // Check unique chars for user security
+    let split = trimmed.split('')
+    let unique_count = [...new Set(split)].length
+    if (unique_count < minUnique) {
+        errors.push(`Passwords must have at least `)
+    }
+
+    return errors
+}
+
+export const PasswordMatcher = (string, string2) => {
+    
+    let errors = []
+    
+    if (string !== string2) {
+        errors.push('Passwords must match.')
     }
 
     return errors
