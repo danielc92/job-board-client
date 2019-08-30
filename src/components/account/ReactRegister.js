@@ -26,12 +26,14 @@ class ReactRegister extends Component {
         let lastNameErrors = StringValidator(last_name, 1, 100, 'Last name')
         let matchErrors = PasswordMatcher(password, confirm_password)
         let passwordErrors = PasswordValidator(password, 8, 20, 6)
+        let emailErrors = EmailValidator(email, 6, 100)
 
         let errors = [
             ...firstNameErrors, 
             ...lastNameErrors, 
             ...passwordErrors, 
-            ...matchErrors]
+            ...matchErrors,
+            ...emailErrors]
 
         this.setState({errors}) 
     }
@@ -43,6 +45,7 @@ class ReactRegister extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        console.log(this.state)
         
     }
 
