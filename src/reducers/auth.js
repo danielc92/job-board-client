@@ -13,6 +13,7 @@ export const authReducer = (state={}, action) => {
             return {
                 isAuthenticated: true,
                 error: false,
+                error_message: null,
                 user: { ...decoded }
                 
             }
@@ -21,6 +22,7 @@ export const authReducer = (state={}, action) => {
             return {
                 isAuthenticated: false,
                 error: true,
+                error_message: payload.error,
                 user: {}
             }
 
@@ -29,6 +31,7 @@ export const authReducer = (state={}, action) => {
             return {
                 isAuthenticated: payload.value,
                 error: false,
+                error_message: null,
                 user: {}
             }
             
@@ -36,6 +39,7 @@ export const authReducer = (state={}, action) => {
             return {
                 isAuthenticated: false,
                 error: false,
+                error_message: null,
                 user: {}
             }
     }

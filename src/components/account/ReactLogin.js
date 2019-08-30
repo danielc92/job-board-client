@@ -68,8 +68,8 @@ class ReactLogin extends Component {
                         <Message
                             error
                             header="Failed to login."
-                            content="Please check your credentials are correct, and try again."
-                            visible={this.props.auth.error}>
+                            content={this.props.auth.error_message}
+                            visible={this.props.auth.error_message}>
                         </Message>
 
                         <Form.Button color="green" size="large">Submit</Form.Button>

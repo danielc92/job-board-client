@@ -16,7 +16,7 @@ export const loginUser = (email, password) => async (dispatch, getState) => {
         dispatch({
             type: "LOGIN_FAILURE",
             payload: {
-                message: "Incorrect credentials were supplied."
+                error: error.response.data.error
             }
         })
     }
@@ -27,6 +27,15 @@ export function logoutUser() {
         type: 'LOGOUT_SUCCESS',
         payload: {
             value: false
+        }
+    }
+}
+
+export const registerUser = (email, password, first_name, last_name) => async (dispatch, getState) => {
+    return {
+        type: 'REGISTER_SUCCESS',
+        payload: {
+
         }
     }
 }
