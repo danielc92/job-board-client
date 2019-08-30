@@ -1,10 +1,11 @@
 import jobApi from '../api';
 
 export const loginUser = (email, password) => async (dispatch, getState) => {
-    const data = { email, password }
+    
+    const payload = { email, password }
     
     try {
-        const response = await jobApi.post('api/auth/login', data)
+        const response = await jobApi.post('api/auth/login', payload)
         dispatch({
             type: "LOGIN_SUCCESS",
             payload: {
@@ -32,10 +33,24 @@ export function logoutUser() {
 }
 
 export const registerUser = (email, password, first_name, last_name) => async (dispatch, getState) => {
-    return {
-        type: 'REGISTER_SUCCESS',
-        payload: {
+    
+    const payload = { email, password, first_name, last_name }
 
-        }
+    try {
+        const response = await jobApi.post('api/auth/register', payload)
+        dispatch({
+            type: "REGISTER_SUCCESS",
+            payload: {
+                value: true
+            }
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: "REGISTER_FAILURE",
+            payload: {
+                error: error.response.data.error
+            }
+        })
     }
 }
