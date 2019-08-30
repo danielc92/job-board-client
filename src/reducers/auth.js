@@ -11,16 +11,19 @@ export const authReducer = (state={}, action) => {
             localStorage.setItem(TOKEN_NAME, payload.token)
             const decoded = jwt_decode(payload.token)
             return {
-                user: { ...decoded },
+                isAuthenticated: true,
                 error: false,
-                isAuthenticated: true
+                user: { ...decoded }
+                
             }
+
         case "LOGIN_FAILURE":
             return {
                 isAuthenticated: false,
                 error: true,
                 user: {}
             }
+
         case "LOGOUT_SUCCESS":
             localStorage.removeItem(TOKEN_NAME)
             return {
@@ -28,6 +31,7 @@ export const authReducer = (state={}, action) => {
                 error: false,
                 user: {}
             }
+            
         default:
             return {
                 isAuthenticated: false,

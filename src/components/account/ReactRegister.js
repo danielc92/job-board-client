@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
-import { EmailValidator, 
+import { 
+    EmailValidator, 
     StringValidator,
     PasswordMatcher,
     PasswordValidator} from '../../helpers/validation';
@@ -20,7 +21,12 @@ class ReactRegister extends Component {
 
     validateForm = () => {
 
-        const {email, password, confirm_password, first_name, last_name} = this.state;
+        const {
+            email, 
+            password, 
+            confirm_password, 
+            first_name, 
+            last_name} = this.state;
         
         let firstNameErrors = StringValidator(first_name, 1, 100, 'First name')
         let lastNameErrors = StringValidator(last_name, 1, 100, 'Last name')
@@ -40,13 +46,18 @@ class ReactRegister extends Component {
 
     handleInputChange = (e) => {
         const { value, name } = e.target;
-        this.setState({[name]: value}, ()=> this.validateForm())
+        console.log(name, value)
+        this.setState({ [name]:value }, ()=> this.validateForm())
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
         console.log(this.state)
         
+    }
+
+    componentDidMount() {
+        this.validateForm()
     }
 
     render() {
@@ -56,7 +67,7 @@ class ReactRegister extends Component {
             password, 
             confirm_password, 
             first_name, 
-            last_name } = this.state 
+            last_name } = this.state;
         
         return (
             <Container>
@@ -118,7 +129,7 @@ class ReactRegister extends Component {
                     <Message
                         warning
                         list={errors}
-                        header="You made some mistakes"
+                        header="Rules"
                         visible={errors.length > 0}>
                     </Message>
 
