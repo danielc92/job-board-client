@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
-import { EmailValidator, StringValidator} from '../../helpers/validation';
+import { EmailValidator, 
+    StringValidator,
+    PasswordMatcher,
+    PasswordValidator} from '../../helpers/validation';
 
 
 class ReactRegister extends Component {
@@ -11,22 +14,41 @@ class ReactRegister extends Component {
         password: "",
         confirm_password: "",
         first_name: "",
-        last_name: ""
+        last_name: "",
+        errors: []
+    }
+
+    validateForm = () => {
+
+        const {email, password, confirm_password, first_name, last_name} = this.state;
+        
+        let firstNameErrors = StringValidator(first_name, 1, 100, 'First name')
+        let lastNameErrors = StringValidator(last_name, 1, 100, 'Last name')
+        let matchErrors = PasswordMatcher(password, confirm_password)
+        let passwordErrors = PasswordValidator(password, 8, 20, 6)
+
+        let errors = [
+            ...firstNameErrors, 
+            ...lastNameErrors, 
+            ...passwordErrors, 
+            ...matchErrors]
+
+        this.setState({errors}) 
     }
 
     handleInputChange = (e) => {
         const { value, name } = e.target;
-        this.setState({[name]: value})
+        this.setState({[name]: value}, ()=> this.validateForm())
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log('Submitted register form')
+        
     }
 
     render() {
-        
         const { 
+            errors,
             email, 
             password, 
             confirm_password, 
@@ -37,15 +59,6 @@ class ReactRegister extends Component {
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                     <Header as="h1">Join the community</Header>
-                    <Message
-                    color={this.props.theme}
-                    header="Tips"
-                    list={[
-                        'criteria for something goes here 1', 
-                        'criteria for something goes here 2', 
-                        'criteria for something goes here 3']}>
-
-                    </Message>
                     
                     <Form onSubmit={this.handleSubmit}>
                     <Form.Input
@@ -99,9 +112,14 @@ class ReactRegister extends Component {
                     size="large" 
                     color="green">Create account</Form.Button>
 
-                    </Form>
+                    <Message
+                        warning
+                        list={errors}
+                        header="You made some mistakes"
+                        visible={errors.length > 0}>
+                    </Message>
 
-                    
+                    </Form>
 
                 </Segment>
             </Container>

@@ -22,7 +22,8 @@ export const EmailValidator = (string, minLength, maxLength) => {
     }
 
     //REGEX SOURCE: https://emailregex.com/
-    if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(trimmed)) {
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(trimmed)) {
         errors.push('Invalid email address.')
     }
 
@@ -44,7 +45,7 @@ export const PasswordValidator = (string, minLength, maxLength, minUnique) => {
     let split = trimmed.split('')
     let unique_count = [...new Set(split)].length
     if (unique_count < minUnique) {
-        errors.push(`Passwords must have at least `)
+        errors.push(`Passwords must have at least ${minUnique} unique characters.`)
     }
 
     return errors
