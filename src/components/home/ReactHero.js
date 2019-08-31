@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
-    Grid, Container, Segment, Header, Image
+    Grid, Container, Segment, Header, Image, Button
 } from 'semantic-ui-react';
 import image from '../../images/undraw_interview_rmcf.svg'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
-
-export default class ReactHero extends Component {
+class ReactHero extends Component {
     render() {
         return (
             <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
@@ -20,6 +21,12 @@ export default class ReactHero extends Component {
                             Irure nostrud ea aliqua incididunt ex irure sint excepteur.
                             </Header.Subheader>
                         </Header>
+                        <Button
+                            to="/view-jobs"
+                            as={Link}
+                            size="huge" 
+                            color={this.props.theme}>Explore Jobs
+                        </Button>
                         </Grid.Column>
                         <Grid.Column>
                         <Image src={image} />
@@ -31,3 +38,11 @@ export default class ReactHero extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        theme: state.theme
+    }
+}
+
+export default connect(mapStateToProps)(ReactHero)
