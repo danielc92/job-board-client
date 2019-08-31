@@ -7,7 +7,7 @@ export const registerReducer = (state={ error: false, success: false, message: n
             return {
                 success: true,
                 error: false,
-                message: "You have successfully registered an account."
+                message: payload.data.message
             }
         case 'REGISTER_FAILURE':
             return {

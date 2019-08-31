@@ -8,22 +8,19 @@ import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
-import {TOKEN_NAME} from '../constants';
+import { validateToken } from '../helpers/auth';
 import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
-import jwt_decode from 'jwt-decode';
 
 
 class App extends Component {
 
   componentDidMount() {
-    const result = this.validateToken()
+    const result = validateToken(this.props.auth)
     if (result) this.props.propsLoginRefresh()
   }
 
-  
-  
   render() {
 
     return (

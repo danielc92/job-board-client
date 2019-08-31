@@ -6,10 +6,11 @@ export const registerUser = (email, password, first_name, last_name) => async (d
 
     try {
         const response = await jobApi.post('api/auth/register', payload)
+        console.log(response)
         dispatch({
             type: "REGISTER_SUCCESS",
             payload: {
-                value: true
+                data: response.data
             }
         })
     }

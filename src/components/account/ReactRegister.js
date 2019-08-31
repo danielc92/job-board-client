@@ -47,7 +47,6 @@ class ReactRegister extends Component {
 
     handleInputChange = (e) => {
         const { value, name } = e.target;
-        console.log(name, value)
         this.setState({ [name]:value }, ()=> this.validateForm())
     }
 
@@ -70,7 +69,6 @@ class ReactRegister extends Component {
     }
 
     render() {
-        console.log(this.props.register)
         const { 
             errors,
             email, 

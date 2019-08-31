@@ -1,9 +1,11 @@
 import jwt_decode from 'jwt-decode';
+import {TOKEN_NAME} from '../../constants';
 
-export const validateToken = () => {
+
+export const validateToken = (authState) => {
     // Everytime browser refreshes attempt to refresh the token in global state
     const token = localStorage.getItem(TOKEN_NAME)
-    if ((token) && (!this.props.auth.isAuthenticated)) {
+    if ((token) && (!authState.isAuthenticated)) {
       const decoded = jwt_decode(token)
 
       // Get seconds current time, needs to be converted to seconds
