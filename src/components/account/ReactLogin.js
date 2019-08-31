@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button, Segment, Message, Container, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
+import { setMenuItem } from '../../actions/menu';
 import { Redirect } from 'react-router';
 
 class ReactLogin extends Component {
@@ -28,6 +29,10 @@ class ReactLogin extends Component {
         } else {
             this.setState({error: true})
         }  
+    }
+
+    componentDidMount () {
+        this.props.propsSetMenuItem('login')
     }
 
     render() {
@@ -87,7 +92,8 @@ const mapStateToProps = state => {
 }
 
 const mapActionsToProps = {
-    propsLoginUser: loginUser
+    propsLoginUser: loginUser,
+    propsSetMenuItem: setMenuItem
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ReactLogin)

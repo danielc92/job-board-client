@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/register';
+import { setMenuItem } from '../../actions/menu';
 import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
 import { 
     EmailValidator, 
@@ -52,6 +53,7 @@ class ReactRegister extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+
         const { errors, email, password, first_name, last_name } = this.state
         if (errors.length === 0) {
             console.log('Attempting to register user')
@@ -66,6 +68,7 @@ class ReactRegister extends Component {
 
     componentDidMount() {
         this.validateForm()
+        this.props.propsSetMenuItem('register')
     }
 
     render() {
@@ -172,7 +175,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapActionsToProps = {
-    propsRegisterUser: registerUser
+    propsRegisterUser: registerUser,
+    propsSetMenuItem: setMenuItem
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ReactRegister)
