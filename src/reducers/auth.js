@@ -1,7 +1,12 @@
 import jwt_decode from 'jwt-decode';
 import { TOKEN_NAME } from '../constants';
 
-export const authReducer = (state={}, action) => {
+export const authReducer = (state={
+    isAuthenticated: false,
+    error: false,
+    error_message: null,
+    user: {}
+}, action) => {
 
     const { type, payload } = action;
 
@@ -45,12 +50,7 @@ export const authReducer = (state={}, action) => {
             }
             
         default:
-            return {
-                isAuthenticated: false,
-                error: false,
-                error_message: null,
-                user: {}
-            }
+            return state
     }
 }
 
