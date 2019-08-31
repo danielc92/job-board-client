@@ -7,18 +7,8 @@ import { logoutUser } from '../actions/auth';
 
 class ReactMenu extends Component {
     
-    state = {
-        activeItem: 'home'
-    }
-
-    handleItemClick = (e, { name }) => {
-        this.setState({ activeItem: name})
-    }
-    
     render() {
-
-        const { activeItem } = this.state;
-
+        const { menu, auth, theme } = this.props;
         return (
             
           <Menu 
@@ -30,41 +20,41 @@ class ReactMenu extends Component {
                 as={Link}
                 to="/"
                 name='home'
-                active={activeItem === 'home'}
+                active={menu.item === 'home'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
                 as={Link}
                 to="/create-jobs"
                 name='create'
-                active={activeItem === 'create'}
+                active={menu.item === 'create'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
                 as={Link}
                 to="/view-jobs"
                 name='find'
-                active={activeItem === 'find'}
+                active={menu.item === 'find'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
                 as={Link}
                 to="/news"
                 name='news'
-                active={activeItem === 'news'}
+                active={menu.item === 'news'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
                 as={Link}
                 to="/analytics"
                 name='analytics'
-                active={activeItem === 'analytics'}
+                active={menu.item === 'analytics'}
                 onClick={this.handleItemClick}
               />
               <Menu.Menu position='right'>
                 <Menu.Item>
                     <div>
-                      { this.props.auth.isAuthenticated ? 
+                      { auth.isAuthenticated ? 
                       <Button
                         color={this.props.theme}
                         onClick={this.props.propsLogoutUser}
@@ -73,7 +63,7 @@ class ReactMenu extends Component {
                       </Button>
                         :
                       <Button 
-                        color={this.props.theme}
+                        color={theme}
                         as={Link}
                         to="/login"
                       >
@@ -101,7 +91,8 @@ class ReactMenu extends Component {
 const mapStateToProps = (state) => {
   return {
     auth : state.auth,
-    theme: state.theme
+    theme: state.theme,
+    menu: state.menu
   }
 }
 

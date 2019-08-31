@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Segment, Container, Label,  Divider, Header} from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { setMenuItem } from '../../actions/menu';
 
+class ReactNews extends Component {
 
-export default class ReactNews extends Component {
+    componentDidMount() {
+        this.props.propsSetMenuItem('news')
+    }
+
     render() {
         return (
             <div>
@@ -19,3 +25,6 @@ export default class ReactNews extends Component {
         )
     }
 }
+
+const mapActionsToProps = { propsSetMenuItem: setMenuItem }
+export default connect(null, mapActionsToProps)(ReactNews);

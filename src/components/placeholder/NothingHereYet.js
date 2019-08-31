@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Divider, Container, Segment, Header } from 'semantic-ui-react';
 
 export default class NothingHereYet extends Component {
+
     render() {
         return (
             <div>

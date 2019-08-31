@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import ReactHero from './ReactHero';
 import ReactFeatures from './ReactFeatures';
+import { connect } from 'react-redux';
+import { setMenuItem } from '../../actions/menu';
 
-export default class ReactHomeContainer extends Component {
+class ReactHomeContainer extends Component {
 
+    componentDidMount() {
+        this.props.propsSetMenuItem('home')
+    }
     render() {
         
         return (
@@ -20,3 +25,6 @@ export default class ReactHomeContainer extends Component {
         )
     }
 }
+
+const mapActionsToProps = { propsSetMenuItem: setMenuItem }
+export default connect(null, mapActionsToProps)(ReactHomeContainer);
