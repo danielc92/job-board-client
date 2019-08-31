@@ -1,6 +1,5 @@
 import jwt_decode from 'jwt-decode';
-
-const TOKEN_NAME = 'JOBTOKEN';
+import { TOKEN_NAME } from '../constants';
 
 export const authReducer = (state={}, action) => {
 
@@ -10,7 +9,7 @@ export const authReducer = (state={}, action) => {
         
         case "LOGIN_SUCCESS":
             localStorage.setItem(TOKEN_NAME, payload.token)
-            const decoded = jwt_decode(payload.token)
+            let decoded = jwt_decode(payload.token)
             return {
                 isAuthenticated: true,
                 error: false,
@@ -19,13 +18,13 @@ export const authReducer = (state={}, action) => {
             }
 
         case "LOGIN_REFRESH":
-            const token = localStorage.getItem(TOKEN_NAME)
-            const decoded = jwt_decode(token)
+            let token = localStorage.getItem(TOKEN_NAME)
+            let decoded_token = jwt_decode(token)
             return {
                 isAuthenticated: true,
                 error: false,
                 error_message: null,
-                user: { ...decoded }
+                user: { ...decoded_token }
             }
 
         case "LOGIN_FAILURE":

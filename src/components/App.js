@@ -6,14 +6,23 @@ import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactFooter from './ReactFooter';
 import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
-import { loginUser, logoutUser } from '../actions/auth';
+import { loginUser, logoutUser, loginRefresh } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
+import {TOKEN_NAME} from '../constants';
 import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
+import jwt_decode from 'jwt-decode';
 
 
 class App extends Component {
+
+  componentDidMount() {
+    const result = this.validateToken()
+    if (result) this.props.propsLoginRefresh()
+  }
+
+  
   
   render() {
 
@@ -52,7 +61,8 @@ const mapStateToProps = (state) => {
 
 const mapActionsToProps = {
   propsLoginUser: loginUser,
-  propsLogoutUser: logoutUser
+  propsLogoutUser: logoutUser,
+  propsLoginRefresh: loginRefresh
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(App)
