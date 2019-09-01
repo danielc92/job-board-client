@@ -24,7 +24,7 @@ class ReactHero extends Component {
                         <Button
                             to="/view-jobs"
                             as={Link}
-                            size="huge" 
+                            size="huge"
                             color={this.props.theme}>Explore Jobs
                         </Button>
                         </Grid.Column>
