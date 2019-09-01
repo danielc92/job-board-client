@@ -35,8 +35,8 @@ class App extends Component {
         
         {/* Components for home route */}
         <Route path="/" exact component={ReactHomeContainer}/>
-        <Route path="/view-jobs" exact component={NothingHereYet}/>
         <Route path="/create-jobs" exact component={ReactJobPostContainer}/>
+        <Route path="/view-jobs" exact component={NothingHereYet}/>
         <Route path="/analytics" exact component={NothingHereYet}/>
         <Route path="/news" exact component={ReactNews}/>
         <Route path="/login" exact component={ReactLogin}/>

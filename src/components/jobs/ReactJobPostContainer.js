@@ -1,26 +1,39 @@
 import React, { Component } from 'react';
-import { Segment, Container, Header, Form, Message } from 'semantic-ui-react';
+import { Segment, Container, Header, Form, Message, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { setMenuItem } from '../../actions/menu';
 
-
-export default class ReactJobPostContainer extends Component {
+class ReactJobPostContainer extends Component {
 
     state = {
-        skills: [
-            {key: 'lsiadyufgaose873', text: 'teamwork', value: 'lsiadyufgaose873'},
-            {key: '3w', text: 'jumping', value: '3w'},
-            {key: 'aaa', text: 'running', value: 'aaa'},
-            {key: 'aa', text: 'rowing', value: 'aa'},
-            {key: 'fd', text: 'communication', value: 'fd'},
-            {key: 'ef', text: 'negotiation', value: 'ef'},
-            {key: 'asdf', text: 'finance', value: 'asdf'}
+        // These are temporary until API is wired up into redux.
+        categoryOptions: [
+            {key: 'a', text: 'accounting and finance', value: 'a'},
+            {key: 'b', text: 'engineering', value: 'b'},
+            {key: 'c', texT: 'hospitality', value: 'c'}
         ],
-        benefits: [
-            {key: '1', value: '1', text: 'sick leave'},
-            {key: '2', value: '2', text: 'paternal leave'},
-            {key: '12', value: '12', text: 'flexible hours'}
+        skillOptions: [
+            {key: 'a', text: 'teamwork', value: 'a'},
+            {key: 'b', text: 'jumping', value: 'b'},
+            {key: 'c', text: 'running', value: 'c'},
+            {key: 'd', text: 'rowing', value: 'd'},
+            {key: 'e', text: 'communication', value: 'e'},
+            {key: 'f', text: 'negotiation', value: 'f'},
+            {key: 'g', text: 'finance', value: 'g'}
+        ],
+        benefitOptions: [
+            {key: 'a', value: 'a', text: 'sick leave'},
+            {key: 'b', value: 'b', text: 'paternal leave'},
+            {key: 'c', value: 'c', text: 'flexible hours'}
         ]
     }
+
+    componentDidMount () {
+        this.props.propsSetMenuItem('create')
+    }
+    
     render() {
+        const  { benefitOptions, categoryOptions, skillOptions } = this.state;
         return (
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
@@ -34,6 +47,17 @@ export default class ReactJobPostContainer extends Component {
                         <Form.Input
                         placeholder="Zoo keeper"
                         label="Job Title"/>
+
+                        <Form.Dropdown
+                        label="Category"
+                        placeholder="Select category"
+                        fluid
+                        selection
+                        search
+                        options={categoryOptions}
+                        >
+
+                        </Form.Dropdown>
                         
                         <Form.Dropdown 
                             label="Skills"
@@ -41,7 +65,7 @@ export default class ReactJobPostContainer extends Component {
                             multiple
                             search
                             selection
-                            options={this.state.skills}
+                            options={skillOptions}
                             ></Form.Dropdown>
 
                         <Form.Dropdown 
@@ -50,7 +74,7 @@ export default class ReactJobPostContainer extends Component {
                             multiple
                             search
                             selection
-                            options={this.state.benefits}
+                            options={benefitOptions}
                             ></Form.Dropdown>
 
 
@@ -75,12 +99,19 @@ export default class ReactJobPostContainer extends Component {
                         
                       
                         <Form.Button 
-                        icon="home"
                         size="big"
-                        color="green">Create Job</Form.Button>
+                        color="green">
+                            <Icon name="add square"></Icon>Create job
+                        </Form.Button>
                     </Form>
                 </Segment>
             </Container>
         )
     }
 }
+
+const mapActionsToProps = {
+    propsSetMenuItem: setMenuItem
+}
+
+export default connect(null, mapActionsToProps)(ReactJobPostContainer)
