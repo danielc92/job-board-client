@@ -12,6 +12,7 @@ import { validateToken } from '../helpers/auth';
 import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
+import ReactJobPostContainer from './jobs/ReactJobPostContainer';
 
 
 class App extends Component {
@@ -35,7 +36,7 @@ class App extends Component {
         {/* Components for home route */}
         <Route path="/" exact component={ReactHomeContainer}/>
         <Route path="/view-jobs" exact component={NothingHereYet}/>
-        <Route path="/create-jobs" exact component={NothingHereYet}/>
+        <Route path="/create-jobs" exact component={ReactJobPostContainer}/>
         <Route path="/analytics" exact component={NothingHereYet}/>
         <Route path="/news" exact component={ReactNews}/>
         <Route path="/login" exact component={ReactLogin}/>

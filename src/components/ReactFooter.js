@@ -18,7 +18,7 @@ class ReactFooter extends Component {
               <Container>
                 <Grid divided inverted stackable>
                   <Grid.Row>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={4}>
                       <Header inverted as='h4' content='Navigation' />
                       <List link inverted>
                         <List.Item as={Link} to="/">Home</List.Item>
@@ -30,7 +30,7 @@ class ReactFooter extends Component {
                         <List.Item as={Link} to="/register">Sign Up</List.Item>
                       </List>
                     </Grid.Column>
-                    <Grid.Column width={3}>
+                    <Grid.Column width={4}>
                       <Header inverted as='h4' content='Documentation' />
                       <List link inverted>
                         <List.Item as='a'>Terms and conditions</List.Item>
@@ -38,14 +38,13 @@ class ReactFooter extends Component {
                         <List.Item as='a'>FAQ</List.Item>
                       </List>
                     </Grid.Column>
-                    <Grid.Column width={7}>
-                      <Header as='h4' inverted>
-                        Footer Header
-                      </Header>
-                      <p>
-                        Irure i Veniam eu aliqua qui sunt laboris laborum non deserunt. Voluptate occaecat ea aute dolore irure.
-                      </p>
+                    <Grid.Column width={4}>
+                      <Header inverted as='h4' content='Contact' />
+                      <List link inverted>
+                        <List.Item as='a'>Send feedback</List.Item>
+                      </List>
                     </Grid.Column>
+
                   </Grid.Row>
                 </Grid>
               </Container>
