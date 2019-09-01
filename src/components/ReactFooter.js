@@ -24,6 +24,8 @@ class ReactFooter extends Component {
                         <List.Item as={Link} to="/">Home</List.Item>
                         <List.Item as={Link} to="/create-jobs">Post a job</List.Item>
                         <List.Item as={Link} to="/view-jobs">Find a job</List.Item>
+                        <List.Item as={Link} to="/news">News</List.Item>
+                        <List.Item as={Link} to="/analytics">Analytics</List.Item>
                         <List.Item as={Link} to="/login">Log in</List.Item>
                         <List.Item as={Link} to="/register">Sign Up</List.Item>
                       </List>
