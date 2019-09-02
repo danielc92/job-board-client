@@ -5,7 +5,7 @@ export const loginUser = (email, password) => async (dispatch, getState) => {
     const payload = { email, password }
     
     try {
-        const response = await jobApi.post('api/auth/login', payload)
+        const response = await jobApi.post('auth/login', payload)
         dispatch({
             type: "LOGIN_SUCCESS",
             payload: {

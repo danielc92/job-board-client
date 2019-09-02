@@ -7,7 +7,7 @@ export const getSkills = () => async (dispatch, getState) => {
     const token = localStorage.get(TOKEN_NAME)
 
     try {
-        const response = await jobApi.post('api/skill', 
+        const response = await jobApi.post('skill', 
         { headers={'x-access-token' : token }})
 
         dispatch({
