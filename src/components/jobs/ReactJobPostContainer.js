@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Segment, Container, Header, Form, Message, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
+import axios from 'axios';
+
 
 class ReactJobPostContainer extends Component {
 
