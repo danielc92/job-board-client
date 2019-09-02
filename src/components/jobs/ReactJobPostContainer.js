@@ -58,21 +58,22 @@ class ReactJobPostContainer extends Component {
                     />
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Input
-                        placeholder="Zoo keeper"
-                        label="Job Title"/>
+                            name="title"
+                            placeholder="Zoo keeper"
+                            label="Job Title"/>
 
                         <Form.Dropdown
-                        label="Category"
-                        placeholder="Select category"
-                        fluid
-                        selection
-                        search
-                        options={categoryOptions}
-                        >
-
-                        </Form.Dropdown>
+                            name="category"
+                            label="Category"
+                            placeholder="Select category"
+                            fluid
+                            selection
+                            search
+                            options={categoryOptions}
+                        />
                         
                         <Form.Dropdown 
+                            name="skills"
                             label="Skills"
                             placeholder='Add skills'
                             multiple
@@ -82,6 +83,7 @@ class ReactJobPostContainer extends Component {
                             ></Form.Dropdown>
 
                         <Form.Dropdown 
+                            name="benefits"
                             label="Benefits"
                             placeholder='Add benefits'
                             multiple
@@ -91,24 +93,29 @@ class ReactJobPostContainer extends Component {
                             ></Form.Dropdown>
 
                         <Form.TextArea
+                            name="company_summary"
                             placeholder="A short description about the company hiring"
                             label="Company summary"/>
 
                         <Form.TextArea 
+                            name="job_summary"
                             maxlength="10"
                             placeholder="A short description about the job"
                             label="Job summary"/>
 
                         <Form.TextArea
+                            name="contact_summary"
                             placeholder="Enter any contact details..."
                             label="Contact"/>           
 
                         <Form.Group>
                             <Form.Input 
+                            name="salary_range_low"
                             type="number"
                             label="Minimum salary ($)"/>
 
                             <Form.Input 
+                            name="salary_range_high"
                             type="number"
                             label="Maximum salary ($)"/>
                         </Form.Group>
