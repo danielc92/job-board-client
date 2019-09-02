@@ -6,15 +6,24 @@ import { setMenuItem } from '../../actions/menu';
 class ReactJobPostContainer extends Component {
 
     state = {
+        title: "",
+        category: "",
+        skills: [],
+        benefits: [],
+        company_summary: "",
+        job_summary: "",
+        contact_summary: "",
+        salary_range_low: "",
+        salary_range_high: "",
+
         // These are temporary until API is wired up into redux.
         categoryOptions: [
-            {key: 'a', text: 'accounting and finance', value: 'a'},
-            {key: 'b', text: 'engineering', value: 'b'},
-            {key: 'c', text: 'hospitality', value: 'c'}
+            {key: 'ACC001', text: 'accounting and finance', value: 'ACC001'},
+            {key: 'ENG001', text: 'engineering', value: 'ENG001'},
+            {key: 'HOSP001', text: 'hospitality', value: 'HOSP001'}
         ],
         skillOptions: [
-            {key: 'a', text: 'teamwork', value: 'a'},
-            {key: 'b', text: 'jumping', value: 'b'},
+            {key: 'TEA001', text: 'teamwork', value: 'TEA001'},
             {key: 'c', text: 'running', value: 'c'},
             {key: 'd', text: 'rowing', value: 'd'},
             {key: 'e', text: 'communication', value: 'e'},
@@ -29,11 +38,14 @@ class ReactJobPostContainer extends Component {
     }
 
     handleInputChange = (event) => {
-        console.log(event.target.name, event.target.value)
+        const { name, value } = event.target; 
+        console.log(name, value)
+        this.setState({ [name] : value })
     }
 
     handleDropdownChange = (event, data) => {
-        console.log(data.name)
+        const { name, value } = data;
+        this.setState({ [name] : value })
     }
 
     handleSubmit = (event) => {
@@ -99,21 +111,23 @@ class ReactJobPostContainer extends Component {
                         <Form.TextArea
                             onChange={this.handleInputChange}
                             name="company_summary"
-                            placeholder="A short description about the company hiring"
-                            label="Company summary"/>
+                            maxlength="500"
+                            placeholder="A short description about the company"
+                            label="About the company"/>
 
                         <Form.TextArea 
                             onChange={this.handleInputChange}
                             name="job_summary"
-                            maxlength="10"
+                            maxlength="500"
                             placeholder="A short description about the job"
-                            label="Job summary"/>
+                            label="About the job"/>
 
                         <Form.TextArea
                             onChange={this.handleInputChange}
                             name="contact_summary"
+                            maxlength="500"
                             placeholder="Enter any contact details..."
-                            label="Contact"/>           
+                            label="Contact details"/>           
 
                         <Form.Group>
                             <Form.Input 
@@ -141,8 +155,14 @@ class ReactJobPostContainer extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
 const mapActionsToProps = {
     propsSetMenuItem: setMenuItem
 }
 
-export default connect(null, mapActionsToProps)(ReactJobPostContainer)
+export default connect(mapStateToProps, mapActionsToProps)(ReactJobPostContainer)
