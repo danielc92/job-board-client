@@ -3,6 +3,8 @@ import { Segment, Container, Header, Form, Message, Icon } from 'semantic-ui-rea
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import { getSkills } from '../../actions/skills';
+import { getBenefits } from '../../actions/benefit';
+import { getCategories } from '../../actions/category';
 import axios from 'axios';
 
 
@@ -52,6 +54,8 @@ class ReactJobPostContainer extends Component {
     componentDidMount () {
         this.props.propsSetMenuItem('create')
         this.props.propsGetSkills()
+        this.props.propsGetCategories()
+        this.props.propsGetBenefits()
     }
     
     render() {
@@ -161,7 +165,9 @@ const mapStateToProps = state => {
 
 const mapActionsToProps = {
     propsSetMenuItem: setMenuItem,
-    propsGetSkills: getSkills
+    propsGetSkills: getSkills,
+    propsGetBenefits: getBenefits,
+    propsGetCategories: getCategories
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ReactJobPostContainer)
