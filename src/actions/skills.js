@@ -4,16 +4,23 @@ import { TOKEN_NAME } from '../constants/index';
 
 export const getSkills = () => async (dispatch, getState) => {
     
-    const token = localStorage.get(TOKEN_NAME)
+    const token = localStorage.getItem(TOKEN_NAME)
 
     try {
-        const response = await jobApi.post('skill', 
-        { headers={'x-access-token' : token }})
+        const response = await jobApi.get('skill', 
+        { headers : {'x-access-token' : token }})
+
+        // Skills need to be transformed to meet structure from Semantic's <Dropdown>
+        const skills_transformed = response.data.map(record => ({
+            text: record.name,
+            value: record._id,
+            key: record._id
+        }))
 
         dispatch({
             type: "GET_SKILLS_SUCCESS",
             payload: {
-                data: response.data
+                data: skills_transformed
             }
         })
     }

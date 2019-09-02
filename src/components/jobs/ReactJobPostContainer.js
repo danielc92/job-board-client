@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment, Container, Header, Form, Message, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
+import { getSkills } from '../../actions/skills';
 import axios from 'axios';
 
 
@@ -23,14 +24,6 @@ class ReactJobPostContainer extends Component {
             {key: 'ACC001', text: 'accounting and finance', value: 'ACC001'},
             {key: 'ENG001', text: 'engineering', value: 'ENG001'},
             {key: 'HOSP001', text: 'hospitality', value: 'HOSP001'}
-        ],
-        skillOptions: [
-            {key: 'TEA001', text: 'teamwork', value: 'TEA001'},
-            {key: 'c', text: 'running', value: 'c'},
-            {key: 'd', text: 'rowing', value: 'd'},
-            {key: 'e', text: 'communication', value: 'e'},
-            {key: 'f', text: 'negotiation', value: 'f'},
-            {key: 'g', text: 'finance', value: 'g'}
         ],
         benefitOptions: [
             {key: 'a', value: 'a', text: 'sick leave'},
@@ -57,6 +50,7 @@ class ReactJobPostContainer extends Component {
 
     componentDidMount () {
         this.props.propsSetMenuItem('create')
+        this.props.propsGetSkills()
     }
     
     render() {
@@ -96,7 +90,7 @@ class ReactJobPostContainer extends Component {
                             multiple
                             search
                             selection
-                            options={skillOptions}
+                            options={this.props.skill.data}
                             ></Form.Dropdown>
 
                         <Form.Dropdown 
@@ -159,12 +153,14 @@ class ReactJobPostContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        skill: state.skill
     }
 }
 
 const mapActionsToProps = {
-    propsSetMenuItem: setMenuItem
+    propsSetMenuItem: setMenuItem,
+    propsGetSkills: getSkills
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ReactJobPostContainer)
