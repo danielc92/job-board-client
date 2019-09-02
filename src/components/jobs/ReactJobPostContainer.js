@@ -8,6 +8,7 @@ import axios from 'axios';
 
 class ReactJobPostContainer extends Component {
 
+    //Internal state holds information pertaining to the form
     state = {
         title: "",
         category: "",
