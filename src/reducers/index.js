@@ -4,6 +4,8 @@ import { themeReducer } from './theme';
 import { registerReducer } from './register';
 import { menuReducer } from './menu';
 import { skillReducer } from './skills';
+import { benefitReducer } from './benefits';
+import { categoryReducer } from './categories';
 
 
 export const rootReducer = combineReducers({
@@ -11,6 +13,8 @@ export const rootReducer = combineReducers({
     theme: themeReducer,
     register: registerReducer,
     menu: menuReducer,
-    skill: skillReducer
+    skill: skillReducer,
+    category: categoryReducer,
+    benefit: benefitReducer
 })
 
