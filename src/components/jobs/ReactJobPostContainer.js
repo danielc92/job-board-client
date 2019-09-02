@@ -28,6 +28,19 @@ class ReactJobPostContainer extends Component {
         ]
     }
 
+    handleChangeInput = (event) => {
+        console.log(event)
+    }
+
+    handleChangeDropdown = (event, data) => {
+        console.log(event, data)
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        console.log('Processing form')
+    }
+
     componentDidMount () {
         this.props.propsSetMenuItem('create')
     }
@@ -43,7 +56,7 @@ class ReactJobPostContainer extends Component {
                     header="Alert"
                     content="In order to post a job you need to be authenticated."
                     />
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Input
                         placeholder="Zoo keeper"
                         label="Job Title"/>
@@ -77,16 +90,19 @@ class ReactJobPostContainer extends Component {
                             options={benefitOptions}
                             ></Form.Dropdown>
 
-
                         <Form.TextArea
-                        placeholder="A short description about the company hiring"
-                        label="Company summary"/>
+                            placeholder="A short description about the company hiring"
+                            label="Company summary"/>
 
                         <Form.TextArea 
-                        placeholder="A short description about the job"
-                        label="Job summary"/>
+                            maxlength="10"
+                            placeholder="A short description about the job"
+                            label="Job summary"/>
 
-                        
+                        <Form.TextArea
+                            placeholder="Enter any contact details..."
+                            label="Contact"/>           
+
                         <Form.Group>
                             <Form.Input 
                             type="number"
@@ -97,7 +113,6 @@ class ReactJobPostContainer extends Component {
                             label="Maximum salary ($)"/>
                         </Form.Group>
                         
-                      
                         <Form.Button 
                         size="big"
                         color="green">
