@@ -10,7 +10,7 @@ class ReactJobPostContainer extends Component {
         categoryOptions: [
             {key: 'a', text: 'accounting and finance', value: 'a'},
             {key: 'b', text: 'engineering', value: 'b'},
-            {key: 'c', texT: 'hospitality', value: 'c'}
+            {key: 'c', text: 'hospitality', value: 'c'}
         ],
         skillOptions: [
             {key: 'a', text: 'teamwork', value: 'a'},
@@ -28,12 +28,12 @@ class ReactJobPostContainer extends Component {
         ]
     }
 
-    handleChangeInput = (event) => {
-        console.log(event)
+    handleInputChange = (event) => {
+        console.log(event.target.name, event.target.value)
     }
 
-    handleChangeDropdown = (event, data) => {
-        console.log(event, data)
+    handleDropdownChange = (event, data) => {
+        console.log(data.name)
     }
 
     handleSubmit = (event) => {
@@ -58,11 +58,13 @@ class ReactJobPostContainer extends Component {
                     />
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Input
+                            onChange={this.handleInputChange}
                             name="title"
                             placeholder="Zoo keeper"
                             label="Job Title"/>
 
                         <Form.Dropdown
+                            onChange={this.handleDropdownChange}
                             name="category"
                             label="Category"
                             placeholder="Select category"
@@ -73,6 +75,7 @@ class ReactJobPostContainer extends Component {
                         />
                         
                         <Form.Dropdown 
+                            onChange={this.handleDropdownChange}
                             name="skills"
                             label="Skills"
                             placeholder='Add skills'
@@ -83,6 +86,7 @@ class ReactJobPostContainer extends Component {
                             ></Form.Dropdown>
 
                         <Form.Dropdown 
+                            onChange={this.handleDropdownChange}
                             name="benefits"
                             label="Benefits"
                             placeholder='Add benefits'
@@ -93,28 +97,33 @@ class ReactJobPostContainer extends Component {
                             ></Form.Dropdown>
 
                         <Form.TextArea
+                            onChange={this.handleInputChange}
                             name="company_summary"
                             placeholder="A short description about the company hiring"
                             label="Company summary"/>
 
                         <Form.TextArea 
+                            onChange={this.handleInputChange}
                             name="job_summary"
                             maxlength="10"
                             placeholder="A short description about the job"
                             label="Job summary"/>
 
                         <Form.TextArea
+                            onChange={this.handleInputChange}
                             name="contact_summary"
                             placeholder="Enter any contact details..."
                             label="Contact"/>           
 
                         <Form.Group>
                             <Form.Input 
+                            onChange={this.handleInputChange}
                             name="salary_range_low"
                             type="number"
                             label="Minimum salary ($)"/>
 
                             <Form.Input 
+                            onChange={this.handleInputChange}
                             name="salary_range_high"
                             type="number"
                             label="Maximum salary ($)"/>
