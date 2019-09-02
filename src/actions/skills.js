@@ -10,8 +10,8 @@ export const getSkills = () => async (dispatch, getState) => {
         const response = await jobApi.get('skill', 
         { headers : {'x-access-token' : token }})
 
-        // Skills need to be transformed to meet structure from Semantic's <Dropdown>
-        const skills_transformed = response.data.map(record => ({
+        // Data needs to be transformed to meet structure from Semantic's <Dropdown>
+        const data = response.data.map(record => ({
             text: record.name,
             value: record._id,
             key: record._id
@@ -20,11 +20,12 @@ export const getSkills = () => async (dispatch, getState) => {
         dispatch({
             type: "GET_SKILLS_SUCCESS",
             payload: {
-                data: skills_transformed
+                data
             }
         })
     }
     catch(error) {
+
         dispatch({
             type: "GET_SKILLS_FAILURE",
             payload: {
