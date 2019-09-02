@@ -20,19 +20,7 @@ class ReactJobPostContainer extends Component {
         job_summary: "",
         contact_summary: "",
         salary_range_low: "",
-        salary_range_high: "",
-
-        // These are temporary until API is wired up into redux.
-        categoryOptions: [
-            {key: 'ACC001', text: 'accounting and finance', value: 'ACC001'},
-            {key: 'ENG001', text: 'engineering', value: 'ENG001'},
-            {key: 'HOSP001', text: 'hospitality', value: 'HOSP001'}
-        ],
-        benefitOptions: [
-            {key: 'a', value: 'a', text: 'sick leave'},
-            {key: 'b', value: 'b', text: 'paternal leave'},
-            {key: 'c', value: 'c', text: 'flexible hours'}
-        ]
+        salary_range_high: ""
     }
 
     handleInputChange = (event) => {
@@ -59,7 +47,7 @@ class ReactJobPostContainer extends Component {
     }
     
     render() {
-        const  { benefitOptions, categoryOptions, skillOptions } = this.state;
+        const  { benefit, skill, category } = this.props;
         return (
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
@@ -84,7 +72,7 @@ class ReactJobPostContainer extends Component {
                             fluid
                             selection
                             search
-                            options={categoryOptions}
+                            options={category.data}
                         />
                         
                         <Form.Dropdown 
@@ -95,7 +83,7 @@ class ReactJobPostContainer extends Component {
                             multiple
                             search
                             selection
-                            options={this.props.skill.data}
+                            options={skill.data}
                             ></Form.Dropdown>
 
                         <Form.Dropdown 
@@ -106,7 +94,7 @@ class ReactJobPostContainer extends Component {
                             multiple
                             search
                             selection
-                            options={benefitOptions}
+                            options={benefit.data}
                             ></Form.Dropdown>
 
                         <Form.TextArea
@@ -159,7 +147,9 @@ class ReactJobPostContainer extends Component {
 const mapStateToProps = state => {
     return {
         auth: state.auth,
-        skill: state.skill
+        skill: state.skill,
+        category: state.category,
+        benefit: state.benefit
     }
 }
 

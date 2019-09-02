@@ -7,7 +7,7 @@ export const getBenefits = () => async (dispatch, getState) => {
     const token = localStorage.getItem(TOKEN_NAME)
 
     try {
-        const response = await jobApi.get('benefits', 
+        const response = await jobApi.get('benefit', 
         { headers : {'x-access-token' : token }})
 
         // Data needs to be transformed to meet structure from Semantic's <Dropdown>
@@ -18,16 +18,16 @@ export const getBenefits = () => async (dispatch, getState) => {
         }))
 
         dispatch({
-            type: "GET_BENEFITS_SUCCESS",
+            type: "GET_BENEFIT_SUCCESS",
             payload: {
                 data
             }
         })
     }
     catch(error) {
-
+        console.log(error)
         dispatch({
-            type: "GET_BENEFITS_FAILURE",
+            type: "GET_BENEFIT_FAILURE",
             payload: {
                 error: error.response.data.error
             }
