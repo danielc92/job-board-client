@@ -3,6 +3,8 @@ import ReactMenu from './ReactMenu';
 import ReactLogin from './account/ReactLogin';
 import ReactRegister from './account/ReactRegister';
 import ReactHomeContainer from './home/ReactHomeContainer';
+import ReactJobPostContainer from './jobs/ReactJobPostContainer';
+import ReactJobViewContainer from './jobs/ReactJobViewContainer';
 import ReactFooter from './ReactFooter';
 import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
@@ -12,7 +14,7 @@ import { validateToken } from '../helpers/auth';
 import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
-import ReactJobPostContainer from './jobs/ReactJobPostContainer';
+
 
 
 class App extends Component {
@@ -36,7 +38,7 @@ class App extends Component {
         {/* Components for home route */}
         <Route path="/" exact component={ReactHomeContainer}/>
         <Route path="/create-jobs" exact component={ReactJobPostContainer}/>
-        <Route path="/view-jobs" exact component={NothingHereYet}/>
+        <Route path="/view-jobs" exact component={ReactJobViewContainer}/>
         <Route path="/analytics" exact component={NothingHereYet}/>
         <Route path="/news" exact component={ReactNews}/>
         <Route path="/login" exact component={ReactLogin}/>
