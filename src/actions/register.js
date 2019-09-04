@@ -1,8 +1,6 @@
 import jobApi from '../api';
 
-export const registerUser = (email, password, first_name, last_name) => async (dispatch, getState) => {
-    
-    const payload = { email, password, first_name, last_name }
+export const registerUser = (payload) => async (dispatch, getState) => {
 
     try {
         const response = await jobApi.post('auth/register', payload)

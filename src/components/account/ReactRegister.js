@@ -55,15 +55,9 @@ class ReactRegister extends Component {
         e.preventDefault()
 
         const { errors, email, password, first_name, last_name } = this.state
-        if (errors.length === 0) {
-            console.log('Attempting to register user')
-            this.props.propsRegisterUser(email, 
-                password,
-                first_name,
-                last_name)
-        }else {
-            console.log('Validation has failed.')
-        }
+        const payload = { email, password, first_name, last_name }
+
+        if (errors.length === 0) this.props.propsRegisterUser(payload)
     }
 
     componentDidMount() {
