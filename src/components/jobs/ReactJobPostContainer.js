@@ -6,6 +6,7 @@ import { getSkills } from '../../actions/skills';
 import { getBenefits } from '../../actions/benefit';
 import { getCategories } from '../../actions/category';
 import axios from 'axios';
+import { createJob } from '../../actions/job'; 
 
 
 class ReactJobPostContainer extends Component {
@@ -36,7 +37,31 @@ class ReactJobPostContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log('Processing form')
+
+        const { 
+            title, 
+            category, 
+            skills, 
+            benefits, 
+            company_summary, 
+            job_summary, 
+            contact_summary, 
+            salary_range_high, 
+            salary_range_low } = this.state;
+            
+        const payload = { 
+            title, 
+            category, 
+            skills, 
+            benefits, 
+            company_summary, 
+            job_summary, 
+            contact_summary, 
+            salary_range_high, 
+            salary_range_low }
+
+        this.props.propsCreateJob(payload)
+
     }
 
     componentDidMount () {
@@ -157,7 +182,8 @@ const mapActionsToProps = {
     propsSetMenuItem: setMenuItem,
     propsGetSkills: getSkills,
     propsGetBenefits: getBenefits,
-    propsGetCategories: getCategories
+    propsGetCategories: getCategories,
+    propsCreateJob: createJob
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ReactJobPostContainer)
