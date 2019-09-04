@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Header, Placeholder, Segment, Container } from 'semantic-ui-react';
-
+import { setMenuItem } from '../../actions/menu';
 
 class ReactJobViewContainer extends Component {
+
+    componentDidMount() {
+        this.props.propsSetMenuItem('find')
+    }
+
     render() {
         return (
             <Container>
@@ -40,4 +45,8 @@ class ReactJobViewContainer extends Component {
     }
 }
 
-export default connect(null, null)(ReactJobViewContainer)
+const mapActionsToProps = {
+    propsSetMenuItem: setMenuItem
+}
+
+export default connect(null, mapActionsToProps)(ReactJobViewContainer)
