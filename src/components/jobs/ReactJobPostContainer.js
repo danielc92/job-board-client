@@ -48,7 +48,7 @@ class ReactJobPostContainer extends Component {
             contact_summary, 
             salary_range_high, 
             salary_range_low } = this.state;
-            
+
         const payload = { 
             title, 
             category, 
@@ -58,7 +58,8 @@ class ReactJobPostContainer extends Component {
             job_summary, 
             contact_summary, 
             salary_range_high, 
-            salary_range_low }
+            salary_range_low,
+            creator_id: this.props.auth.user._id }
 
         this.props.propsCreateJob(payload)
 
@@ -172,9 +173,10 @@ class ReactJobPostContainer extends Component {
 const mapStateToProps = state => {
     return {
         auth: state.auth,
-        skill: state.skill,
+        benefit: state.benefit,
         category: state.category,
-        benefit: state.benefit
+        job: state.job,
+        skill: state.skill
     }
 }
 
