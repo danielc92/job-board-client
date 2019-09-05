@@ -23,10 +23,12 @@ class ReactJobViewContainer extends Component {
                     <Divider></Divider>
                     { data.map(item => (
                         <Segment stacked>
-                            <Header key={item._id} as="h3">{item.title}
+                            <Header key={item._id} as="h3">{item.title.toUpperCase()}
                             <Header.Subheader>Aliquip do veniam commodo labore reprehenderit est aute.</Header.Subheader></Header>
                            
-                            <Button primary size="tiny">View</Button>
+                            <Button
+                            color={this.props.theme}
+                            size="tiny">click to view details</Button>
                         </Segment>
                             
                     ))}
@@ -38,7 +40,8 @@ class ReactJobViewContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        jobList: state.jobList
+        jobList: state.jobList,
+        theme: state.theme
     }
 }
 
