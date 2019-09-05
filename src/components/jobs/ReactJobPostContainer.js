@@ -73,7 +73,7 @@ class ReactJobPostContainer extends Component {
     }
     
     render() {
-        const  { benefit, skill, category } = this.props;
+        const  { benefit, skill, category, job } = this.props;
         return (
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
@@ -165,10 +165,17 @@ class ReactJobPostContainer extends Component {
                         </Form.Button>
 
                         <Message
-                        success
-                        visible={true}
-                        header="Success"
-                        content="Your job has been posted.">
+                            error
+                            visible={job.error}
+                            header="Error"
+                            content="An error has occured, job posting failed">
+                        </Message>
+
+                        <Message
+                            success
+                            visible={Object.entries(job.data).length > 0}
+                            header="Success"
+                            content="Your job has been posted.">
                         </Message>
                     </Form>
                 </Segment>

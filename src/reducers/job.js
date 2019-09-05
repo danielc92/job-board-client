@@ -1,8 +1,8 @@
-export const jobReducer = (state={ error: false, success: false, data: {}}, action) => {
+export const jobReducer = (state={ error: false, data: {}}, action) => {
     const { type, payload } = action;
 
     switch(type) {
-        
+
         case 'JOB_CREATE_SUCCESS':
             return {
                 error: false,
