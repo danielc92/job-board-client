@@ -2,6 +2,7 @@ export const jobReducer = (state={ error: false, success: false, data: {}}, acti
     const { type, payload } = action;
 
     switch(type) {
+        
         case 'JOB_CREATE_SUCCESS':
             return {
                 error: false,

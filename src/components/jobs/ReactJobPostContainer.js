@@ -163,6 +163,13 @@ class ReactJobPostContainer extends Component {
                         color="green">
                             <Icon name="add square"></Icon>Create job
                         </Form.Button>
+
+                        <Message
+                        success
+                        visible={true}
+                        header="Success"
+                        content="Your job has been posted.">
+                        </Message>
                     </Form>
                 </Segment>
             </Container>
