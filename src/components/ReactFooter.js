@@ -49,7 +49,10 @@ class ReactFooter extends Component {
                 </Grid>
               </Container>
             </Segment>
-            <Segment color="black" inverted style={{textAlign: 'center', margin: '0'}}>
+            <Segment 
+            color="black"
+            inverted 
+            style={{borderRadius: '0', textAlign: 'center', margin: '0'}}>
               Created with ❤️ by Daniel Corcoran.
             </Segment>
             </React.Fragment>
