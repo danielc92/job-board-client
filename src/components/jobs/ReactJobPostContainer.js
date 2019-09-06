@@ -6,7 +6,10 @@ import { getSkills } from '../../actions/skills';
 import { getBenefits } from '../../actions/benefit';
 import { getCategories } from '../../actions/category';
 import { createJob } from '../../actions/job'; 
-import { Redirect } from 'react-router'
+import { checkTokenIsValid } from '../../helpers/auth';
+import { TOKEN_NAME } from '../../constants';
+import { logoutUser } from '../../actions/auth';
+
 
 class ReactJobPostContainer extends Component {
 
@@ -36,6 +39,16 @@ class ReactJobPostContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+
+        // Initial check to see if token has expired
+        const token = localStorage.getItem(TOKEN_NAME)
+        if (!checkTokenIsValid(token)) {
+            this.props.propsLogoutUser()
+            this.props.history.push({
+                pathname: "/login",
+                state: { redirect_message: 'You need to be logged in to post a job.' }
+            })
+        }
 
         const { 
             title, 
@@ -217,7 +230,8 @@ const mapActionsToProps = {
     propsGetSkills: getSkills,
     propsGetBenefits: getBenefits,
     propsGetCategories: getCategories,
-    propsCreateJob: createJob
+    propsCreateJob: createJob,
+    propsLogoutUser: logoutUser
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(ReactJobPostContainer)

@@ -10,7 +10,7 @@ import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
-import { validateToken } from '../helpers/auth';
+import { checkTokenRefresh } from '../helpers/auth';
 import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
@@ -20,7 +20,7 @@ import NothingHereYet from './placeholder/NothingHereYet';
 class App extends Component {
 
   componentDidMount() {
-    const result = validateToken(this.props.auth)
+    const result = checkTokenRefresh(this.props.auth)
     if (result) this.props.propsLoginRefresh()
   }
 
