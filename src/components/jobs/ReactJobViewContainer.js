@@ -23,8 +23,8 @@ class ReactJobViewContainer extends Component {
                     <Divider></Divider>
                     { data.map(item => (
                         <Segment stacked>
-                            <Header key={item._id} as="h3">{item.title.toUpperCase()}
-                            <Header.Subheader>Aliquip do veniam commodo labore reprehenderit est aute.</Header.Subheader></Header>
+                            <Header key={ item._id } as="h3">{ item.title.toUpperCase() }
+                            <Header.Subheader>{ item.job_summary }</Header.Subheader></Header>
                            
                             <Button
                             color={this.props.theme}

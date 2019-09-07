@@ -37,10 +37,13 @@ class ReactLogin extends Component {
 
     render() {
         const { email, password, error }= this.state;
+
+        if (this.props.auth.isAuthenticated) {
+            return <Redirect to="/"/>
+        }
+
         return (
-            
             <Container style={{ minHeight: '60vh'}}>   
-            {this.props.auth.isAuthenticated ? <Redirect to="/"/>: null}  
                 <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
                     <Header as="h1">Login Page</Header>
                     <p>Unlock all the features by creating an account and signing in.</p>
