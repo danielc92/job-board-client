@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, Placeholder, Segment, Container, Divider, Button } from 'semantic-ui-react';
+import { Header, Placeholder, Segment, Container, Divider, Button, Icon, Label } from 'semantic-ui-react';
 import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/joblist';
 
@@ -23,12 +23,25 @@ class ReactJobViewContainer extends Component {
                     <Divider></Divider>
                     { data.map(item => (
                         <Segment stacked>
-                            <Header key={ item._id } as="h3">{ item.title.toUpperCase() }
-                            <Header.Subheader>{ item.job_summary }</Header.Subheader></Header>
-                           
+                            <Header 
+                            key={ item._id } 
+                            as="h2">
+                                { item.title.toUpperCase() }
+                                <Header.Subheader>
+                                    { item.job_summary }
+                                </Header.Subheader>
+                            </Header>
+                            <Label
+                            color="green" 
+                            basic>
+                            ${ item.salary_range_low } - ${ item.salary_range_high }
+                            
+                            </Label>
+                            <Divider></Divider>
                             <Button
                             color={this.props.theme}
-                            size="tiny">click to view details</Button>
+                            size="tiny">
+                            <Icon name="eye"></Icon>view this job</Button>
                         </Segment>
                             
                     ))}
