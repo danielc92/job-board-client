@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Segment, Message, Container, Header } from 'semantic-ui-react';
+import { Form, Button, Segment, Message, Container, Header, Grid, Placeholder } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 import { setMenuItem } from '../../actions/menu';
@@ -44,45 +44,55 @@ class ReactLogin extends Component {
 
         return (
             <Container style={{ minHeight: '60vh'}}>   
-                <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
-                    <Header as="h1">Login Page</Header>
-                    <p>Unlock all the features by creating an account and signing in.</p>
-                    <Form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}}>
-                        <Form.Input
-                            icon="at"
-                            iconPosition="left"
-                            onChange={this.handleInputChange}
-                            placeholder="Enter email here..." 
-                            label="Email" 
-                            value={email}
-                            name="email"/>
-                        <Form.Input 
-                            icon="lock"
-                            iconPosition="left"
-                            onChange={this.handleInputChange}
-                            type="password"
-                            label="Password" 
-                            value={password}
-                            placeholder="Enter password here..."
-                            name="password"/>
+                <Grid columns={2} stackable padded>
+                    <Grid.Row>
+                        <Grid.Column>
+                        <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
+                            <Header as="h1">Login Page</Header>
+                            <p>Unlock all the features by creating an account and signing in.</p>
+                            <Form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}}>
+                                <Form.Input
+                                    icon="at"
+                                    iconPosition="left"
+                                    onChange={this.handleInputChange}
+                                    placeholder="Enter email here..." 
+                                    label="Email" 
+                                    value={email}
+                                    name="email"/>
+                                <Form.Input 
+                                    icon="lock"
+                                    iconPosition="left"
+                                    onChange={this.handleInputChange}
+                                    type="password"
+                                    label="Password" 
+                                    value={password}
+                                    placeholder="Enter password here..."
+                                    name="password"/>
 
-                        <Message
-                            warning
-                            visible={error}
-                            header="Action forbidden"
-                            content="Email and password is required to login.">
-                        </Message>
-                        
-                        <Message
-                            error
-                            header="Failed to login."
-                            content={this.props.auth.error_message}
-                            visible={this.props.auth.error_message}>
-                        </Message>
+                                <Message
+                                    warning
+                                    visible={error}
+                                    header="Action forbidden"
+                                    content="Email and password is required to login.">
+                                </Message>
+                                
+                                <Message
+                                    error
+                                    header="Failed to login."
+                                    content={this.props.auth.error_message}
+                                    visible={this.props.auth.error_message}>
+                                </Message>
 
-                        <Form.Button color="green" size="large">Submit</Form.Button>
-                    </Form>
-                </Segment>
+                                <Form.Button color="green" size="large">Submit</Form.Button>
+                            </Form>
+                        </Segment>
+                        </Grid.Column>
+                        <Grid.Column>
+                            placeholder
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+                
             </Container>
         )
     }
