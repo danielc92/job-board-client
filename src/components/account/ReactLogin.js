@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Button, Segment, Message, Container, Header, Grid, Placeholder } from 'semantic-ui-react';
+import { Form, Image, Segment, Message, Container, Header, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 import { setMenuItem } from '../../actions/menu';
 import { Redirect } from 'react-router';
+import loginImage from '../../images/undraw_Login_v483.svg';
+
 
 class ReactLogin extends Component {
     
@@ -87,8 +89,13 @@ class ReactLogin extends Component {
                             </Form>
                         </Segment>
                         </Grid.Column>
-                        <Grid.Column>
-                            placeholder
+                        <Grid.Column
+                        verticalAlign="middle">
+                            <Image 
+                            style={{ maxWidth: '200px'}}
+                            centered
+                            fluid
+                            src={loginImage}></Image>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
