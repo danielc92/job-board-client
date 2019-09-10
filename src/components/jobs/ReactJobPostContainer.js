@@ -104,35 +104,24 @@ class ReactJobPostContainer extends Component {
                         auth.isAuthenticated ?
                         (
                             <Form onSubmit={this.handleSubmit}>
-                                <Form.Input
-                                    onChange={this.handleInputChange}
-                                    name="title"
-                                    placeholder="Zoo keeper"
-                                    label="Job Title"/>
+                                <Form.Group widths={"equal"}>
+                                    <Form.Input
+                                        onChange={this.handleInputChange}
+                                        name="title"
+                                        placeholder="Zoo keeper"
+                                        label="Job Title"/>
+                                    <Form.Dropdown 
+                                        onChange={this.handleDropdownChange}
+                                        name="skills"
+                                        label="Skills"
+                                        placeholder='Add skills'
+                                        multiple
+                                        search
+                                        selection
+                                        options={skill.data}
+                                        ></Form.Dropdown>
 
-                                <Form.Dropdown
-                                    onChange={this.handleDropdownChange}
-                                    name="category"
-                                    label="Category"
-                                    placeholder="Select category"
-                                    fluid
-                                    selection
-                                    search
-                                    options={category.data}
-                                />
-                                
-                                <Form.Dropdown 
-                                    onChange={this.handleDropdownChange}
-                                    name="skills"
-                                    label="Skills"
-                                    placeholder='Add skills'
-                                    multiple
-                                    search
-                                    selection
-                                    options={skill.data}
-                                    ></Form.Dropdown>
-
-                                <Form.Dropdown 
+                                    <Form.Dropdown 
                                     onChange={this.handleDropdownChange}
                                     name="benefits"
                                     label="Benefits"
@@ -142,29 +131,20 @@ class ReactJobPostContainer extends Component {
                                     selection
                                     options={benefit.data}
                                     ></Form.Dropdown>
+                                
+                                </Form.Group>
 
-                                <Form.TextArea
-                                    onChange={this.handleInputChange}
-                                    name="company_summary"
-                                    maxlength="500"
-                                    placeholder="A short description about the company"
-                                    label="About the company"/>
-
-                                <Form.TextArea 
-                                    onChange={this.handleInputChange}
-                                    name="job_summary"
-                                    maxlength="500"
-                                    placeholder="A short description about the job"
-                                    label="About the job"/>
-
-                                <Form.TextArea
-                                    onChange={this.handleInputChange}
-                                    name="contact_summary"
-                                    maxlength="500"
-                                    placeholder="Enter any contact details..."
-                                    label="Contact details"/>           
-
-                                <Form.Group>
+                                <Form.Group widths="equal">
+                                    <Form.Dropdown
+                                        onChange={this.handleDropdownChange}
+                                        name="category"
+                                        label="Category"
+                                        placeholder="Select category"
+                                        fluid
+                                        selection
+                                        search
+                                        options={category.data}
+                                    />
                                     <Form.Input 
                                     onChange={this.handleInputChange}
                                     name="salary_range_low"
@@ -177,6 +157,30 @@ class ReactJobPostContainer extends Component {
                                     type="number"
                                     label="Maximum salary ($)"/>
                                 </Form.Group>
+                                
+                                <Form.TextArea
+                                    width={12}
+                                    onChange={this.handleInputChange}
+                                    name="company_summary"
+                                    maxlength="500"
+                                    placeholder="A short description about the company"
+                                    label="About the company"/>
+
+                                <Form.TextArea 
+                                    width={12}
+                                    onChange={this.handleInputChange}
+                                    name="job_summary"
+                                    maxlength="500"
+                                    placeholder="A short description about the job"
+                                    label="About the job"/>
+
+                                <Form.TextArea
+                                    width={12}
+                                    onChange={this.handleInputChange}
+                                    name="contact_summary"
+                                    maxlength="500"
+                                    placeholder="Enter any contact details..."
+                                    label="Contact details"/>           
                                 
                                 <Form.Button 
                                 size="big"
