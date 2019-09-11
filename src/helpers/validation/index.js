@@ -3,7 +3,7 @@ export const ListValidator = (list, minItems, listTag) => {
     let errors = []
 
     if (list.length === 0) {
-        errors.push(`${listTag} must contain at least ${minItems} items.`)
+        errors.push(`${listTag} list must contain at least ${minItems} item.`)
     }
 
     return errors

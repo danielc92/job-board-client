@@ -37,16 +37,28 @@ class ReactJobPostContainer extends Component {
         company_summary, job_summary, contact_summary, 
         salary_range_high, salary_range_low} = this.state;
 
+        let companyErrors = StringValidator(company_summary, 0, 500, 'Company summary')
+        let jobErrors = StringValidator(job_summary, 0, 500, 'Job summary')
+        let contactErrors = StringValidator(contact_summary, 0, 500, 'Contact information')
+        let skillErrors = ListValidator(skills, 1, 'Skills')
+        let benefitErrors = ListValidator(benefits, 1, 'Benefits')
         let titleErrors = StringValidator(title, 1, 50, 'Job title')
         let categoryErrors = IsEmptyValidator(category, 'Job category')
-        let salaryLowErrors = IsEmptyValidator(salary_range_low, 'Salary range (low)')
-        let salaryHighErrors = IsEmptyValidator(salary_range_high, 'Salary range (high)')
+        let salaryLowErrors = IsEmptyValidator(salary_range_low, 'Salary (minimum)')
+        let salaryHighErrors = IsEmptyValidator(salary_range_high, 'Salary (maximum)')
+        let salaryRangeErorrs = SalaryRangeValidator(salary_range_low, salary_range_high)
         
         let errors = [
+            ...companyErrors,
+            ...jobErrors,
+            ...contactErrors,
+            ...skillErrors,
+            ...benefitErrors,
             ...titleErrors,
             ...categoryErrors,
             ...salaryLowErrors,
-            ...salaryHighErrors
+            ...salaryHighErrors,
+            ...salaryRangeErorrs
         ]
 
         this.setState({ errors })
