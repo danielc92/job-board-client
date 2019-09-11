@@ -11,6 +11,7 @@ import { TOKEN_NAME } from '../../constants';
 import { logoutUser } from '../../actions/auth';
 import { 
     StringValidator,
+    IsEmptyValidator,
     SalaryRangeValidator, 
     ListValidator} from '../../helpers/validation';
 import { StringDecoder } from 'string_decoder';
@@ -37,9 +38,15 @@ class ReactJobPostContainer extends Component {
         salary_range_high, salary_range_low} = this.state;
 
         let titleErrors = StringValidator(title, 1, 50, 'Job title')
+        let categoryErrors = IsEmptyValidator(category, 'Job category')
+        let salaryLowErrors = IsEmptyValidator(salary_range_low, 'Salary range (low)')
+        let salaryHighErrors = IsEmptyValidator(salary_range_high, 'Salary range (high)')
         
         let errors = [
-            ...titleErrors
+            ...titleErrors,
+            ...categoryErrors,
+            ...salaryLowErrors,
+            ...salaryHighErrors
         ]
 
         this.setState({ errors })
@@ -106,7 +113,7 @@ class ReactJobPostContainer extends Component {
     }
     
     render() {
-
+        const { errors } = this.state;
         const  { 
             auth,
             benefit,
@@ -123,6 +130,7 @@ class ReactJobPostContainer extends Component {
                     {
                         auth.isAuthenticated ?
                         (
+                            <React.Fragment>
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Group widths={"equal"}>
                                     <Form.Input
@@ -222,6 +230,14 @@ class ReactJobPostContainer extends Component {
                                     content="Your job has been posted.">
                                 </Message>
                             </Form>
+
+                            <Message
+                            warning
+                            list={errors}
+                            header="Rules"
+                            visible={errors.length > 0}>
+                            </Message>
+                            </React.Fragment>
                         )
                         :
                         (
