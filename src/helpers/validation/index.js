@@ -1,3 +1,15 @@
+export const SalaryValidator = (lowerSalary, upperSalary) => {
+    let errors = []
+    let lowerSalaryNum = Number(lowerSalary)
+    let upperSalaryNum = Number(upperSalary)
+
+    if (lowerSalaryNum > upperSalaryNum) {
+        errors.push("Maximum salary must be greater than minimum salary")
+    }
+
+    return errors
+}
+
 export const StringValidator = (string, minLength, maxLength, tag) => {
     
     let errors = []
