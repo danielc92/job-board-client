@@ -12,9 +12,10 @@ class ReactMenu extends Component {
         return (
             
           <Menu 
+
           pointing 
           stackable
-          style={{ margin: '0'}}>
+          style={{ margin: '0', borderRadius: 'none', boxShadow: 'none'}}>
             <Container>
               <Menu.Item
                 as={Link}
