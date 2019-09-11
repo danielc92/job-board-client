@@ -14,7 +14,8 @@ import {
     IsEmptyValidator,
     SalaryRangeValidator, 
     ListValidator} from '../../helpers/validation';
-import { StringDecoder } from 'string_decoder';
+
+
 
 class ReactJobPostContainer extends Component {
 
@@ -60,7 +61,7 @@ class ReactJobPostContainer extends Component {
             ...salaryHighErrors,
             ...salaryRangeErorrs
         ]
-
+        
         this.setState({ errors })
     }
 
@@ -77,6 +78,7 @@ class ReactJobPostContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        const { errors } = this.state;
 
         // Initial check to see if token has expired
         const token = localStorage.getItem(TOKEN_NAME)
@@ -88,31 +90,33 @@ class ReactJobPostContainer extends Component {
             })
         }
 
-        const { 
-            title, 
-            category, 
-            skills, 
-            benefits, 
-            company_summary, 
-            job_summary, 
-            contact_summary, 
-            salary_range_high, 
-            salary_range_low } = this.state;
+        // Check if there are errors present, before dispatching
+        if (errors.length === 0) {
+            const { 
+                title, 
+                category, 
+                skills, 
+                benefits, 
+                company_summary, 
+                job_summary, 
+                contact_summary, 
+                salary_range_high, 
+                salary_range_low } = this.state;
 
-        const payload = { 
-            title, 
-            category, 
-            skills, 
-            benefits, 
-            company_summary, 
-            job_summary, 
-            contact_summary, 
-            salary_range_high, 
-            salary_range_low,
-            creator_id: this.props.auth.user._id }
+            const payload = { 
+                title, 
+                category, 
+                skills, 
+                benefits, 
+                company_summary, 
+                job_summary, 
+                contact_summary, 
+                salary_range_high, 
+                salary_range_low,
+                creator_id: this.props.auth.user._id }
 
-        this.props.propsCreateJob(payload)
-
+            this.props.propsCreateJob(payload)
+        }
     }
 
     componentDidMount () {
@@ -242,13 +246,23 @@ class ReactJobPostContainer extends Component {
                                     content="Your job has been posted.">
                                 </Message>
                             </Form>
-
-                            <Message
-                            warning
-                            list={errors}
-                            header="Rules"
-                            visible={errors.length > 0}>
-                            </Message>
+                            {
+                                errors.length === 0 ? 
+                                (
+                                    <Message
+                                    success
+                                    header="Validation successful"
+                                    content="You may proceed to post this job."></Message>
+                                )
+                                :
+                                (
+                                    <Message
+                                    info
+                                    list={errors}
+                                    header="Form requirements"/>
+                                )
+                            }
+                            
                             </React.Fragment>
                         )
                         :

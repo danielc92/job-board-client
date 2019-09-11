@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, Placeholder, Segment, Container, Divider, Button, Icon, Label } from 'semantic-ui-react';
+import { Header, Segment, Container, Divider, Button, Icon, Label } from 'semantic-ui-react';
 import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/joblist';
 
