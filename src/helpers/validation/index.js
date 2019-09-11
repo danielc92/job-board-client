@@ -9,6 +9,16 @@ export const ListValidator = (list, minItems, listTag) => {
     return errors
 }
 
+export const IsEmptyValidator = (string, tag) => {
+    let errors = []
+    
+    if (string.length === 0) {
+        errors.push(`${tag} must not be empty`)
+    }
+
+    return errors
+}
+
 export const SalaryRangeValidator = (lowerSalary, upperSalary) => {
     let errors = []
     let lowerSalaryNum = Number(lowerSalary)

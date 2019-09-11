@@ -9,7 +9,11 @@ import { createJob } from '../../actions/job';
 import { checkTokenIsValid } from '../../helpers/auth';
 import { TOKEN_NAME } from '../../constants';
 import { logoutUser } from '../../actions/auth';
-
+import { 
+    StringValidator,
+    SalaryRangeValidator, 
+    ListValidator} from '../../helpers/validation';
+import { StringDecoder } from 'string_decoder';
 
 class ReactJobPostContainer extends Component {
 
@@ -23,22 +27,37 @@ class ReactJobPostContainer extends Component {
         job_summary: "",
         contact_summary: "",
         salary_range_low: "",
-        salary_range_high: ""
+        salary_range_high: "",
+        errors: []
+    }
+
+    validateForm = () => {
+        const { title, category, skills, benefits, 
+        company_summary, job_summary, contact_summary, 
+        salary_range_high, salary_range_low} = this.state;
+
+        let titleErrors = StringValidator(title, 1, 50, 'Job title')
+        
+        let errors = [
+            ...titleErrors
+        ]
+
+        this.setState({ errors })
     }
 
     handleInputChange = (event) => {
         const { name, value } = event.target; 
         console.log(name, value)
-        this.setState({ [name] : value })
+        this.setState({ [name] : value }, () => this.validateForm())
     }
 
     handleDropdownChange = (event, data) => {
         const { name, value } = data;
-        this.setState({ [name] : value })
+        this.setState({ [name] : value }, () => this.validateForm())
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault()
+    handleSubmit = (e) => {
+        e.preventDefault()
 
         // Initial check to see if token has expired
         const token = localStorage.getItem(TOKEN_NAME)
@@ -78,6 +97,7 @@ class ReactJobPostContainer extends Component {
     }
 
     componentDidMount () {
+        this.validateForm()
         this.props.propsSetMenuItem('create')
         this.props.propsGetSkills()
         this.props.propsGetCategories()
