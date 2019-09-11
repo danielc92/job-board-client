@@ -1,4 +1,15 @@
-export const SalaryValidator = (lowerSalary, upperSalary) => {
+export const ListValidator = (list, minItems, listTag) => {
+    
+    let errors = []
+
+    if (list.length === 0) {
+        errors.push(`${listTag} must contain at least ${minItems} items.`)
+    }
+
+    return errors
+}
+
+export const SalaryRangeValidator = (lowerSalary, upperSalary) => {
     let errors = []
     let lowerSalaryNum = Number(lowerSalary)
     let upperSalaryNum = Number(upperSalary)
