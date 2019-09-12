@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Header, Segment, Container, Divider, Button, Icon, Label, Grid, Message } from 'semantic-ui-react';
 import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/joblist';
-
+import { properCaseTransform } from '../../helpers/generic';
 
 class ReactJobViewContainer extends Component {
 
@@ -11,6 +11,7 @@ class ReactJobViewContainer extends Component {
         this.props.propsSetMenuItem('find');
         this.props.propsGetJobList();
     }
+
 
     render() {
         
@@ -28,8 +29,8 @@ class ReactJobViewContainer extends Component {
                                 <Segment stacked>
                                     <Header 
                                     key={ item._id } 
-                                    as="h2">
-                                        { item.title.toUpperCase() }
+                                    as="h3">
+                                        { properCaseTransform(item.title) }
                                         <Header.Subheader>
                                             { item.job_summary }
                                         </Header.Subheader>
