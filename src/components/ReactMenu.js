@@ -12,7 +12,7 @@ class ReactMenu extends Component {
         return (
             
           <Menu 
-
+          color={ theme }
           pointing 
           stackable
           style={{ margin: '0', borderRadius: 'none', boxShadow: 'none'}}>
