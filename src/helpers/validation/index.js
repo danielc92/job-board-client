@@ -13,7 +13,7 @@ export const IsEmptyValidator = (string, tag) => {
     let errors = []
     
     if (string.length === 0) {
-        errors.push(`${tag} must not be empty`)
+        errors.push(`${tag} is required.`)
     }
 
     return errors
@@ -57,7 +57,7 @@ export const EmailValidator = (string, minLength, maxLength) => {
     //REGEX SOURCE: https://emailregex.com/
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(trimmed)) {
-        errors.push('Email provided must be a valid email address.')
+        errors.push('Email must be valid.')
     }
 
     return errors
