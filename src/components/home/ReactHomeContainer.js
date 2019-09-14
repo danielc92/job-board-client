@@ -26,5 +26,10 @@ class ReactHomeContainer extends Component {
     }
 }
 
-const mapActionsToProps = { propsSetMenuItem: setMenuItem }
-export default connect(null, mapActionsToProps)(ReactHomeContainer);
+
+const mapDispatchToProps = { 
+    propsSetMenuItem: setMenuItem 
+}
+
+
+export default connect(null, mapDispatchToProps)(ReactHomeContainer);

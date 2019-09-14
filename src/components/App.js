@@ -59,10 +59,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
   propsLoginUser: loginUser,
   propsLogoutUser: logoutUser,
   propsLoginRefresh: loginRefresh
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

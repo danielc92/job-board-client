@@ -168,9 +168,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
     propsRegisterUser: registerUser,
     propsSetMenuItem: setMenuItem
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(ReactRegister)
+export default connect(mapStateToProps, mapDispatchToProps)(ReactRegister)

@@ -111,10 +111,10 @@ const mapStateToProps = state => {
     }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
     propsLoginUser: loginUser,
     propsSetMenuItem: setMenuItem
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(ReactLogin)
+export default connect(mapStateToProps, mapDispatchToProps)(ReactLogin)
 

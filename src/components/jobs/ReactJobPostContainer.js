@@ -291,7 +291,7 @@ const mapStateToProps = state => {
     }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
     propsSetMenuItem: setMenuItem,
     propsGetSkills: getSkills,
     propsGetBenefits: getBenefits,
@@ -300,4 +300,4 @@ const mapActionsToProps = {
     propsLogoutUser: logoutUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(ReactJobPostContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ReactJobPostContainer)

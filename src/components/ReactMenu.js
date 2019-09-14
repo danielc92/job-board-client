@@ -102,8 +102,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
   propsLogoutUser: logoutUser
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(ReactMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(ReactMenu);

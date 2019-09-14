@@ -76,9 +76,9 @@ const mapStateToProps = state => {
     }
 }
 
-const mapActionsToProps = {
+const mapDispatchToProps = {
     propsSetMenuItem: setMenuItem,
     propsGetJobList : getJobList
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(ReactJobViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ReactJobViewContainer)
