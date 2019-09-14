@@ -11,7 +11,7 @@ export const getSkills = () => async (dispatch, getState) => {
         { headers : {'x-access-token' : token }})
 
         // Data needs to be transformed to meet structure from Semantic's <Dropdown>
-        const data = response.data.map(record => ({
+        let data = response.data.map(record => ({
             text: record.name,
             value: record._id,
             key: record._id

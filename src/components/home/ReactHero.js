@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Grid, Container, Segment, Header, Image, Button
+    Grid, Container, Segment, Header, Image, Button, Icon
 } from 'semantic-ui-react';
 import image from '../../images/undraw_interview_rmcf.svg'
 import { connect } from 'react-redux';
@@ -25,7 +25,8 @@ class ReactHero extends Component {
                             to="/view-jobs"
                             as={Link}
                             size="huge"
-                            color={this.props.theme}>Explore Jobs
+                            color={this.props.theme}>
+                            <Icon name="paper plane"></Icon>Explore Jobs
                         </Button>
                         </Grid.Column>
                         <Grid.Column>
