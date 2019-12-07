@@ -16,7 +16,8 @@ class ReactJobViewContainer extends Component {
     render() {
         
         const { data, error } = this.props.jobList;
-
+        const { docs } = data;
+        console.log('these are docs', docs)
         return (
             <Container>
                 <Grid stackable>
@@ -25,7 +26,8 @@ class ReactJobViewContainer extends Component {
                         <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                             <Header as="h1">View Jobs</Header>
                             <Divider></Divider>
-                            { data.map(item => (
+                            { docs ? 
+                                docs.map(item => (
                                 <Segment stacked>
                                     <Header 
                                     key={ item._id } 
@@ -46,9 +48,8 @@ class ReactJobViewContainer extends Component {
                                     color={this.props.theme}
                                     size="tiny">
                                     <Icon name="eye"></Icon>view this job</Button>
-                                </Segment>
-                                    
-                            ))}
+                                </Segment>))
+                                : null}
                         </Segment>
                         </Grid.Column>
                         <Grid.Column width={5}>
