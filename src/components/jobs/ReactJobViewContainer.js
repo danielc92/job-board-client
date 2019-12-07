@@ -32,9 +32,11 @@ class ReactJobViewContainer extends Component {
         return (
             <React.Fragment>
                 {/* Search component */}
-                <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem'}}>
-                    <Header as="h1">Find your job.</Header>
-                    <Input action='Search' placeholder='Enter some keywords...' />
+                <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
+                    <Container>
+                        <Header as="h1" style={{color: '#fff'}}>Find your job.</Header>
+                        <Input size="big" action='Search' placeholder='Enter some keywords...' />
+                    </Container>
                 </Segment>
                 {/* End search component */}
             <Container>
