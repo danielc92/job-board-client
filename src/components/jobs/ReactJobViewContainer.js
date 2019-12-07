@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, Segment, Container, Divider, Button, Icon, Label, Grid, Message } from 'semantic-ui-react';
+import { 
+    Button, 
+    Container, 
+    Divider, 
+    Grid, 
+    Header, 
+    Icon, 
+    Input, 
+    Label, 
+    Message,
+    Segment, 
+} from 'semantic-ui-react';
 import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/joblist';
 import { properCaseTransform } from '../../helpers/generic';
@@ -19,12 +30,19 @@ class ReactJobViewContainer extends Component {
         const { docs } = data;
         console.log('these are docs', docs)
         return (
+            <React.Fragment>
+                {/* Search component */}
+                <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem'}}>
+                    <Header as="h1">Find your job.</Header>
+                    <Input action='Search' placeholder='Enter some keywords...' />
+                </Segment>
+                {/* End search component */}
             <Container>
                 <Grid stackable>
                     <Grid.Row columns={2}>
                         <Grid.Column width={10}>
                         <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
-                            <Header as="h1">View Jobs</Header>
+                            <Header as="h1">Results</Header>
                             <Divider></Divider>
                             { docs ? 
                                 docs.map(item => (
@@ -64,8 +82,8 @@ class ReactJobViewContainer extends Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
-                
             </Container>
+            </React.Fragment>
         )
     }
 }
