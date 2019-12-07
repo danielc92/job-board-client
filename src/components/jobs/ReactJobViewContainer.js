@@ -15,6 +15,7 @@ import {
 import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/joblist';
 import { properCaseTransform } from '../../helpers/generic';
+import SearchContainer from './SearchContainer';
 
 class ReactJobViewContainer extends Component {
 
@@ -31,14 +32,7 @@ class ReactJobViewContainer extends Component {
         console.log('these are docs', docs)
         return (
             <React.Fragment>
-                {/* Search component */}
-                <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
-                    <Container>
-                        <Header as="h1" style={{color: '#fff'}}>Find your job.</Header>
-                        <Input size="big" action='Search' placeholder='Enter some keywords...' />
-                    </Container>
-                </Segment>
-                {/* End search component */}
+            <SearchContainer></SearchContainer>
             <Container>
                 <Grid stackable>
                     <Grid.Row columns={2}>
