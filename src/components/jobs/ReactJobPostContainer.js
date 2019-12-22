@@ -16,8 +16,6 @@ import {
     SalaryRangeValidator, 
     ListValidator} from '../../helpers/validation';
 
-
-
 class ReactJobPostContainer extends Component {
 
     //Internal state holds information pertaining to the form
@@ -31,8 +29,13 @@ class ReactJobPostContainer extends Component {
         contact_summary: "",
         salary_range_low: "",
         salary_range_high: "",
-        errors: []
+        errors: [],
+        searchLoading: false,
+        searchResults: [],
+        searchSelection: null,
     }
+
+    
 
     validateForm = () => {
         const { title, category, skills, benefits, 
@@ -77,13 +80,19 @@ class ReactJobPostContainer extends Component {
     }
 
     handleSearchChange = (even, {value}) => {
+        this.setState({ searchLoading: true})
+        let searchResults = [];
         this.props.propsGetLocations(value)
+        searchResults = this.props.location.data.map(item => {
+            return {...item, title: item.location_string}
+        })
+        this.setState({searchResults})
+        this.setState({ searchLoading: false})
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
         const { errors } = this.state;
-
         // Initial check to see if token has expired
         const token = localStorage.getItem(TOKEN_NAME)
         if (!checkTokenIsValid(token)) {
@@ -208,12 +217,13 @@ class ReactJobPostContainer extends Component {
                                     label="Maximum salary ($)"/>
                                 </Form.Group>
                                 
-                                <Form.Group width="equal">
+                                <Form.Group width="half">
                                     <div className="field">
                                     <label>Location</label>
                                     <Search
-                                        maxlength={10}
-                                        results={this.props.location}
+                                        fluid
+                                        loading={this.state.searchLoading}
+                                        results={this.state.searchResults}
                                         onSearchChange={this.handleSearchChange}
                                         placeholder="Search location..."/>
                                     </div>
