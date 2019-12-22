@@ -35,7 +35,10 @@ class ReactJobPostContainer extends Component {
         searchSelection: null,
     }
 
-    
+    customRender = (label) => ({
+        color: 'green',
+        content: label.text,
+      })
 
     validateForm = () => {
         const { title, category, skills, benefits, 
@@ -187,6 +190,7 @@ class ReactJobPostContainer extends Component {
                                         search
                                         selection
                                         options={skill.data}
+                                        renderLabel={this.customRender}
                                         ></Form.Dropdown>
 
                                     <Form.Dropdown 
@@ -198,6 +202,7 @@ class ReactJobPostContainer extends Component {
                                     search
                                     selection
                                     options={benefit.data}
+                                    renderLabel={this.customRender}
                                     ></Form.Dropdown>
                                 
                                 </Form.Group>
