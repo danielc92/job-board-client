@@ -5,6 +5,7 @@ import { setMenuItem } from '../../actions/menu';
 import { getSkills } from '../../actions/skills';
 import { getBenefits } from '../../actions/benefit';
 import { getCategories } from '../../actions/category';
+import { getLocationList } from '../../actions/location';
 import { createJob } from '../../actions/job'; 
 import { checkTokenIsValid } from '../../helpers/auth';
 import { TOKEN_NAME } from '../../constants';
@@ -125,6 +126,7 @@ class ReactJobPostContainer extends Component {
         this.props.propsGetSkills()
         this.props.propsGetCategories()
         this.props.propsGetBenefits()
+        this.props.propsGetLocations()
         
     }
     
@@ -135,6 +137,7 @@ class ReactJobPostContainer extends Component {
             benefit,
             category,
             job,
+            location,
             skill } = this.props;
 
         return (
@@ -202,13 +205,27 @@ class ReactJobPostContainer extends Component {
                                     label="Maximum salary ($)"/>
                                 </Form.Group>
                                 
-                                <Form.TextArea
-                                    width={12}
-                                    onChange={this.handleInputChange}
-                                    name="company_summary"
-                                    maxlength="500"
-                                    placeholder="A short description about the company"
-                                    label="About the company"/>
+                                <Form.Group>
+                                    <Form.TextArea
+                                        width={12}
+                                        onChange={this.handleInputChange}
+                                        name="company_summary"
+                                        maxlength="500"
+                                        placeholder="A short description about the company"
+                                        label="About the company"/>
+                                    
+                                    <Form.Dropdown
+                                        onChange={this.handleDropdownChange}
+                                        name="location"
+                                        label="Location"
+                                        placeholder="Select location"
+                                        fluid
+                                        selection
+                                        search
+                                        options={location.data}
+                                    />
+                                </Form.Group>
+                                
 
                                 <Form.TextArea 
                                     width={12}
@@ -287,7 +304,8 @@ const mapStateToProps = state => {
         benefit: state.benefit,
         category: state.category,
         job: state.job,
-        skill: state.skill
+        skill: state.skill,
+        location: state.locationList,
     }
 }
 
@@ -297,7 +315,8 @@ const mapDispatchToProps = {
     propsGetBenefits: getBenefits,
     propsGetCategories: getCategories,
     propsCreateJob: createJob,
-    propsLogoutUser: logoutUser
+    propsLogoutUser: logoutUser,
+    propsGetLocations: getLocationList,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReactJobPostContainer)
