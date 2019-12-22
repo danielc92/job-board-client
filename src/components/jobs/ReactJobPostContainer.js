@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
+import { Segment, Container, Search, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import { getSkills } from '../../actions/skills';
@@ -68,13 +68,16 @@ class ReactJobPostContainer extends Component {
 
     handleInputChange = (event) => {
         const { name, value } = event.target; 
-        console.log(name, value)
         this.setState({ [name] : value }, () => this.validateForm())
     }
 
     handleDropdownChange = (event, data) => {
         const { name, value } = data;
         this.setState({ [name] : value }, () => this.validateForm())
+    }
+
+    handleSearchChange = (even, {value}) => {
+        this.props.propsGetLocations(value)
     }
 
     handleSubmit = (e) => {
@@ -206,16 +209,14 @@ class ReactJobPostContainer extends Component {
                                 </Form.Group>
                                 
                                 <Form.Group width="equal">
-                                    <Form.Dropdown
-                                        onChange={this.handleDropdownChange}
-                                        name="location"
-                                        label="Location"
-                                        placeholder="Select location"
-                                        fluid
-                                        selection
-                                        search
-                                        options={location.data}
-                                    />
+                                    <div className="field">
+                                    <label>Location</label>
+                                    <Search
+                                        maxlength={10}
+                                        results={this.props.location}
+                                        onSearchChange={this.handleSearchChange}
+                                        placeholder="Search location..."/>
+                                    </div>
                                 </Form.Group>
 
                                 <Form.TextArea
