@@ -80,14 +80,20 @@ class ReactJobPostContainer extends Component {
     }
 
     handleSearchChange = (even, {value}) => {
-        this.setState({ searchLoading: true})
-        let searchResults = [];
-        this.props.propsGetLocations(value)
-        searchResults = this.props.location.data.map(item => {
-            return {...item, title: item.location_string}
+        this.setState({ searchLoading: true}, ()=> {
+            console.log('SET FLAG')
+            let searchResults = [];
+            this.props.propsGetLocations(value)
+            searchResults = this.props.location.data.map(item => {
+                return {...item, title: item.location_string}
+            })
+            this.setState({searchResults}, ()=>{
+                console.log('RESET FLAG')
+                this.setState({ searchLoading: false})
+            })
         })
-        this.setState({searchResults})
-        this.setState({ searchLoading: false})
+        
+       
     }
 
     handleSubmit = (e) => {
@@ -143,7 +149,10 @@ class ReactJobPostContainer extends Component {
     }
     
     render() {
-        const { errors } = this.state;
+        const { 
+            errors, 
+            searchLoading,
+            searchResults } = this.state;
         const  { 
             auth,
             benefit,
@@ -222,8 +231,8 @@ class ReactJobPostContainer extends Component {
                                     <label>Location</label>
                                     <Search
                                         fluid
-                                        loading={this.state.searchLoading}
-                                        results={this.state.searchResults}
+                                        loading={searchLoading}
+                                        results={searchResults}
                                         onSearchChange={this.handleSearchChange}
                                         placeholder="Search location..."/>
                                     </div>
