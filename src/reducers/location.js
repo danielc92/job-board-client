@@ -4,7 +4,6 @@ export const locationListReducer = (state={ error: false, data: []}, action) => 
     switch(type) {
 
         case 'GET_LOCATION_LIST_SUCCESS':
-            console.log(payload)
             return {
                 error: false,
                 data: payload.data

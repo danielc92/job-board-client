@@ -30,9 +30,6 @@ class ReactJobPostContainer extends Component {
         salary_range_low: "",
         salary_range_high: "",
         errors: [],
-        searchLoading: false,
-        searchResults: [],
-        searchSelection: null,
     }
 
     customRender = (label) => ({
@@ -80,23 +77,6 @@ class ReactJobPostContainer extends Component {
     handleDropdownChange = (event, data) => {
         const { name, value } = data;
         this.setState({ [name] : value }, () => this.validateForm())
-    }
-
-    handleSearchChange = (even, {value}) => {
-        this.setState({ searchLoading: true}, ()=> {
-            console.log('SET FLAG')
-            let searchResults = [];
-            this.props.propsGetLocations(value)
-            searchResults = this.props.location.data.map(item => {
-                return {...item, title: item.location_string}
-            })
-            this.setState({searchResults}, ()=>{
-                console.log('RESET FLAG')
-                this.setState({ searchLoading: false})
-            })
-        })
-        
-       
     }
 
     handleSubmit = (e) => {
@@ -150,6 +130,16 @@ class ReactJobPostContainer extends Component {
         this.props.propsGetLocations()
         
     }
+
+    handleBetaLocationHandler = (event, data) => {
+        const {searchQuery} = data;
+        const cleanQuery = searchQuery.trim();
+        if (cleanQuery.length >= 2) {
+            this.props.propsGetLocations(searchQuery);
+        }
+        
+
+    }
     
     render() {
         const { 
@@ -163,7 +153,6 @@ class ReactJobPostContainer extends Component {
             job,
             location,
             skill } = this.props;
-
         return (
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
@@ -176,11 +165,13 @@ class ReactJobPostContainer extends Component {
                             <React.Fragment>
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Group widths={"equal"}>
+
                                     <Form.Input
                                         onChange={this.handleInputChange}
                                         name="title"
                                         placeholder="Zoo keeper"
                                         label="Job Title"/>
+
                                     <Form.Dropdown 
                                         onChange={this.handleDropdownChange}
                                         name="skills"
@@ -191,7 +182,7 @@ class ReactJobPostContainer extends Component {
                                         selection
                                         options={skill.data}
                                         renderLabel={this.customRender}
-                                        ></Form.Dropdown>
+                                    ></Form.Dropdown>
 
                                     <Form.Dropdown 
                                     onChange={this.handleDropdownChange}
@@ -208,6 +199,18 @@ class ReactJobPostContainer extends Component {
                                 </Form.Group>
 
                                 <Form.Group widths="equal">
+                                    <Form.Dropdown
+                                        onSearchChange={this.handleBetaLocationHandler}
+                                        onChange={this.handleDropdownChange}
+                                        name="location"
+                                        label="Location"
+                                        placeholder="Search for a location"
+                                        fluid
+                                        selection
+                                        search
+                                        renderLabel={this.customRender}
+                                        options={location.data}
+                                    />
                                     <Form.Dropdown
                                         onChange={this.handleDropdownChange}
                                         name="category"
@@ -230,24 +233,12 @@ class ReactJobPostContainer extends Component {
                                     type="number"
                                     label="Maximum salary ($)"/>
                                 </Form.Group>
-                                
-                                <Form.Group width="half">
-                                    <div className="field">
-                                    <label>Location</label>
-                                    <Search
-                                        fluid
-                                        loading={searchLoading}
-                                        results={searchResults}
-                                        onSearchChange={this.handleSearchChange}
-                                        placeholder="Search location..."/>
-                                    </div>
-                                </Form.Group>
 
                                 <Form.TextArea
                                         width={12}
                                         onChange={this.handleInputChange}
                                         name="company_summary"
-                                        maxlength="500"
+                                        maxLength="500"
                                         placeholder="A short description about the company"
                                         label="About the company"/>
                                 
@@ -256,7 +247,7 @@ class ReactJobPostContainer extends Component {
                                     width={12}
                                     onChange={this.handleInputChange}
                                     name="job_summary"
-                                    maxlength="500"
+                                    maxLength="500"
                                     placeholder="A short description about the job"
                                     label="About the job"/>
 
@@ -264,7 +255,7 @@ class ReactJobPostContainer extends Component {
                                     width={12}
                                     onChange={this.handleInputChange}
                                     name="contact_summary"
-                                    maxlength="500"
+                                    maxLength="500"
                                     placeholder="Enter any contact details..."
                                     label="Contact details"/>           
                                 

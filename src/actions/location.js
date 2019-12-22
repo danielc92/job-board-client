@@ -5,10 +5,18 @@ export const getLocationList = (searchPhrase) => async (dispatch, getState) => {
     try {   
         const token = localStorage.getItem(TOKEN_NAME)
         const response = await jobApi.get(`location?search=${searchPhrase}`, { headers: { 'x-access-token' : token }})
+        
+        const data = response.data.map((item, index) => {
+            return {
+                key: index.toString(),
+                text: item.location_string,
+                value: item
+            }
+        })
         dispatch({
             type: "GET_LOCATION_LIST_SUCCESS",
             payload: {
-                data: response.data
+                data
             }
         })
     } catch (error) {
