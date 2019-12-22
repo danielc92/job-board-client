@@ -13,7 +13,7 @@ export const getSkills = () => async (dispatch, getState) => {
         // Data needs to be transformed to meet structure from Semantic's <Dropdown>
         let data = response.data.map(record => ({
             text: record.name,
-            value: record._id,
+            value: record.name,
             key: record._id
         }))
 
