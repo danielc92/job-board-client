@@ -205,15 +205,7 @@ class ReactJobPostContainer extends Component {
                                     label="Maximum salary ($)"/>
                                 </Form.Group>
                                 
-                                <Form.Group>
-                                    <Form.TextArea
-                                        width={12}
-                                        onChange={this.handleInputChange}
-                                        name="company_summary"
-                                        maxlength="500"
-                                        placeholder="A short description about the company"
-                                        label="About the company"/>
-                                    
+                                <Form.Group width="equal">
                                     <Form.Dropdown
                                         onChange={this.handleDropdownChange}
                                         name="location"
@@ -225,6 +217,14 @@ class ReactJobPostContainer extends Component {
                                         options={location.data}
                                     />
                                 </Form.Group>
+
+                                <Form.TextArea
+                                        width={12}
+                                        onChange={this.handleInputChange}
+                                        name="company_summary"
+                                        maxlength="500"
+                                        placeholder="A short description about the company"
+                                        label="About the company"/>
                                 
 
                                 <Form.TextArea 
