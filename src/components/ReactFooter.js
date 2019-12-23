@@ -53,7 +53,7 @@ class ReactFooter extends Component {
             color="black"
             inverted 
             style={{borderRadius: '0', textAlign: 'center', margin: '0'}}>
-              Created with ❤️ by Daniel Corcoran.
+              Created with <span role="img" aria-label="with-love-heart">❤️</span> by Daniel Corcoran.
             </Segment>
             </React.Fragment>
         )
