@@ -40,9 +40,10 @@ class ReactJobViewContainer extends Component {
                             <Divider></Divider>
                             { docs ? 
                                 docs.map(item => (
-                                <Segment stacked>
+                                <Segment 
+                                stacked
+                                key={ item._id }>
                                     <Header 
-                                    key={ item._id } 
                                     as="h3">
                                         { properCaseTransform(item.title) }
                                         <Header.Subheader>

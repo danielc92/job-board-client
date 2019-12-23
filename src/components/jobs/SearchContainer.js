@@ -34,12 +34,10 @@ class SearchContainer extends Component {
     }
 
     render() {
-        const { 
-            searchWhat,
-            searchWhere
-        } = this.state
+        const { searchWhat } = this.state
+        const { locality } = this.props;
+        console.log(locality, 'this is locality')
 
-        const { location } = this.props; 
         return (
             <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
                 <Container>
@@ -59,7 +57,7 @@ class SearchContainer extends Component {
                                 label="Where"
                                 onChange={this.handleDropDownChange}
                                 onSearchChange={this.handleSearchChange}
-                                options={location.data}
+                                options={locality.data}
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
@@ -83,7 +81,7 @@ class SearchContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        location: state.locationList,
+        locality: state.locationList,
     }
 }
 
