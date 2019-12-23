@@ -4,7 +4,8 @@ import { Segment, Container, Header, Form, Icon } from 'semantic-ui-react';
 export default class SearchContainer extends Component {
 
     state = {
-        search: ''
+        searchWhat: '';
+        searchWhere: '';
     }
 
     handleInputChange = (e, {value}) => {
@@ -15,7 +16,7 @@ export default class SearchContainer extends Component {
         return (
             <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
                 <Container>
-                    <Header as="h1" style={{color: '#fff'}}>Find your dream job.</Header>
+                    <Header as="h1">Find your dream job.</Header>
                     
                     <Form>
                         <Form.Group>
@@ -23,19 +24,21 @@ export default class SearchContainer extends Component {
                                 label="What" 
                                 onChange={this.handleInputChange} 
                                 placeholder='Enter some keywords...'
+                                value={searchWhat}
                             />
                             <Form.Dropdown
                                 label="Where"
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
+                                value={searchWhere}
                             />
                             
                         </Form.Group>
 
                         <Form.Button
                             size="huge"
-                            color="white">
+                            secondary>
                             <Icon name="search"></Icon>Search
                         </Form.Button>
                     </Form>
