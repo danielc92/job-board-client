@@ -7,7 +7,6 @@ import {
     Grid, 
     Header, 
     Icon, 
-    Input, 
     Label, 
     Message,
     Segment, 
@@ -27,9 +26,8 @@ class ReactJobViewContainer extends Component {
 
     render() {
         
-        const { data, error } = this.props.jobList;
+        const { data } = this.props.jobList;
         const { docs } = data;
-        console.log('these are docs', docs)
         return (
             <React.Fragment>
             <SearchContainer></SearchContainer>
