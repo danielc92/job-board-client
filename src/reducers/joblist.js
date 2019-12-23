@@ -4,7 +4,6 @@ export const jobListReducer = (state={ error: false, data: []}, action) => {
     switch(type) {
 
         case 'GET_JOB_LIST_SUCCESS':
-            console.log(payload)
             return {
                 error: false,
                 data: payload.data
