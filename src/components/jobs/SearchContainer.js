@@ -6,7 +6,7 @@ import { getLocationList } from '../../actions/location';
 class SearchContainer extends Component {
 
     state = {
-        searchWhat: 'dd',
+        searchWhat: '',
         searchWhere: '',
     }
 
@@ -34,10 +34,8 @@ class SearchContainer extends Component {
     }
 
     render() {
-        const { searchWhat } = this.state
-        const { locality } = this.props;
-        console.log(locality, 'this is locality')
-
+        const { searchWhat } = this.state;
+        const { locations } = this.props;
         return (
             <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
                 <Container>
@@ -57,7 +55,7 @@ class SearchContainer extends Component {
                                 label="Where"
                                 onChange={this.handleDropDownChange}
                                 onSearchChange={this.handleSearchChange}
-                                options={locality.data}
+                                options={locations.data}
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
@@ -81,7 +79,7 @@ class SearchContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        locality: state.locationList,
+        locations: state.locationList,
     }
 }
 

@@ -4,7 +4,13 @@ import { TOKEN_NAME } from '../constants/index';
 export const getLocationList = (searchPhrase) => async (dispatch, getState) => {
     try {   
         const token = localStorage.getItem(TOKEN_NAME)
-        const response = await jobApi.get(`location?search=${searchPhrase}`, { headers: { 'x-access-token' : token }})
+        const url = `location?search=${searchPhrase}`
+        const response = await jobApi.get(
+            url, 
+            { 
+                headers: { 'x-access-token' : token }
+            }
+        )
         
         const data = response.data.map((item, index) => {
             return {
@@ -13,6 +19,7 @@ export const getLocationList = (searchPhrase) => async (dispatch, getState) => {
                 value: item
             }
         })
+        console.log(data, 'data')
         dispatch({
             type: "GET_LOCATION_LIST_SUCCESS",
             payload: {
