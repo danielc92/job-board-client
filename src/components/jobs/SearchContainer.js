@@ -16,7 +16,6 @@ class SearchContainer extends Component {
     }
 
     handleSearchChange = (event, data) => {
-        console.log('SEARCH CHANGES')
         const {searchQuery} = data;
         const cleanQuery = searchQuery.trim();
         if (cleanQuery.length >= 2) {
@@ -24,8 +23,9 @@ class SearchContainer extends Component {
         }
     }
 
-    handleDropDownChange = () => {
-        console.log('DROPDOWN CHANGES')
+    handleDropDownChange = (e, data) => {
+        const { location_string } = data.value;
+        this.setState({ searchWhere: location_string})
     }
 
     handleSubmit = (event) => {
@@ -63,7 +63,7 @@ class SearchContainer extends Component {
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
-                                value={searchWhere}
+                                name="where"
                             />
                             
                         </Form.Group>
