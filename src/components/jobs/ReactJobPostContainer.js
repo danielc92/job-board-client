@@ -30,6 +30,7 @@ class ReactJobPostContainer extends Component {
         salary_range_low: "",
         salary_range_high: "",
         errors: [],
+        location: {}
     }
 
     customRender = (label) => ({
@@ -81,7 +82,7 @@ class ReactJobPostContainer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const { errors } = this.state;
+        const { errors, location } = this.state;
         // Initial check to see if token has expired
         const token = localStorage.getItem(TOKEN_NAME)
         if (!checkTokenIsValid(token)) {
@@ -91,7 +92,6 @@ class ReactJobPostContainer extends Component {
                 state: { redirect_message: 'You need to be logged in to post a job.' }
             })
         }
-
         // Check if there are errors present, before dispatching
         if (errors.length === 0) {
             const { 
@@ -105,7 +105,7 @@ class ReactJobPostContainer extends Component {
                 salary_range_high, 
                 salary_range_low } = this.state;
 
-            const payload = { 
+            let payload = { 
                 title, 
                 category, 
                 skills, 
@@ -116,6 +116,10 @@ class ReactJobPostContainer extends Component {
                 salary_range_high, 
                 salary_range_low,
                 creator_id: this.props.auth.user._id }
+
+            if (Object.entries(location).length > 0) {
+                payload = {...payload, location: location.location , location_string: location.location_string}
+            }
 
             this.props.propsCreateJob(payload)
         }
@@ -209,6 +213,7 @@ class ReactJobPostContainer extends Component {
                                         label="Location"
                                         placeholder="Search for a location"
                                         fluid
+                                        selectOnNavigation={false}
                                         selection
                                         search
                                         renderLabel={this.customRender}
