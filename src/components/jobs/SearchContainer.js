@@ -63,6 +63,7 @@ class SearchContainer extends Component {
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
+                                selectOnNavigation={false}
                                 name="where"
                             />
                             
