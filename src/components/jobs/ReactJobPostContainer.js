@@ -144,6 +144,9 @@ class ReactJobPostContainer extends Component {
     render() {
         const { 
             errors, 
+            job_summary,
+            company_summary,
+            contact_summary,
             searchLoading,
             searchResults } = this.state;
         const  { 
@@ -240,7 +243,7 @@ class ReactJobPostContainer extends Component {
                                         name="company_summary"
                                         maxLength="500"
                                         placeholder="A short description about the company"
-                                        label="About the company"/>
+                                        label={`About the company (${500 - company_summary.length} chars remaining)`}/>
                                 
 
                                 <Form.TextArea 
@@ -249,7 +252,7 @@ class ReactJobPostContainer extends Component {
                                     name="job_summary"
                                     maxLength="500"
                                     placeholder="A short description about the job"
-                                    label="About the job"/>
+                                    label={`About the job (${500 - job_summary.length} chars remaining)`}/>
 
                                 <Form.TextArea
                                     width={12}
@@ -257,7 +260,7 @@ class ReactJobPostContainer extends Component {
                                     name="contact_summary"
                                     maxLength="500"
                                     placeholder="Enter any contact details..."
-                                    label="Contact details"/>           
+                                    label={`Contact details (${500 - contact_summary.length} chars remaining)`}/>           
                                 
                                 <Form.Button 
                                 size="big"
