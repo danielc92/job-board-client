@@ -150,16 +150,17 @@ class ReactJobPostContainer extends Component {
             errors, 
             job_summary,
             company_summary,
-            contact_summary,
-            searchLoading,
-            searchResults } = this.state;
+            contact_summary } = this.state;
         const  { 
             auth,
             benefit,
             category,
             job,
-            location,
+            locality,
             skill } = this.props;
+
+        console.log('asfsdgf')
+        console.log(this.props)
         return (
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
@@ -217,7 +218,7 @@ class ReactJobPostContainer extends Component {
                                         selection
                                         search
                                         renderLabel={this.customRender}
-                                        options={location.data}
+                                        options={locality.data}
                                     />
                                     <Form.Dropdown
                                         onChange={this.handleDropdownChange}
@@ -329,7 +330,7 @@ const mapStateToProps = state => {
         category: state.category,
         job: state.job,
         skill: state.skill,
-        location: state.locationList,
+        locality: state.locationList,
     }
 }
 
