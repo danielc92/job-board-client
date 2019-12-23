@@ -1,33 +1,65 @@
 import React, { Component } from 'react'
 import { Segment, Container, Header, Form, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { getLocationList } from '../../actions/location';
 
-export default class SearchContainer extends Component {
+class SearchContainer extends Component {
 
     state = {
-        searchWhat: '';
-        searchWhere: '';
+        searchWhat: 'dd',
+        searchWhere: '',
     }
 
-    handleInputChange = (e, {value}) => {
-        console.log(value);
+    handleInputChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({[name]: value})
+    }
+
+    handleSearchChange = (event, data) => {
+        console.log('SEARCH CHANGES')
+        const {searchQuery} = data;
+        const cleanQuery = searchQuery.trim();
+        if (cleanQuery.length >= 2) {
+            this.props.propsGetLocations(searchQuery);
+        }
+    }
+
+    handleDropDownChange = () => {
+        console.log('DROPDOWN CHANGES')
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('SUBMIT')
     }
 
     render() {
+        const { 
+            searchWhat,
+            searchWhere
+        } = this.state
+
+        const { location } = this.props; 
         return (
             <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
                 <Container>
                     <Header as="h1">Find your dream job.</Header>
                     
-                    <Form>
+                    <Form onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input
                                 label="What" 
+                                maxLength={30}
+                                name="searchWhat"
                                 onChange={this.handleInputChange} 
                                 placeholder='Enter some keywords...'
                                 value={searchWhat}
                             />
                             <Form.Dropdown
                                 label="Where"
+                                onChange={this.handleDropDownChange}
+                                onSearchChange={this.handleSearchChange}
+                                options={location.data}
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
@@ -37,7 +69,7 @@ export default class SearchContainer extends Component {
                         </Form.Group>
 
                         <Form.Button
-                            size="huge"
+                            size="large"
                             secondary>
                             <Icon name="search"></Icon>Search
                         </Form.Button>
@@ -47,3 +79,14 @@ export default class SearchContainer extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        location: state.locationList,
+    }
+}
+
+const mapDispatchToProps = {
+    propsGetLocations: getLocationList
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
