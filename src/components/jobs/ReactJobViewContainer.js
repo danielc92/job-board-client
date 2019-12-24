@@ -93,7 +93,7 @@ class ReactJobViewContainer extends Component {
                         
                         </Segment>
                         </Grid.Column>
-                        <Grid.Column width={5}>
+                        <Grid.Column width={6}>
                             <Segment
                             style = {{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                             <Message
