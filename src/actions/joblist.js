@@ -18,8 +18,7 @@ export const getJobList = (object) => async (dispatch, getState) => {
         dispatch({
             type: "GET_JOB_LIST_FAILURE",
             payload: {
-                // error: error.response.data.error
-                error: "Failed to fetch job list"
+                error: error.response.data.error
             }
 
         })

@@ -19,7 +19,6 @@ export const getLocationList = (searchPhrase) => async (dispatch, getState) => {
                 value: item
             }
         })
-        console.log(data, 'data')
         dispatch({
             type: "GET_LOCATION_LIST_SUCCESS",
             payload: {

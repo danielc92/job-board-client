@@ -17,7 +17,6 @@ export const checkTokenIsValid = (token) => {
       const offset = diff - 60
 
       if (offset > 0) {
-        console.log('Attempting to refresh token.')
         return true
       }
 }

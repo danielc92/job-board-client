@@ -1,13 +1,14 @@
 export const objectToQueryStringParser = (queryObject) => {
     let queryString = '';
     const entries = queryObject ? Object.entries(queryObject) : null;
-    entries.map((item, index) => {
+    for (let index = 0; index < entries.length; index ++ ) {
+        
         if (index === 0) {
-            queryString += `?${item[0]}=${item[1]}`
+            queryString += `?${entries[index][0]}=${entries[index][1]}`
         } else {
-            queryString += `&${item[0]}=${item[1]}`
+            queryString += `&${entries[index][0]}=${entries[index][1]}`
         }
-    })
+    }
     return queryString;
 }
 
