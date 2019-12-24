@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
+import { Segment, Progress, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import { getSkills } from '../../actions/skills';
@@ -15,6 +15,10 @@ import {
     IsEmptyValidator,
     SalaryRangeValidator, 
     ListValidator} from '../../helpers/validation';
+import {
+    calculateProgress
+} from '../../helpers/progressbar'
+import ReactProgressContainer from './ReactProgressContainer';
 
 class ReactJobPostContainer extends Component {
 
@@ -30,7 +34,8 @@ class ReactJobPostContainer extends Component {
         salary_range_low: "",
         salary_range_high: "",
         errors: [],
-        location: {}
+        location: {},
+        percent: 0,
     }
 
     customRender = (label) => ({
@@ -67,7 +72,10 @@ class ReactJobPostContainer extends Component {
             ...salaryRangeErorrs
         ]
         
-        this.setState({ errors })
+        this.setState({ errors }, ()=>{
+            const percent = calculateProgress([...this.state.errors])
+            this.setState({ percent })
+        })
     }
 
     handleInputChange = (event) => {
@@ -141,8 +149,6 @@ class ReactJobPostContainer extends Component {
         if (cleanQuery.length >= 2) {
             this.props.propsGetLocations(searchQuery);
         }
-        
-
     }
     
     render() {
@@ -150,6 +156,7 @@ class ReactJobPostContainer extends Component {
             errors, 
             job_summary,
             company_summary,
+            percent,
             contact_summary } = this.state;
         const  { 
             auth,
@@ -163,8 +170,8 @@ class ReactJobPostContainer extends Component {
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                     <Header as="h1">Post a job</Header>
-                    <Divider></Divider>
-                    
+                    <Divider/>
+                    <ReactProgressContainer percent={percent}/>                    
                     {
                         auth.isAuthenticated ?
                         (
