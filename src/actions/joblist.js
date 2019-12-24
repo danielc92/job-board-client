@@ -6,7 +6,6 @@ export const getJobList = (object) => async (dispatch, getState) => {
         let queryString = object ? objectToQueryStringParser(object) : '';
 
         const response = await jobApi.get(`job/list${queryString}`)
-        console.log(response.data.results, 'action')
         dispatch({
             type: "GET_JOB_LIST_SUCCESS",
             payload: {
