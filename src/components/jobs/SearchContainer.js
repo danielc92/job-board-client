@@ -30,12 +30,13 @@ class SearchContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleNavigation('daniel was here');
+        this.props.handleNavigation({...this.state});
     }
 
     render() {
         const { searchWhat } = this.state;
         const { locations } = this.props;
+        console.log('THE LOCATIONS: ', locations)
         return (
             <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
                 <Container>

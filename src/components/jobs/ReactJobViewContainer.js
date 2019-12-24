@@ -15,22 +15,21 @@ import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/joblist';
 import { properCaseTransform } from '../../helpers/generic';
 import SearchContainer from './SearchContainer';
-import { queryStringToObjectParser } from '../../helpers/query';
-
+import { queryStringToObjectParser, objectToQueryStringParser } from '../../helpers/query';
 class ReactJobViewContainer extends Component {
 
     componentDidMount() {
         // Check for query strings (placeholder)
         const { search } = this.props.location;
         const queryObject = queryStringToObjectParser(search)
-        
         // Retrieve jobs
         this.props.propsSetMenuItem('find');
         this.props.propsGetJobList(queryObject);
     }
 
-    handleNavigation = (option) => {
-        console.log('handled', option)
+    handleNavigation = (object) => {
+        console.log('navigation object', object)
+        console.log(objectToQueryStringParser(object), 'parser')
         // this.props.history.push('/')
     }
 
