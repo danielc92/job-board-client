@@ -6,8 +6,8 @@ import { getLocationList } from '../../actions/location';
 class SearchContainer extends Component {
 
     state = {
-        searchWhat: '',
-        searchWhere: '',
+        title: '',
+        location_string: '',
     }
 
     handleInputChange = (event) => {
@@ -25,7 +25,7 @@ class SearchContainer extends Component {
 
     handleDropDownChange = (e, data) => {
         const { location_string } = data.value;
-        this.setState({ searchWhere: location_string})
+        this.setState({ location_string})
     }
 
     handleSubmit = (event) => {
@@ -34,9 +34,8 @@ class SearchContainer extends Component {
     }
 
     render() {
-        const { searchWhat } = this.state;
+        const { title } = this.state;
         const { locations } = this.props;
-        console.log('THE LOCATIONS: ', locations)
         return (
             <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
                 <Container>
@@ -48,10 +47,10 @@ class SearchContainer extends Component {
                                 label="What" 
                                 autoComplete="off"
                                 maxLength={30}
-                                name="searchWhat"
+                                name="title"
                                 onChange={this.handleInputChange} 
                                 placeholder='Enter some keywords...'
-                                value={searchWhat}
+                                value={title}
                             />
                             <Form.Dropdown
                                 label="Where"

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
     Button, 
@@ -22,22 +23,23 @@ class ReactJobViewContainer extends Component {
         // Check for query strings (placeholder)
         const { search } = this.props.location;
         const queryObject = queryStringToObjectParser(search)
+
         // Retrieve jobs
         this.props.propsSetMenuItem('find');
         this.props.propsGetJobList(queryObject);
     }
 
     handleNavigation = (object) => {
-        console.log('navigation object', object)
-        console.log(objectToQueryStringParser(object), 'parser')
-        // this.props.history.push('/')
+        const search = objectToQueryStringParser(object);
+        this.props.history.push({
+            pathname: '/view-jobs/',
+            search});
     }
 
     render() {
         
         const { data } = this.props.jobList;
         const { error } = this.props.jobList;
-        console.log(data, 'this is data')
         const proceed = (Object.entries(data).length > 0) ? true : false;
         return (
             <React.Fragment>
@@ -104,4 +106,4 @@ const mapDispatchToProps = {
     propsGetJobList : getJobList
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReactJobViewContainer)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReactJobViewContainer))
