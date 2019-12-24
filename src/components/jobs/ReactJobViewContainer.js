@@ -51,28 +51,31 @@ class ReactJobViewContainer extends Component {
                         <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                             <Header as="h1">Results</Header>
                             <Divider></Divider>
-                            { proceed && (!error) && (data.data.docs.length > 0) ? 
+                            { 
+                                proceed && 
+                                (!error) && 
+                                (data.data.docs.length > 0) ? 
                                 data.data.docs.map(item => (
-                                <Segment stacked key={ item._id }>
-                                    <Header as="h3">
-                                        { properCaseTransform(item.title) }
-                                        <Header.Subheader>
-                                            { item.job_summary }
-                                        </Header.Subheader>
-                                    </Header>
-                                    <Label
-                                    color="green" 
-                                    basic>
-                                    ${ item.salary_range_low } - ${ item.salary_range_high }
-                                    
-                                    </Label>
-                                    <Divider></Divider>
-                                    <Button
-                                    color={this.props.theme}
-                                    size="tiny">
-                                    <Icon name="eye"></Icon>view this job</Button>
-                                </Segment>))
-                                :  <Segment>No results have been found.</Segment>}
+                                    <Segment stacked key={ item._id }>
+                                        <Header as="h3">
+                                            { properCaseTransform(item.title) }
+                                            <Header.Subheader>
+                                                { item.job_summary }
+                                            </Header.Subheader>
+                                        </Header>
+                                        <Label
+                                            color="green" 
+                                            basic>${ item.salary_range_low } - ${ item.salary_range_high }
+                                        </Label>
+                                        <Divider/>
+                                        <Button
+                                            color={this.props.theme}
+                                            size="tiny">
+                                            <Icon name="eye"></Icon>view this job
+                                        </Button>
+                                    </Segment>)) : 
+                                    <Segment>No results have been found.</Segment>
+                            }
                         </Segment>
                         </Grid.Column>
                         <Grid.Column width={5}>
