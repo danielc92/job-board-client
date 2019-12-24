@@ -21,12 +21,13 @@ class ReactJobViewContainer extends Component {
     componentDidMount() {
         // Check for query strings (placeholder)
         let queryObject = {
-
+            title: "Medical Assistant"
         }
         // Retrieve jobs
         this.props.propsSetMenuItem('find');
         this.props.propsGetJobList(queryObject);
-        console.log(this.props)
+        console.log(this.props.jobList, 
+            'view container')
     }
 
     handleNavigation = (option) => {
@@ -37,7 +38,9 @@ class ReactJobViewContainer extends Component {
     render() {
         
         const { data } = this.props.jobList;
-        const { docs } = data;
+        const { error } = this.props.jobList;
+        console.log(data, 'this is data')
+        const proceed = (Object.entries(data).length > 0) ? true : false;
         return (
             <React.Fragment>
             <SearchContainer handleNavigation={this.handleNavigation}></SearchContainer>
@@ -48,13 +51,10 @@ class ReactJobViewContainer extends Component {
                         <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                             <Header as="h1">Results</Header>
                             <Divider></Divider>
-                            { docs ? 
-                                docs.map(item => (
-                                <Segment 
-                                stacked
-                                key={ item._id }>
-                                    <Header 
-                                    as="h3">
+                            { proceed && (!error) ? 
+                                data.data.docs.map(item => (
+                                <Segment stacked key={ item._id }>
+                                    <Header as="h3">
                                         { properCaseTransform(item.title) }
                                         <Header.Subheader>
                                             { item.job_summary }
@@ -72,7 +72,7 @@ class ReactJobViewContainer extends Component {
                                     size="tiny">
                                     <Icon name="eye"></Icon>view this job</Button>
                                 </Segment>))
-                                : null}
+                                :  <Segment>No results have been found.</Segment>}
                         </Segment>
                         </Grid.Column>
                         <Grid.Column width={5}>
@@ -94,9 +94,10 @@ class ReactJobViewContainer extends Component {
 }
 
 const mapStateToProps = state => {
+    const { jobList, theme } = state; 
     return {
-        jobList: state.jobList,
-        theme: state.theme
+        jobList,
+        theme,
     }
 }
 

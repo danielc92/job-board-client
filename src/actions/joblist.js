@@ -1,14 +1,12 @@
 import jobApi from '../api';
+import { objectToQueryStringParser }  from '../helpers/query';
 
-export const getJobList = (queryObject) => async (dispatch, getState) => {
+export const getJobList = (object) => async (dispatch, getState) => {
     try {
-        let queryString = '';
-        if (queryObject) {
-            Object.entries(queryObject).map(entry => )
-        }
+        let queryString = object ? objectToQueryStringParser(object) : '';
 
-        const response = await jobApi.get('job/list')
-
+        const response = await jobApi.get(`job/list${queryString}`)
+        console.log(response.data.results, 'action')
         dispatch({
             type: "GET_JOB_LIST_SUCCESS",
             payload: {
@@ -20,7 +18,8 @@ export const getJobList = (queryObject) => async (dispatch, getState) => {
         dispatch({
             type: "GET_JOB_LIST_FAILURE",
             payload: {
-                error: error.response.data.error
+                // error: error.response.data.error
+                error: "Failed to fetch job list"
             }
 
         })
