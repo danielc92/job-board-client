@@ -45,6 +45,7 @@ class SearchContainer extends Component {
                         <Form.Group>
                             <Form.Input
                                 label="What" 
+                                autoComplete="off"
                                 maxLength={30}
                                 name="searchWhat"
                                 onChange={this.handleInputChange} 

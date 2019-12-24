@@ -50,7 +50,7 @@ class ReactJobViewContainer extends Component {
                         <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                             <Header as="h1">Results</Header>
                             <Divider></Divider>
-                            { proceed && (!error) ? 
+                            { proceed && (!error) && (data.data.docs.length > 0) ? 
                                 data.data.docs.map(item => (
                                 <Segment stacked key={ item._id }>
                                     <Header as="h3">
