@@ -10,3 +10,18 @@ export const objectToQueryStringParser = (queryObject) => {
     })
     return queryString;
 }
+
+export const queryStringToObjectParser = (queryString) => {
+    let step1 = queryString.replace('?','')
+    let items = step1.split('&')
+    let obj = {}
+
+    for (let i = 0; i < items.length ; i ++) {
+        if (items[i].length >= 3 && items[i].indexOf('=') > -1 ) {
+            let split = items[i].split('=');
+            obj = {...obj, [split[0]] : split[1]}
+        }
+    }
+
+    return Object.entries(obj).length > 0 ? obj : null;
+}
