@@ -30,7 +30,7 @@ class SearchContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log('SUBMIT')
+        this.props.handleNavigation('daniel was here');
     }
 
     render() {

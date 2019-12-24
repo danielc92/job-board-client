@@ -1,7 +1,12 @@
 import jobApi from '../api';
 
-export const getJobList = () => async (dispatch, getState) => {
+export const getJobList = (queryObject) => async (dispatch, getState) => {
     try {
+        let queryString = '';
+        if (queryObject) {
+            Object.entries(queryObject).map(entry => )
+        }
+
         const response = await jobApi.get('job/list')
 
         dispatch({

@@ -19,10 +19,20 @@ import SearchContainer from './SearchContainer';
 class ReactJobViewContainer extends Component {
 
     componentDidMount() {
+        // Check for query strings (placeholder)
+        let queryObject = {
+
+        }
+        // Retrieve jobs
         this.props.propsSetMenuItem('find');
-        this.props.propsGetJobList();
+        this.props.propsGetJobList(queryObject);
+        console.log(this.props)
     }
 
+    handleNavigation = (option) => {
+        console.log('handled', option)
+        // this.props.history.push('/')
+    }
 
     render() {
         
@@ -30,7 +40,7 @@ class ReactJobViewContainer extends Component {
         const { docs } = data;
         return (
             <React.Fragment>
-            <SearchContainer></SearchContainer>
+            <SearchContainer handleNavigation={this.handleNavigation}></SearchContainer>
             <Container>
                 <Grid stackable>
                     <Grid.Row columns={2}>
