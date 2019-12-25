@@ -5,7 +5,7 @@ export const objectToQueryStringParser = (queryObject) => {
         
         let prefix = (i === 0) ? '?' : '&'
         let key = entries[i][0]
-        let value = entries[i][1]
+        let value = String(entries[i][1])
         if (value.length > 0) {
             queryString += `${prefix}${key}=${value}`
         }

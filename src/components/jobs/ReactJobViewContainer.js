@@ -30,10 +30,27 @@ class ReactJobViewContainer extends Component {
     }
 
     handleNavigation = (object) => {
+        const { history } = this.props;
         const search = objectToQueryStringParser(object);
-        this.props.history.push({
-            pathname: '/view-jobs/',
-            search});
+        
+        history.push({
+            pathname: '/view-jobs',
+            search
+        });
+    }
+
+    handlePageChange = (event, data) => {
+        const { location, history } = this.props;
+        const { activePage } = data;
+       
+        let currentQueryString = location.search; 
+        let queryObject = queryStringToObjectParser(currentQueryString);
+        queryObject = { ...queryObject, page: activePage }
+        const search = objectToQueryStringParser(queryObject);
+        history.push({
+            pathname: '/view-jobs',
+            search,
+        })
     }
 
     render() {
@@ -86,6 +103,7 @@ class ReactJobViewContainer extends Component {
                                     prevItem={{ content: <Icon name='angle left' />, icon: true }}
                                     nextItem={{ content: <Icon name='angle right' />, icon: true }}
                                     totalPages={data.data.totalPages}
+                                    onPageChange={this.handlePageChange}
                                 />      
                             ) : null
                         }
