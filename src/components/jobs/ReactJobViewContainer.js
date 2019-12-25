@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { 
     Button, 
@@ -124,4 +123,4 @@ const mapDispatchToProps = {
     propsGetJobList : getJobList
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReactJobViewContainer))
+export default connect(mapStateToProps, mapDispatchToProps)(ReactJobViewContainer);

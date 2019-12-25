@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Progress, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
+import { Segment, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import { getSkills } from '../../actions/skills';
