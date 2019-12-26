@@ -6,13 +6,18 @@ export const jobReducer = (state={ error: false, data: {}}, action) => {
         case 'JOB_CREATE_SUCCESS':
             return {
                 error: false,
-                data: payload.data
+                data: payload.data,
+            }
+        case 'JOB_CREATE_RESET':
+            return {
+                error: false,
+                data: {},
             }
         case 'JOB_CREATE_FAILURE':
             return {
                 error: true,
                 error_message: payload.error,
-                data: {}
+                data: {},
             }
         default:
             return state

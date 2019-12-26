@@ -14,11 +14,20 @@ export const createJob = (payload) => async (dispatch, getState) => {
         })
     } 
     catch (error) {
+        console.log(error)
         dispatch({
             type: "JOB_CREATE_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: "PLACEHOLDER"
+                // error: error.response.data.error
             }
         })
     }
+}
+
+export const resetJob = () => async (dispatch, getState) => {
+    dispatch({
+        type: "JOB_CREATE_RESET",
+        payload: null
+    })
 }

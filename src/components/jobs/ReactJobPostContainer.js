@@ -6,7 +6,7 @@ import { getSkills } from '../../actions/skills';
 import { getBenefits } from '../../actions/benefit';
 import { getCategories } from '../../actions/category';
 import { getLocationList } from '../../actions/location';
-import { createJob } from '../../actions/job'; 
+import { createJob, resetJob } from '../../actions/job'; 
 import { checkTokenIsValid } from '../../helpers/auth';
 import { TOKEN_NAME } from '../../constants';
 import { logoutUser } from '../../actions/auth';
@@ -36,18 +36,11 @@ class ReactJobPostContainer extends Component {
         errors: [],
         location: {},
         percent: 0,
-        modalOpen: false,
     }
 
     closeModal = () => {
-        this.setState({ modalOpen: false })
+        this.props.propsResetJob()
     }
-
-    openModal = () => {
-        this.setState({ modalOpen: true })
-    }
-
-
 
     customRender = (label) => ({
         color: 'green',
@@ -141,8 +134,6 @@ class ReactJobPostContainer extends Component {
             }
 
             this.props.propsCreateJob(payload);
-
-            this.openModal();
         }
     }
 
@@ -170,7 +161,8 @@ class ReactJobPostContainer extends Component {
             job_summary,
             company_summary,
             percent,
-            contact_summary } = this.state;
+            contact_summary,
+            modal } = this.state;
         const  { 
             auth,
             benefit,
@@ -300,7 +292,7 @@ class ReactJobPostContainer extends Component {
                                 </Message>
 
                                 <Modal
-                                open={this.state.modalOpen}
+                                open={Object.entries(job.data).length > 0}
                                 dimmer="blurring"
                                 onClose={this.closeModal}>
                                     <Modal.Header>Success
@@ -316,13 +308,6 @@ class ReactJobPostContainer extends Component {
                                         </Button>
                                     </Modal.Actions>
                                 </Modal>
-
-                                <Message
-                                    success
-                                    visible={Object.entries(job.data).length > 0}
-                                    header="Success"
-                                    content="Your job has been posted.">
-                                </Message>
                             </Form>
                             {
                                 errors.length === 0 ? 
@@ -376,6 +361,7 @@ const mapDispatchToProps = {
     propsGetBenefits: getBenefits,
     propsGetCategories: getCategories,
     propsCreateJob: createJob,
+    propsResetJob: resetJob,
     propsLogoutUser: logoutUser,
     propsGetLocations: getLocationList,
 }
