@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
+import { Segment, Modal, Button, Container, Header, Form, Message, Icon, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import { getSkills } from '../../actions/skills';
@@ -36,7 +36,18 @@ class ReactJobPostContainer extends Component {
         errors: [],
         location: {},
         percent: 0,
+        modalOpen: false,
     }
+
+    closeModal = () => {
+        this.setState({ modalOpen: false })
+    }
+
+    openModal = () => {
+        this.setState({ modalOpen: true })
+    }
+
+
 
     customRender = (label) => ({
         color: 'green',
@@ -129,7 +140,9 @@ class ReactJobPostContainer extends Component {
                 payload = {...payload, location: location.location , location_string: location.location_string}
             }
 
-            this.props.propsCreateJob(payload)
+            this.props.propsCreateJob(payload);
+
+            this.openModal();
         }
     }
 
@@ -170,12 +183,12 @@ class ReactJobPostContainer extends Component {
             <Container>
                 <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                     <Header as="h1">Post a job</Header>
-                    <Divider/>
-                    <ReactProgressContainer percent={percent}/>                    
+                    <Divider/>                    
                     {
                         auth.isAuthenticated ?
                         (
                             <React.Fragment>
+                            <ReactProgressContainer percent={percent}/>
                             <Form onSubmit={this.handleSubmit}>
                                 <Form.Group widths={"equal"}>
 
@@ -285,6 +298,24 @@ class ReactJobPostContainer extends Component {
                                     header="Error"
                                     content="An error has occured, job posting failed">
                                 </Message>
+
+                                <Modal
+                                open={this.state.modalOpen}
+                                dimmer="blurring"
+                                onClose={this.closeModal}>
+                                    <Modal.Header>Success
+                                    </Modal.Header>
+                                    <Modal.Content>
+                                        Your job has been posted successfully!
+                                    </Modal.Content>
+                                    <Modal.Actions>
+                                        <Button
+                                        onClick={this.closeModal} 
+                                        color='green'>
+                                            Confirm
+                                        </Button>
+                                    </Modal.Actions>
+                                </Modal>
 
                                 <Message
                                     success
