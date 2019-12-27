@@ -17,7 +17,8 @@ import {
     ListValidator} from '../../helpers/validation';
 import {
     calculateProgress
-} from '../../helpers/progressbar'
+} from '../../helpers/progressbar';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import ReactProgressContainer from './ReactProgressContainer';
 
 class ReactJobPostContainer extends Component {
@@ -172,9 +173,11 @@ class ReactJobPostContainer extends Component {
             skill } = this.props;
 
         return (
-            <Container>
-                <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
-                    <Header as="h1">Post a job</Header>
+          
+                <Segment basic>
+                    <Container>
+                        <VerticallyPaddedContainer size="4">
+                        <Header as="h1">Post a job</Header>
                     <Divider/>                    
                     {
                         auth.isAuthenticated ?
@@ -338,8 +341,10 @@ class ReactJobPostContainer extends Component {
                             </Message>
                         )
                     }
+                        </VerticallyPaddedContainer>
+                     </Container>
                 </Segment>
-            </Container>
+           
         )
     }
 }

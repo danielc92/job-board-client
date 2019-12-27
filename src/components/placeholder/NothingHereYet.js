@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Divider, Container, Segment, Header, Placeholder } from 'semantic-ui-react';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 export default class NothingHereYet extends Component {
 
     render() {
         return (
             <div>
-                <Segment style={{padding: '7rem 0rem'}}>
+                <Segment  basic>
                 <Container>
-                <Header as="h1">Nothing here yet</Header>
+                    <VerticallyPaddedContainer size="4">
+                    <Header as="h1">Nothing here yet</Header>
                 <Divider/>
                 <Placeholder>
                     <Placeholder.Paragraph>
@@ -38,6 +40,8 @@ export default class NothingHereYet extends Component {
                     <Placeholder.Line />
                     </Placeholder.Paragraph>
                 </Placeholder>
+                    </VerticallyPaddedContainer>
+                
                 </Container>
                 </Segment>
             </div>
