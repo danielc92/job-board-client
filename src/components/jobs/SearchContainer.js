@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Segment, Container, Header, Form, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { getLocationList } from '../../actions/location';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 class SearchContainer extends Component {
 
@@ -37,10 +38,10 @@ class SearchContainer extends Component {
         const { title } = this.state;
         const { locations } = this.props;
         return (
-            <Segment color="green" inverted style={{borderRadius: '0', padding: '3rem 2rem', margin: '0'}}>
+            <Segment basic>
                 <Container>
+                    <VerticallyPaddedContainer size="3">
                     <Header as="h1">Find your dream job.</Header>
-                    
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input
@@ -68,10 +69,11 @@ class SearchContainer extends Component {
 
                         <Form.Button
                             size="large"
-                            secondary>
+                            color="green">
                             <Icon name="search"></Icon>Search
                         </Form.Button>
                     </Form>
+                    </VerticallyPaddedContainer>
                 </Container>
             </Segment>
         )
