@@ -5,6 +5,7 @@ import { loginUser } from '../../actions/auth';
 import { setMenuItem } from '../../actions/menu';
 import { Redirect } from 'react-router';
 import loginImage from '../../images/undraw_Login_v483.svg';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 
 class ReactLogin extends Component {
@@ -45,11 +46,12 @@ class ReactLogin extends Component {
         }
 
         return (
-            <Container style={{ minHeight: '60vh'}}>   
+            <Container style={{ minHeight: '60vh'}}> 
+                <VerticallyPaddedContainer size="4">
                 <Grid columns={2} stackable padded>
                     <Grid.Row>
                         <Grid.Column>
-                        <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
+                        <Segment basic>
                             <Header as="h1">Login Page</Header>
                             <p>Unlock all the features by creating an account and signing in.</p>
                             <Form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}}>
@@ -99,6 +101,8 @@ class ReactLogin extends Component {
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
+                </VerticallyPaddedContainer>  
+                
                 
             </Container>
         )

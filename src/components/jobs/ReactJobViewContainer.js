@@ -17,6 +17,7 @@ import { getJobList } from '../../actions/joblist';
 import { properCaseTransform } from '../../helpers/generic';
 import SearchContainer from './SearchContainer';
 import { queryStringToObjectParser, objectToQueryStringParser } from '../../helpers/query';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 class ReactJobViewContainer extends Component {
 
     componentDidMount() {
@@ -62,10 +63,11 @@ class ReactJobViewContainer extends Component {
             <React.Fragment>
             <SearchContainer handleNavigation={this.handleNavigation}></SearchContainer>
             <Container>
+                <VerticallyPaddedContainer size="4">
                 <Grid stackable>
                     <Grid.Row columns={2}>
                         <Grid.Column width={10}>
-                        <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
+                        <Segment basic>
                             <Header as="h1">Results</Header>
                             <Divider></Divider>
                             { 
@@ -111,17 +113,14 @@ class ReactJobViewContainer extends Component {
                         </Segment>
                         </Grid.Column>
                         <Grid.Column width={6}>
-                            <Segment
-                            style = {{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
                             <Message
                             info
                             header="Placeholder"
                             content="Sit do aute minim ex exercitation laboris esse. Amet Lorem labore et sit ex. Consectetur Lorem tempor reprehenderit et esse quis minim exercitation velit eu. Anim voluptate nostrud amet aliqua aute do velit deserunt qui magna irure. Magna fugiat nisi nostrud deserunt ea tempor proident anim. Eu veniam ullamco anim in cillum."></Message>
-                            </Segment>
-                            
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
+                </VerticallyPaddedContainer>
             </Container>
             </React.Fragment>
         )
