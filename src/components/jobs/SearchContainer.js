@@ -38,7 +38,8 @@ class SearchContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.props.handleNavigation({...this.state});
+        const { title, location_string } = this.state;
+        this.props.handleNavigation({ title, location_string });
     }
 
     render() {
