@@ -9,26 +9,31 @@ class ReactFeatures extends Component {
         featureHeader: "h3",
         featureData: [
           {
+            key: "1",
             icon: "briefcase",
             title: "Variety",
             content: "Large variety of professions to choose from."
           },
           {
+            key: "2",
             icon: "user",
             title: "Profile based",
             content: "Optimized for job hunters and employers."
           },
           {
+            key: "3",
             icon: "database",
             title: "Data driven",
             content: "Optimised search results. CV Free."
           },
           {
+            key: "4",
             icon: "star",
             title: "Rate and review",
             content: "Rate applications"
           },
           { 
+            key: "5",
             icon: "chart line", 
             title:"Analytics", 
             content:"Gain insights into the job market."
@@ -51,7 +56,7 @@ class ReactFeatures extends Component {
                   {
                     featureData.slice(0, 3).map(item => (
                       
-                      <Grid.Column style={{ textAlign: "center"}}>
+                      <Grid.Column key={item.key} style={{ textAlign: "center"}}>
                         <Icon color={this.props.theme} name={item.icon} size="big"/>
                         <Header as={featureHeader}>{ item.title }</Header>
                         <p>{ item.content }</p>
@@ -64,7 +69,7 @@ class ReactFeatures extends Component {
                   {
                     featureData.slice(3, 7).map(item => (
                       
-                      <Grid.Column style={{ textAlign: "center"}}>
+                      <Grid.Column key={item.key} style={{ textAlign: "center"}}>
                         <Icon color={this.props.theme} name={item.icon} size="big"/>
                         <Header as={featureHeader}>{ item.title }</Header>
                         <p>{ item.content }</p>
