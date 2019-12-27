@@ -37,6 +37,7 @@ class ReactJobPostContainer extends Component {
         errors: [],
         location: {},
         percent: 0,
+        searchQuery: "",
     }
 
     closeModal = () => {
@@ -150,9 +151,14 @@ class ReactJobPostContainer extends Component {
 
     handleBetaLocationHandler = (event, data) => {
         const {searchQuery} = data;
+        const { propsGetLocations, locations } = this.props;
         const cleanQuery = searchQuery.trim();
-        if (cleanQuery.length >= 2) {
-            this.props.propsGetLocations(searchQuery);
+        this.setState({ searchQuery: cleanQuery })
+        const exists = locations.filter(i => i.search === cleanQuery)
+
+        // No duplicate requests
+        if ((cleanQuery.length >= 2) && (exists.length === 0)) {
+            propsGetLocations(searchQuery);
         }
     }
     
@@ -163,7 +169,7 @@ class ReactJobPostContainer extends Component {
             company_summary,
             percent,
             contact_summary,
-            modal } = this.state;
+            searchQuery } = this.state;
         const  { 
             auth,
             benefit,
@@ -171,6 +177,9 @@ class ReactJobPostContainer extends Component {
             job,
             locations,
             skill } = this.props;
+
+        const locationOptions = locations.filter(item => item.search === searchQuery)
+        console.log('location', locationOptions)
 
         return (
           
@@ -231,7 +240,7 @@ class ReactJobPostContainer extends Component {
                                         selection
                                         search
                                         renderLabel={this.customRender}
-                                        options={locations.data}
+                                        options={locationOptions.length > 0 ? locationOptions[0]['data'] : null}
                                     />
                                     <Form.Dropdown
                                         onChange={this.handleDropdownChange}

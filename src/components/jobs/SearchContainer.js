@@ -21,11 +21,10 @@ class SearchContainer extends Component {
         
         const { searchQuery } = data;
         const { locations, propsGetLocations } = this.props;
-        this.setState({ searchQuery})
         const cleanQuery = searchQuery.trim();
-
-        const exists = locations.filter(i => i.search === searchQuery)
-
+        this.setState({ searchQuery: cleanQuery })
+        
+        const exists = locations.filter(i => i.search === cleanQuery)
         // No duplicate requests
         if ((cleanQuery.length >= 2) && (exists.length === 0)) {
             propsGetLocations(searchQuery);

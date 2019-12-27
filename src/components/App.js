@@ -6,7 +6,7 @@ import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactJobPostContainer from './jobs/ReactJobPostContainer';
 import ReactJobViewContainer from './jobs/ReactJobViewContainer';
 import ReactFooter from './layout/ReactFooter';
-import ReactNews from './news/ReactNews';
+import ReactNews from './information/ReactNews';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth';
 import { Message } from 'semantic-ui-react';
