@@ -5,13 +5,15 @@ import {
 import image from '../../images/undraw_interview_rmcf.svg'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 
 class ReactHero extends Component {
     render() {
         return (
-            <Segment style={{margin: '0', padding: '7rem 0rem', border: 'none', boxShadow:'none'}}>
+            <Segment basic>
                 <Container>
+                    <VerticallyPaddedContainer size="5">
                     <Grid divided='vertically' stackable>
                     <Grid.Row columns={2}>
                         <Grid.Column verticalAlign="middle">
@@ -34,6 +36,8 @@ class ReactHero extends Component {
                         </Grid.Column>
                     </Grid.Row>
                     </Grid>
+                    </VerticallyPaddedContainer>
+                    
                 </Container>
             </Segment>
         )

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import ReactMenu from './ReactMenu';
+import ReactMenu from './layout/ReactMenu';
 import ReactLogin from './account/ReactLogin';
 import ReactRegister from './account/ReactRegister';
 import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactJobPostContainer from './jobs/ReactJobPostContainer';
 import ReactJobViewContainer from './jobs/ReactJobViewContainer';
-import ReactFooter from './ReactFooter';
+import ReactFooter from './layout/ReactFooter';
 import ReactNews from './news/ReactNews';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth';

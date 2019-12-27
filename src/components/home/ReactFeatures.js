@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Container, Header, Grid, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 class ReactFeatures extends Component {
 
@@ -39,13 +40,9 @@ class ReactFeatures extends Component {
         const { featureHeader, featureData } = this.state;
 
         return (
-            <Segment style={{ 
-              backgroundColor: '#f9f9f9',
-              padding: '7em 0em', 
-              margin: '0', 
-              border: 'none', 
-              boxShadow:'none' }}>
+            <Segment basic style={{ backgroundColor: '#f9f9f9'}}>
             <Container>
+              <VerticallyPaddedContainer size="6">
               <Header as="h1" textAlign="center" style={{marginBottom: '5rem'}}>
                 What we can do for you
                 </Header>
@@ -77,7 +74,10 @@ class ReactFeatures extends Component {
                   }
                 </Grid.Row>
               </Grid>
-            </Container>
+           
+              </VerticallyPaddedContainer>
+              </Container>
+              
           </Segment>
         )
     }

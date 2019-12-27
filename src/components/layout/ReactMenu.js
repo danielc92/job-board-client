@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Menu, Container, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logoutUser } from '../actions/auth';
+import { logoutUser } from '../../actions/auth';
 
 
 class ReactMenu extends Component {

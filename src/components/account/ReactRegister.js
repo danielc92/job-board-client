@@ -8,6 +8,7 @@ import {
     StringValidator,
     PasswordMatcher,
     PasswordValidator} from '../../helpers/validation';
+import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 
 class ReactRegister extends Component {
@@ -76,7 +77,8 @@ class ReactRegister extends Component {
         
         return (
             <Container>
-                <Segment style={{ padding: '7rem 0', border: 'none', boxShadow: 'none', margin: 'none'}}>
+                <VerticallyPaddedContainer size="4">
+                <Segment basic>
                     <Header as="h1">Join the community</Header>
                     
                     <Form onSubmit={this.handleSubmit}>
@@ -156,6 +158,8 @@ class ReactRegister extends Component {
                     </Form>
 
                 </Segment>
+                </VerticallyPaddedContainer>
+                
             </Container>
         )
     }
