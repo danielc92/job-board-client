@@ -1,19 +1,11 @@
-export const locationListReducer = (state={ error: false, data: []}, action) => {
+export const locationListReducer = (state=[], action) => {
     const { type, payload } = action;
 
     switch(type) {
-
         case 'GET_LOCATION_LIST_SUCCESS':
-            return {
-                error: false,
-                data: payload.data
-            }
+            return [...state, payload]
         case 'GET_LOCATION_LIST_FAILURE':
-            return {
-                error: true,
-                data: [],
-                error_message: payload.error
-            }
+            return [...state, payload]
         default:
             return state
     }

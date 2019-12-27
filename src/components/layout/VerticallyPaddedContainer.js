@@ -17,7 +17,6 @@ export default class VerticallyPaddedContainer extends Component {
         const style = {
             padding: `${sizes[size]}px 0px`
         }
-        console.log(size, style)
         return (
             <section style={style}>
                 {children}

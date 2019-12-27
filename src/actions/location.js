@@ -1,17 +1,11 @@
 import jobApi from '../api';
-import { TOKEN_NAME } from '../constants/index';
 
-export const getLocationList = (searchPhrase) => async (dispatch, getState) => {
+export const getLocationList = (search) => async (dispatch, getState) => {
     try {   
-        const token = localStorage.getItem(TOKEN_NAME)
-        const url = `location?search=${searchPhrase}`
-        const response = await jobApi.get(
-            url, 
-            { 
-                headers: { 'x-access-token' : token }
-            }
-        )
+        const url = `location?search=${search}`
+        const response = await jobApi.get(url)
         
+        // Transform locations for semantic component
         const data = response.data.map((item, index) => {
             return {
                 key: index.toString(),
@@ -22,14 +16,18 @@ export const getLocationList = (searchPhrase) => async (dispatch, getState) => {
         dispatch({
             type: "GET_LOCATION_LIST_SUCCESS",
             payload: {
-                data
+                data,
+                error: false,
+                search,
             }
         })
     } catch (error) {
         dispatch({
             type: "GET_LOCATION_LIST_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: true,
+                errorMessage: error.response.data.error,
+                search,
             }
         })
     }

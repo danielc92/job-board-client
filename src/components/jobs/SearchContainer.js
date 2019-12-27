@@ -9,6 +9,7 @@ class SearchContainer extends Component {
     state = {
         title: '',
         location_string: '',
+        searchQuery: '',
     }
 
     handleInputChange = (event) => {
@@ -17,10 +18,17 @@ class SearchContainer extends Component {
     }
 
     handleSearchChange = (event, data) => {
-        const {searchQuery} = data;
+        
+        const { searchQuery } = data;
+        const { locations, propsGetLocations } = this.props;
+        this.setState({ searchQuery})
         const cleanQuery = searchQuery.trim();
-        if (cleanQuery.length >= 2) {
-            this.props.propsGetLocations(searchQuery);
+
+        const exists = locations.filter(i => i.search === searchQuery)
+
+        // No duplicate requests
+        if ((cleanQuery.length >= 2) && (exists.length === 0)) {
+            propsGetLocations(searchQuery);
         }
     }
 
@@ -35,8 +43,9 @@ class SearchContainer extends Component {
     }
 
     render() {
-        const { title } = this.state;
+        const { title, searchQuery } = this.state;
         const { locations } = this.props;
+        const locationOptions = locations.filter(item => item.search === searchQuery)
         return (
             <Segment basic>
                 <Container>
@@ -57,7 +66,7 @@ class SearchContainer extends Component {
                                 label="Where"
                                 onChange={this.handleDropDownChange}
                                 onSearchChange={this.handleSearchChange}
-                                options={locations.data}
+                                options={locationOptions.length > 0 ? locationOptions[0]['data'] : []}
                                 placeholder="Enter location, postcode, state"
                                 search
                                 selection
