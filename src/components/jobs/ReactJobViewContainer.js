@@ -44,9 +44,7 @@ class ReactJobViewContainer extends Component {
         const { history } = this.props;
         history.push({
             pathname: '/view-job',
-            params: {
-                id
-            },
+            search: `?id=${id}`
         })
     }
 
