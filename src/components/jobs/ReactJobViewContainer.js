@@ -40,6 +40,16 @@ class ReactJobViewContainer extends Component {
         });
     }
 
+    handleViewJob = (id) => {
+        const { history } = this.props;
+        history.push({
+            pathname: '/view-job',
+            params: {
+                id
+            },
+        })
+    }
+
     handlePageChange = (event, data) => {
         const { location, history } = this.props;
         const { activePage } = data;
@@ -55,7 +65,7 @@ class ReactJobViewContainer extends Component {
     }
 
     render() {
-        
+        console.log(this.props, 'YEA')
         const { data } = this.props.jobList;
         const { error } = this.props.jobList;
         const proceed = (Object.entries(data).length > 0) ? true : false;
@@ -89,7 +99,8 @@ class ReactJobViewContainer extends Component {
                                         <Divider/>
                                         <Button
                                             color={this.props.theme}
-                                            size="tiny">
+                                            size="tiny"
+                                            onClick={() => this.handleViewJob(item._id)}>
                                             <Icon name="eye"></Icon>view this job
                                         </Button>
                                     </Segment>)) : 
