@@ -3,6 +3,7 @@ import { Segment, Header, Container,Button, Label } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import { queryStringToObjectParser } from '../../helpers/query';
 import { getJob } from '../../actions/job';
+import { setMenuItem } from '../../actions/menu';
 import { connect } from 'react-redux';
 import { properCaseTransform } from '../../helpers/generic';
 
@@ -10,6 +11,7 @@ class ReactJobDetailContainer extends Component {
     componentDidMount() {
         const query = queryStringToObjectParser(this.props.location.search)
         this.props.propsGetJob(query.id)
+        this.props.propsSetMenuItem('find');
     }
     render() {
         const query = queryStringToObjectParser(this.props.location.search)
@@ -68,7 +70,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    propsGetJob: getJob
+    propsGetJob: getJob,
+    propsSetMenuItem: setMenuItem,
 }
 
 
