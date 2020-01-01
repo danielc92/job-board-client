@@ -1,31 +1,57 @@
 import React, { Component } from 'react';
-import { Segment, Header, Container } from 'semantic-ui-react';
+import { Segment, Header, Container,Button, Label } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import { queryStringToObjectParser } from '../../helpers/query';
 import { getJob } from '../../actions/job';
 import { connect } from 'react-redux';
+import { properCaseTransform } from '../../helpers/generic';
 
 class ReactJobDetailContainer extends Component {
     componentDidMount() {
         const query = queryStringToObjectParser(this.props.location.search)
-        console.log(query)
+        this.props.propsGetJob(query.id)
     }
     render() {
-        console.log(this.props)
+        const query = queryStringToObjectParser(this.props.location.search)
+        const jobSearch = this.props.jobDetails.filter(item => item._id === query.id)
+        const jobDetails = jobSearch.length > 0 ? jobSearch[0] : null;
         return (
-            <Segment basic color="white">
+            <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="3">
-                    <Header>Job detail container</Header>
-                    <p>Nostrud sint eiusmod quis tempor. Aliqua laborum do consectetur incididunt pariatur irure labore cupidatat do fugiat. Sint laborum culpa consequat enim dolore elit velit irure id consectetur reprehenderit ad. Duis elit cupidatat sunt magna ut. Duis cillum voluptate tempor fugiat.
+                        {
+                            jobDetails ? 
+                            <Segment color="green" padded stacked>
+                                 
+                                <Header as="h1">{properCaseTransform(jobDetails.title)}<Label color='green' tertiary>{jobDetails.category}</Label></Header>
+                                <Header.Subheader> { jobDetails.location_string }</Header.Subheader>
+                                
+                                <Header>About the job</Header>
+                                <p>{jobDetails.job_summary}</p>
 
-Occaecat consectetur ea veniam veniam proident occaecat culpa occaecat ea consectetur est ullamco minim. Tempor fugiat quis culpa in anim officia fugiat nulla sit. Do non consequat ea eiusmod ad Lorem cupidatat deserunt occaecat elit sint. Laborum fugiat eiusmod ullamco eu mollit nulla do voluptate cupidatat minim amet et.
+                                <Header>Salary</Header>
+                                <Label color="green" basic size="large">${ jobDetails.salary_range_low} - ${ jobDetails.salary_range_high }</Label>
+                                
+                                <Header>Skills</Header>
+                                <Label.Group>
+                                { jobDetails.skills.map(item => <Label basic color="green">{item}</Label>)}
+                                </Label.Group>
+                                
+                                
+                                <Header>Benefits</Header>
+                                <Label.Group>
+                                { jobDetails.benefits.map(item => <Label basic color="green">{item}</Label>)}
+                                </Label.Group>
 
-Deserunt consectetur duis amet do nostrud eu duis anim ullamco nulla voluptate occaecat esse elit. Enim incididunt anim aliqua laborum laborum ipsum minim quis qui qui. Cupidatat proident ea elit pariatur aliqua anim sit.
+                                <Header>About the company</Header>
+                                <p>{ jobDetails.company_summary }</p>
+                                <Header>Contact Summary</Header>
+                                <p>{ jobDetails.contact_summary }</p>
 
-Proident voluptate elit sint eu id. Excepteur consequat nostrud reprehenderit cillum irure cillum tempor incididunt laborum nisi laboris. Voluptate labore dolor veniam magna in non sint dolor ipsum. Labore nisi velit voluptate do elit minim labore.
-
-Consectetur ad culpa commodo ea cupidatat amet. Do proident veniam anim velit. Nostrud laboris sit cillum ex est magna in consequat pariatur enim.</p>
+                                <Button
+                                size="big" color="violet">Apply</Button>
+                            </Segment>: 
+                            <Segment>Job not found.</Segment>}
                     </VerticallyPaddedContainer>
                 </Container>
                
@@ -35,9 +61,9 @@ Consectetur ad culpa commodo ea cupidatat amet. Do proident veniam anim velit. N
 }
 
 const mapStateToProps = state => {
-    const { theme } = state; 
+    const { jobDetails } = state; 
     return {
-        theme
+        jobDetails
     }
 }
 

@@ -8,7 +8,9 @@ import { benefitReducer } from './benefits';
 import { categoryReducer } from './categories';
 import { jobReducer } from './job';
 import { jobListReducer } from './joblist';
+import { jobDetailReducer } from './job_detail';
 import { locationListReducer } from './location';
+
 
 export const rootReducer = combineReducers({
     auth: authReducer,
@@ -20,6 +22,7 @@ export const rootReducer = combineReducers({
     benefit: benefitReducer,
     job: jobReducer,
     jobList: jobListReducer,
-    locationList: locationListReducer
+    locationList: locationListReducer,
+    jobDetails: jobDetailReducer,
 })
 

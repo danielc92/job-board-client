@@ -41,7 +41,8 @@ export const getJob = (id) => async (dispatch, getState) => {
         dispatch({
             type: "JOB_FETCH_SUCCESS",
             payload: {
-                data: response.data
+                error: false,
+                data: response.data.results,
             }
         })
     } 
@@ -50,7 +51,8 @@ export const getJob = (id) => async (dispatch, getState) => {
         dispatch({
             type: "JOB_FETCH_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: true,
+                errorMessage: error.response.data.error
             }
         })
     }
