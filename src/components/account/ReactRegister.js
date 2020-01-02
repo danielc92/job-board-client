@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/register';
 import { setMenuItem } from '../../actions/menu';
-import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
+import { Container, Label, Segment, Form, Header, Message } from 'semantic-ui-react';
 import { 
     EmailValidator, 
     StringValidator,
@@ -19,6 +19,7 @@ class ReactRegister extends Component {
         confirm_password: "",
         first_name: "",
         last_name: "",
+        is_employer: false,
         errors: []
     }
 
@@ -55,12 +56,15 @@ class ReactRegister extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        const { errors, email, password, first_name, last_name } = this.state
-        const payload = { email, password, first_name, last_name }
+        const { errors, email, password, first_name, last_name, is_employer } = this.state
+        const payload = { email, password, first_name, last_name, is_employer }
 
         if (errors.length === 0) this.props.propsRegisterUser(payload)
     }
 
+    handleRadioChange = () => {
+        this.setState({ is_employer: !this.state.is_employer})
+    }
     componentDidMount() {
         this.validateForm()
         this.props.propsSetMenuItem('register')
@@ -71,6 +75,7 @@ class ReactRegister extends Component {
             errors,
             email, 
             password, 
+            
             confirm_password, 
             first_name, 
             last_name } = this.state;
@@ -129,6 +134,14 @@ class ReactRegister extends Component {
                         value={last_name}
                         name="last_name"/>
 
+                    <Form.Field>
+                        <label>I am <strong>{ this.state.is_employer ? 'an employer' : 'a job seeker'}</strong></label>
+                    </Form.Field>
+                    <Form.Radio
+                    toggle
+                    onChange={this.handleRadioChange}>
+
+                    </Form.Radio>
                     <Form.Button 
                     size="large" 
                     color="green">Create account</Form.Button>
