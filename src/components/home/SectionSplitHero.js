@@ -9,7 +9,7 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 class SectionSplitHero extends Component {
     render() {
         const { ctaHeader, ctaSubHeader, image, left } = this.props;
-
+        const style = left ? { textAlign: 'right' } : null;
         return (
             <Segment basic>
                 <Container>
@@ -24,7 +24,7 @@ class SectionSplitHero extends Component {
                             :
                             null
                         }
-                        <Grid.Column verticalAlign="middle">
+                        <Grid.Column verticalAlign="middle" style={style}>
                         <Header as="h1" style={{fontSize: '3rem'}}>
                             {ctaHeader}
                             <Header.Subheader>
