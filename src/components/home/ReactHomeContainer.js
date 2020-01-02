@@ -3,7 +3,8 @@ import ReactHero from './ReactHero';
 import ReactFeatures from './ReactFeatures';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
-
+import SectionSplitHero from './SectionSplitHero';
+import image from '../../images/undraw_interview_rmcf.svg';
 class ReactHomeContainer extends Component {
 
     componentDidMount() {
@@ -19,6 +20,18 @@ class ReactHomeContainer extends Component {
                 
                 {/* Features */}
                 <ReactFeatures/>
+
+                <SectionSplitHero 
+                ctaHeader="Header" 
+                ctaSubHeader="This is a sub header for the cta component"
+                image={image}
+                left/>
+
+                <SectionSplitHero 
+                ctaHeader="Header" 
+                ctaSubHeader="This is a sub header for the cta component"
+                image={image}
+                left={false}/>
                 
             </React.Fragment>
             
