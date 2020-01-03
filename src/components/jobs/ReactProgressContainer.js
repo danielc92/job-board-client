@@ -1,8 +1,8 @@
 import { Progress } from 'semantic-ui-react';
-
 import React, { Component } from 'react'
 
 export default class ReactProgressContainer extends Component {
+
     render() {
         const { percent } = this.props;
         return (

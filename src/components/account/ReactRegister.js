@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/register';
 import { setMenuItem } from '../../actions/menu';
-import { Container, Label, Segment, Form, Header, Message } from 'semantic-ui-react';
+import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
 import { 
     EmailValidator, 
     StringValidator,

@@ -47,11 +47,19 @@ class ReactMenu extends Component {
               />
               <Menu.Item
                 as={Link}
+                to="/profile"
+                name='profile'
+                active={menu.item === 'profile'}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+                as={Link}
                 to="/analytics"
                 name='analytics'
                 active={menu.item === 'analytics'}
                 onClick={this.handleItemClick}
               />
+              
               <Menu.Menu position='right'>
                 <Menu.Item>
                     <div>

@@ -63,7 +63,6 @@ class ReactJobViewContainer extends Component {
     }
 
     render() {
-        console.log(this.props, 'YEA')
         const { data } = this.props.jobList;
         const { error } = this.props.jobList;
         const proceed = (Object.entries(data).length > 0) ? true : false;

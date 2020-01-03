@@ -6,6 +6,7 @@ import ReactHomeContainer from './home/ReactHomeContainer';
 import ReactJobPostContainer from './jobs/ReactJobPostContainer';
 import ReactJobViewContainer from './jobs/ReactJobViewContainer';
 import ReactJobDetailContainer from './jobs/ReactJobDetailContainer';
+import ReactProfileContainer from './profile/ReactProfileContainer';
 import ReactFooter from './layout/ReactFooter';
 import ReactNews from './information/ReactNews';
 import { connect } from 'react-redux';
@@ -45,6 +46,7 @@ class App extends Component {
         <Route path="/login" exact component={ReactLogin}/>
         <Route path="/register" exact component={ReactRegister}/>
         <Route path="/view-job" exact component={ReactJobDetailContainer}/>
+        <Route path="/profile" exact component={ReactProfileContainer}/>
 
         {/* Footer */}
         <ReactFooter/>
