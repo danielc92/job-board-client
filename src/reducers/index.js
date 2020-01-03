@@ -11,9 +11,11 @@ import { jobListReducer } from './joblist';
 import { jobDetailReducer } from './job_detail';
 import { locationListReducer } from './location';
 import { applicationReducer } from './application';
+import { userDetailsReducer } from './user_details';
 
 export const rootReducer = combineReducers({
     auth: authReducer,
+    user_details: userDetailsReducer,
     application: applicationReducer,
     theme: themeReducer,
     register: registerReducer,

@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import { Header, Container, Message, Segment, Divider } from 'semantic-ui-react'
 import { connect } from 'react-redux'; 
 import { setMenuItem } from '../../actions/menu'; 
+import { getUserDetails } from '../../actions/user_details'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
 class ReactProfileContainer extends Component {
     componentDidMount(){
         this.props.propsSetMenuItem('profile')
+        const { auth } = this.props;
+        if (auth && auth.isAuthenticated) {
+            this.props.propsGetUserDetails(auth.user._id)
+        }
     }
 
 
@@ -66,7 +71,8 @@ Mollit eu non et et ullamco duis sit magna ea in labore culpa eu. Aute officia i
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth
+        auth: state.auth,
+        user_details: state.user_details,
     }
 }
 
