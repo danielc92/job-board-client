@@ -1,21 +1,20 @@
-export const applicationReducer = (state={ error: false, flag: false}, action) => {
+export const applicationReducer = (state={ error: false, flag: false }, action) => {
     const { payload, type } = action;
-    const { flag, error } = payload;
     switch(type) {
         case 'APPLICATION_SUCCESS':
             return {
-                flag,
-                error,
+                error: payload.error,
+                flag: payload.flag,
             }
         case 'APPLICATION_FAILURE':
             return {
-                flag,
-                error,
+                error: payload.error,
+                flag: payload.flag,
             }
         case 'APPLICATION_RESET':
             return {
-                error: false,
-                flag: false,
+                error: payload.error,
+                flag: payload.flag,
             }
         default:
             return state

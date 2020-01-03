@@ -25,3 +25,13 @@ export const createApplication = (payload) => async (dispatch, getState) => {
         })
     }
 }
+
+export const resetApplication = () => async (dispatch, getState) => {
+    dispatch({
+        type: "APPLICATION_RESET",
+        payload: {
+            error: false,
+            flag: false,
+        }
+    })
+}

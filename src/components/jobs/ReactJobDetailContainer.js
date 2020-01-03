@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Segment, Header, Container,Button, Label } from 'semantic-ui-react';
+import { Segment, Header, Modal, Container,Button, Label } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import { queryStringToObjectParser } from '../../helpers/query';
 import { getJob } from '../../actions/job';
 import { setMenuItem } from '../../actions/menu';
+import { createApplication, resetApplication } from '../../actions/application';
 import { connect } from 'react-redux';
 import { properCaseTransform } from '../../helpers/generic';
 
@@ -13,16 +14,48 @@ class ReactJobDetailContainer extends Component {
         this.props.propsGetJob(query.id)
         this.props.propsSetMenuItem('find');
     }
+
+    applyForJob = () => {
+        const payload = {
+            job_id: this.props.jobDetails[0]._id,
+            applicant_id: this.props.auth.user._id,
+        }
+        this.props.propsCreateApplication(payload);
+    }
+
+    closeModal = () => {
+        this.props.propsResetApplication();
+    }
     render() {
         const query = queryStringToObjectParser(this.props.location.search)
         const jobSearch = this.props.jobDetails.filter(item => item._id === query.id)
         const jobDetails = jobSearch.length > 0 ? jobSearch[0] : null;
+        const { error, flag } = this.props.application; 
         return (
             <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="3">
                         {
                             jobDetails ? 
+                            <React.Fragment>
+                            <Modal
+                            open={ !error && flag }
+                            dimmer="blurring"
+                            onClose={this.closeModal}>
+                                <Modal.Header>Success
+                                </Modal.Header>
+                                <Modal.Content>
+                                    {`Your application for ${properCaseTransform(jobDetails.title)} was successful.`}
+                                </Modal.Content>
+                                <Modal.Actions>
+                                    <Button
+                                    onClick={this.closeModal} 
+                                    color='green'>
+                                        Confirm
+                                    </Button>
+                                </Modal.Actions>
+                            </Modal>
+
                             <Segment color="green" padded stacked>
                                  
                                 <Header as="h1">{properCaseTransform(jobDetails.title)}<Label color='green' tertiary>{jobDetails.category}</Label></Header>
@@ -51,11 +84,15 @@ class ReactJobDetailContainer extends Component {
                                 <p>{ jobDetails.contact_summary }</p>
 
                                 <Button
+                                onClick={this.applyForJob}
                                 size="big" color="violet">Apply</Button>
-                            </Segment>: 
+                            </Segment>
+                            </React.Fragment>: 
                             <Segment>Job not found.</Segment>}
                     </VerticallyPaddedContainer>
                 </Container>
+
+               
                
             </Segment>
         )
@@ -63,15 +100,19 @@ class ReactJobDetailContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    const { jobDetails } = state; 
+    const { jobDetails, auth, application } = state; 
     return {
-        jobDetails
+        jobDetails,
+        application,
+        auth
     }
 }
 
 const mapDispatchToProps = {
     propsGetJob: getJob,
     propsSetMenuItem: setMenuItem,
+    propsCreateApplication: createApplication,
+    propsResetApplication: resetApplication,
 }
 
 
