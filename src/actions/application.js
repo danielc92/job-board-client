@@ -6,9 +6,9 @@ export const updateApplicationStatus = (payload) => async (dispatch, getState) =
         const { job_id, applicant_id, status } = payload; 
         const token = localStorage.getItem(TOKEN_NAME);
         const config = { headers: { 'x-access-token' : token } };
-        const url = `application?job_id=${job_id}&applicant_id${applicant_id}&status=${status}`;
+        const url = `application?job_id=${job_id}&applicant_id=${applicant_id}&status=${status}`;
         const response = await jobApi.patch(url, null, config)
-        console.log('Response from application update ', response)
+
         dispatch({
             type: "APPLICATION_UPDATE_SUCCESS",
             payload: {

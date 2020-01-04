@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { Header, Label, Segment, Divider, Button, Table} from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
+import { Header, Label, Modal, Segment, Icon, Divider, Button, Table} from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { getApplicationList } from '../../../actions/application_list';
+import { updateApplicationStatus, resetApplicationUpdate } from '../../../actions/application';
 import { dateDiffString } from '../../../helpers/generic';
 class JobSeekerComponent extends Component {
 
     componentDidMount() {
-        console.log(this.props, 'SEEKER')
         const { applicant_id } = this.props;
         const query = {
             applicant_id
@@ -14,9 +16,21 @@ class JobSeekerComponent extends Component {
         this.props.propsGetApplicationList(query)
     }
 
+    handleWithdrawApplication = (payload) => {
+        const newPayload = { ...payload, status: 'withdrawn' }
+        this.props.propsUpdateApplicationStatus(newPayload)
+    }
+
+    closeModal =() => {
+        this.props.propsResetApplicationUpdate()
+        this.props.history.push('/profile')
+    }
+
     render() {
-        const { application_list } = this.props;
+        const { application_list, application_update } = this.props;
         const { data } = application_list;
+        const { flag, error } = application_update;
+
         return (
             <React.Fragment>
                 <Header as="h1" content="Your applications"/>
@@ -30,7 +44,7 @@ class JobSeekerComponent extends Component {
                                     <Table.HeaderCell>Title</Table.HeaderCell>
                                     <Table.HeaderCell>Status</Table.HeaderCell>
                                     <Table.HeaderCell>Applied</Table.HeaderCell>
-                                    <Table.HeaderCell>Rating</Table.HeaderCell>
+                            
                                     <Table.HeaderCell>Action</Table.HeaderCell>
                                 </Table.Row>
                                 </Table.Header>
@@ -43,8 +57,18 @@ class JobSeekerComponent extends Component {
                                             <Table.Cell>{ item.job_id.title }</Table.Cell>
                                             <Table.Cell><Label>{ item.status }</Label></Table.Cell>
                                             <Table.Cell>{ dateDiffString(item.createdAt) }</Table.Cell>
-                                            <Table.Cell>{ item.rating }</Table.Cell>
-                                            <Table.Cell><Button size="small" color="violet">Withdraw my application</Button></Table.Cell>
+                                          
+                                            <Table.Cell>
+                                            { item.status !== 'withdrawn' ? 
+                                                <Button 
+                                                onClick={()=>this.handleWithdrawApplication({ 
+                                                    job_id: item.job_id._id, 
+                                                    applicant_id: item.applicant_id,})}
+                                                size="small" 
+                                                color="violet">
+                                                    <Icon name="window close"/>Withdraw application</Button>
+                                            : null}
+                                            </Table.Cell>
                                         </Table.Row>
                                         )
                                     })
@@ -55,20 +79,43 @@ class JobSeekerComponent extends Component {
                         'You have no job applications'
                     }
                 </Segment>
+                <Modal
+                open={ flag && !error}
+                dimmer="blurring"
+                onClose={this.closeModal}>
+                    <Modal.Header>Success
+                    </Modal.Header>
+                    <Modal.Content>
+                        You have withdrawn from this job.
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button
+                        onClick={this.closeModal} 
+                        color='green'>
+                            Confirm
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
             </React.Fragment>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    const { application_list } = state;
+    const { application_list, application_update } = state;
     return {
-        application_list
+        application_list,
+        application_update,
     }
 }
 
 const mapDispatchToProps = {
-    propsGetApplicationList: getApplicationList
+    propsGetApplicationList: getApplicationList,
+    propsUpdateApplicationStatus: updateApplicationStatus,
+    propsResetApplicationUpdate: resetApplicationUpdate
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(JobSeekerComponent)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(JobSeekerComponent);

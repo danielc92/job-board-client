@@ -57,7 +57,7 @@ class ReactProfileContainer extends Component {
             return (
                 <Segment basic>
                     <Container>
-                        <VerticallyPaddedContainer>
+                        <VerticallyPaddedContainer size="4">
                             <Header as="h1" content="Personal Details"/>
                             <Divider/>
 
@@ -77,8 +77,8 @@ class ReactProfileContainer extends Component {
                                             {createdAt}
                                             <Header content="Last Updated" as="h3"/>
                                             {updatedAt}
-                                            <Header content="Status" as="h3"/>
-                                            <Label content={is_employer ? 'employer' : 'job seeker'}/>
+                                            <Header content="Member Type" as="h3"/>
+                                            <Label color="green" content={is_employer ? 'employer' : 'job seeker'}/>
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>
