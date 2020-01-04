@@ -1,23 +1,33 @@
-import React, { Component } from 'react'
-import { Header, Container, Message, Segment, Divider } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Header, Container, Label, Message, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux'; 
 import { setMenuItem } from '../../actions/menu'; 
-import { getUserDetails } from '../../actions/user_details'
+import { getUserDetails } from '../../actions/user_details';
+import { loginRefresh } from '../../actions/auth';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
+import EmployerComponent from './listings/EmployerComponent';
+import JobSeekerComponent from './listings/JobSeekerComponent';
 
 class ReactProfileContainer extends Component {
+    
+    state = {
+        sent: false
+    }
     componentDidMount(){
-        this.props.propsSetMenuItem('profile')
-        const { auth } = this.props;
-        if (auth && auth.isAuthenticated) {
-            this.props.propsGetUserDetails(auth.user._id)
+        const { propsSetMenuItem } = this.props; 
+        propsSetMenuItem('profile')
+    }
+
+    componentDidUpdate(){
+        const { auth, propsGetUserDetails, user_details } = this.props;
+        const exists = user_details.filter(item => item.search === auth.user._id)
+        if ((auth.isAuthenticated === true) && (exists.length === 0)) {
+            propsGetUserDetails(auth.user._id)
         }
     }
 
-
     render() {
-
-        const { auth } = this.props;
+        const { auth, user_details } = this.props;
 
         if (!auth || !auth.isAuthenticated) return (
             <Segment basic>
@@ -37,47 +47,61 @@ class ReactProfileContainer extends Component {
                 </Container>
             </Segment>
         )
+        
+        if (user_details.length > 0) {
+            const userDetails = user_details[0].data
+            console.log(userDetails)
+            const { first_name, last_name, email, createdAt, updatedAt, is_employer } = userDetails;
+            return (
+                <Segment basic>
+                    <Container>
+                        <VerticallyPaddedContainer>
+                            <Header as="h1" content="Personal Details"/>
+                            <Divider/>
 
-        return (
-            <Segment basic>
-                <Container>
-                    <VerticallyPaddedContainer>
-                    <Header as="h1">
-                                Personal details
-                            </Header>
-                            <Divider></Divider>
-                        <Segment>
-                        <p>Adipisicing duis reprehenderit magna ut Lorem exercitation proident adipisicing nulla cupidatat commodo deserunt. Ex consequat eu reprehenderit nulla pariatur labore nulla nostrud consectetur deserunt Lorem enim nulla. Qui sit veniam elit cupidatat dolor eu elit dolore nostrud esse amet consequat minim exercitation.
+                            <Segment stacked padded>
+                                <Header content="First Name" as="h3"/>
+                                {first_name}
+                                <Header content="Last Name" as="h3"/>
+                                {last_name}
+                                <Header content="Email" as="h3"/>
+                                {email}
+                                <Header content="Joined" as="h3"/>
+                                {createdAt}
+                                <Header content="Last Updated" as="h3"/>
+                                {updatedAt}
+                                <Header content="Status" as="h3"/>
+                                <Label content={is_employer ? 'employer' : 'job seeker'}/>
+                            </Segment>
 
-Mollit eu non et et ullamco duis sit magna ea in labore culpa</p>
-                        </Segment>
+                            { 
+                                is_employer ? 
+                                <EmployerComponent/> : 
+                                <JobSeekerComponent/>
+                            }
+                        </VerticallyPaddedContainer>
+                    </Container>
+    
+                </Segment>
+            )
+        }
 
-                        <Header as="h1">
-                        Job postings
-                            </Header>
-                            <Divider></Divider>
-                        <Segment>
-                           <p>Adipisicing duis reprehenderit magna ut Lorem exercitation proident adipisicing nulla cupidatat commodo deserunt. Ex consequat eu reprehenderit nulla pariatur labore nulla nostrud consectetur deserunt Lorem enim nulla. Qui sit veniam elit cupidatat dolor eu elit dolore nostrud esse amet consequat minim exercitation.
-
-Mollit eu non et et ullamco duis sit magna ea in labore culpa eu. Aute officia ipsum duis nulla sint veniam ad culpa proident nostrud ullamco veniam ea. Consectetur sunt nulla incididunt nostrud. Ipsum enim deserunt sunt aliquip cillum fugiat et velit do veniam reprehenderit minim.</p>
-                        </Segment>
-                    </VerticallyPaddedContainer>
-                </Container>
-
-            </Segment>
-        )
+        return null
     }
 }
 
 const mapStateToProps = (state) => {
+    const { user_details, auth } = state; 
     return {
-        auth: state.auth,
-        user_details: state.user_details,
+        user_details,
+        auth,
     }
 }
 
 const mapDispatchToProps = {
-    propsSetMenuItem: setMenuItem
+    propsSetMenuItem: setMenuItem,
+    propsGetUserDetails: getUserDetails,
+    propsLoginRefresh: loginRefresh,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReactProfileContainer)
