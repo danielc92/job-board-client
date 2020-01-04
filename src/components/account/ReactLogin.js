@@ -42,7 +42,7 @@ class ReactLogin extends Component {
         const { email, password, error }= this.state;
 
         if (this.props.auth.isAuthenticated) {
-            this.props.history.goBack()
+            this.props.history.push('/')
         }
 
         return (

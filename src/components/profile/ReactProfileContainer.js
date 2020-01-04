@@ -47,6 +47,8 @@ class ReactProfileContainer extends Component {
                 </Container>
             </Segment>
         )
+
+        console.log(user_details, auth)
         
         if (user_details.length > 0) {
             const userDetails = user_details[0].data
@@ -77,7 +79,7 @@ class ReactProfileContainer extends Component {
                             { 
                                 is_employer ? 
                                 <EmployerComponent/> : 
-                                <JobSeekerComponent/>
+                                <JobSeekerComponent applicant_id={userDetails._id}/>
                             }
                         </VerticallyPaddedContainer>
                     </Container>
@@ -86,7 +88,7 @@ class ReactProfileContainer extends Component {
             )
         }
 
-        return null
+        return <div>nothing here</div>
     }
 }
 
