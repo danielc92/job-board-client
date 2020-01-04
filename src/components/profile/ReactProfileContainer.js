@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Container, Label, Message, Segment, Divider } from 'semantic-ui-react';
+import { Header, Container, Grid, Label, Message, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux'; 
 import { setMenuItem } from '../../actions/menu'; 
 import { getUserDetails } from '../../actions/user_details';
@@ -62,18 +62,26 @@ class ReactProfileContainer extends Component {
                             <Divider/>
 
                             <Segment stacked padded>
-                                <Header content="First Name" as="h3"/>
-                                {first_name}
-                                <Header content="Last Name" as="h3"/>
-                                {last_name}
-                                <Header content="Email" as="h3"/>
-                                {email}
-                                <Header content="Joined" as="h3"/>
-                                {createdAt}
-                                <Header content="Last Updated" as="h3"/>
-                                {updatedAt}
-                                <Header content="Status" as="h3"/>
-                                <Label content={is_employer ? 'employer' : 'job seeker'}/>
+                                <Grid divided='vertically'>
+                                    <Grid.Row columns={2}>
+                                        <Grid.Column>
+                                            <Header content="First Name" as="h3"/>
+                                            {first_name}
+                                            <Header content="Last Name" as="h3"/>
+                                            {last_name}
+                                            <Header content="Email" as="h3"/>
+                                            {email}
+                                        </Grid.Column>
+                                        <Grid.Column>
+                                            <Header content="Joined" as="h3"/>
+                                            {createdAt}
+                                            <Header content="Last Updated" as="h3"/>
+                                            {updatedAt}
+                                            <Header content="Status" as="h3"/>
+                                            <Label content={is_employer ? 'employer' : 'job seeker'}/>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                </Grid>
                             </Segment>
 
                             { 

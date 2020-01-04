@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Header, Label, Segment, Divider, Button, Table} from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import {getApplicationList} from '../../../actions/application_list' 
+import { getApplicationList } from '../../../actions/application_list';
+import { dateDiffString } from '../../../helpers/generic';
 class JobSeekerComponent extends Component {
 
     componentDidMount() {
@@ -11,24 +12,6 @@ class JobSeekerComponent extends Component {
             applicant_id
         }
         this.props.propsGetApplicationList(query)
-    }
-
-    dateDiffString(oldDate) {
-        const minutesPerDay = 1440
-        const previous = new Date(oldDate)
-        const now = new Date();
-        const difference = now - previous;
-        const minutes = Math.floor(difference / 1000 / 60)
-        if (minutes < 60) {
-            return `${minutes} minutes ago`
-        }
-        else if (minutes < minutesPerDay){
-            const hours = Math.floor(minutes / 60)
-            return `${hours} hours ago`
-        } else {
-            const days = Math.floor(minutes/60/24)
-            return `${days} days ago`
-        }
     }
 
     render() {
@@ -44,6 +27,7 @@ class JobSeekerComponent extends Component {
                         <Table>
                             <Table.Header>
                                 <Table.Row>
+                                    <Table.HeaderCell>Title</Table.HeaderCell>
                                     <Table.HeaderCell>Status</Table.HeaderCell>
                                     <Table.HeaderCell>Applied</Table.HeaderCell>
                                     <Table.HeaderCell>Rating</Table.HeaderCell>
@@ -56,8 +40,9 @@ class JobSeekerComponent extends Component {
                                     data.map(item => {
                                         return (
                                         <Table.Row>
+                                            <Table.Cell>{ item.job_id.title }</Table.Cell>
                                             <Table.Cell><Label>{ item.status }</Label></Table.Cell>
-                                            <Table.Cell>{ this.dateDiffString(item.createdAt) }</Table.Cell>
+                                            <Table.Cell>{ dateDiffString(item.createdAt) }</Table.Cell>
                                             <Table.Cell>{ item.rating }</Table.Cell>
                                             <Table.Cell><Button size="small" color="violet">Withdraw my application</Button></Table.Cell>
                                         </Table.Row>
