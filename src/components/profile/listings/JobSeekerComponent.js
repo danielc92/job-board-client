@@ -44,8 +44,8 @@ class JobSeekerComponent extends Component {
                                     <Table.HeaderCell>Title</Table.HeaderCell>
                                     <Table.HeaderCell>Status</Table.HeaderCell>
                                     <Table.HeaderCell>Applied</Table.HeaderCell>
-                            
-                                    <Table.HeaderCell>Action</Table.HeaderCell>
+                                    <Table.HeaderCell>Withdraw</Table.HeaderCell>
+                                    <Table.HeaderCell>View</Table.HeaderCell>
                                 </Table.Row>
                                 </Table.Header>
 
@@ -57,7 +57,6 @@ class JobSeekerComponent extends Component {
                                             <Table.Cell>{ item.job_id.title }</Table.Cell>
                                             <Table.Cell><Label>{ item.status }</Label></Table.Cell>
                                             <Table.Cell>{ dateDiffString(item.createdAt) }</Table.Cell>
-                                          
                                             <Table.Cell>
                                             { item.status !== 'withdrawn' ? 
                                                 <Button 
@@ -65,9 +64,16 @@ class JobSeekerComponent extends Component {
                                                     job_id: item.job_id._id, 
                                                     applicant_id: item.applicant_id,})}
                                                 size="small" 
-                                                color="violet">
-                                                    <Icon name="window close"/>Withdraw application</Button>
+                                                color="red">
+                                                    <Icon name="window close"/>withdraw application</Button>
                                             : null}
+                                            
+                                            </Table.Cell>
+                                            <Table.Cell>
+                                            <Button color="green" onClick={()=>this.props.history.push({
+                                                pathname: '/view-job',
+                                                search: `?id=${item.job_id._id}`,
+                                            })}><Icon name="eye"></Icon>view job posting</Button>
                                             </Table.Cell>
                                         </Table.Row>
                                         )
