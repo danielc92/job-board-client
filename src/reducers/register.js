@@ -5,15 +5,20 @@ export const registerReducer = (state={ error: false, success: false, message: n
     switch(type) {
         case 'REGISTER_SUCCESS':
             return {
-                success: true,
+                flag: true,
                 error: false,
                 message: payload.data.message
             }
         case 'REGISTER_FAILURE':
             return {
-                success: false,
+                flag: false,
                 error: true,
                 message: payload.error
+            }
+        case 'REGISTER_RESET':
+            return {
+                flag: false,
+                error: false,
             }
         default:
             return state
