@@ -38,7 +38,7 @@ class JobSeekerComponent extends Component {
                 <Segment stacked padded>
                     { 
                         data.length > 0 ? 
-                        <Table>
+                        <Table striped celled>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>Title</Table.HeaderCell>
