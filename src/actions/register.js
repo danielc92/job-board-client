@@ -20,3 +20,9 @@ export const registerUser = (payload) => async (dispatch, getState) => {
         })
     }
 }
+
+export const resetRegisterState = (payload) => async (dispatch, getState)  => {
+    dispatch({
+        type: "REGISTER_RESET"
+    })
+}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerUser } from '../../actions/register';
+import { resetRegisterState, registerUser } from '../../actions/register';
 import { setMenuItem } from '../../actions/menu';
-import { Container, Segment, Form, Header, Message } from 'semantic-ui-react';
+import { Container, Button, Modal, Segment, Form, Header, Message } from 'semantic-ui-react';
 import { 
     EmailValidator, 
     StringValidator,
@@ -70,6 +70,14 @@ class ReactRegister extends Component {
         this.props.propsSetMenuItem('register')
     }
 
+    closeModal = () => {
+        this.props.propsResetRegisterState()
+    }
+
+    handleNavigateToLogin = () => {
+        this.props.history.push('/login');
+    }
+
     render() {
         const { 
             errors,
@@ -79,6 +87,9 @@ class ReactRegister extends Component {
             confirm_password, 
             first_name, 
             last_name } = this.state;
+
+        const { register } = this.props;
+        const { flag, error, message } = register;
         
         return (
             <Container>
@@ -143,6 +154,7 @@ class ReactRegister extends Component {
 
                     </Form.Radio>
                     <Form.Button 
+                    disabled={errors.length > 0}
                     size="large" 
                     color="green">Create account</Form.Button>
 
@@ -152,27 +164,37 @@ class ReactRegister extends Component {
                         header="Rules"
                         visible={errors.length > 0}>
                     </Message>
-
-                    <Message
-                        success
-                        header="Success"
-                        visible={this.props.register.success & !this.props.error}
-                        content={this.props.register.message}>
-
-                    </Message>
-
-                    <Message
-                        error
-                        header="Error occured"
-                        visible={this.props.register.error}
-                        content={this.props.register.message}>
-
-                    </Message>
                     </Form>
 
                 </Segment>
                 </VerticallyPaddedContainer>
-                
+                <Modal
+                    open={ error || flag }
+                    dimmer="blurring"
+                    onClose={this.closeModal}>
+                        <Modal.Header>
+                            { error ? 'Error' : 'Success'}
+                        </Modal.Header>
+                        <Modal.Content>
+                            { message }
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button
+                            onClick={this.closeModal} 
+                            color='green'>
+                                Confirm
+                            </Button>
+                            {   !error ? 
+                                <Button
+                                onClick={this.handleNavigateToLogin} 
+                                color='green'>
+                                    Login
+                                </Button>: 
+                                null
+                            }
+                            
+                        </Modal.Actions>
+                    </Modal>
             </Container>
         )
     }
@@ -187,7 +209,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     propsRegisterUser: registerUser,
-    propsSetMenuItem: setMenuItem
+    propsSetMenuItem: setMenuItem,
+    propsResetRegisterState: resetRegisterState,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReactRegister)
