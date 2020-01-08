@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Header, Segment, Divider } from 'semantic-ui-react';
 
-export default class EmployerComponent extends Component {
+export default class ReactDashboardContainer extends Component {
     render() {
         return (
             <React.Fragment>
@@ -11,6 +10,7 @@ export default class EmployerComponent extends Component {
                     <p>This is only visible to employers</p>
                 </Segment>
             </React.Fragment>
+
         )
     }
 }

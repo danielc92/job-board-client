@@ -13,7 +13,7 @@ import {
     Segment, 
 } from 'semantic-ui-react';
 import { setMenuItem } from '../../actions/menu';
-import { getJobList } from '../../actions/joblist';
+import { getJobList } from '../../actions/job_list_seeker';
 import { properCaseTransform } from '../../helpers/generic';
 import SearchContainer from './SearchContainer';
 import { queryStringToObjectParser, objectToQueryStringParser } from '../../helpers/query';
