@@ -1,20 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Segment, Button, Header, Table } from 'semantic-ui-react'
+import { compose } from 'redux'
+import { withRouter } from 'react-router';
+import { Segment, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../actions/job_list_employer';
-
+import { queryStringToObjectParser, objectToQueryStringParser } from '../../helpers/query';
 class Employer extends Component {
 
+
+    handlePageChange = (event, data) => {
+        const { location, history } = this.props;
+        const { activePage } = data;
+       
+        let currentQueryString = location.search; 
+        let queryObject = queryStringToObjectParser(currentQueryString);
+        queryObject = { ...queryObject, page: activePage, creator_id: this.props.auth.user._id }
+        const search = objectToQueryStringParser(queryObject);
+        history.push({
+            pathname: '/dashboard',
+            search,
+        })
+    }
+
     componentDidMount() {
-        const { _id } = this.props.auth.user;
-        this.props.propsgetJobListForEmployer({ creator_id: _id })
+        // Check for query strings (placeholder)
+        const { search } = this.props.location;
+        let queryObject = queryStringToObjectParser(search)
+
+        queryObject = { ...queryObject, creator_id: this.props.auth.user._id};
+        this.props.propsgetJobListForEmployer(queryObject)
     }
 
     render() {
 
         const { job_list_employer } = this.props;
-        const { error } = job_list_employer; 
-        console.log(job_list_employer)
+        const { error, data } = job_list_employer; 
         return (
             <Segment>
                 <Header as="h1" content="Employer Board"/>
@@ -24,7 +44,8 @@ class Employer extends Component {
                     : null
                 }
                 {
-                    ( job_list_employer.data.data && !error ) ? 
+                    ( data.data && !error ) ? 
+                    <React.Fragment>
                     <Table>
                     <Table.Header>
                         <Table.Row>
@@ -44,7 +65,7 @@ class Employer extends Component {
                     </Table.Header>
                     <Table.Body>
                         {
-                            job_list_employer.data.data.docs.map(item => {
+                            data.data.docs.map(item => {
                                 return (
                                     <Table.Row>
                                         <Table.Cell>
@@ -67,6 +88,16 @@ class Employer extends Component {
                         
                     </Table.Body>
                 </Table>
+                <Pagination
+                defaultActivePage={data.data.page}
+                ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
+                firstItem={{ content: <Icon name='angle double left' />, icon: true }}
+                lastItem={{ content: <Icon name='angle double right' />, icon: true }}
+                prevItem={{ content: <Icon name='angle left' />, icon: true }}
+                nextItem={{ content: <Icon name='angle right' />, icon: true }}
+                totalPages={data.data.totalPages}
+                onPageChange={this.handlePageChange}/>
+                </React.Fragment>
                     : null
                 }
                
@@ -87,4 +118,7 @@ const mapDispatchToProps = {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Employer);
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Employer);
