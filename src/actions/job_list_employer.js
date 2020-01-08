@@ -21,7 +21,7 @@ export const getJobListForEmployer = (object) => async (dispatch, getState) => {
         dispatch({
             type: "GET_JOB_LIST_EMPLOYER_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: error.response ? error.response.data.error : '[500] Server Error'
             }
 
         })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Segment, Header, Table } from 'semantic-ui-react'
+import { Segment, Button, Header, Table } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../actions/job_list_employer';
 
 class Employer extends Component {
@@ -24,7 +24,7 @@ class Employer extends Component {
                     : null
                 }
                 {
-                    ( (Object.entries(job_list_employer).length > 0) && !error )? 
+                    ( job_list_employer.data.data && !error ) ? 
                     <Table>
                     <Table.Header>
                         <Table.Row>
@@ -37,23 +37,30 @@ class Employer extends Component {
                             <Table.HeaderCell>
                                 Summary
                             </Table.HeaderCell>
+                            <Table.HeaderCell>
+                                Delete
+                            </Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
                         {
                             job_list_employer.data.data.docs.map(item => {
                                 return (
-<Table.Row>
-                            <Table.Cell>
-asfasdf
-                            </Table.Cell>
-                            <Table.Cell>
-asfasdf
-                            </Table.Cell>
-                            <Table.Cell>
-asfasdf
-                            </Table.Cell>
-                        </Table.Row>
+                                    <Table.Row>
+                                        <Table.Cell>
+                                            {item._id}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {item.title}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            {item.job_summary.substring(0, 50)}
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <Button content="delete job posting" color="red"/>
+                                        </Table.Cell>
+                           
+                                    </Table.Row>
                                 ) 
                             })
                         }
