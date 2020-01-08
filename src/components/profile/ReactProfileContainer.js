@@ -5,7 +5,6 @@ import { setMenuItem } from '../../actions/menu';
 import { getUserDetails } from '../../actions/user_details';
 import { loginRefresh } from '../../actions/auth';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
-import EmployerComponent from './listings/EmployerComponent';
 import JobSeekerComponent from './listings/JobSeekerComponent';
 
 class ReactProfileContainer extends Component {
@@ -86,7 +85,7 @@ class ReactProfileContainer extends Component {
 
                             { 
                                 is_employer ? 
-                                <EmployerComponent/> : 
+                                <Segment>Employer placeholder</Segment> : 
                                 <JobSeekerComponent applicant_id={userDetails._id}/>
                             }
                         </VerticallyPaddedContainer>

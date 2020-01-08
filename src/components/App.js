@@ -16,6 +16,7 @@ import { checkTokenRefresh } from '../helpers/auth';
 import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
+import ReactDashboardContainer from './dashboard/ReactDashboardContainer';
 
 
 
@@ -47,7 +48,7 @@ class App extends Component {
         <Route path="/register" exact component={ReactRegister}/>
         <Route path="/view-job" exact component={ReactJobDetailContainer}/>
         <Route path="/profile" exact component={ReactProfileContainer}/>
-
+        <Route path="/dashboard" exact component={ReactDashboardContainer}/>
         {/* Footer */}
         <ReactFooter/>
     
