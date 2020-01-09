@@ -6,14 +6,20 @@ import { compose } from 'redux';
 import { getApplicationList } from '../../../actions/application_list';
 import { updateApplicationStatus, resetApplicationUpdate } from '../../../actions/application';
 import { dateDiffString } from '../../../helpers/generic';
-class JobSeekerComponent extends Component {
+import SeekerTableHeader from './SeekerTableHeader';
+
+class Seeker extends Component {
 
     componentDidMount() {
-        const { applicant_id } = this.props;
+        const { auth } = this.props;
         const query = {
-            applicant_id
+            applicant_id: auth.user._id
         }
-        this.props.propsGetApplicationList(query)
+
+        const { data, error } = this.props.application_list;
+        if ((data.length === 0) && (!error)) {
+            this.props.propsGetApplicationList(query)
+        }
     }
 
     handleWithdrawApplication = (payload) => {
@@ -23,32 +29,23 @@ class JobSeekerComponent extends Component {
 
     closeModal =() => {
         this.props.propsResetApplicationUpdate()
-        this.props.history.push('/profile')
+        this.props.history.push('/dashboard')
     }
 
     render() {
         const { application_list, application_update } = this.props;
         const { data } = application_list;
         const { flag, error } = application_update;
-
+        console.log(application_list)
         return (
             <React.Fragment>
                 <Header as="h1" content="Your applications"/>
                 <Divider/>
                 <Segment stacked padded>
                     { 
-                        data.length > 0 ? 
+                        data.length > 0 && !application_list.error ? 
                         <Table striped celled>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell>Title</Table.HeaderCell>
-                                    <Table.HeaderCell>Status</Table.HeaderCell>
-                                    <Table.HeaderCell>Applied</Table.HeaderCell>
-                                    <Table.HeaderCell>Withdraw</Table.HeaderCell>
-                                    <Table.HeaderCell>View</Table.HeaderCell>
-                                </Table.Row>
-                                </Table.Header>
-
+                            <SeekerTableHeader/>
                             <Table.Body>
                                 {
                                     data.map(item => {
@@ -108,10 +105,11 @@ class JobSeekerComponent extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { application_list, application_update } = state;
+    const { application_list, application_update, auth } = state;
     return {
         application_list,
         application_update,
+        auth
     }
 }
 
@@ -124,4 +122,4 @@ const mapDispatchToProps = {
 export default compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps)
-)(JobSeekerComponent);
+)(Seeker);

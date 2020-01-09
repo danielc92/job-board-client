@@ -3,10 +3,15 @@ import { Menu, Container, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
+import { withRouter } from 'react-router'; 
+import { compose } from 'redux'
 
 
 class ReactMenu extends Component {
-    
+    handleLogout = () => {
+      this.props.history.push('/login')
+      this.props.propsLogoutUser()
+    }
     render() {
         const { menu, auth, theme } = this.props;
         return (
@@ -73,7 +78,7 @@ class ReactMenu extends Component {
                       { auth.isAuthenticated ? 
                       <Button
                         secondary
-                        onClick={this.props.propsLogoutUser}
+                        onClick={this.handleLogout}
                       >
                         Logout
                       </Button>
@@ -121,4 +126,7 @@ const mapDispatchToProps = {
   propsLogoutUser: logoutUser
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReactMenu);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(ReactMenu);

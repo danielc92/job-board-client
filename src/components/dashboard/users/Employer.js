@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router';
 import { Segment, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
-import { getJobListForEmployer } from '../../actions/job_list_employer';
-import { queryStringToObjectParser, objectToQueryStringParser } from '../../helpers/query';
+import { getJobListForEmployer } from '../../../actions/job_list_employer';
+import { queryStringToObjectParser, objectToQueryStringParser } from '../../../helpers/query';
 class Employer extends Component {
 
 
@@ -33,18 +33,23 @@ class Employer extends Component {
 
     render() {
 
-        const { job_list_employer } = this.props;
+        const { job_list_employer, auth } = this.props;
         const { error, data } = job_list_employer; 
         return (
             <Segment>
-                <Header as="h1" content="Employer Board"/>
+                <Header as="h1" content="Dashboard"/>
                 {
                     job_list_employer && error ? 
                     'An error has occured'
                     : null
                 }
                 {
-                    ( data.data && !error ) ? 
+                    ( data.data && !error && !auth.user.is_employer ) ? 
+                    <p>You are a job seeker!</p>
+                    : null
+                }
+                {
+                    ( data.data && !error && auth.user.is_employer ) ? 
                     <React.Fragment>
                     <Table>
                     <Table.Header>
