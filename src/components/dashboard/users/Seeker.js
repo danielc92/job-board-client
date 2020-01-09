@@ -36,7 +36,7 @@ class Seeker extends Component {
         const { application_list, application_update } = this.props;
         const { data } = application_list;
         const { flag, error } = application_update;
-        console.log(application_list)
+
         return (
             <React.Fragment>
                 <Header as="h1" content="Your applications"/>
