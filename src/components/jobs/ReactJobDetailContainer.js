@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Header, Modal, Container,Button, Label } from 'semantic-ui-react';
+import { Segment, Message, Header, Modal, Container,Button, Label } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import { queryStringToObjectParser } from '../../helpers/query';
 import { getJob } from '../../actions/job';
@@ -56,6 +56,8 @@ class ReactJobDetailContainer extends Component {
                                 </Modal.Actions>
                             </Modal>
 
+                            
+
                             <Segment color="green" padded stacked>
                                  
                                 <Header as="h1">{properCaseTransform(jobDetails.title)}<Label color='green' tertiary>{jobDetails.category}</Label></Header>
@@ -83,9 +85,20 @@ class ReactJobDetailContainer extends Component {
                                 <Header>Contact Summary</Header>
                                 <p>{ jobDetails.contact_summary }</p>
 
-                                <Button
-                                onClick={this.applyForJob}
-                                size="big" color="violet">Apply</Button>
+                                
+                                {
+                                    !jobDetails.open ? 
+                                    <Message  
+                                        warning
+                                        header="Job Closed"
+                                        content="This job has been closed and is no longer accepting applications."/>: 
+                                    <Button
+                                        disabled={!jobDetails.open}
+                                        onClick={this.applyForJob}
+                                        size="big" 
+                                        color="violet"
+                                        content="Apply"/>
+                                }
                             </Segment>
                             </React.Fragment>: 
                             <Segment>Job not found.</Segment>}
