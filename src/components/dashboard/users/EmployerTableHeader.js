@@ -10,6 +10,9 @@ export default class EmployerTableHeader extends Component {
                         Title
                     </Table.HeaderCell>
                     <Table.HeaderCell>
+                        Status
+                    </Table.HeaderCell>
+                    <Table.HeaderCell>
                         Posted on
                     </Table.HeaderCell>
                     <Table.HeaderCell colSpan='2'>

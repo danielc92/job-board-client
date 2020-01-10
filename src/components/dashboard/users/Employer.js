@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router';
-import { Segment, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
+import { Divider, Button, Label, Header, Icon, Table, Pagination } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../../actions/job_list_employer';
 import { properCaseTransform } from '../../../helpers/generic';
 import { queryStringToObjectParser, objectToQueryStringParser } from '../../../helpers/query';
@@ -39,8 +39,9 @@ class Employer extends Component {
         const { job_list_employer, auth } = this.props;
         const { error, data } = job_list_employer; 
         return (
-            <Segment>
-                <Header as="h1" content="Dashboard"/>
+            <React.Fragment>
+            <Header as="h1" content="Dashboard"/>
+            <Divider/>
                 {
                     job_list_employer && error ? 
                     'An error has occured'
@@ -68,6 +69,19 @@ class Employer extends Component {
                                                     <Header.Subheader>{ item.job_summary.substring(0, 50) }</Header.Subheader>
                                                 </Header.Content>
                                             </Header>
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            
+                                            { 
+                                                item.open === true ? 
+                                                <Label
+                                                content="open"
+                                                color="green"
+                                                basic/> : 
+                                                <Label
+                                                content="closed"
+                                                color="red"
+                                                basic/>}
                                         </Table.Cell>
                                         <Table.Cell>
                                             {dateDiffString(item.createdAt)}
@@ -98,8 +112,7 @@ class Employer extends Component {
                 </React.Fragment>
                     : null
                 }
-               
-            </Segment>
+        </React.Fragment>
         )
     }
 }
