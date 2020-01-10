@@ -84,27 +84,23 @@ class Employer extends Component {
                                                 </Header.Content>
                                             </Header>
                                         </Table.Cell>
-                                        <Table.Cell>
-                                            
+                                        <Table.Cell 
+                                        negative={ item.open ? false: true }
+                                        positive={ item.open ? true: false }>
                                             { 
                                                 item.open === true ? 
-                                                <Label
-                                                content="open"
-                                                color="green"
-                                                basic/> : 
-                                                <Label
-                                                content="closed"
-                                                color="red"
-                                                basic/>}
+                                                "open": 
+                                                "closed"
+                                            }
                                         </Table.Cell>
                                         <Table.Cell>
                                             {dateDiffString(item.createdAt)}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Button content="view applications" color="violet"/>
+                                            <Button compact content="view applications" color="violet"/>
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Button disabled={!item.open} content="close this job" color="red" onClick={()=>this.handleCloseJob({ job_id: item._id, creator_id: auth.user._id})}/>
+                                            <Button compact disabled={!item.open} content="close this job" color="red" onClick={()=>this.handleCloseJob({ job_id: item._id, creator_id: auth.user._id})}/>
                                         </Table.Cell>
                            
                                     </Table.Row>

@@ -55,22 +55,25 @@ class Seeker extends Component {
                                             <Table.Cell><Label>{ item.status }</Label></Table.Cell>
                                             <Table.Cell>{ dateDiffString(item.createdAt) }</Table.Cell>
                                             <Table.Cell>
-                                            { item.status !== 'withdrawn' ? 
                                                 <Button 
+                                                disabled={ item.status === 'withdrawn' ? true : false }
+                                                compact
                                                 onClick={()=>this.handleWithdrawApplication({ 
                                                     job_id: item.job_id._id, 
                                                     applicant_id: item.applicant_id,})}
                                                 size="small" 
                                                 color="red">
-                                                    <Icon name="window close"/>withdraw application</Button>
-                                            : null}
-                                            
+                                                <Icon name="window close"/>withdraw application
+                                                </Button>
                                             </Table.Cell>
                                             <Table.Cell>
-                                            <Button color="green" onClick={()=>this.props.history.push({
+                                                <Button  
+                                                compact
+                                                color="green" 
+                                                onClick={()=>this.props.history.push({
                                                 pathname: '/view-job',
                                                 search: `?id=${item.job_id._id}`,
-                                            })}><Icon name="eye"></Icon>view job posting</Button>
+                                                })}><Icon name="eye"></Icon>view job posting</Button>
                                             </Table.Cell>
                                         </Table.Row>
                                         )

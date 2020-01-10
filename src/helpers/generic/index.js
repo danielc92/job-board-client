@@ -10,8 +10,13 @@ export const dateDiffString = (oldDate) => {
     const previous = new Date(oldDate)
     const now = new Date();
     const difference = now - previous;
-    const minutes = Math.floor(difference / 1000 / 60)
-    if (minutes < 60) {
+    const seconds = Math.floor(difference / 1000 )
+    const minutes = Math.floor(seconds / 60)
+
+    if (seconds < 60) {
+        return `${seconds} seconds ago`
+    }
+    else if (minutes < 60) {
         return `${minutes} minutes ago`
     }
     else if (minutes < minutesPerDay){
