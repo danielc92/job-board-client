@@ -4,7 +4,10 @@ import { compose } from 'redux'
 import { withRouter } from 'react-router';
 import { Segment, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../../actions/job_list_employer';
+import { properCaseTransform } from '../../../helpers/generic';
 import { queryStringToObjectParser, objectToQueryStringParser } from '../../../helpers/query';
+import EmployerTableHeader from './EmployerTableHeader';
+import { dateDiffString } from '../../../helpers/generic';
 class Employer extends Component {
 
 
@@ -51,39 +54,29 @@ class Employer extends Component {
                 {
                     ( data.data && !error && auth.user.is_employer ) ? 
                     <React.Fragment>
-                    <Table>
-                    <Table.Header>
-                        <Table.Row>
-                            <Table.HeaderCell>
-                                id
-                            </Table.HeaderCell>
-                            <Table.HeaderCell>
-                                Title
-                            </Table.HeaderCell>
-                            <Table.HeaderCell>
-                                Summary
-                            </Table.HeaderCell>
-                            <Table.HeaderCell>
-                                Delete
-                            </Table.HeaderCell>
-                        </Table.Row>
-                    </Table.Header>
+                    <Table striped celled>
+                    <EmployerTableHeader/>
                     <Table.Body>
                         {
                             data.data.docs.map(item => {
                                 return (
                                     <Table.Row>
                                         <Table.Cell>
-                                            {item._id}
+                                            <Header>
+                                                <Header.Content>
+                                                    {properCaseTransform(item.title)}
+                                                    <Header.Subheader>{ item.job_summary.substring(0, 50) }</Header.Subheader>
+                                                </Header.Content>
+                                            </Header>
                                         </Table.Cell>
                                         <Table.Cell>
-                                            {item.title}
+                                            {dateDiffString(item.createdAt)}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            {item.job_summary.substring(0, 50)}
+                                            <Button content="view applications" color="violet"/>
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Button content="delete job posting" color="red"/>
+                                            <Button content="close this job" color="red"/>
                                         </Table.Cell>
                            
                                     </Table.Row>
