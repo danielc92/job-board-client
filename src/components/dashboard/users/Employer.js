@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router';
-import { Divider, Button, Label, Header, Icon, Table, Pagination } from 'semantic-ui-react'
+import { Divider, Modal, Button, Label, Header, Icon, Table, Pagination } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../../actions/job_list_employer';
+import { resetJobStatus, updateJobStatus } from '../../../actions/job_status_update';
 import { properCaseTransform } from '../../../helpers/generic';
 import { queryStringToObjectParser, objectToQueryStringParser } from '../../../helpers/query';
 import EmployerTableHeader from './EmployerTableHeader';
@@ -25,18 +26,31 @@ class Employer extends Component {
         })
     }
 
+    handleCloseJob =(payload) => {
+        this.props.propsUpdateJobStatus(payload)
+    }
+
+    handleCloseModal = () => {
+        const { propsResetJobStatus } = this.props;
+        propsResetJobStatus()
+        this.getJobListForEmployer()
+    }
+
     componentDidMount() {
         // Check for query strings (placeholder)
+        this.getJobListForEmployer()
+    }
+
+    getJobListForEmployer = () => {
         const { search } = this.props.location;
         let queryObject = queryStringToObjectParser(search)
-
         queryObject = { ...queryObject, creator_id: this.props.auth.user._id};
         this.props.propsgetJobListForEmployer(queryObject)
     }
 
     render() {
 
-        const { job_list_employer, auth } = this.props;
+        const { job_list_employer, auth, jobUpdateStatus } = this.props;
         const { error, data } = job_list_employer; 
         return (
             <React.Fragment>
@@ -90,7 +104,7 @@ class Employer extends Component {
                                             <Button content="view applications" color="violet"/>
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Button content="close this job" color="red"/>
+                                            <Button disabled={!item.open} content="close this job" color="red" onClick={()=>this.handleCloseJob({ job_id: item._id, creator_id: auth.user._id})}/>
                                         </Table.Cell>
                            
                                     </Table.Row>
@@ -109,6 +123,24 @@ class Employer extends Component {
                 nextItem={{ content: <Icon name='angle right' />, icon: true }}
                 totalPages={data.data.totalPages}
                 onPageChange={this.handlePageChange}/>
+                <Modal
+                    open={ jobUpdateStatus.error || jobUpdateStatus.flag }
+                    dimmer="blurring"
+                    onClose={this.handleCloseModal}>
+                        <Modal.Header>
+                            { jobUpdateStatus.error ? 'Error' : 'Success'}
+                        </Modal.Header>
+                        <Modal.Content>
+                            { jobUpdateStatus.message }
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button
+                            onClick={this.handleCloseModal} 
+                            color='green'>
+                                Confirm
+                            </Button>
+                        </Modal.Actions>
+                    </Modal>
                 </React.Fragment>
                     : null
                 }
@@ -121,11 +153,14 @@ const mapStateToProps = (state) => {
     return {
         auth: state.auth,
         job_list_employer: state.jobListEmployer,
+        jobUpdateStatus: state.jobUpdateStatus,
     }
 }
 
 const mapDispatchToProps = {
-    propsgetJobListForEmployer: getJobListForEmployer
+    propsgetJobListForEmployer: getJobListForEmployer,
+    propsUpdateJobStatus: updateJobStatus,
+    propsResetJobStatus: resetJobStatus,
 
 }
 

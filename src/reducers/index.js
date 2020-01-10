@@ -15,6 +15,7 @@ import { registerReducer } from './register';
 import { skillReducer } from './skills';
 import { themeReducer } from './theme';
 import { userDetailsReducer } from './user_details';
+import { jobStatusUpdateReducer } from './jobs/job_status_update';
 
 
 
@@ -27,6 +28,7 @@ export const rootReducer = combineReducers({
     category: categoryReducer,
     job: jobReducer,
     jobDetails: jobDetailReducer,
+    jobUpdateStatus: jobStatusUpdateReducer,
     jobList: jobListReducer,
     jobListEmployer: jobListEmployerReducer,
     locationList: locationListReducer,

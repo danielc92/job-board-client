@@ -1,6 +1,7 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants';
 
+
 export const createJob = (payload) => async (dispatch, getState) => {
     try {
         const token = localStorage.getItem(TOKEN_NAME)
