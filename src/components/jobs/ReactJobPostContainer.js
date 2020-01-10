@@ -189,7 +189,20 @@ class ReactJobPostContainer extends Component {
                         <Header as="h1">Post a job</Header>
                     <Divider/>                    
                     {
-                        auth.isAuthenticated ?
+                        !auth.isAuthenticated ?
+                        (
+                            <Message 
+                            warning
+                            header="Authentication required"
+                            content="You need to be logged in, in order to view your dashboard."/> 
+                        ) :
+                        !auth.user.is_employer ?
+                        (
+                            <Message 
+                            warning
+                            header="Invalid Member Type"
+                            content="You need to logged in an employer to post a job."/>
+                        ):
                         (
                             <React.Fragment>
                             <ReactProgressContainer percent={percent}/>
@@ -337,17 +350,7 @@ class ReactJobPostContainer extends Component {
                                     header="Form requirements"/>
                                 )
                             }
-                            
                             </React.Fragment>
-                        )
-                        :
-                        (
-                            <Message 
-                            warning
-                            header="Authentication required"
-                            content="We know you would love to get your job posted on our platform. However, you must be logged in to do so."
-                            >
-                            </Message>
                         )
                     }
                         </VerticallyPaddedContainer>

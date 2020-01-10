@@ -29,18 +29,19 @@ class ReactMenu extends Component {
                 active={menu.item === 'home'}
                 onClick={this.handleItemClick}
               />
-              <Menu.Item
-                as={Link}
-                to="/create-jobs"
-                name='create'
-                active={menu.item === 'create'}
-                onClick={this.handleItemClick}
-              />
+              
               <Menu.Item
                 as={Link}
                 to="/view-jobs"
                 name='find'
                 active={menu.item === 'find'}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
+                as={Link}
+                to="/create-jobs"
+                name='create'
+                active={menu.item === 'create'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
