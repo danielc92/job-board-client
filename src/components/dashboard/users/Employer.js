@@ -40,7 +40,7 @@ class Employer extends Component {
         const { error, data } = job_list_employer; 
         return (
             <React.Fragment>
-            <Header as="h1" content="Dashboard"/>
+            <Header as="h1" content="My Job Postings"/>
             <Divider/>
                 {
                     job_list_employer && error ? 

@@ -50,7 +50,7 @@ class SearchContainer extends Component {
             <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="3">
-                    <Header as="h1">Find your dream job.</Header>
+                    <Header as="h1" content="Find your dream job."/>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input

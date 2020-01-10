@@ -31,9 +31,7 @@ class ReactProfileContainer extends Component {
             <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="4">
-                        <Header as="h1">
-                            Profile
-                        </Header>
+                        <Header as="h1" content="Profile"/>
                         <Divider/>
                             <Message 
                             warning

@@ -52,7 +52,7 @@ class ReactLogin extends Component {
                     <Grid.Row>
                         <Grid.Column>
                         <Segment basic>
-                            <Header as="h1">Login Page</Header>
+                            <Header as="h1" content="Login Page"/>
                             <p>Unlock all the features by creating an account and signing in.</p>
                             <Form onSubmit={this.handleSubmit} style={{maxWidth: '500px'}}>
                                 <Form.Input

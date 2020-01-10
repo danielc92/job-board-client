@@ -48,9 +48,7 @@ class ReactFeatures extends Component {
             <Segment basic style={{ backgroundColor: '#f9f9f9'}}>
             <Container>
               <VerticallyPaddedContainer size="6">
-              <Header as="h1" textAlign="center" style={{marginBottom: '5rem'}}>
-                What we can do for you
-                </Header>
+              <Header as="h1" textAlign="center" content="What we can do for you" style={{marginBottom: '5rem'}}/>
               <Grid padded columns={3} stackable>
                 <Grid.Row>
                   {

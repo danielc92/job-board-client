@@ -6,18 +6,10 @@ export default class EmployerTableHeader extends Component {
         return (
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>
-                        Title
-                    </Table.HeaderCell>
-                    <Table.HeaderCell>
-                        Status
-                    </Table.HeaderCell>
-                    <Table.HeaderCell>
-                        Posted on
-                    </Table.HeaderCell>
-                    <Table.HeaderCell colSpan='2'>
-                        Action
-                    </Table.HeaderCell>
+                    <Table.HeaderCell content="Title"/>
+                    <Table.HeaderCell content="Status"/>
+                    <Table.HeaderCell content="Created"/>
+                    <Table.HeaderCell content="Actions" colSpan="2"/>
                 </Table.Row>
             </Table.Header>
         )

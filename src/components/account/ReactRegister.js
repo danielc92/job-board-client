@@ -95,7 +95,7 @@ class ReactRegister extends Component {
             <Container>
                 <VerticallyPaddedContainer size="4">
                 <Segment basic>
-                    <Header as="h1">Join the community</Header>
+                    <Header as="h1" content="Join the community"/>
                     
                     <Form onSubmit={this.handleSubmit}>
                     <Form.Input

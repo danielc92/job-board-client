@@ -10,7 +10,7 @@ export default class NothingHereYet extends Component {
                 <Segment  basic>
                 <Container>
                     <VerticallyPaddedContainer size="4">
-                    <Header as="h1">Nothing here yet</Header>
+                    <Header as="h1" content="Nothing here yet"/>
                 <Divider/>
                 <Placeholder>
                     <Placeholder.Paragraph>

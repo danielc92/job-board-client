@@ -5,11 +5,11 @@ export default class SeekerTableHeader extends Component {
         return (
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Title</Table.HeaderCell>
-                    <Table.HeaderCell>Status</Table.HeaderCell>
-                    <Table.HeaderCell>Applied</Table.HeaderCell>
-                    <Table.HeaderCell>Withdraw</Table.HeaderCell>
-                    <Table.HeaderCell>View</Table.HeaderCell>
+                    <Table.HeaderCell content="Title"/>
+                    <Table.HeaderCell content="Status"/>
+                    <Table.HeaderCell content="Applied"/>
+                    <Table.HeaderCell content="Withdraw"/>
+                    <Table.HeaderCell content="View"/>
                 </Table.Row>
             </Table.Header>
         )
