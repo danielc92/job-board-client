@@ -39,6 +39,7 @@ export const createApplication = (payload) => async (dispatch, getState) => {
             payload: {
                 error: false,
                 flag: true,
+                message: response.data.message, 
             }
         })
     } 
@@ -48,7 +49,7 @@ export const createApplication = (payload) => async (dispatch, getState) => {
             payload: {
                 error: true,
                 flag: false,
-                errorMessage: error.response.data.error
+                message: error.response.data.error,
             }
         })
     }

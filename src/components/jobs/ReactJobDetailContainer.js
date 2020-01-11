@@ -30,7 +30,7 @@ class ReactJobDetailContainer extends Component {
         const query = queryStringToObjectParser(this.props.location.search)
         const jobSearch = this.props.jobDetails.filter(item => item._id === query.id)
         const jobDetails = jobSearch.length > 0 ? jobSearch[0] : null;
-        const { error, flag } = this.props.application; 
+        const { error, flag, message } = this.props.application; 
         return (
             <Segment basic>
                 <Container>
@@ -39,18 +39,19 @@ class ReactJobDetailContainer extends Component {
                             jobDetails ? 
                             <React.Fragment>
                             <Modal
-                            open={ !error && flag }
+                            open={ error || flag }
                             dimmer="blurring"
                             onClose={this.closeModal}>
-                                <Modal.Header>Success
-                                </Modal.Header>
-                                <Modal.Content>
-                                    {`Your application for ${properCaseTransform(jobDetails.title)} was successful.`}
-                                </Modal.Content>
+                                <Modal.Header
+                                    content={ error ? 'Error' : 'Success'}
+                                />
+                                <Modal.Content
+                                    content={ message }
+                                />
                                 <Modal.Actions>
                                     <Button
                                     onClick={this.closeModal} 
-                                    color='green'>
+                                    color={ error ? 'red' : 'green'}>
                                         Confirm
                                     </Button>
                                 </Modal.Actions>
