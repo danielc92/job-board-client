@@ -9,7 +9,7 @@ import { compose } from 'redux'
 
 class ReactMenu extends Component {
     handleLogout = () => {
-      this.props.history.push('/login')
+      this.props.history.push('/sign-in')
       this.props.propsLogoutUser()
     }
     render() {
@@ -89,7 +89,7 @@ class ReactMenu extends Component {
                         <Button 
                         color={theme}
                         as={Link}
-                        to="/login">Sign in
+                        to="/sign-in">Sign in
                         </Button>
 
                         <Button.Or/>

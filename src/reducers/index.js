@@ -16,13 +16,14 @@ import { skillReducer } from './skills';
 import { themeReducer } from './theme';
 import { userDetailsReducer } from './user_details';
 import { jobStatusUpdateReducer } from './jobs/job_status_update';
-
+import { applicationListEmployerReducer } from './applications/application_list_employer';
 
 
 export const rootReducer = combineReducers({
     application_list: applicationListReducer,
     application_update: applicationUpdateReducer,
     application: applicationReducer,
+    application_list_employer: applicationListEmployerReducer,
     auth: authReducer,
     benefit: benefitReducer,
     category: categoryReducer,

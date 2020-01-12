@@ -102,7 +102,7 @@ class ReactJobPostContainer extends Component {
         if (!checkTokenIsValid(token)) {
             this.props.propsLogoutUser()
             this.props.history.push({
-                pathname: "/login",
+                pathname: "/sign-in",
                 state: { redirect_message: 'You need to be logged in to post a job.' }
             })
         }

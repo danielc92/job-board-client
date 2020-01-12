@@ -75,7 +75,7 @@ class ReactRegister extends Component {
     }
 
     handleNavigateToLogin = () => {
-        this.props.history.push('/login');
+        this.props.history.push('/sign-in');
     }
 
     render() {

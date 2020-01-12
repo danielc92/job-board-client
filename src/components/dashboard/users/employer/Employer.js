@@ -49,7 +49,10 @@ class Employer extends Component {
     }
 
     handleNavigateApplications = (id) => {
-        console.log(id)
+        this.props.history.push({
+            pathname: '/dashboard/applications',
+            search: `?job_id=${id}`
+        })
     }
 
     render() {

@@ -39,12 +39,13 @@ class App extends Component {
         <ReactMenu/>
         
         {/* Components for home route */}
+
         <Route path="/" exact component={ReactHomeContainer}/>
         <Route path="/create-jobs" exact component={ReactJobPostContainer}/>
         <Route path="/view-jobs" exact component={ReactJobViewContainer}/>
         <Route path="/analytics" exact component={NothingHereYet}/>
         <Route path="/news" exact component={ReactNews}/>
-        <Route path="/login" exact component={ReactLogin}/>
+        <Route path="/sign-in" exact component={ReactLogin}/>
         <Route path="/register" exact component={ReactRegister}/>
         <Route path="/view-job" exact component={ReactJobDetailContainer}/>
         <Route path="/profile" exact component={ReactProfileContainer}/>
