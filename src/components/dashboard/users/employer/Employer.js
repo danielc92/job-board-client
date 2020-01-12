@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router';
-import { Divider, Modal, Button, Label, Header, Icon, Table, Pagination } from 'semantic-ui-react'
+import { Divider, Modal, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../../../actions/job_list_employer';
 import { resetJobStatus, updateJobStatus } from '../../../../actions/job_status_update';
 import { properCaseTransform } from '../../../../helpers/generic';

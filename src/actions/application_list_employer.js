@@ -1,13 +1,14 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants';
 
-export const getApplicationList = (query) => async (dispatch, getState) => {
+export const getApplicationEmployerList = (query) => async (dispatch, getState) => {
     try {
         const { job_id } = query;
         const token = localStorage.getItem(TOKEN_NAME)
         const config = { headers: { 'x-access-token' : token } }
         const url = `application/list/employer?job_id=${job_id}`
-        const response = await jobApi.get(url, null, config)
+        console.log(url, config)
+        const response = await jobApi.get(url, config)
         dispatch({
             type: "GET_APPLICATION_LIST_EMPLOYER_SUCCESS",
             payload: {
@@ -17,11 +18,12 @@ export const getApplicationList = (query) => async (dispatch, getState) => {
         })
     } 
     catch (error) {
+        console.log(error)
         dispatch({
             type: "GET_APPLICATION_LIST_EMPLOYER_FAILURE",
             payload: {
                 error: true,
-                message: error.response.data.error,
+                message: error.response ? error.response.data.message : "Server error occured.",
                 data: [],
             }
         })

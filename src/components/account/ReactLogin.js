@@ -3,7 +3,6 @@ import { Form, Image, Segment, Message, Container, Header, Grid } from 'semantic
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 import { setMenuItem } from '../../actions/menu';
-import { Redirect } from 'react-router';
 import loginImage from '../../images/undraw_Login_v483.svg';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
