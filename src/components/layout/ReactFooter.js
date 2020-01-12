@@ -21,21 +21,21 @@ class ReactFooter extends Component {
                     <Grid.Column width={4}>
                       <Header inverted as='h4' content='Navigation' />
                       <List link inverted>
-                        <List.Item as={Link} to="/">Home</List.Item>
-                        <List.Item as={Link} to="/create-jobs">Post a job</List.Item>
-                        <List.Item as={Link} to="/view-jobs">Find a job</List.Item>
-                        <List.Item as={Link} to="/news">News</List.Item>
-                        <List.Item as={Link} to="/analytics">Analytics</List.Item>
-                        <List.Item as={Link} to="/login">Log in</List.Item>
-                        <List.Item as={Link} to="/register">Sign Up</List.Item>
+                        <List.Item as={Link} to="/" content="Home" />
+                        <List.Item as={Link} to="/view-jobs" content="Find a job" />
+                        <List.Item as={Link} to="/create-jobs" content="Post a job (employer only)" />
+                        <List.Item as={Link} to="/dashboard" content="Dashboard" />
+                        <List.Item as={Link} to="/news" content="News" />
+                        <List.Item as={Link} to="/login" content="Sign in" />
+                        <List.Item as={Link} to="/register" content="Register" />
                       </List>
                     </Grid.Column>
                     <Grid.Column width={4}>
                       <Header inverted as='h4' content='Documentation' />
                       <List link inverted>
-                        <List.Item as='a'>Terms and conditions</List.Item>
-                        <List.Item as='a'>Privacy</List.Item>
-                        <List.Item as='a'>FAQ</List.Item>
+                        <List.Item as='a' content="Terms and conditions" />
+                        <List.Item as='a' content="Privacy" />
+                        <List.Item as='a' content="FAQ" />
                       </List>
                     </Grid.Column>
                     <Grid.Column width={4}>

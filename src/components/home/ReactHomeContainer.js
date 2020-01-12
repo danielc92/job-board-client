@@ -33,6 +33,12 @@ class ReactHomeContainer extends Component {
                 image={image}
                 left={false}/>
                 
+                <SectionSplitHero 
+                ctaHeader="Header" 
+                ctaSubHeader="This is a sub header for the cta component"
+                image={image}
+                left/>
+                
             </React.Fragment>
             
         )

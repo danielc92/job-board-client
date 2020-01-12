@@ -89,7 +89,7 @@ class ReactMenu extends Component {
                         <Button 
                         color={theme}
                         as={Link}
-                        to="/login">Login
+                        to="/login">Sign in
                         </Button>
 
                         <Button.Or/>
