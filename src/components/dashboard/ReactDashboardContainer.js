@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import { Segment, Container, Message } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import Employer from './users/Employer';
-import Seeker from './users/Seeker'
+import Employer from './users/employer/Employer';
+import Seeker from './users/seeker/Seeker'
 
 class ReactDashboardContainer extends Component {
     

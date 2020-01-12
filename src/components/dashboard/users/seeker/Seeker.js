@@ -3,9 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { Header, Label, Modal, Segment, Icon, Divider, Button, Table} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { getApplicationList } from '../../../actions/application_list';
-import { updateApplicationStatus, resetApplicationUpdate } from '../../../actions/application';
-import { dateDiffString } from '../../../helpers/generic';
+import { getApplicationList } from '../../../../actions/application_list';
+import { updateApplicationStatus, resetApplicationUpdate } from '../../../../actions/application';
+import { dateDiffString } from '../../../../helpers/generic';
 import SeekerTableHeader from './SeekerTableHeader';
 
 class Seeker extends Component {

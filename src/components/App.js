@@ -17,7 +17,7 @@ import {Route} from 'react-router-dom';
 import './App.css'
 import NothingHereYet from './placeholder/NothingHereYet';
 import ReactDashboardContainer from './dashboard/ReactDashboardContainer';
-
+import ReactDashboardApplicationContainer from './dashboard/users/employer/applications/ReactDashboardApplicationContainer';
 
 
 class App extends Component {
@@ -49,6 +49,7 @@ class App extends Component {
         <Route path="/view-job" exact component={ReactJobDetailContainer}/>
         <Route path="/profile" exact component={ReactProfileContainer}/>
         <Route path="/dashboard" exact component={ReactDashboardContainer}/>
+        <Route path="/dashboard/applications" exact component={ReactDashboardApplicationContainer}/>
         {/* Footer */}
         <ReactFooter/>
     

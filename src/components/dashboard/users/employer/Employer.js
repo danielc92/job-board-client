@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router';
 import { Divider, Modal, Button, Label, Header, Icon, Table, Pagination } from 'semantic-ui-react'
-import { getJobListForEmployer } from '../../../actions/job_list_employer';
-import { resetJobStatus, updateJobStatus } from '../../../actions/job_status_update';
-import { properCaseTransform } from '../../../helpers/generic';
-import { queryStringToObjectParser, objectToQueryStringParser } from '../../../helpers/query';
+import { getJobListForEmployer } from '../../../../actions/job_list_employer';
+import { resetJobStatus, updateJobStatus } from '../../../../actions/job_status_update';
+import { properCaseTransform } from '../../../../helpers/generic';
+import { queryStringToObjectParser, objectToQueryStringParser } from '../../../../helpers/query';
 import EmployerTableHeader from './EmployerTableHeader';
-import { dateDiffString } from '../../../helpers/generic';
+import { dateDiffString } from '../../../../helpers/generic';
 class Employer extends Component {
 
 
@@ -46,6 +46,10 @@ class Employer extends Component {
         let queryObject = queryStringToObjectParser(search)
         queryObject = { ...queryObject, creator_id: this.props.auth.user._id};
         this.props.propsgetJobListForEmployer(queryObject)
+    }
+
+    handleNavigateApplications = (id) => {
+        console.log(id)
     }
 
     render() {
@@ -97,7 +101,7 @@ class Employer extends Component {
                                             {dateDiffString(item.createdAt)}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Button compact content="view applications" color="violet"/>
+                                            <Button compact content="view applications" color="violet" onClick={()=>this.handleNavigateApplications(item._id)}/>
                                         </Table.Cell>
                                         <Table.Cell>
                                             <Button compact disabled={!item.open} content="close this job" color="red" onClick={()=>this.handleCloseJob({ job_id: item._id, creator_id: auth.user._id})}/>
