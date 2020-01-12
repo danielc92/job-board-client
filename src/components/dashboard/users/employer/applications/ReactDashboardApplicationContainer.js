@@ -5,9 +5,14 @@ import { getApplicationEmployerList } from '../../../../../actions/application_l
 import { connect } from 'react-redux';
 import {compose} from 'redux'
 import { withRouter } from 'react-router-dom'
-import { Container, Segment, Divider, Icon, Button, Table, Header } from 'semantic-ui-react';
+import { Container, Segment, Modal, Label, Divider, Icon, Button, Table, Header } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer';
 class ReactDashboardApplicationContainer extends Component {
+
+    state = {
+        modalContent: {},
+        modalShow: false,
+    }
 
     componentDidMount() {
         const { search } = this.props.history.location;
@@ -15,11 +20,23 @@ class ReactDashboardApplicationContainer extends Component {
         this.props.propsGetApplicationEmployerList(object)
     }
 
+    handleModalContentChange = (modalContent) => {
+        this.setState({ modalContent }, ()=> {
+            this.setState({ modalShow: true })
+        })
+    }
+
+    handleCloseModal = () => {
+        this.setState({ modalShow: false })
+    }
+
     render() {
         const { application_list_employer } = this.props;
         const { error, data } = application_list_employer;
+        const { modalShow, modalContent } = this.state;
         return (
-            <Segment basic>
+            <React.Fragment>
+                <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="4">
                     <Header as="h1" content="Applications for this job"/>
@@ -53,6 +70,7 @@ class ReactDashboardApplicationContainer extends Component {
                                                     <Table.Cell>
                                                         <Button 
                                                         compact 
+                                                        onClick={()=>this.handleModalContentChange(x)}
                                                         color="violet">
                                                             <Icon name="eye"/>view application</Button>
                                                     </Table.Cell>
@@ -69,6 +87,33 @@ class ReactDashboardApplicationContainer extends Component {
                     
                 </Container>
             </Segment>
+            {
+                Object.entries(modalContent).length > 0 ?
+                <Modal
+                    open={ modalShow }
+                    dimmer="blurring"
+                    onClose={this.handleCloseModal}>
+                        <Modal.Header>
+                            {`${properCaseTransform(modalContent.applicant_id.first_name)} ${ properCaseTransform(modalContent.applicant_id.last_name)}'s application`}
+                        </Modal.Header>
+                        <Modal.Content>
+                            The current application status is <Label content={modalContent.status}/>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button
+                            color='green'
+                            content="I'm interested"
+                            />
+                            <Button
+                            onClick={this.handleCloseModal} 
+                            color='red'
+                            content="I'm not interested"/>
+                        </Modal.Actions>
+                    </Modal>
+                : null
+            }
+            </React.Fragment>
+            
         )
     }
 }
