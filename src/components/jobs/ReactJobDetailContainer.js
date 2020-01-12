@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Message, Header, Modal, Container,Button, Label } from 'semantic-ui-react';
+import { Segment, Message, TextArea, Header, Modal, Container,Button, Label, Form } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import { queryStringToObjectParser } from '../../helpers/query';
 import { getJob } from '../../actions/job';
@@ -9,6 +9,11 @@ import { connect } from 'react-redux';
 import { properCaseTransform } from '../../helpers/generic';
 
 class ReactJobDetailContainer extends Component {
+
+    state = {
+        user_message: ""
+    }
+
     componentDidMount() {
         const query = queryStringToObjectParser(this.props.location.search)
         this.props.propsGetJob(query.id)
@@ -16,49 +21,44 @@ class ReactJobDetailContainer extends Component {
     }
 
     applyForJob = () => {
-        const payload = {
+        const { user_message } = this.state;
+
+        let payload = {
             job_id: this.props.jobDetails[0]._id,
             applicant_id: this.props.auth.user._id,
         }
+
+        if (user_message.length > 0) {
+            payload = { ...payload, user_message }
+        }
         this.props.propsCreateApplication(payload);
+    }
+
+    handleInputChange = (event) => {
+        const { name, value } = event.target;
+        // Validate message
+
+        // Set message
+        this.setState({ [name]: value })
     }
 
     closeModal = () => {
         this.props.propsResetApplication();
     }
+
     render() {
         const query = queryStringToObjectParser(this.props.location.search)
         const jobSearch = this.props.jobDetails.filter(item => item._id === query.id)
         const jobDetails = jobSearch.length > 0 ? jobSearch[0] : null;
+        const { user_message } = this.state;
         const { error, flag, message } = this.props.application; 
         return (
             <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="3">
                         {
-                            jobDetails ? 
-                            <React.Fragment>
-                            <Modal
-                            open={ error || flag }
-                            dimmer="blurring"
-                            onClose={this.closeModal}>
-                                <Modal.Header
-                                    content={ error ? 'Error' : 'Success'}
-                                />
-                                <Modal.Content
-                                    content={ message }
-                                />
-                                <Modal.Actions>
-                                    <Button
-                                    onClick={this.closeModal} 
-                                    color={ error ? 'red' : 'green'}>
-                                        Confirm
-                                    </Button>
-                                </Modal.Actions>
-                            </Modal>
-
-                            
-
+                            jobDetails ?
+                            <React.Fragment> 
                             <Segment color="green" padded stacked>
                                  
                                 <Header as="h1">{properCaseTransform(jobDetails.title)}<Label color='green' tertiary>{jobDetails.category}</Label></Header>
@@ -86,23 +86,66 @@ class ReactJobDetailContainer extends Component {
                                 <Header>Contact Summary</Header>
                                 <p>{ jobDetails.contact_summary }</p>
 
-                                
-                                {
-                                    !jobDetails.open ? 
-                                    <Message  
-                                        warning
-                                        header="Job Closed"
-                                        content="This job has been closed and is no longer accepting applications."/>: 
-                                    <Button
-                                        disabled={!jobDetails.open}
-                                        onClick={this.applyForJob}
-                                        size="big" 
-                                        color="violet"
-                                        content="Apply"/>
-                                }
                             </Segment>
+                            {/* If the job is open allow user to apply */}
+                            {
+                                !jobDetails.open ? 
+                                <Segment
+                                    stacked
+                                    color="orange">
+                                    <Header>
+                                        Job Unavailable
+                                    </Header>
+                                    <p>The member who posted this job, has closed it off and is no longer accepting applications.</p>
+                                </Segment>
+                                :
+                                <Segment
+                                stacked
+                                color="violet">
+                                    <Header content="Start your application here." as="h1"/>
+                                    <Form>
+                                        <Form.Field>
+                                            <Form.TextArea
+                                            value={ user_message}
+                                            onChange={this.handleInputChange}
+                                            name="user_message"
+                                            placeholder="Some words about why you're suitable for this job."
+                                            label={`Enter a message for the employer (${500 - user_message.length} remaining).`} />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <Form.Button
+                                            onClick={this.applyForJob}
+                                            content="Apply for this job"
+                                            color="violet" 
+                                            />
+                                        </Form.Field>
+                                    </Form>
+                                    
+                                </Segment>
+                            }
+                            
+                            
+                            <Modal
+                            open={ error || flag }
+                            dimmer="blurring"
+                            onClose={this.closeModal}>
+                                <Modal.Header
+                                    content={ error ? 'Error' : 'Success'}
+                                />
+                                <Modal.Content
+                                    content={ message }
+                                />
+                                <Modal.Actions>
+                                    <Button
+                                    onClick={this.closeModal} 
+                                    color={ error ? 'red' : 'green'}>
+                                        Confirm
+                                    </Button>
+                                </Modal.Actions>
+                            </Modal>
                             </React.Fragment>: 
-                            <Segment>Job not found.</Segment>}
+                            <Segment>Job not found.</Segment>
+                            }
                     </VerticallyPaddedContainer>
                 </Container>
 

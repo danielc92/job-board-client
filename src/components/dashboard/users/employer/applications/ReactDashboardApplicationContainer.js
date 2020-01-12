@@ -97,7 +97,10 @@ class ReactDashboardApplicationContainer extends Component {
                             {`${properCaseTransform(modalContent.applicant_id.first_name)} ${ properCaseTransform(modalContent.applicant_id.last_name)}'s application`}
                         </Modal.Header>
                         <Modal.Content>
-                            The current application status is <Label content={modalContent.status}/>
+                            <Header as="h3" content="Current status"/>
+                            <Label content={modalContent.status}/>
+                            <Header as="h3">Applicants message</Header>
+                            <p>{modalContent.user_message ? modalContent.user_message : 'This applicant did not choose to a leave a message.'}</p>
                         </Modal.Content>
                         <Modal.Actions>
                             <Button
