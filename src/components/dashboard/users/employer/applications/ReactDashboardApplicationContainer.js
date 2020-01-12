@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { queryStringToObjectParser } from '../../../../../helpers/query';
+import { dateDiffString, properCaseTransform } from '../../../../../helpers/generic'
 import { getApplicationEmployerList } from '../../../../../actions/application_list_employer'
 import { connect } from 'react-redux';
 import {compose} from 'redux'
@@ -45,9 +46,9 @@ class ReactDashboardApplicationContainer extends Component {
                                             return (
                                                 <Table.Row>
                                                     <Table.Cell 
-                                                        content={`${x.applicant_id.first_name} ${x.applicant_id.last_name}`} />
+                                                        content={`${properCaseTransform(x.applicant_id.first_name)} ${properCaseTransform(x.applicant_id.last_name)}`} />
                                                     <Table.Cell>
-                                                        {x.createdAt}
+                                                        { dateDiffString(x.createdAt)}
                                                     </Table.Cell>
                                                     <Table.Cell>
                                                         <Button 
