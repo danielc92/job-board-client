@@ -47,6 +47,7 @@ class ReactJobDetailContainer extends Component {
     }
 
     render() {
+        const charLimit = 1000;
         const query = queryStringToObjectParser(this.props.location.search)
         const jobSearch = this.props.jobDetails.filter(item => item._id === query.id)
         const jobDetails = jobSearch.length > 0 ? jobSearch[0] : null;
@@ -110,7 +111,7 @@ class ReactJobDetailContainer extends Component {
                                             onChange={this.handleInputChange}
                                             name="user_message"
                                             placeholder="Some words about why you're suitable for this job."
-                                            label={`Enter a message for the employer (${500 - user_message.length} remaining).`} />
+                                            label={`Enter a message for the employer (${charLimit - user_message.length} remaining).`} />
                                         </Form.Field>
                                         <Form.Field>
                                             <Form.Button
