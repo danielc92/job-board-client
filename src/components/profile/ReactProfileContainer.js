@@ -5,6 +5,7 @@ import { setMenuItem } from '../../actions/menu';
 import { getUserDetails } from '../../actions/user_details';
 import { loginRefresh } from '../../actions/auth';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
+import Seeker from './Seeker';
 
 class ReactProfileContainer extends Component {
     
@@ -54,10 +55,11 @@ class ReactProfileContainer extends Component {
                 <Segment basic>
                     <Container>
                         <VerticallyPaddedContainer size="4">
-                            <Header as="h1" content="Personal Details"/>
+                            <Header as="h1" content="Profile"/>
                             <Divider/>
 
-                            <Segment stacked padded>
+                            <Header as="h3" content="Personal Details"/>
+                            <Segment stacked padded color="green">
                                 <Grid divided='vertically'>
                                     <Grid.Row columns={2}>
                                         <Grid.Column>
@@ -79,6 +81,12 @@ class ReactProfileContainer extends Component {
                                     </Grid.Row>
                                 </Grid>
                             </Segment>
+                            {
+                                (!is_employer) ?
+                                <Seeker/>
+                                : null
+                            }
+                            
                         </VerticallyPaddedContainer>
                     </Container>
     
