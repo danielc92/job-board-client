@@ -9,7 +9,7 @@ export default class Seeker extends Component {
                 <Segment stacked padded color="green">
                 </Segment>
 
-                <Header as="h3" content="Achievements"/>
+                <Header as="h3" content="Work Experience"/>
                 <Segment stacked padded color="green">
                 </Segment>
 

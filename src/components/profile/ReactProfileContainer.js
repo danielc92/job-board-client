@@ -64,11 +64,11 @@ class ReactProfileContainer extends Component {
                                     <Grid.Row columns={2}>
                                         <Grid.Column>
                                             <Header content="First Name" as="h3"/>
-                                            {first_name}
+                                            <p>{first_name}</p>
                                             <Header content="Last Name" as="h3"/>
-                                            {last_name}
+                                            <p>{last_name}</p>
                                             <Header content="Email" as="h3"/>
-                                            {email}
+                                            <p>{email}</p>
                                         </Grid.Column>
                                         <Grid.Column>
                                             <Header content="Joined" as="h3"/>
