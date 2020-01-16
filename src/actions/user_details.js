@@ -1,4 +1,5 @@
 import jobApi from '../api';
+import { handleApiError } from '../helpers/api';
 
 export const getUserDetails = (search) => async (dispatch, getState) => {
     try {   
@@ -19,7 +20,7 @@ export const getUserDetails = (search) => async (dispatch, getState) => {
             type: "FETCH_USER_DETAIL_FAILURE",
             payload: {
                 error: true,
-                errorMessage: error.response.data.error,
+                message: handleApiError(error),
                 search,
             }
         })

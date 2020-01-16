@@ -79,18 +79,20 @@ class ReactLogin extends Component {
                                     name="password"/>
 
                                 <Message
-                                    warning
-                                    visible={error}
-                                    header="Action forbidden"
-                                    content="Email and password is required to login.">
+                                visible={error}
+                                warning
+                                header="Action forbidden"
+                                content="Email and password is required to login.">
                                 </Message>
-                                
-                                <Message
-                                    error
-                                    header="Failed to login."
-                                    content={this.props.auth.error_message}
-                                    visible={this.props.auth.error_message}>
-                                </Message>
+            
+                                {
+                                    this.props.auth.error ? 
+                                    <Segment color="red" stacked>
+                                        <Header as="h3" content="Error"/>
+                                        <p>{ this.props.auth.message }</p>
+                                    </Segment>
+                                    : null
+                                }
 
                                 <Form.Button color="green" size="large">Submit</Form.Button>
                             </Form>

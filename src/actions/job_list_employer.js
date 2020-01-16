@@ -1,6 +1,7 @@
 import jobApi from '../api';
 import { objectToQueryStringParser }  from '../helpers/query';
 import { TOKEN_NAME } from '../constants/index';
+import { handleApiError } from '../helpers/api';
 
 export const getJobListForEmployer = (object) => async (dispatch, getState) => {
     try {
@@ -9,10 +10,11 @@ export const getJobListForEmployer = (object) => async (dispatch, getState) => {
         const url = `job/list/employer${queryString}`;
         const options = { headers : {'x-access-token' : token }};
         const response = await jobApi.get(url, options);
-        
+        console.log(response.data.results)
         dispatch({
             type: "GET_JOB_LIST_EMPLOYER_SUCCESS",
             payload: {
+                error: false,
                 data: response.data.results
             }
         })
@@ -21,7 +23,9 @@ export const getJobListForEmployer = (object) => async (dispatch, getState) => {
         dispatch({
             type: "GET_JOB_LIST_EMPLOYER_FAILURE",
             payload: {
-                error: error.response ? error.response.data.error : '[500] Server Error'
+                error: true,
+                message: handleApiError(error),
+                data: {},
             }
 
         })

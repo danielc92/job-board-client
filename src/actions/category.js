@@ -1,5 +1,6 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants/index';
+import { handleApiError } from '../helpers/api';
 
 
 export const getCategories = () => async (dispatch, getState) => {
@@ -20,7 +21,8 @@ export const getCategories = () => async (dispatch, getState) => {
         dispatch({
             type: "GET_CATEGORIES_SUCCESS",
             payload: {
-                data
+                data,
+                error: false,
             }
         })
     }
@@ -29,7 +31,8 @@ export const getCategories = () => async (dispatch, getState) => {
         dispatch({
             type: "GET_CATEGORIES_FAILURE",
             payload: {
-                error: error.response.data.error
+                message: handleApiError(error),
+                error: true,
             }
         })
     }

@@ -4,7 +4,6 @@ import { TOKEN_NAME } from '../constants';
 export const authReducer = (state={
     isAuthenticated: false,
     error: false,
-    error_message: null,
     user: {}
 }, action) => {
 
@@ -17,8 +16,7 @@ export const authReducer = (state={
             let decoded = jwt_decode(payload.token)
             return {
                 isAuthenticated: true,
-                error: false,
-                error_message: null,
+                error: payload.error,
                 user: { ...decoded }
             }
 
@@ -28,15 +26,14 @@ export const authReducer = (state={
             return {
                 isAuthenticated: true,
                 error: false,
-                error_message: null,
                 user: { ...decoded_token }
             }
 
         case "LOGIN_FAILURE":
             return {
                 isAuthenticated: false,
-                error: true,
-                error_message: payload.error,
+                error: payload.error,
+                message: payload.message,
                 user: {}
             }
 
@@ -45,7 +42,6 @@ export const authReducer = (state={
             return {
                 isAuthenticated: payload.value,
                 error: false,
-                error_message: null,
                 user: {}
             }
             

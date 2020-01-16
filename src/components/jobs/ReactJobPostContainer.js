@@ -312,7 +312,7 @@ class ReactJobPostContainer extends Component {
                                     error
                                     visible={job.error}
                                     header="Error"
-                                    content="An error has occured, job posting failed">
+                                    content={job.message}>
                                 </Message>
 
                                 <Modal

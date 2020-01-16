@@ -1,5 +1,6 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants';
+import { handleApiError } from '../helpers/api';
 
 export const updateApplicationStatus = (payload) => async (dispatch, getState) => {
     try {
@@ -23,7 +24,7 @@ export const updateApplicationStatus = (payload) => async (dispatch, getState) =
             payload: {
                 error: true,
                 flag: false,
-                errorMessage: error.response.data.error
+                message: handleApiError(error),
             }
         })
     }
@@ -49,7 +50,7 @@ export const createApplication = (payload) => async (dispatch, getState) => {
             payload: {
                 error: true,
                 flag: false,
-                message: error.response.data.error,
+                message: handleApiError(error)
             }
         })
     }

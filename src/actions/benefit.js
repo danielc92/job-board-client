@@ -1,5 +1,6 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants/index';
+import { handleApiError } from '../helpers/api';
 
 
 export const getBenefits = () => async (dispatch, getState) => {
@@ -20,7 +21,8 @@ export const getBenefits = () => async (dispatch, getState) => {
         dispatch({
             type: "GET_BENEFIT_SUCCESS",
             payload: {
-                data
+                data,
+                error: false,
             }
         })
     }
@@ -28,7 +30,8 @@ export const getBenefits = () => async (dispatch, getState) => {
         dispatch({
             type: "GET_BENEFIT_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: true,
+                message: handleApiError(error),
             }
         })
     }

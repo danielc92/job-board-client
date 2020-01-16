@@ -1,5 +1,6 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants';
+import { handleApiError } from '../helpers/api';
 
 export const getApplicationList = (query) => async (dispatch, getState) => {
     try {
@@ -21,7 +22,7 @@ export const getApplicationList = (query) => async (dispatch, getState) => {
             type: "GET_APPLICATION_LIST_FAILURE",
             payload: {
                 error: true,
-                errorMessage: error.response.data.error,
+                message: handleApiError(error),
                 data: [],
             }
         })

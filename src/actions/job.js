@@ -1,5 +1,6 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants';
+import { handleApiError } from '../helpers/api';
 
 
 export const createJob = (payload) => async (dispatch, getState) => {
@@ -18,8 +19,8 @@ export const createJob = (payload) => async (dispatch, getState) => {
         dispatch({
             type: "JOB_CREATE_FAILURE",
             payload: {
-                error: "PLACEHOLDER"
-                // error: error.response.data.error
+                error: true,
+                message: handleApiError(error),
             }
         })
     }
@@ -52,7 +53,7 @@ export const getJob = (id) => async (dispatch, getState) => {
             type: "JOB_FETCH_FAILURE",
             payload: {
                 error: true,
-                errorMessage: error.response.data.error
+                message: handleApiError(error),
             }
         })
     }

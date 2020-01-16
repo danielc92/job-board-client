@@ -1,4 +1,5 @@
 import jobApi from '../api';
+import { handleApiError } from '../helpers/api';
 
 export const loginUser = (email, password) => async (dispatch, getState) => {
     
@@ -9,7 +10,7 @@ export const loginUser = (email, password) => async (dispatch, getState) => {
         dispatch({
             type: "LOGIN_SUCCESS",
             payload: {
-                token: response.data.token['x-auth-token']
+                token: response.data.token['x-auth-token'],
             }
         })
     }
@@ -17,7 +18,8 @@ export const loginUser = (email, password) => async (dispatch, getState) => {
         dispatch({
             type: "LOGIN_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: true,
+                message: handleApiError(error),
             }
         })
     }

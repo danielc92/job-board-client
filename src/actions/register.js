@@ -1,4 +1,5 @@
 import jobApi from '../api';
+import { handleApiError } from '../helpers/api';
 
 export const registerUser = (payload) => async (dispatch, getState) => {
 
@@ -15,7 +16,8 @@ export const registerUser = (payload) => async (dispatch, getState) => {
         dispatch({
             type: "REGISTER_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: true,
+                message: handleApiError(error),
             }
         })
     }

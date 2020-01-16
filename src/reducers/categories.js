@@ -3,15 +3,9 @@ export const categoryReducer = (state={ error: false, data: []}, action) => {
 
     switch(type) {
         case 'GET_CATEGORIES_SUCCESS':
-            return {
-                error: false,
-                data: payload.data
-            }
+            return payload
         case 'GET_CATEGORIES_FAILURE':
-            return {
-                error: true,
-                error_message: payload.error
-            }
+            return payload
         default:
             return state
     }

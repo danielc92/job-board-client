@@ -1,4 +1,5 @@
 import jobApi from '../api';
+import { handleApiError } from '../helpers/api';
 
 export const getLocationList = (search) => async (dispatch, getState) => {
     try {   
@@ -26,7 +27,7 @@ export const getLocationList = (search) => async (dispatch, getState) => {
             type: "GET_LOCATION_LIST_FAILURE",
             payload: {
                 error: true,
-                errorMessage: error.response.data.error,
+                message: handleApiError(error),
                 search,
             }
         })

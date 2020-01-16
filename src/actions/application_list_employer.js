@@ -1,6 +1,6 @@
 import jobApi from '../api';
 import { TOKEN_NAME } from '../constants';
-
+import { handleApiError } from '../helpers/api'
 export const getApplicationEmployerList = (query) => async (dispatch, getState) => {
     try {
         const { job_id } = query;
@@ -17,12 +17,11 @@ export const getApplicationEmployerList = (query) => async (dispatch, getState) 
         })
     } 
     catch (error) {
-        console.log(error)
         dispatch({
             type: "GET_APPLICATION_LIST_EMPLOYER_FAILURE",
             payload: {
                 error: true,
-                message: error.response ? error.response.data.message : "Server error occured.",
+                message: handleApiError(error),
                 data: [],
             }
         })

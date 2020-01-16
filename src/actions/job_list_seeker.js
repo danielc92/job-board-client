@@ -1,5 +1,6 @@
 import jobApi from '../api';
 import { objectToQueryStringParser }  from '../helpers/query';
+import { handleApiError } from '../helpers/api';
 
 export const getJobList = (object) => async (dispatch, getState) => {
     try {
@@ -9,7 +10,9 @@ export const getJobList = (object) => async (dispatch, getState) => {
         dispatch({
             type: "GET_JOB_LIST_SUCCESS",
             payload: {
-                data: response.data.results
+                error: false,
+                data: response.data.results,
+                loaded: true,
             }
         })
     }
@@ -17,7 +20,8 @@ export const getJobList = (object) => async (dispatch, getState) => {
         dispatch({
             type: "GET_JOB_LIST_FAILURE",
             payload: {
-                error: error.response.data.error
+                error: true,
+                message: handleApiError(error),
             }
 
         })

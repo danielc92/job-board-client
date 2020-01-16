@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router';
-import { Divider, Modal, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
+import { Divider, Modal, Segment, Button, Header, Icon, Table, Pagination } from 'semantic-ui-react'
 import { getJobListForEmployer } from '../../../../actions/job_list_employer';
 import { resetJobStatus, updateJobStatus } from '../../../../actions/job_status_update';
 import { properCaseTransform } from '../../../../helpers/generic';
@@ -58,30 +58,29 @@ class Employer extends Component {
     render() {
 
         const { job_list_employer, auth, jobUpdateStatus } = this.props;
-        const { error, data } = job_list_employer; 
+        const { error, data, message } = job_list_employer; 
+        const loaded = Object.entries(data).length > 0 ? true : false;
+        console.log(loaded, 'data bitches')
         return (
             <React.Fragment>
             <Header as="h1" content="My Job Postings"/>
             <Divider/>
-                {
-                    job_list_employer && error ? 
-                    'An error has occured'
+                { 
+                    error ? 
+                    <Segment color="red" stacked >
+                        <Header as="h3" content="Error"/>
+                        <p>{message}</p>
+                    </Segment>
                     : null
                 }
                 {
-                    ( data.data && !error && !auth.user.is_employer ) ? 
-                    <p>You are a job seeker!</p>
-                    : null
-                }
-                {
-                    ( data.data && !error && auth.user.is_employer ) ? 
+                    (loaded) ? 
                     <React.Fragment>
                     <Table striped celled>
                     <EmployerTableHeader/>
                     <Table.Body>
                         {
-                            data.data.docs.map(item => {
-                                return (
+                            data.docs.map(item => (
                                     <Table.Row>
                                         <Table.Cell>
                                             <Header>
@@ -112,19 +111,18 @@ class Employer extends Component {
                            
                                     </Table.Row>
                                 ) 
-                            })
+                            )
                         }
-                        
                     </Table.Body>
                 </Table>
                 <Pagination
-                defaultActivePage={data.data.page}
+                defaultActivePage={data.page}
                 ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                 firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                 lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                 prevItem={{ content: <Icon name='angle left' />, icon: true }}
                 nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                totalPages={data.data.totalPages}
+                totalPages={data.totalPages}
                 onPageChange={this.handlePageChange}/>
                 <Modal
                     open={ jobUpdateStatus.error || jobUpdateStatus.flag }

@@ -63,9 +63,7 @@ class ReactJobViewContainer extends Component {
     }
 
     render() {
-        const { data } = this.props.jobList;
-        const { error } = this.props.jobList;
-        const proceed = (Object.entries(data).length > 0) ? true : false;
+        const { data, error, loaded, message } = this.props.jobList;
         return (
             <React.Fragment>
             <SearchContainer handleNavigation={this.handleNavigation}></SearchContainer>
@@ -74,14 +72,22 @@ class ReactJobViewContainer extends Component {
                 <Grid stackable>
                     <Grid.Row columns={2}>
                         <Grid.Column width={10}>
-                        <Segment basic>
-                            <Header as="h1">Results</Header>
+                        {
+                            error ? 
+                            <Segment color="red" stacked>
+                                <Header as="h3" content="Error"/>
+                                <p>{ message }</p>
+                            </Segment>
+                            : null
+                        }
+                        {
+                            loaded ?
+                            <Segment basic>
+                            <Header as="h1" content="Results"/>
+                            <p>We found { data.totalDocs } jobs matching your search</p>
                             <Divider></Divider>
                             { 
-                                proceed && 
-                                (!error) && 
-                                (data.data.docs.length > 0) ? 
-                                data.data.docs.map(item => (
+                                data.docs.map(item => (
                                     <Segment stacked key={ item._id }>
                                         <Header as="h3">
                                             { properCaseTransform(item.title) }
@@ -100,25 +106,22 @@ class ReactJobViewContainer extends Component {
                                             onClick={() => this.handleViewJob(item._id)}>
                                             <Icon name="eye"></Icon>view this job
                                         </Button>
-                                    </Segment>)) : 
-                                    <Segment>No results have been found.</Segment>
-                            }
-                        {
-                            data.data ? (
+                                    </Segment>)
+                                )}
+
                                 <Pagination
-                                    defaultActivePage={data.data.page}
+                                    defaultActivePage={data.page}
                                     ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                                     firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                     lastItem={{ content: <Icon name='angle double right' />, icon: true }}
                                     prevItem={{ content: <Icon name='angle left' />, icon: true }}
                                     nextItem={{ content: <Icon name='angle right' />, icon: true }}
-                                    totalPages={data.data.totalPages}
+                                    totalPages={data.totalPages}
                                     onPageChange={this.handlePageChange}
-                                />      
-                            ) : null
-                        }
-                        
+                                />
                         </Segment>
+                            : null
+                        }
                         </Grid.Column>
                         <Grid.Column width={6}>
                             <Message
