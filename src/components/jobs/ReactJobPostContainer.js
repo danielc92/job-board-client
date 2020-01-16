@@ -179,7 +179,6 @@ class ReactJobPostContainer extends Component {
             skill } = this.props;
 
         const locationOptions = locations.filter(item => item.search === searchQuery)
-        console.log('location', locationOptions)
 
         return (
           

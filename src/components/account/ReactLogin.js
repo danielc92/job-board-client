@@ -12,7 +12,8 @@ class ReactLogin extends Component {
     state = {
         email:"",
         password:"",
-        error: false
+        error: false,
+        passwordHidden: true,
     }
 
     handleInputChange = (e) => {
@@ -33,12 +34,16 @@ class ReactLogin extends Component {
         }  
     }
 
+    handleTogglePasswordView = (e) => {
+        e.preventDefault()
+        this.setState({ passwordHidden : !this.state.passwordHidden})
+    }
     componentDidMount () {
         this.props.propsSetMenuItem('login')
     }
 
     render() {
-        const { email, password, error }= this.state;
+        const { email, password, error, passwordHidden }= this.state;
 
         if (this.props.auth.isAuthenticated) {
             this.props.history.push('/')
@@ -66,9 +71,10 @@ class ReactLogin extends Component {
                                     icon="lock"
                                     iconPosition="left"
                                     onChange={this.handleInputChange}
-                                    type="password"
+                                    type={passwordHidden ? 'password' : 'text'}
                                     label="Password" 
                                     value={password}
+                                    action={{ icon: 'eye', onClick: this.handleTogglePasswordView}}
                                     placeholder="Enter password here..."
                                     name="password"/>
 

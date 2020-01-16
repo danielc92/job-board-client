@@ -44,12 +44,9 @@ class ReactProfileContainer extends Component {
                 </Container>
             </Segment>
         )
-
-        console.log(user_details, auth)
         
         if (user_details.length > 0) {
             const userDetails = user_details[0].data
-            console.log(userDetails)
             const { first_name, last_name, email, createdAt, updatedAt, is_employer } = userDetails;
             return (
                 <Segment basic>

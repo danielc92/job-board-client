@@ -15,7 +15,6 @@ export const createJob = (payload) => async (dispatch, getState) => {
         })
     } 
     catch (error) {
-        console.log(error)
         dispatch({
             type: "JOB_CREATE_FAILURE",
             payload: {
