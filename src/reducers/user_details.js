@@ -1,10 +1,10 @@
-export const userDetailsReducer = (state=[], action) => {
+export const userDetailsReducer = (state={ error: false, loaded: false}, action) => {
     const { type, payload } = action;
     switch(type) {
         case 'FETCH_USER_DETAIL_SUCCESS':
-            return [...state, payload]
+            return payload
         case 'FETCH_USER_DETAIL_FAILURE':
-            return [...state, payload]
+            return payload
         default:
             return state
     }

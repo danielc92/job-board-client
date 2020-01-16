@@ -11,8 +11,8 @@ export const getUserDetails = (search) => async (dispatch, getState) => {
             type: "FETCH_USER_DETAIL_SUCCESS",
             payload: {
                 data: response.data.results,
+                loaded: true,
                 error: false,
-                search,
             }
         })
     } catch (error) {
@@ -21,7 +21,6 @@ export const getUserDetails = (search) => async (dispatch, getState) => {
             payload: {
                 error: true,
                 message: handleApiError(error),
-                search,
             }
         })
     }

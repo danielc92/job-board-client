@@ -20,76 +20,72 @@ class ReactProfileContainer extends Component {
 
     componentDidUpdate(){
         const { auth, propsGetUserDetails, user_details } = this.props;
-        const exists = user_details.filter(item => item.search === auth.user._id)
-        if ((auth.isAuthenticated === true) && (exists.length === 0)) {
+        const { loaded, error } = user_details;
+        if (!loaded && !error) {
             propsGetUserDetails(auth.user._id)
         }
     }
 
     render() {
-        const { auth, user_details } = this.props;
-
-        if (!auth || !auth.isAuthenticated) return (
-            <Segment basic>
-                <Container>
-                    <VerticallyPaddedContainer size="4">
-                        <Header as="h1" content="Profile"/>
-                        <Divider/>
-                            <Message 
-                            warning
-                            header="Authentication required"
-                            content="You must be registered and logged in, to view your profile."
-                            >
-                            </Message>
-                    </VerticallyPaddedContainer>
-                </Container>
-            </Segment>
-        )
-        
-        if (user_details.length > 0) {
-            const userDetails = user_details[0].data
-            const { first_name, last_name, email, createdAt, is_employer } = userDetails;
-            return (
+        const { user_details } = this.props;
+        const { loaded, error, data, message, is_employer } = user_details;
+        return (
                 <Segment basic>
                     <Container>
                         <VerticallyPaddedContainer size="4">
                             <Header as="h1" content="Profile"/>
                             <Divider/>
-
-                            <Header as="h3" content="Personal Details"/>
-                            <Segment stacked padded color="green">
-                                <Grid divided='vertically'>
-                                    <Grid.Row columns={2}>
-                                        <Grid.Column>
-                                            <Header content="Name" as="h3"/>
-                                            <p>{ `${properCaseTransform(first_name)} ${properCaseTransform(last_name)}` }</p>
-                                            <Header content="Email" as="h3"/>
-                                            <p>{email}</p>
-                                        </Grid.Column>
-                                        <Grid.Column>
-                                            <Header content="Joined" as="h3"/>
-                                            {dateDiffString(createdAt)}
-                                            <Header content="Member Type" as="h3"/>
-                                            <Label color="green" content={is_employer ? 'employer' : 'job seeker'}/>
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </Grid>
-                            </Segment>
-                            {
-                                (!is_employer) ?
-                                <Seeker/>
-                                : null
-                            }
-                            
-                        </VerticallyPaddedContainer>
+                {
+                    !loaded && !error ? 
+                    <Segment stacked color="blue">
+                        <Header as="h3" content="Loading"/>
+                        <p>Please wait while we load your profile</p>    
+                    </Segment>
+                    : null
+                }
+                { 
+                    error ? 
+                    <Segment stacked color="red">
+                        <Header as="h3" content="Error"/>
+                        <p>{message}</p>    
+                    </Segment>
+                    : null }
+                { 
+                    loaded ?
+                    <React.Fragment>
+                        <Header as="h3" content="Personal Details"/>
+                        <Segment stacked padded color="green">
+                            <Grid divided='vertically'>
+                                <Grid.Row columns={2}>
+                                    <Grid.Column>
+                                        <Header content="Name" as="h3"/>
+                                        <p>{ `${properCaseTransform(data.first_name)} ${properCaseTransform(data.last_name)}` }</p>
+                                        <Header content="Email" as="h3"/>
+                                        <p>{data.email}</p>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        <Header content="Joined" as="h3"/>
+                                        {dateDiffString(data.createdAt)}
+                                        <Header content="Member Type" as="h3"/>
+                                        <Label color="green" content={is_employer ? 'employer' : 'job seeker'}/>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Segment>
+                        {
+                            (!is_employer) ?
+                            <Seeker/>
+                            : null
+                        }
+                    </React.Fragment>
+                    : null
+                }
+                 
+                 </VerticallyPaddedContainer>
                     </Container>
-    
-                </Segment>
+                </Segment> 
             )
         }
-
-        return <div>nothing here</div>
-    }
 }
 
 const mapStateToProps = (state) => {
