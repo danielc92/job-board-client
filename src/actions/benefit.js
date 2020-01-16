@@ -25,7 +25,6 @@ export const getBenefits = () => async (dispatch, getState) => {
         })
     }
     catch(error) {
-        console.log(error)
         dispatch({
             type: "GET_BENEFIT_FAILURE",
             payload: {

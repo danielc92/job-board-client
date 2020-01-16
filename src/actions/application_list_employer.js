@@ -7,7 +7,6 @@ export const getApplicationEmployerList = (query) => async (dispatch, getState) 
         const token = localStorage.getItem(TOKEN_NAME)
         const config = { headers: { 'x-access-token' : token } }
         const url = `application/list/employer?job_id=${job_id}`
-        console.log(url, config)
         const response = await jobApi.get(url, config)
         dispatch({
             type: "GET_APPLICATION_LIST_EMPLOYER_SUCCESS",
