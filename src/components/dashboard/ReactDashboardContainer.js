@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
-import { Segment, Container, Message } from 'semantic-ui-react';
+import { Segment, Container, Header, Divider, Message } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Employer from './users/employer/Employer';
 import Seeker from './users/seeker/Seeker'
@@ -21,12 +21,17 @@ class ReactDashboardContainer extends Component {
                         {/* Handle Auth, then Employer/Seeker case */}
                         {
                             !auth.isAuthenticated ? 
-                            <Message 
-                            warning
-                            header="Authentication required"
-                            content="You need to be logged in, in order to view your dashboard."/>
-                            : auth.user.is_employer ? 
-                            <Employer/>: 
+                            <React.Fragment>
+                                <Header as="h1" content="Dashboard"/>
+                                <Divider/>
+                                <Message 
+                                warning
+                                header="Authentication required"
+                                content="You need to be logged in, in order to view your dashboard."/>
+                                </React.Fragment>
+                                 : auth.user.is_employer ? 
+                                <Employer/>
+                           : 
                             <Seeker/>
                         }
                     </VerticallyPaddedContainer>
