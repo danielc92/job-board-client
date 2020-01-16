@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Container, Grid, Label, Message, Segment, Divider } from 'semantic-ui-react';
+import { Header, Container, Grid, Label, Loader, Dimmer, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux'; 
 import { dateDiffString, properCaseTransform } from '../../helpers/generic';
 import { setMenuItem } from '../../actions/menu'; 
@@ -37,9 +37,10 @@ class ReactProfileContainer extends Component {
                             <Divider/>
                 {
                     !loaded && !error ? 
-                    <Segment stacked color="blue">
-                        <Header as="h3" content="Loading"/>
-                        <p>Please wait while we load your profile</p>    
+                    <Segment style={{height: '300px'}}>
+                        <Dimmer active inverted>
+                        <Loader size='large'>Loading</Loader>
+                        </Dimmer>
                     </Segment>
                     : null
                 }
