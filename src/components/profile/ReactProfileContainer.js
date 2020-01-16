@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header, Container, Grid, Label, Loader, Dimmer, Segment, Divider } from 'semantic-ui-react';
+import { Header, Container, Grid, Label, Message, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux'; 
 import { dateDiffString, properCaseTransform } from '../../helpers/generic';
 import { setMenuItem } from '../../actions/menu'; 
@@ -7,6 +7,7 @@ import { getUserDetails } from '../../actions/user_details';
 import { loginRefresh } from '../../actions/auth';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import Seeker from './Seeker';
+import ResusableLoader from '../placeholder/ResusableLoader';
 
 class ReactProfileContainer extends Component {
     
@@ -27,22 +28,35 @@ class ReactProfileContainer extends Component {
     }
 
     render() {
-        const { user_details } = this.props;
+        const { user_details, auth } = this.props;
         const { loaded, error, data, message, is_employer } = user_details;
+        if(!auth.isAuthenticated) {
+            return (
+                <Segment basic>
+                <Container>
+                    <VerticallyPaddedContainer size="4">
+                        <Header as="h1" content="Profile"/>
+                        <Divider/><Message 
+            warning
+            header="Authentication required"
+            content="You need to be logged in, in order to view your profile."/>
+            </VerticallyPaddedContainer></Container></Segment>
+        )
+        } 
         return (
                 <Segment basic>
                     <Container>
                         <VerticallyPaddedContainer size="4">
                             <Header as="h1" content="Profile"/>
                             <Divider/>
+                { 
+                   
+                } 
                 {
                     !loaded && !error ? 
-                    <Segment style={{height: '300px'}}>
-                        <Dimmer active inverted>
-                        <Loader size='large'>Loading</Loader>
-                        </Dimmer>
-                    </Segment>
+                    <ResusableLoader/>
                     : null
+                    
                 }
                 { 
                     error ? 
