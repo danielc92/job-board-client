@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Container, Grid, Label, Message, Segment, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux'; 
+import { dateDiffString, properCaseTransform } from '../../helpers/generic';
 import { setMenuItem } from '../../actions/menu'; 
 import { getUserDetails } from '../../actions/user_details';
 import { loginRefresh } from '../../actions/auth';
@@ -47,7 +48,7 @@ class ReactProfileContainer extends Component {
         
         if (user_details.length > 0) {
             const userDetails = user_details[0].data
-            const { first_name, last_name, email, createdAt, updatedAt, is_employer } = userDetails;
+            const { first_name, last_name, email, createdAt, is_employer } = userDetails;
             return (
                 <Segment basic>
                     <Container>
@@ -60,18 +61,14 @@ class ReactProfileContainer extends Component {
                                 <Grid divided='vertically'>
                                     <Grid.Row columns={2}>
                                         <Grid.Column>
-                                            <Header content="First Name" as="h3"/>
-                                            <p>{first_name}</p>
-                                            <Header content="Last Name" as="h3"/>
-                                            <p>{last_name}</p>
+                                            <Header content="Name" as="h3"/>
+                                            <p>{ `${properCaseTransform(first_name)} ${properCaseTransform(last_name)}` }</p>
                                             <Header content="Email" as="h3"/>
                                             <p>{email}</p>
                                         </Grid.Column>
                                         <Grid.Column>
                                             <Header content="Joined" as="h3"/>
-                                            {createdAt}
-                                            <Header content="Last Updated" as="h3"/>
-                                            {updatedAt}
+                                            {dateDiffString(createdAt)}
                                             <Header content="Member Type" as="h3"/>
                                             <Label color="green" content={is_employer ? 'employer' : 'job seeker'}/>
                                         </Grid.Column>
