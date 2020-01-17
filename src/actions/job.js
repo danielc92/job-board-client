@@ -38,7 +38,6 @@ export const getJob = (id) => async (dispatch, getState) => {
         const token = localStorage.getItem(TOKEN_NAME)
         const config = { headers: { 'x-access-token' : token } }
         const response = await jobApi.get(`job?id=${id}`, null, config)
-        console.log(response)
         dispatch({
             type: "JOB_FETCH_SUCCESS",
             payload: {
@@ -48,7 +47,6 @@ export const getJob = (id) => async (dispatch, getState) => {
         })
     } 
     catch (error) {
-        console.log(error)
         dispatch({
             type: "JOB_FETCH_FAILURE",
             payload: {

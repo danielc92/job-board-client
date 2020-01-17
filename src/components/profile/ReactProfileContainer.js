@@ -3,7 +3,7 @@ import { Header, Container, Grid, Label, Message, Segment, Divider } from 'seman
 import { connect } from 'react-redux'; 
 import { dateDiffString, properCaseTransform } from '../../helpers/generic';
 import { setMenuItem } from '../../actions/menu'; 
-import { getUserDetails } from '../../actions/user_details';
+import { getUserDetails } from '../../actions/profile';
 import { loginRefresh } from '../../actions/auth';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import Seeker from './Seeker';
@@ -20,16 +20,16 @@ class ReactProfileContainer extends Component {
     }
 
     componentDidUpdate(){
-        const { auth, propsGetUserDetails, user_details } = this.props;
-        const { loaded, error } = user_details;
+        const { auth, propsGetUserDetails, profile } = this.props;
+        const { loaded, error } = profile;
         if (!loaded && !error) {
             propsGetUserDetails(auth.user._id)
         }
     }
 
     render() {
-        const { user_details, auth } = this.props;
-        const { loaded, error, data, message, is_employer } = user_details;
+        const { profile, auth } = this.props;
+        const { loaded, error, data, message, is_employer } = profile;
         if(!auth.isAuthenticated) {
             return (
                 <Segment basic>
@@ -104,9 +104,9 @@ class ReactProfileContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { user_details, auth } = state; 
+    const { profile, auth } = state; 
     return {
-        user_details,
+        profile,
         auth,
     }
 }

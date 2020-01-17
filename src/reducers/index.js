@@ -14,7 +14,7 @@ import { menuReducer } from './menu';
 import { registerReducer } from './register';
 import { skillReducer } from './skills';
 import { themeReducer } from './theme';
-import { userDetailsReducer } from './user_details';
+import { profileReducer } from './profile';
 import { jobStatusUpdateReducer } from './jobs/job_status_update';
 import { applicationListEmployerReducer } from './applications/application_list_employer';
 
@@ -37,6 +37,6 @@ export const rootReducer = combineReducers({
     register: registerReducer,
     skill: skillReducer,
     theme: themeReducer,
-    user_details: userDetailsReducer,
+    profile: profileReducer,
 })
 

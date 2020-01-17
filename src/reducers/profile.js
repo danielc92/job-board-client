@@ -1,4 +1,4 @@
-export const userDetailsReducer = (state={ error: false, loaded: false}, action) => {
+export const profileReducer = (state={ error: false, loaded: false}, action) => {
     const { type, payload } = action;
     switch(type) {
         case 'FETCH_USER_DETAIL_SUCCESS':
