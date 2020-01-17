@@ -18,7 +18,7 @@ class Seeker extends Component {
 
         const { data, error } = this.props.application_list;
         if ((data.length === 0) && (!error)) {
-            this.props.propsGetApplicationList(query)
+            this.props.propsGetApplicationList()
         }
     }
 
@@ -34,14 +34,22 @@ class Seeker extends Component {
 
     render() {
         const { application_list, application_update } = this.props;
-        const { data } = application_list;
+        const { data, message } = application_list;
         const { flag, error } = application_update;
 
         return (
             <React.Fragment>
                 <Header as="h1" content="Your applications"/>
                 <Divider/>
+                {
+                    application_list.error ? 
+                    <Segment color="red" stacked >
+                        <Header as="h3" content="Error"/>
+                        <p>{message}</p>
+                    </Segment> : null
+                }
                 <Segment stacked padded>
+                   
                     { 
                         data.length > 0 && !application_list.error ? 
                         <Table striped celled>
