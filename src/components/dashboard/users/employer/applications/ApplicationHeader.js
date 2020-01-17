@@ -7,6 +7,7 @@ export default class ApplicationHeader extends Component {
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell content="Name"/>
+                    <Table.HeaderCell content="Status"/>
                     <Table.HeaderCell content="Applied"/>
                     <Table.HeaderCell content="Action"/>
                 </Table.Row>

@@ -63,19 +63,16 @@ class ReactDashboardApplicationContainer extends Component {
                         <p>{ application_list_employer.message }</p>
                         </Segment>
                         :
-                        <Segment color="green" stacked>
+                        data.length > 0 ?
                             <Table celled striped>
                                 <ApplicationHeader/>
                                 <Table.Body>
                                     {
                                         data.map(x => {
-                                            return (
-                                                <Table.Row>
-                                                    <Table.Cell 
-                                                        content={`${properCaseTransform(x.applicant_id.first_name)} ${properCaseTransform(x.applicant_id.last_name)}`} />
-                                                    <Table.Cell>
-                                                        { dateDiffString(x.createdAt)}
-                                                    </Table.Cell>
+                                        return (<Table.Row>
+                                                    <Table.Cell content={`${properCaseTransform(x.applicant_id.first_name)} ${properCaseTransform(x.applicant_id.last_name)}`} />
+                                                    <Table.Cell content={x.status}/>
+                                                    <Table.Cell content={ dateDiffString(x.createdAt)}/>
                                                     <Table.Cell>
                                                         <Button 
                                                         compact 
@@ -83,12 +80,13 @@ class ReactDashboardApplicationContainer extends Component {
                                                         color="violet">
                                                             <Icon name="eye"/>view application</Button>
                                                     </Table.Cell>
-                                                </Table.Row>
-                                            )
-                                        })
+                                                </Table.Row>)})
                                     }
                                 </Table.Body>
                             </Table>
+                        : 
+                        <Segment color="green" stacked padded>
+                            There is currently no applications for this job.
                         </Segment>
                     }
                     
