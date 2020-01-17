@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { getApplicationList } from '../../../../actions/application_list';
 import { updateApplicationStatus, resetApplicationUpdate } from '../../../../actions/application';
-import { dateDiffString } from '../../../../helpers/generic';
+import { dateDiffString, properCaseTransform } from '../../../../helpers/generic';
 import SeekerTableHeader from './SeekerTableHeader';
 
 class Seeker extends Component {
@@ -55,7 +55,7 @@ class Seeker extends Component {
                                     data.map(item => {
                                         return (
                                         <Table.Row>
-                                            <Table.Cell>{ item.job_id.title }</Table.Cell>
+                                            <Table.Cell>{ properCaseTransform(item.job_id.title) }</Table.Cell>
                                             <Table.Cell><Label>{ item.status }</Label></Table.Cell>
                                             <Table.Cell>{ dateDiffString(item.createdAt) }</Table.Cell>
                                             <Table.Cell>

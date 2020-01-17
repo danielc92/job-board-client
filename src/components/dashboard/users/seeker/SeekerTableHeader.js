@@ -8,8 +8,7 @@ export default class SeekerTableHeader extends Component {
                     <Table.HeaderCell content="Title"/>
                     <Table.HeaderCell content="Status"/>
                     <Table.HeaderCell content="Applied"/>
-                    <Table.HeaderCell content="Withdraw"/>
-                    <Table.HeaderCell content="View"/>
+                    <Table.HeaderCell content="Actions" colSpan="2"/>
                 </Table.Row>
             </Table.Header>
         )
