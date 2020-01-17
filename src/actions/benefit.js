@@ -8,7 +8,7 @@ export const getBenefits = () => async (dispatch, getState) => {
     const token = localStorage.getItem(TOKEN_NAME)
 
     try {
-        const response = await jobApi.get('benefit', 
+        const response = await jobApi.get('benefit/list', 
         { headers : {'x-access-token' : token }})
 
         // Data needs to be transformed to meet structure from Semantic's <Dropdown>
