@@ -3,7 +3,7 @@ import { handleApiError } from '../helpers/api';
 
 export const getLocationList = (search) => async (dispatch, getState) => {
     try {   
-        const url = `location?search=${search}`
+        const url = `location/list?search=${search}`
         const response = await jobApi.get(url)
         
         // Transform locations for semantic component

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Segment, Container, Header, Form, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { getCategories } from '../../actions/category';
 import { getLocationList } from '../../actions/location';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
@@ -9,6 +10,7 @@ class SearchContainer extends Component {
     state = {
         title: '',
         location_string: '',
+        category: '',
         searchQuery: '',
     }
 
@@ -32,19 +34,22 @@ class SearchContainer extends Component {
     }
 
     handleDropDownChange = (e, data) => {
-        const { location_string } = data.value;
-        this.setState({ location_string})
+        this.setState({ [data.name]: data.value})
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { title, location_string } = this.state;
-        this.props.handleNavigation({ title, location_string });
+        const { title, location_string, category } = this.state;
+        this.props.handleNavigation({ title, location_string, category });
+    }
+
+    componentDidMount() {
+        this.props.propsGetCategories()
     }
 
     render() {
         const { title, searchQuery } = this.state;
-        const { locations } = this.props;
+        const { locations, category } = this.props;
         const locationOptions = locations.filter(item => item.search === searchQuery)
         return (
             <Segment basic>
@@ -71,7 +76,16 @@ class SearchContainer extends Component {
                                 search
                                 selection
                                 selectOnNavigation={false}
-                                name="where"
+                                name="location_string"
+                            />
+                            <Form.Dropdown
+                                onChange={this.handleDropDownChange}
+                                name="category"
+                                label="Category"
+                                placeholder="Select category"
+                                selection
+                                search
+                                options={category ? category.data : []}
                             />
                             
                         </Form.Group>
@@ -92,10 +106,12 @@ class SearchContainer extends Component {
 const mapStateToProps = state => {
     return {
         locations: state.locationList,
+        category: state.category
     }
 }
 
 const mapDispatchToProps = {
-    propsGetLocations: getLocationList
+    propsGetLocations: getLocationList,
+    propsGetCategories: getCategories,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
