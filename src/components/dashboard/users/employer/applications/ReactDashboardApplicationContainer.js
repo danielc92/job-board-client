@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { queryStringToObjectParser } from '../../../../../helpers/query';
 import { dateDiffString, properCaseTransform } from '../../../../../helpers/generic'
 import { getApplicationEmployerList } from '../../../../../actions/application_list_employer'
+import { updateApplicationStatus } from '../../../../../actions/application'
 import { connect } from 'react-redux';
 import {compose} from 'redux'
 import { withRouter } from 'react-router-dom'
@@ -28,6 +29,17 @@ class ReactDashboardApplicationContainer extends Component {
 
     handleCloseModal = () => {
         this.setState({ modalShow: false })
+    }
+
+    handleApplicationStatusChange = (status) => {
+        const { modalContent } = this.state;
+        const { job_id, applicant_id } = modalContent;
+        const payload = {
+            status,
+            job_id,
+            applicant_id: applicant_id._id
+        }
+        this.props.propsUpdateApplicationStatus(payload)
     }
 
     render() {
@@ -106,9 +118,10 @@ class ReactDashboardApplicationContainer extends Component {
                             <Button
                             color='green'
                             content="I'm interested"
+                            onClick={()=> this.handleApplicationStatusChange('interested')}
                             />
                             <Button
-                            onClick={this.handleCloseModal} 
+                            onClick={()=> this.handleApplicationStatusChange('rejected')} 
                             color='red'
                             content="I'm not interested"/>
                         </Modal.Actions>
@@ -128,7 +141,8 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = {
-    propsGetApplicationEmployerList: getApplicationEmployerList
+    propsGetApplicationEmployerList: getApplicationEmployerList,
+    propsUpdateApplicationStatus: updateApplicationStatus,
 }
 
 export default compose(
