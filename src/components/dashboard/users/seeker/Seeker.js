@@ -46,13 +46,9 @@ class Seeker extends Component {
                     <Segment color="red" stacked >
                         <Header as="h3" content="Error"/>
                         <p>{message}</p>
-                    </Segment> : null
-                }
-                <Segment stacked padded>
-                   
-                    { 
-                        data.length > 0 && !application_list.error ? 
-                        <Table striped celled>
+                    </Segment> :
+                    data.length > 0 && !application_list.error ? 
+                    <Table striped celled>
                             <SeekerTableHeader/>
                             <Table.Body>
                                 {
@@ -87,12 +83,12 @@ class Seeker extends Component {
                                         )
                                     })
                                 }
-                                
                             </Table.Body>
-                        </Table>: 
-                        'You have no job applications'
-                    }
-                </Segment>
+                        </Table>:
+                        <Segment stacked padded>
+                        <p>You have no applications yet.</p>
+                        </Segment>
+                }
                 <Modal
                 open={ flag && !error}
                 dimmer="blurring"

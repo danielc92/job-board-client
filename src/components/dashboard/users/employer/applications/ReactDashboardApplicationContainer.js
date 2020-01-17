@@ -8,6 +8,7 @@ import {compose} from 'redux'
 import { withRouter } from 'react-router-dom'
 import { Container, Segment, Modal, Label, Divider, Icon, Button, Table, Header } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer';
+import ApplicationHeader from './ApplicationHeader';
 class ReactDashboardApplicationContainer extends Component {
 
     state = {
@@ -40,6 +41,7 @@ class ReactDashboardApplicationContainer extends Component {
             applicant_id: applicant_id._id
         }
         this.props.propsUpdateApplicationStatus(payload)
+        this.setState({ modalShow: false })
     }
 
     render() {
@@ -51,7 +53,8 @@ class ReactDashboardApplicationContainer extends Component {
                 <Segment basic>
                 <Container>
                     <VerticallyPaddedContainer size="4">
-                    <Header as="h1" content="Applications for this job"/>
+                    <Header as="h1" content={`Applications`}/>
+        <p>Review and update statuses for your <Label size="tiny">{ properCaseTransform(this.props.history.location.state.jobTitle) }</Label> applications.</p>
                     <Divider/>
                     {
                         error ?
@@ -62,13 +65,7 @@ class ReactDashboardApplicationContainer extends Component {
                         :
                         <Segment color="green" stacked>
                             <Table celled striped>
-                                <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell content="Name"/>
-                                        <Table.HeaderCell content="Applied"/>
-                                        <Table.HeaderCell content="Action"/>
-                                    </Table.Row>
-                                </Table.Header>
+                                <ApplicationHeader/>
                                 <Table.Body>
                                     {
                                         data.map(x => {

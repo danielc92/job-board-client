@@ -48,10 +48,11 @@ class Employer extends Component {
         this.props.propsgetJobListForEmployer(queryObject)
     }
 
-    handleNavigateApplications = (id) => {
+    handleNavigateApplications = (id, jobTitle) => {
         this.props.history.push({
             pathname: '/dashboard/applications',
-            search: `?job_id=${id}`
+            search: `?job_id=${id}`,
+            state: { jobTitle }
         })
     }
 
@@ -103,7 +104,7 @@ class Employer extends Component {
                                             {dateDiffString(item.createdAt)}
                                         </Table.Cell>
                                         <Table.Cell>
-                                            <Button compact content="view applications" color="violet" onClick={()=>this.handleNavigateApplications(item._id)}/>
+                                            <Button compact content="view applications" color="violet" onClick={()=>this.handleNavigateApplications(item._id, item.title)}/>
                                         </Table.Cell>
                                         <Table.Cell>
                                             <Button compact disabled={!item.open} content="close this job" color="red" onClick={()=>this.handleCloseJob({ job_id: item._id, creator_id: auth.user._id})}/>
