@@ -17,6 +17,7 @@ import { themeReducer } from './theme';
 import { profileReducer } from './profile';
 import { jobStatusUpdateReducer } from './jobs/job_status_update';
 import { applicationListEmployerReducer } from './applications/application_list_employer';
+import { careerProfileReducer } from './career_profile';
 
 
 export const rootReducer = combineReducers({
@@ -26,6 +27,7 @@ export const rootReducer = combineReducers({
     application_list_employer: applicationListEmployerReducer,
     auth: authReducer,
     benefit: benefitReducer,
+    career_profile: careerProfileReducer,
     category: categoryReducer,
     job: jobReducer,
     jobDetails: jobDetailReducer,
