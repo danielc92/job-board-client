@@ -16,13 +16,12 @@ import { setMenuItem } from '../../actions/menu';
 import { getJobList } from '../../actions/job_list_seeker';
 import { properCaseTransform } from '../../helpers/generic';
 import SearchContainer from './SearchContainer';
-import { queryStringToObjectParser, objectToQueryStringParser } from '../../helpers/query';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 class ReactJobViewContainer extends Component {
 
     componentDidMount() {
         this.props.propsSetMenuItem('find');
-        this.props.propsGetJobList({});
+        this.props.propsGetJobList({ ...this.props.history.location.state});
     }
 
     // handleNavigation = (object) => {
@@ -39,7 +38,7 @@ class ReactJobViewContainer extends Component {
         const { activePage } = data;
         history.push({
             pathname: '/view-jobs',
-            state: { ...this.props.location.state, page: activePage},
+            state: { ...this.props.history.location.state, page: activePage},
         })
     }
 
@@ -52,12 +51,14 @@ class ReactJobViewContainer extends Component {
     }
 
     componentWillReceiveProps(){
+        console.log('location', this.props.location.state)
+        console.log('history', this.props.history.location.state)
         try {
             if ((this.props.history.location.state.title !== this.props.location.state.title) ||
             (this.props.history.location.state.page !== this.props.location.state.page)||
             (this.props.history.location.state.category !== this.props.location.state.category)||
             (this.props.history.location.state.location_string !== this.props.location.state.location_string)){
-                this.props.propsGetJobList({...this.props.location.state});
+                this.props.propsGetJobList({...this.props.history.location.state});
             }
         } catch (error) { 
             console.error(error)

@@ -1,7 +1,5 @@
 import jobApi from '../api';
 import { handleApiError } from '../helpers/api';
-import { properCaseTransform } from '../helpers/generic';
-
 
 export const getCategories = () => async (dispatch, getState) => {
     
@@ -10,7 +8,7 @@ export const getCategories = () => async (dispatch, getState) => {
 
         // Data needs to be transformed to meet structure from Semantic's <Dropdown>
         const data = response.data.map(record => ({
-            text: properCaseTransform(record.name),
+            text: record.name,
             value: record.name,
             key: record._id
         }))

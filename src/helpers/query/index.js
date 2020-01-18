@@ -1,11 +1,17 @@
 export const objectToQueryStringParser = (queryObject) => {
     let queryString = '';
     const entries = queryObject ? Object.entries(queryObject) : null;
-    for (let i = 0; i < entries.length; i ++ ) {
+    const filtered_entries = entries.filter(set => String(set[1]).trim().toLowerCase().length !== 0)
+    for (let i = 0; i < filtered_entries.length; i ++ ) {
         
         let prefix = (i === 0) ? '?' : '&'
-        let key = entries[i][0]
-        let value = String(entries[i][1])
+        
+        let key = String(filtered_entries[i][0])
+        let value = String(filtered_entries[i][1])
+
+        console.log(prefix, key, value)
+
+
         if (value.length > 0) {
             queryString += `${prefix}${key}=${value}`
         }
