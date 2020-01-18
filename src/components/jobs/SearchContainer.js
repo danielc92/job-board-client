@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Segment, Container, Header, Form, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import {compose} from 'redux'
+import { withRouter } from 'react-router'
 import { getCategories } from '../../actions/category';
+import { getJobList } from '../../actions/job_list_seeker';
 import { getLocationList } from '../../actions/location';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 
@@ -40,7 +43,14 @@ class SearchContainer extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const { title, location_string, category } = this.state;
-        this.props.handleNavigation({ title, location_string, category });
+        this.props.history.push({
+            pathname: '/view-jobs',
+            state: {
+                title,
+                location_string,
+                category,
+            }
+        })
     }
 
     componentDidMount() {
@@ -113,5 +123,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     propsGetLocations: getLocationList,
     propsGetCategories: getCategories,
+    propsGetJobList: getJobList,
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer)
+export default compose(
+    withRouter,
+    connect(mapStateToProps, mapDispatchToProps)
+)(SearchContainer);

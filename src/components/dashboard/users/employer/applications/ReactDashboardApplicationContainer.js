@@ -5,7 +5,7 @@ import { getApplicationEmployerList } from '../../../../../actions/application_l
 import { updateApplicationStatus } from '../../../../../actions/application'
 import { connect } from 'react-redux';
 import {compose} from 'redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import { Container, Segment, Modal, Label, Divider, Icon, Button, Table, Header } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer';
 import ApplicationHeader from './ApplicationHeader';

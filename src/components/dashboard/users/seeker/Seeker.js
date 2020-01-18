@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import { Header, Label, Modal, Segment, Icon, Divider, Button, Table} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';

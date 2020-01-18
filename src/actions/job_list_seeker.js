@@ -4,8 +4,7 @@ import { handleApiError } from '../helpers/api';
 
 export const getJobList = (object) => async (dispatch, getState) => {
     try {
-        let queryString = object ? objectToQueryStringParser(object) : '';
-
+        const queryString = objectToQueryStringParser(object)
         const response = await jobApi.get(`job/list${queryString}`)
         dispatch({
             type: "GET_JOB_LIST_SUCCESS",

@@ -21,23 +21,26 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 class ReactJobViewContainer extends Component {
 
     componentDidMount() {
-        // Check for query strings (placeholder)
-        const { search } = this.props.location;
-        const queryObject = queryStringToObjectParser(search)
-
-        // Retrieve jobs
         this.props.propsSetMenuItem('find');
-        this.props.propsGetJobList(queryObject);
+        this.props.propsGetJobList({});
     }
 
-    handleNavigation = (object) => {
+    // handleNavigation = (object) => {
+    //     const { history } = this.props;
+    //     const search = objectToQueryStringParser(object);
+    //     history.push({
+    //         pathname: '/view-jobs',
+    //         search
+    //     });
+    // }
+
+    handlePageChange = (event, data) => {
         const { history } = this.props;
-        const search = objectToQueryStringParser(object);
-        
+        const { activePage } = data;
         history.push({
             pathname: '/view-jobs',
-            search
-        });
+            state: { ...this.props.location.state, page: activePage},
+        })
     }
 
     handleViewJob = (id) => {
@@ -48,25 +51,24 @@ class ReactJobViewContainer extends Component {
         })
     }
 
-    handlePageChange = (event, data) => {
-        const { location, history } = this.props;
-        const { activePage } = data;
-       
-        let currentQueryString = location.search; 
-        let queryObject = queryStringToObjectParser(currentQueryString);
-        queryObject = { ...queryObject, page: activePage }
-        const search = objectToQueryStringParser(queryObject);
-        history.push({
-            pathname: '/view-jobs',
-            search,
-        })
+    componentWillReceiveProps(){
+        try {
+            if ((this.props.history.location.state.title !== this.props.location.state.title) ||
+            (this.props.history.location.state.page !== this.props.location.state.page)||
+            (this.props.history.location.state.category !== this.props.location.state.category)||
+            (this.props.history.location.state.location_string !== this.props.location.state.location_string)){
+                this.props.propsGetJobList({...this.props.location.state});
+            }
+        } catch (error) { 
+            console.error(error)
+        }
     }
 
     render() {
         const { data, error, loaded, message } = this.props.jobList;
         return (
             <React.Fragment>
-            <SearchContainer handleNavigation={this.handleNavigation}></SearchContainer>
+            <SearchContainer/>
             <Container>
                 <VerticallyPaddedContainer size="4">
                 <Grid stackable>
