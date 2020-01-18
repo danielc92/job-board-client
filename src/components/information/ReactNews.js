@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Button, Container, Label,  Divider, Header} from 'semantic-ui-react';
+import { Segment, Container, Label,  Divider, Header} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { setMenuItem } from '../../actions/menu';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';

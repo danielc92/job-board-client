@@ -16,7 +16,7 @@ const store = createStore(rootReducer, /* preloaded state, */ composeEnhancers(
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter forceRefresh={true}>
+        <BrowserRouter forceRefresh={false}>
             <App/>
         </BrowserRouter>
     </Provider>

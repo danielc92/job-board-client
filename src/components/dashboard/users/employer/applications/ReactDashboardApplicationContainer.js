@@ -54,7 +54,7 @@ class ReactDashboardApplicationContainer extends Component {
                 <Container>
                     <VerticallyPaddedContainer size="4">
                     <Header as="h1" content={`Applications`}/>
-        <p>Review and update statuses for your <Label size="tiny">{ properCaseTransform(this.props.history.location.state.jobTitle) }</Label> applications.</p>
+                    <p>Review and update statuses for your <Label size="tiny">{ properCaseTransform(this.props.history.location.state.jobTitle) }</Label> applications.</p>
                     <Divider/>
                     {
                         error ?

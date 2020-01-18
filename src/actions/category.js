@@ -1,5 +1,4 @@
 import jobApi from '../api';
-import { TOKEN_NAME } from '../constants/index';
 import { handleApiError } from '../helpers/api';
 import { properCaseTransform } from '../helpers/generic';
 

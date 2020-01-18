@@ -11,11 +11,6 @@ import SeekerTableHeader from './SeekerTableHeader';
 class Seeker extends Component {
 
     componentDidMount() {
-        const { auth } = this.props;
-        const query = {
-            applicant_id: auth.user._id
-        }
-
         const { data, error } = this.props.application_list;
         if ((data.length === 0) && (!error)) {
             this.props.propsGetApplicationList()

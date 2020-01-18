@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Message, TextArea, Header, Modal, Container,Button, Label, Form } from 'semantic-ui-react';
+import { Segment, Header, Modal, Container,Button, Label, Form } from 'semantic-ui-react';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import { queryStringToObjectParser } from '../../helpers/query';
 import { getJob } from '../../actions/job';

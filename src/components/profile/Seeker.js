@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Button, Segment, Input, Form, TextArea } from 'semantic-ui-react';
+import { Header, Button, Segment, Form, TextArea } from 'semantic-ui-react';
 import { getCareerProfile, updateCareerProfile } from '../../actions/career_profile'
 import { connect } from 'react-redux';
 
