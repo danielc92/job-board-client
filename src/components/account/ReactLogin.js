@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Form, Image, Segment, Message, Container, Header, Grid } from 'semantic-ui-react';
+import { Form, Image, Segment, Message, Container, Button, Icon, Header, Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 import { setMenuItem } from '../../actions/menu';
 import loginImage from '../../images/undraw_Login_v483.svg';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
-
+import './ReactLogin.css';
 
 class ReactLogin extends Component {
     
@@ -35,7 +35,7 @@ class ReactLogin extends Component {
     }
 
     handleTogglePasswordView = (e) => {
-        e.preventDefault()
+        console.log(e)
         this.setState({ passwordHidden : !this.state.passwordHidden})
     }
     componentDidMount () {
@@ -67,6 +67,7 @@ class ReactLogin extends Component {
                                     label="Email" 
                                     value={email}
                                     name="email"/>
+
                                 <Form.Input 
                                     icon="lock"
                                     iconPosition="left"
@@ -74,10 +75,14 @@ class ReactLogin extends Component {
                                     type={passwordHidden ? 'password' : 'text'}
                                     label="Password" 
                                     value={password}
-                                    action={{ icon: 'eye', onClick: this.handleTogglePasswordView}}
                                     placeholder="Enter password here..."
                                     name="password"/>
-
+                                
+                                <Form.Radio
+                                label={passwordHidden ? 'Show password' : 'Hide password'}
+                                toggle
+                                onChange={this.handleTogglePasswordView}/>
+                                
                                 <Message
                                 visible={error}
                                 warning
