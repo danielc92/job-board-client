@@ -47,7 +47,7 @@ class SearchContainer extends Component {
             pathname: '/view-jobs',
             state: {
                 title,
-                location_string,
+                location_string: location_string.location_string,
                 category,
             }
         })

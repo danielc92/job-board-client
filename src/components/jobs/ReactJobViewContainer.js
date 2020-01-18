@@ -22,16 +22,7 @@ class ReactJobViewContainer extends Component {
     componentDidMount() {
         this.props.propsSetMenuItem('find');
         this.props.propsGetJobList({ ...this.props.history.location.state});
-    }
-
-    // handleNavigation = (object) => {
-    //     const { history } = this.props;
-    //     const search = objectToQueryStringParser(object);
-    //     history.push({
-    //         pathname: '/view-jobs',
-    //         search
-    //     });
-    // }
+    }a
 
     handlePageChange = (event, data) => {
         const { history } = this.props;
