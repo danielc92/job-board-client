@@ -3,7 +3,7 @@ import { Form, Image, Segment, Message, Container, Button, Icon, Header, Grid } 
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 import { setMenuItem } from '../../actions/menu';
-import loginImage from '../../images/undraw_Login_v483.svg';
+import loginImage from '../../images/undraw_fingerprint_swrc.png';
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer';
 import './ReactLogin.css';
 
@@ -106,7 +106,7 @@ class ReactLogin extends Component {
                         <Grid.Column
                         verticalAlign="middle">
                             <Image 
-                            style={{ maxWidth: '200px'}}
+                            style={{ maxWidth: '350px'}}
                             centered
                             fluid
                             src={loginImage}></Image>
