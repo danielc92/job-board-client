@@ -66,6 +66,7 @@ class ReactJobViewContainer extends Component {
 
     render() {
         const { data, error, loaded, message } = this.props.jobList;
+        const { state } = this.props.history.location;
         console.log(data, 'PAGE DATA')
         return (
             <React.Fragment>
@@ -88,20 +89,25 @@ class ReactJobViewContainer extends Component {
                             <Segment basic>
                             <Header as="h1" content="Results"/>
                             <p>We found { data.totalDocs } jobs matching your search</p>
-                            <Label.Group>
+                            {
+                                state ? 
+                                <Label.Group>
                                 {
-                                    this.props.history.location.state.title ?
-                                    <Label size="tiny">{ this.props.history.location.state.title }</Label> : null
+                                    state.title ?
+                                    <Label size="tiny">{ state.title }</Label> : null
                                 }
                                 {
-                                    this.props.history.location.state.location_string ?
-                                    <Label>{ this.props.history.location.state.location_string }</Label> : null
+                                    state.location_string ?
+                                    <Label>{ state.location_string }</Label> : null
                                 }
                                 {
-                                    this.props.history.location.state.category ?
-                                    <Label>{ this.props.history.location.state.category }</Label> : null
+                                    state.category ?
+                                    <Label>{ state.category }</Label> : null
                                 }
                             </Label.Group>
+                                : null
+                            }
+                            
                             <Divider></Divider>
                             { 
                                 data.docs.map(item => (
