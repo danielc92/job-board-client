@@ -1,7 +1,7 @@
 export const objectToQueryStringParser = (queryObject) => {
     let queryString = '';
     const entries = queryObject ? Object.entries(queryObject) : null;
-    const filtered_entries = entries.filter(set => (set[1] && set[1].trim().toLowerCase().length !== 0))
+    const filtered_entries = entries.filter(set => (set[1] && String(set[1]).trim().toLowerCase().length !== 0))
     for (let i = 0; i < filtered_entries.length; i ++ ) {
         let prefix = (i === 0) ? '?' : '&'
         if (filtered_entries[i][0] && filtered_entries[i][1]) {
@@ -17,7 +17,7 @@ export const objectToQueryStringParser = (queryObject) => {
         
         
     }
-    console.log(queryObject, queryString)
+    console.log(queryObject, queryString, 'PROC QUERY STRING')
     return queryString;
 }
 

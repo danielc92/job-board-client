@@ -29,7 +29,7 @@ class ReactJobViewContainer extends Component {
         const { activePage } = data;
         history.push({
             pathname: '/view-jobs',
-            state: { ...this.props.history.location.state, page: activePage},
+            state: { ...history.location.state, page: activePage},
         })
     }
 
@@ -42,14 +42,22 @@ class ReactJobViewContainer extends Component {
     }
 
     componentWillReceiveProps(){
-        console.log('location', this.props.location.state)
-        console.log('history', this.props.history.location.state)
+        // console.log('location', this.props.location.state)
+        // console.log('history', this.props.history.location.state)
         try {
             if ((this.props.history.location.state.title !== this.props.location.state.title) ||
             (this.props.history.location.state.page !== this.props.location.state.page)||
             (this.props.history.location.state.category !== this.props.location.state.category)||
             (this.props.history.location.state.location_string !== this.props.location.state.location_string)){
-                this.props.propsGetJobList({...this.props.history.location.state});
+                
+                let queryObject = { ...this.props.history.location.state }
+
+                if ((this.props.history.location.state.title !== this.props.location.state.title) ||
+                (this.props.history.location.state.category !== this.props.location.state.category)||
+                (this.props.history.location.state.location_string !== this.props.location.state.location_string)){
+                    delete queryObject['page']
+                }
+                this.props.propsGetJobList(queryObject);
             }
         } catch (error) { 
             console.error(error)
@@ -58,6 +66,7 @@ class ReactJobViewContainer extends Component {
 
     render() {
         const { data, error, loaded, message } = this.props.jobList;
+        console.log(data, 'PAGE DATA')
         return (
             <React.Fragment>
             <SearchContainer/>
@@ -79,6 +88,20 @@ class ReactJobViewContainer extends Component {
                             <Segment basic>
                             <Header as="h1" content="Results"/>
                             <p>We found { data.totalDocs } jobs matching your search</p>
+                            <Label.Group>
+                                {
+                                    this.props.history.location.state.title ?
+                                    <Label size="tiny">{ this.props.history.location.state.title }</Label> : null
+                                }
+                                {
+                                    this.props.history.location.state.location_string ?
+                                    <Label>{ this.props.history.location.state.location_string }</Label> : null
+                                }
+                                {
+                                    this.props.history.location.state.category ?
+                                    <Label>{ this.props.history.location.state.category }</Label> : null
+                                }
+                            </Label.Group>
                             <Divider></Divider>
                             { 
                                 data.docs.map(item => (
@@ -104,7 +127,7 @@ class ReactJobViewContainer extends Component {
                                 )}
 
                                 <Pagination
-                                    defaultActivePage={data.page}
+                                    activePage={data.page}
                                     ellipsisItem={{ content: <Icon name='ellipsis horizontal' />, icon: true }}
                                     firstItem={{ content: <Icon name='angle double left' />, icon: true }}
                                     lastItem={{ content: <Icon name='angle double right' />, icon: true }}

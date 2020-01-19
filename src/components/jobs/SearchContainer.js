@@ -52,7 +52,7 @@ class SearchContainer extends Component {
             }
         })
     }
-
+    
     componentDidMount() {
         this.props.propsGetCategories()
     }
@@ -78,6 +78,7 @@ class SearchContainer extends Component {
                                 value={title}
                             />
                             <Form.Dropdown
+                                clearable
                                 label="Where"
                                 onChange={this.handleDropDownChange}
                                 onSearchChange={this.handleSearchChange}
@@ -89,6 +90,7 @@ class SearchContainer extends Component {
                                 name="location_string"
                             />
                             <Form.Dropdown
+                                clearable
                                 onChange={this.handleDropDownChange}
                                 name="category"
                                 label="Category"
@@ -100,11 +102,14 @@ class SearchContainer extends Component {
                             
                         </Form.Group>
 
+                        <Form.Group>
                         <Form.Button
                             size="large"
                             color="green">
                             <Icon name="search"></Icon>Search
                         </Form.Button>
+                        </Form.Group>
+                        
                     </Form>
                     </VerticallyPaddedContainer>
                 </Container>
