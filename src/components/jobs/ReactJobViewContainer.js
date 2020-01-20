@@ -93,18 +93,9 @@ class ReactJobViewContainer extends Component {
                                 state ? 
                                 <Label.Group>
                                 {
-                                    state.title ?
-                                    <Label size="tiny">{ state.title }</Label> : null
+                                    [state.title, state.location_string, state.category].map(i => i ? <Label size="tiny">{ i }</Label> : null)
                                 }
-                                {
-                                    state.location_string ?
-                                    <Label>{ state.location_string }</Label> : null
-                                }
-                                {
-                                    state.category ?
-                                    <Label>{ state.category }</Label> : null
-                                }
-                            </Label.Group>
+                                </Label.Group>
                                 : null
                             }
                             
