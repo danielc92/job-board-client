@@ -8,7 +8,7 @@ export const getUserDetails = (search) => async (dispatch, getState) => {
 
         // Transform locations for semantic component
         dispatch({
-            type: "FETCH_USER_DETAIL_SUCCESS",
+            type: "GET_USER_DETAIL_SUCCESS",
             payload: {
                 data: response.data.results,
                 loaded: true,
@@ -17,7 +17,7 @@ export const getUserDetails = (search) => async (dispatch, getState) => {
         })
     } catch (error) {
         dispatch({
-            type: "FETCH_USER_DETAIL_FAILURE",
+            type: "GET_USER_DETAIL_FAILURE",
             payload: {
                 error: true,
                 message: handleApiError(error),
