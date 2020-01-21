@@ -112,7 +112,8 @@ class Seeker extends Component {
                                 placeholder={data.summary.length === 0 ? 'You have no summary, you can create one now.' : null}
                                 />
                             </Form>
-                            <Button size="small" color="violet" onClick={ this.handleUpdateSummary }>Update</Button>
+                            <Button size="small" color="violet" onClick={ this.handleUpdateSummary }><Icon name="refresh"/>Update</Button>
+                            <Button size="small" color="red" onClick={ ()=>this.setState({editSummary: false}) }><Icon name="cancel"/>Cancel</Button>
                         </React.Fragment> : 
                         <React.Fragment>
                             <p>{ data.summary }</p>
@@ -135,7 +136,8 @@ class Seeker extends Component {
                                 placeholder={data.phone.length === 0 ? 'Enter phone number.' : null}
                                 />
                             </Form>
-                            <Button size="small" color="violet" onClick={ this.handleUpdatePhone }>Update</Button>
+                            <Button size="small" color="violet" onClick={ this.handleUpdatePhone }><Icon name="refresh"/>Update</Button>
+                            <Button size="small" color="red" onClick={ ()=>this.setState({editPhone: false}) }><Icon name="cancel"/>Cancel</Button>
                         </React.Fragment> : 
                         <React.Fragment>
                             <p>{ data.phone.length === 0 ? 'You have no phone details, press Edit to begin.' : data.phone }</p>
@@ -153,10 +155,11 @@ class Seeker extends Component {
                                 onChange={()=>this.setState({ available: !this.state.available})}
                             />
                             </Form>
-                            <Button size="small" color="violet" onClick={ this.handleUpdateAvailability }>Update</Button>
+                            <Button size="small" color="violet" onClick={ this.handleUpdateAvailability }><Icon name="refresh"/>Update</Button>
+                            <Button size="small" color="red" onClick={ ()=>this.setState({editAvailability: false}) }><Icon name="cancel"/>Cancel</Button>
                         </React.Fragment> : 
                         <React.Fragment>
-                            <p>{ data.available ? 'You are currently available for jobs.' : 'You are not currently available for jobs.' }</p>
+                            <p>You are currently <strong>{ data.available ? 'available' : 'no available' } </strong>for jobs.</p>
                             <Button size="small" color="green" onClick={ this.handleEditAvailability }><Icon name="edit outline"/>Edit</Button>
                         </React.Fragment>
                     }
@@ -173,7 +176,7 @@ class Seeker extends Component {
                 </Segment>
 
                 <Header as="h3" content="Skills & Achievements"/>
-                <Segment stacked padded color="violet">
+                <Segment stacked padded color="green">
                 </Segment>
 
 
