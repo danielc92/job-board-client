@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
-import { Header, Button, Segment, Form, TextArea } from 'semantic-ui-react';
+import { Header, Button, Segment, Input, Form, Icon, TextArea } from 'semantic-ui-react';
 import { getCareerProfile, updateCareerProfile } from '../../actions/career_profile'
 import { connect } from 'react-redux';
 
 const marginBottom = { marginBottom: '8px'} 
 class Seeker extends Component {
-    state = {}
+    state = {
+        achievements: [],
+        available: false,
+        editAchievements: false,
+        editAvailability: false,
+        editEducation: false,
+        editExperience: false,
+        editPhone: false,
+        editSkills: false,
+        editSummary: false,
+        education: [],
+        experience: [],
+        phone: '',
+        skills: [],
+        summary: '',
+
+
+    }
 
     componentDidMount() {
         this.props.propsGetCareerProfile()
@@ -17,8 +34,48 @@ class Seeker extends Component {
         this.props.propsUpdateCareerProfile(payload)
     }
 
+    handleEditSummary = () => {
+        const { career_profile } = this.props;
+        this.setState({ summary: career_profile.data.summary, editSummary: true})
+    }
+
+    handleUpdateSummary = () => {
+        const { summary } = this.state;
+        const { propsUpdateCareerProfile } = this.props;
+        propsUpdateCareerProfile({ summary })
+        this.setState({ editSummary: false })
+    }
+
+    handleEditPhone = () => {
+        const { career_profile } = this.props;
+        this.setState({ phone: career_profile.data.phone, editPhone: true})
+    }
+
+    handleUpdatePhone = () => {
+        const { phone } = this.state;
+        const { propsUpdateCareerProfile } = this.props;
+        propsUpdateCareerProfile({ phone })
+        this.setState({ editPhone: false })
+    }
+
 
     render() {
+        const {
+            achievements,
+            available,
+            editAchievements,
+            editAvailability,
+            editEducation,
+            editExperience,
+            editPhone,
+            editSkills,
+            editSummary,
+            education,
+            experience,
+            phone,
+            skills,
+            summary,
+        } = this.state;
         const { career_profile } = this.props;
         const { data } = career_profile;
         return (
@@ -26,23 +83,72 @@ class Seeker extends Component {
             {
                 data ? 
                 <React.Fragment>
-                <Header as="h3" content="Career summary"/>
+                {/* CAREER SUMMARY SECTION */}
+                <Header as="h3" content="Career Details"/>
                 <Segment stacked padded color="green">
-                    <Form>
-                    <TextArea
-                    maxlength="300"
-                    style={marginBottom}
-                    value=""
-                    onChange={(e) => this.setState({summary: e.target.value })}
-                    fluid
-                    placeholder={data.summary.length === 0 ? 'You have no summary, click below to make one.' : null}
-                    />
-                        </Form>
-                    <Button 
-                    onClick={this.handleSummaryUpdate}
-                    color="violet"
-                    size="small"
-                    content="Update"/>
+                    <Header as='h5' content='Summary'/>
+                    
+                    {
+                        editSummary ? 
+                        <React.Fragment>
+                            <Form>
+                                <TextArea
+                                maxLength="300"
+                                style={marginBottom}
+                                value={summary}
+                                onChange={(e) => this.setState({summary: e.target.value })}
+                                placeholder={data.summary.length === 0 ? 'You have no summary, you can create one now.' : null}
+                                />
+                            </Form>
+                            <Button size="small" color="violet" onClick={ this.handleUpdateSummary }>Update</Button>
+                        </React.Fragment> : 
+                        <React.Fragment>
+                            <p>{ data.summary }</p>
+                            <Button size="small" color="green" onClick={ this.handleEditSummary } ><Icon name="edit outline"/>Edit</Button>
+                        </React.Fragment>
+                    }
+                </Segment>
+
+                <Header as="h3" content="Availability & Phone"/>
+                <Segment stacked padded color="green">
+                    <Header as='h5' content='Phone'/>
+                    {
+                        editPhone ? 
+                        <React.Fragment>
+                            <Form>
+                                <Input
+                                style={marginBottom}
+                                value={phone}
+                                onChange={(e) => this.setState({phone: e.target.value })}
+                                placeholder={data.phone.length === 0 ? 'Enter phone number.' : null}
+                                />
+                            </Form>
+                            <Button size="small" color="violet" onClick={ this.handleUpdatePhone }>Update</Button>
+                        </React.Fragment> : 
+                        <React.Fragment>
+                            <p>{ data.phone.length === 0 ? 'You have no phone details, press Edit to begin.' : data.phone }</p>
+                            <Button size="small" color="green" onClick={ this.handleEditPhone }><Icon name="edit outline"/>Edit</Button>
+                        </React.Fragment>
+                    }
+                    <Header as="h5" content="Availability"/>
+                    {
+                        editAvailability ? 
+                        <React.Fragment>
+                            <Form>
+                                <Input
+                                style={marginBottom}
+                                value={phone}
+                                onChange={(e) => this.setState({phone: e.target.value })}
+                                placeholder={data.phone.length === 0 ? 'Enter phone number.' : null}
+                                />
+                            </Form>
+                            <Button size="small" color="violet" onClick={ this.handleUpdatePhone }>Update</Button>
+                        </React.Fragment> : 
+                        <React.Fragment>
+                            <p>{ data.available === 0 ? 'You are currently available for jobs.' : 'You are not currently available for jobs.' }</p>
+                            <Button size="small" color="green" onClick={ this.handleEditPhone }><Icon name="edit outline"/>Edit</Button>
+                        </React.Fragment>
+                    }
                 </Segment>
 
                 <Header as="h3" content="Work Experience"/>
@@ -56,12 +162,9 @@ class Seeker extends Component {
                 </Segment>
 
                 <Header as="h3" content="Skills & Achievements"/>
-                <Segment stacked padded color="green">
+                <Segment stacked padded color="violet">
                 </Segment>
 
-                <Header as="h3" content="Availability & Phone"/>
-                <Segment stacked padded color="green">
-                </Segment>
 
             </React.Fragment>
                 : null

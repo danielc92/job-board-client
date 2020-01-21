@@ -37,12 +37,10 @@ export const updateCareerProfile = (payload) => async (dispatch, getState) => {
     const options = { headers : {'x-access-token' : token }}
     try {
         const response = await jobApi.patch('career-profile', payload, options)
-
         dispatch({
             type: "UPDATE_CAREER_PROFILE_SUCCESS",
             payload: {
-                data: response.data.result,
-                error: false,
+                patch: payload,
             }
         })
     }
@@ -51,7 +49,7 @@ export const updateCareerProfile = (payload) => async (dispatch, getState) => {
         dispatch({
             type: "UPDATE_CAREER_PROFILE_FAILURE",
             payload: {
-                error: true,
+                updateError: true,
                 message: handleApiError(error),
             }
         })

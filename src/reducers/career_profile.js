@@ -7,6 +7,8 @@ export const careerProfileReducer = (state = { error: false }, action) => {
             return payload
         case 'GET_CAREER_PROFILE_FAILURE':
             return payload
+        case 'UPDATE_CAREER_PROFILE_SUCCESS':
+            return {...payload, data: {...state.data, ...payload.patch}}
         default:
             return state
     }

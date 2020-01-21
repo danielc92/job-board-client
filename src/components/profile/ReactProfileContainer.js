@@ -33,14 +33,17 @@ class ReactProfileContainer extends Component {
         if(!auth.isAuthenticated) {
             return (
                 <Segment basic>
-                <Container>
-                    <VerticallyPaddedContainer size="4">
-                        <Header as="h1" content="Profile"/>
-                        <Divider/><Message 
-            warning
-            header="Authentication required"
-            content="You need to be logged in, in order to view your profile."/>
-            </VerticallyPaddedContainer></Container></Segment>
+                    <Container>
+                        <VerticallyPaddedContainer size="4">
+                            <Header as="h1" content="Profile"/>
+                            <Divider/>
+                            <Message 
+                            warning
+                            header="Authentication required"
+                            content="You need to be logged in, in order to view your profile."/>
+                        </VerticallyPaddedContainer>
+                    </Container>
+                </Segment>
         )
         } 
         return (
@@ -73,15 +76,15 @@ class ReactProfileContainer extends Component {
                             <Grid divided='vertically'>
                                 <Grid.Row columns={2}>
                                     <Grid.Column>
-                                        <Header content="Name" as="h3"/>
+                                        <Header content="Name" as="h5"/>
                                         <p>{ `${properCaseTransform(data.first_name)} ${properCaseTransform(data.last_name)}` }</p>
-                                        <Header content="Email" as="h3"/>
+                                        <Header content="Email" as="h5"/>
                                         <p>{data.email}</p>
                                     </Grid.Column>
                                     <Grid.Column>
-                                        <Header content="Joined" as="h3"/>
+                                        <Header content="Joined" as="h5"/>
                                         {dateDiffString(data.createdAt)}
-                                        <Header content="Member Type" as="h3"/>
+                                        <Header content="Member Type" as="h5"/>
                                         <Label color="green" content={is_employer ? 'employer' : 'job seeker'}/>
                                     </Grid.Column>
                                 </Grid.Row>
