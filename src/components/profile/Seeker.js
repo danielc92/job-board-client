@@ -58,6 +58,18 @@ class Seeker extends Component {
         this.setState({ editPhone: false })
     }
 
+    handleEditAvailability = () => {
+        const { career_profile } = this.props;
+        this.setState({ available: career_profile.data.available, editAvailability: true})
+    }
+
+    handleUpdateAvailability = () => {
+        const { available } = this.state;
+        const { propsUpdateCareerProfile } = this.props;
+        propsUpdateCareerProfile({ available })
+        this.setState({ editAvailability: false })
+    }
+
 
     render() {
         const {
@@ -134,19 +146,18 @@ class Seeker extends Component {
                     {
                         editAvailability ? 
                         <React.Fragment>
-                            <Form>
-                                <Input
-                                style={marginBottom}
-                                value={phone}
-                                onChange={(e) => this.setState({phone: e.target.value })}
-                                placeholder={data.phone.length === 0 ? 'Enter phone number.' : null}
-                                />
+                            <Form style={{marginBottom: '14px'}}>
+                                <Form.Radio
+                                label={ this.state.available ? 'Available' : 'Not available'}
+                                toggle
+                                onChange={()=>this.setState({ available: !this.state.available})}
+                            />
                             </Form>
-                            <Button size="small" color="violet" onClick={ this.handleUpdatePhone }>Update</Button>
+                            <Button size="small" color="violet" onClick={ this.handleUpdateAvailability }>Update</Button>
                         </React.Fragment> : 
                         <React.Fragment>
-                            <p>{ data.available === 0 ? 'You are currently available for jobs.' : 'You are not currently available for jobs.' }</p>
-                            <Button size="small" color="green" onClick={ this.handleEditPhone }><Icon name="edit outline"/>Edit</Button>
+                            <p>{ data.available ? 'You are currently available for jobs.' : 'You are not currently available for jobs.' }</p>
+                            <Button size="small" color="green" onClick={ this.handleEditAvailability }><Icon name="edit outline"/>Edit</Button>
                         </React.Fragment>
                     }
                 </Segment>
