@@ -55,12 +55,12 @@ class ReactProfileContainer extends Component {
                 { 
                    
                 } 
-                {
+                {/* {
                     !loaded && !error ? 
                     <ResusableLoader/>
                     : null
                     
-                }
+                } */}
                 { 
                     error ? 
                     <Segment stacked color="red">

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Header, Button, Segment, Input, Form, Icon, TextArea } from 'semantic-ui-react';
+import React, { Component, Fragment } from 'react'
+import { Header, Button, Segment, Input, Table, Form, Icon, TextArea } from 'semantic-ui-react';
 import { getCareerProfile, updateCareerProfile } from '../../actions/career_profile'
 import { connect } from 'react-redux';
 
@@ -20,6 +20,12 @@ class Seeker extends Component {
         phone: '',
         skills: [],
         summary: '',
+
+        experienceInputStarted: '',
+        experienceInputEnded: '',
+        experienceInputTitle: '',
+        experienceInputDetails: '',
+        experienceInputCompany: '',
 
 
     }
@@ -70,6 +76,26 @@ class Seeker extends Component {
         this.setState({ editAvailability: false })
     }
 
+    handleEditExperience = () => {
+        const { career_profile } = this.props;
+        this.setState({ experience: career_profile.data.experience, editExperience: true})
+    }
+
+    handleUpdateExperience = () => {
+        const { experience, experienceInputCompany, experienceInputDetails, experienceInputEnded, experienceInputTitle, experienceInputStarted } = this.state;
+        const newEntry = {
+            company: experienceInputCompany,
+            details: experienceInputDetails,
+            start: experienceInputStarted,
+            end: experienceInputEnded,
+            title: experienceInputTitle,
+        }
+        const { propsUpdateCareerProfile } = this.props;
+        // if validation passes
+        propsUpdateCareerProfile({experience: [...experience, newEntry]})
+        this.setState({experience: [...experience, newEntry] })
+        this.setState({ editExperience : false })
+    }
 
     render() {
         const {
@@ -87,14 +113,20 @@ class Seeker extends Component {
             phone,
             skills,
             summary,
+
+            experienceInputStarted,
+            experienceInputEnded,
+            experienceInputTitle,
+            experienceInputDetails,
+            experienceInputCompany,
         } = this.state;
         const { career_profile } = this.props;
         const { data } = career_profile;
         return (
-            <React.Fragment>
+            <Fragment>
             {
                 data ? 
-                <React.Fragment>
+                <Fragment>
                 {/* CAREER SUMMARY SECTION */}
                 <Header as="h3" content="Career Details"/>
                 <Segment stacked padded color="green">
@@ -102,7 +134,7 @@ class Seeker extends Component {
                     
                     {
                         editSummary ? 
-                        <React.Fragment>
+                        <Fragment>
                             <Form>
                                 <TextArea
                                 maxLength="300"
@@ -114,11 +146,11 @@ class Seeker extends Component {
                             </Form>
                             <Button size="small" color="violet" onClick={ this.handleUpdateSummary }><Icon name="refresh"/>Update</Button>
                             <Button size="small" color="red" onClick={ ()=>this.setState({editSummary: false}) }><Icon name="cancel"/>Cancel</Button>
-                        </React.Fragment> : 
-                        <React.Fragment>
+                        </Fragment> : 
+                        <Fragment>
                             <p>{ data.summary }</p>
                             <Button size="small" color="green" onClick={ this.handleEditSummary } ><Icon name="edit outline"/>Edit</Button>
-                        </React.Fragment>
+                        </Fragment>
                     }
                 </Segment>
 
@@ -127,7 +159,7 @@ class Seeker extends Component {
                     <Header as='h5' content='Phone'/>
                     {
                         editPhone ? 
-                        <React.Fragment>
+                        <Fragment>
                             <Form>
                                 <Input
                                 style={marginBottom}
@@ -138,16 +170,16 @@ class Seeker extends Component {
                             </Form>
                             <Button size="small" color="violet" onClick={ this.handleUpdatePhone }><Icon name="refresh"/>Update</Button>
                             <Button size="small" color="red" onClick={ ()=>this.setState({editPhone: false}) }><Icon name="cancel"/>Cancel</Button>
-                        </React.Fragment> : 
-                        <React.Fragment>
+                        </Fragment> : 
+                        <Fragment>
                             <p>{ data.phone.length === 0 ? 'You have no phone details, press Edit to begin.' : data.phone }</p>
                             <Button size="small" color="green" onClick={ this.handleEditPhone }><Icon name="edit outline"/>Edit</Button>
-                        </React.Fragment>
+                        </Fragment>
                     }
                     <Header as="h5" content="Availability"/>
                     {
                         editAvailability ? 
-                        <React.Fragment>
+                        <Fragment>
                             <Form style={{marginBottom: '14px'}}>
                                 <Form.Radio
                                 label={ this.state.available ? 'Available' : 'Not available'}
@@ -157,17 +189,89 @@ class Seeker extends Component {
                             </Form>
                             <Button size="small" color="violet" onClick={ this.handleUpdateAvailability }><Icon name="refresh"/>Update</Button>
                             <Button size="small" color="red" onClick={ ()=>this.setState({editAvailability: false}) }><Icon name="cancel"/>Cancel</Button>
-                        </React.Fragment> : 
-                        <React.Fragment>
-                            <p>You are currently <strong>{ data.available ? 'available' : 'no available' } </strong>for jobs.</p>
+                        </Fragment> : 
+                        <Fragment>
+                            <p>You are currently <strong>{ data.available ? 'available' : 'not available' } </strong>for jobs.</p>
                             <Button size="small" color="green" onClick={ this.handleEditAvailability }><Icon name="edit outline"/>Edit</Button>
-                        </React.Fragment>
+                        </Fragment>
                     }
                 </Segment>
 
                 <Header as="h3" content="Work Experience"/>
                 <Segment stacked padded color="green">
                 
+                {
+                    editExperience ?
+                    <Fragment>
+                        <Form>
+                            <Form.Field>
+                                <Form.Input 
+                                    label="Company/Organization" 
+                                    value={ experienceInputCompany } 
+                                    onChange={e => this.setState({ experienceInputCompany : e.target.value})}
+                                />
+                                <Form.Input 
+                                    label="Job Title" 
+                                    value={ experienceInputTitle } 
+                                    onChange={e => this.setState({ experienceInputTitle : e.target.value})}
+                                />
+                                <Form.Input 
+                                    label="Start Date" 
+                                    value={experienceInputStarted}
+                                    onChange={e => this.setState({ experienceInputStarted : e.target.value})}
+                                />
+                               <Form.Input 
+                                    label="End Date" 
+                                    value={experienceInputEnded}
+                                    onChange={e => this.setState({ experienceInputEnded : e.target.value})}
+                                />
+                                <Form.TextArea 
+                                    label="Additional Details" 
+                                    placeholder="Achievements and/or highlights"
+                                    value={experienceInputDetails}
+                                    onChange={e => this.setState({ experienceInputDetails : e.target.value})}
+                                    maxLength="300"
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <Button size="small" color="violet" onClick={ this.handleUpdateExperience }><Icon name="refresh"/>Add Experience</Button>
+                                <Button size="small" color="red" onClick={ ()=>this.setState({editExperience: false}) }><Icon name="cancel"/>Cancel</Button>
+                            </Form.Field>
+                        </Form>
+                       
+                    </Fragment> :
+                    <Fragment>
+                        {
+                            data.experience.length > 0 ?
+                            <Table striped celled>
+                                <Table.Header>
+                                    <Table.HeaderCell content="Title"/>
+                                    <Table.HeaderCell content="Company"/>
+                                    <Table.HeaderCell content="Started"/>
+                                    <Table.HeaderCell content="Ended"/>
+                                    <Table.HeaderCell content="Details"/>
+                                </Table.Header>
+                                <Table.Body>
+                                    {
+                                        data.experience.map(e => (
+                                            <Table.Row>
+                                                <Table.Cell content={e.title}/>
+                                                <Table.Cell content={e.company}/>
+                                                <Table.Cell content={e.start}/>
+                                                <Table.Cell content={e.end}/>
+                                                <Table.Cell content={e.details}/>
+                                            </Table.Row>
+                                        ))
+                                    }
+                                </Table.Body>
+                            </Table>
+                            : 
+                            <p>You have no experiences, click below to add some.</p>
+                        }
+                        <Button size="small" color="green" onClick={ this.handleEditExperience }><Icon name="edit outline"/>Edit</Button>
+                    </Fragment>
+                }
+               
                 </Segment>
                 
 
@@ -180,10 +284,10 @@ class Seeker extends Component {
                 </Segment>
 
 
-            </React.Fragment>
+            </Fragment>
                 : null
             }
-            </React.Fragment>
+            </Fragment>
         )
     }
 }
