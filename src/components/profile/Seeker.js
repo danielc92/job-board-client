@@ -21,11 +21,18 @@ class Seeker extends Component {
         skills: [],
         summary: '',
 
-        experienceInputStarted: '',
-        experienceInputEnded: '',
-        experienceInputTitle: '',
-        experienceInputDetails: '',
-        experienceInputCompany: '',
+        experienceStart: '',
+        experienceEnd: '',
+        experienceTitle: '',
+        experienceDetails: '',
+        experienceCompany: '',
+
+        educationSchool:'',
+        educationStart:'',
+        educationEnd:'',
+        educationGpa:0,
+        educationCourse:'',
+
 
 
     }
@@ -82,19 +89,39 @@ class Seeker extends Component {
     }
 
     handleUpdateExperience = () => {
-        const { experience, experienceInputCompany, experienceInputDetails, experienceInputEnded, experienceInputTitle, experienceInputStarted } = this.state;
+        const { experience, experienceCompany, experienceDetails, experienceEnd, experienceTitle, experienceStart } = this.state;
         const newEntry = {
-            company: experienceInputCompany,
-            details: experienceInputDetails,
-            start: experienceInputStarted,
-            end: experienceInputEnded,
-            title: experienceInputTitle,
+            company: experienceCompany,
+            details: experienceDetails,
+            start: experienceStart,
+            end: experienceEnd,
+            title: experienceTitle,
         }
         const { propsUpdateCareerProfile } = this.props;
         // if validation passes
         propsUpdateCareerProfile({experience: [...experience, newEntry]})
         this.setState({experience: [...experience, newEntry] })
         this.setState({ editExperience : false })
+    }
+
+    handleEditEducation = () => {
+        const { career_profile } = this.props;
+        this.setState({ education: career_profile.data.education, editEducation: true})
+    }
+    handleUpdateEducation = ()=> {
+        const { education, educationCourse, educationEnd, educationGpa, educationSchool, educationStart } = this.state;
+        const newEntry = {
+            course: educationCourse,
+            end: educationEnd,
+            start:educationStart,
+            school: educationSchool,
+            gpa: educationGpa
+        }
+        const { propsUpdateCareerProfile } = this.props;
+        // if validation passes
+        propsUpdateCareerProfile({education: [...education, newEntry]})
+        this.setState({education: [...education, newEntry] })
+        this.setState({ editEducation : false })
     }
 
     render() {
@@ -114,14 +141,22 @@ class Seeker extends Component {
             skills,
             summary,
 
-            experienceInputStarted,
-            experienceInputEnded,
-            experienceInputTitle,
-            experienceInputDetails,
-            experienceInputCompany,
+            experienceStart,
+            experienceEnd,
+            experienceTitle,
+            experienceDetails,
+            experienceCompany,
+
+            educationCourse,
+            educationSchool,
+            educationStart,
+            educationGpa,
+            educationEnd
         } = this.state;
+
         const { career_profile } = this.props;
         const { data } = career_profile;
+
         return (
             <Fragment>
             {
@@ -207,29 +242,29 @@ class Seeker extends Component {
                             <Form.Field>
                                 <Form.Input 
                                     label="Company/Organization" 
-                                    value={ experienceInputCompany } 
-                                    onChange={e => this.setState({ experienceInputCompany : e.target.value})}
+                                    value={ experienceCompany } 
+                                    onChange={e => this.setState({ experienceCompany : e.target.value})}
                                 />
                                 <Form.Input 
                                     label="Job Title" 
-                                    value={ experienceInputTitle } 
-                                    onChange={e => this.setState({ experienceInputTitle : e.target.value})}
+                                    value={ experienceTitle } 
+                                    onChange={e => this.setState({ experienceTitle : e.target.value})}
                                 />
                                 <Form.Input 
                                     label="Start Date" 
-                                    value={experienceInputStarted}
-                                    onChange={e => this.setState({ experienceInputStarted : e.target.value})}
+                                    value={experienceStart}
+                                    onChange={e => this.setState({ experienceStart : e.target.value})}
                                 />
                                <Form.Input 
                                     label="End Date" 
-                                    value={experienceInputEnded}
-                                    onChange={e => this.setState({ experienceInputEnded : e.target.value})}
+                                    value={experienceEnd}
+                                    onChange={e => this.setState({ experienceEnd : e.target.value})}
                                 />
                                 <Form.TextArea 
                                     label="Additional Details" 
                                     placeholder="Achievements and/or highlights"
-                                    value={experienceInputDetails}
-                                    onChange={e => this.setState({ experienceInputDetails : e.target.value})}
+                                    value={experienceDetails}
+                                    onChange={e => this.setState({ experienceDetails : e.target.value})}
                                     maxLength="300"
                                 />
                             </Form.Field>
@@ -253,8 +288,8 @@ class Seeker extends Component {
                                 </Table.Header>
                                 <Table.Body>
                                     {
-                                        data.experience.map(e => (
-                                            <Table.Row>
+                                        data.experience.map((e, index) => (
+                                            <Table.Row key={index.toString()}>
                                                 <Table.Cell content={e.title}/>
                                                 <Table.Cell content={e.company}/>
                                                 <Table.Cell content={e.start}/>
@@ -277,11 +312,82 @@ class Seeker extends Component {
 
                 <Header as="h3" content="Education"/>
                 <Segment stacked padded color="green">
+
+                {
+                    editEducation ?
+                    <Fragment>
+                        <Form>
+                            <Form.Field>
+                                <Form.Input 
+                                    label="School/University" 
+                                    value={ educationSchool } 
+                                    onChange={e => this.setState({ educationSchool : e.target.value})}
+                                />
+                                <Form.Input 
+                                    label="Course" 
+                                    value={ educationCourse } 
+                                    onChange={e => this.setState({ educationCourse : e.target.value})}
+                                />
+                                <Form.Input 
+                                    label="Start Date" 
+                                    value={educationStart}
+                                    onChange={e => this.setState({ educationStart : e.target.value})}
+                                />
+                               <Form.Input 
+                                    label="End Date" 
+                                    value={educationEnd}
+                                    onChange={e => this.setState({ educationEnd : e.target.value})}
+                                />
+                                <Form.Input 
+                                    type="number"
+                                    label="Grade/GPA" 
+                                    value={educationGpa}
+                                    onChange={e => this.setState({ educationGpa : e.target.value})}
+                                />
+                            </Form.Field>
+                            <Form.Field>
+                                <Button size="small" color="violet" onClick={ this.handleUpdateEducation }><Icon name="refresh"/>Add Experience</Button>
+                                <Button size="small" color="red" onClick={ ()=>this.setState({editEducation: false}) }><Icon name="cancel"/>Cancel</Button>
+                            </Form.Field>
+                        </Form>
+                       
+                    </Fragment> :
+                    <Fragment>
+                        {
+                            data.education.length > 0 ?
+                            <Table striped celled>
+                                <Table.Header>
+                                    <Table.HeaderCell content="School"/>
+                                    <Table.HeaderCell content="Course"/>
+                                    <Table.HeaderCell content="Started"/>
+                                    <Table.HeaderCell content="Ended"/>
+                                    <Table.HeaderCell content="Grade/GPA"/>
+                                </Table.Header>
+                                <Table.Body>
+                                    {
+                                        data.education.map((e, index) => (
+                                            <Table.Row key={index.toString()}>
+                                                <Table.Cell content={e.school}/>
+                                                <Table.Cell content={e.course}/>
+                                                <Table.Cell content={e.start}/>
+                                                <Table.Cell content={e.end}/>
+                                                <Table.Cell content={e.gpa}/>
+                                            </Table.Row>
+                                        ))
+                                    }
+                                </Table.Body>
+                            </Table>
+                            : 
+                            <p>You have no experiences, click below to add some.</p>
+                        }
+                        <Button size="small" color="green" onClick={ this.handleEditEducation }><Icon name="edit outline"/>Edit</Button>
+                    </Fragment>
+                }
                 </Segment>
 
-                <Header as="h3" content="Skills & Achievements"/>
+                {/* <Header as="h3" content="Skills"/>
                 <Segment stacked padded color="green">
-                </Segment>
+                </Segment> */}
 
 
             </Fragment>
