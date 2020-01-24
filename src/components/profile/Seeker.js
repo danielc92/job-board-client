@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Header, Button, Segment, Input, Table, Form, Icon, TextArea } from 'semantic-ui-react';
 import { getCareerProfile, updateCareerProfile } from '../../actions/career_profile'
 import { connect } from 'react-redux';
-
+const uuidv4 = require('uuid/v4');
 const marginBottom = { marginBottom: '8px'} 
 class Seeker extends Component {
     state = {
@@ -96,6 +96,7 @@ class Seeker extends Component {
             start: experienceStart,
             end: experienceEnd,
             title: experienceTitle,
+            key: uuidv4()
         }
         const { propsUpdateCareerProfile } = this.props;
         // if validation passes
@@ -115,7 +116,8 @@ class Seeker extends Component {
             end: educationEnd,
             start:educationStart,
             school: educationSchool,
-            gpa: educationGpa
+            gpa: educationGpa,
+            key: uuidv4()
         }
         const { propsUpdateCareerProfile } = this.props;
         // if validation passes
