@@ -36,14 +36,6 @@ export const authReducer = (state={
                 message: payload.message,
                 user: {}
             }
-
-        // case "LOGOUT_SUCCESS":
-        //     localStorage.removeItem(TOKEN_NAME)
-        //     return {
-        //         isAuthenticated: payload.value,
-        //         error: false,
-        //         user: {}
-        //     }
             
         default:
             return state

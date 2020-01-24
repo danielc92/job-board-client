@@ -27,10 +27,7 @@ export const loginUser = (email, password) => async (dispatch, getState) => {
 
 export function logoutUser() {
     return {
-        type: 'LOGOUT_SUCCESS',
-        payload: {
-            value: false
-        }
+        type: 'LOGOUT_SUCCESS'
     }
 }
 
