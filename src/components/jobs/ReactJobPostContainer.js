@@ -93,7 +93,7 @@ class ReactJobPostContainer extends Component {
         const { name, value } = data;
         this.setState({ [name] : value }, () => this.validateForm())
     }
-
+    
     handleSubmit = (e) => {
         e.preventDefault()
         const { errors, location } = this.state;

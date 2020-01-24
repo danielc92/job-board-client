@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Header, Button, Segment, Input, Table, Form, Icon, TextArea } from 'semantic-ui-react';
+import { Header, Button, Segment, Input, Table, Form, Icon, TextArea, Label } from 'semantic-ui-react';
 import { getCareerProfile, updateCareerProfile } from '../../actions/career_profile'
+import { getSkills} from '../../actions/skills'
 import { connect } from 'react-redux';
 const uuidv4 = require('uuid/v4');
 const marginBottom = { marginBottom: '8px'} 
@@ -39,6 +40,9 @@ class Seeker extends Component {
 
     componentDidMount() {
         this.props.propsGetCareerProfile()
+        if (this.props.skill.data && this.props.skill.data.length === 0) {
+            this.props.propsGetSkills()
+        }
     }
 
     handleSummaryUpdate = () => {
@@ -126,6 +130,23 @@ class Seeker extends Component {
         this.setState({ editEducation : false })
     }
 
+    handleEditSkills = () => {
+        const { career_profile } = this.props;
+        this.setState({ skills: career_profile.data.skills, editSkills: true })
+    }
+
+    handleUpdateSkills = () => {
+        const { skills } = this.state
+        this.props.propsUpdateCareerProfile({ skills })
+        this.setState({ editSkills: false })
+    }
+
+    handleChangeSkills = (event, data) => {
+        console.log(data.value)
+        this.setState({ skills: data.value})
+        
+    }
+
     render() {
         const {
             achievements,
@@ -156,7 +177,7 @@ class Seeker extends Component {
             educationEnd
         } = this.state;
 
-        const { career_profile } = this.props;
+        const { career_profile, skill } = this.props;
         const { data } = career_profile;
 
         return (
@@ -188,6 +209,42 @@ class Seeker extends Component {
                             <p>{ data.summary }</p>
                             <Button size="small" color="green" onClick={ this.handleEditSummary } ><Icon name="edit outline"/>Edit</Button>
                         </Fragment>
+                    }
+                </Segment>
+
+                <Header as="h3" content="Skills"/>
+                <Segment stacked padded color="green">
+                    {
+                        editSkills ?
+                        (
+                            <Form>
+                                <Form.Dropdown 
+                                    onChange={this.handleChangeSkills}
+                                    name="skills"
+                                    label="Skills"
+                                    placeholder='Add skills'
+                                    multiple
+                                    search
+                                    selection
+                                    options={skill.data}
+                                    renderLabel={this.customRender}
+                                    defaultValue={data.skills}
+                                ></Form.Dropdown>
+                                <Form.Field>
+                                <Button size="small" color="violet" onClick={ this.handleUpdateSkills }><Icon name="refresh"/>Add Experience</Button>
+                                <Button size="small" color="red" onClick={ ()=>this.setState({editSkills: false}) }><Icon name="cancel"/>Cancel</Button>
+                            </Form.Field>
+                            </Form>
+                        )
+                        :
+                        (
+                            <Fragment>
+                                <Label.Group>
+                                    { data.skills.map(skill_name => <Label color="green" basic size="medium">{ skill_name }</Label>)}
+                                </Label.Group>
+                                <Button size="small" color="green" onClick={ this.handleEditSkills }><Icon name="edit outline"/>Edit</Button>
+                            </Fragment>
+                        )
                     }
                 </Segment>
 
@@ -387,11 +444,7 @@ class Seeker extends Component {
                 }
                 </Segment>
 
-                {/* <Header as="h3" content="Skills"/>
-                <Segment stacked padded color="green">
-                </Segment> */}
-
-
+               
             </Fragment>
                 : null
             }
@@ -401,15 +454,17 @@ class Seeker extends Component {
 }
 
 const mapStateToProps = state => {
-    const { career_profile } = state;
+    const { career_profile, skill } = state;
     return {
         career_profile,
+        skill
     }
 }
 
 const mapDispatchToProps = {
     propsGetCareerProfile: getCareerProfile,
     propsUpdateCareerProfile: updateCareerProfile,
+    propsGetSkills: getSkills
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Seeker);
