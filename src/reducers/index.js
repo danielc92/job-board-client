@@ -18,9 +18,8 @@ import { profileReducer } from './profile';
 import { jobStatusUpdateReducer } from './jobs/job_status_update';
 import { applicationListEmployerReducer } from './applications/application_list_employer';
 import { careerProfileReducer } from './career_profile';
-
-
-export const rootReducer = combineReducers({
+import { TOKEN_NAME } from '../constants/'
+const appReducer = combineReducers({
     application_list: applicationListReducer,
     application_update: applicationUpdateReducer,
     application: applicationReducer,
@@ -42,3 +41,10 @@ export const rootReducer = combineReducers({
     profile: profileReducer,
 })
 
+export const rootReducer = (state, action) => {
+    if (action.type === 'LOGOUT_SUCCESS') {
+        localStorage.removeItem(TOKEN_NAME)
+        state = undefined
+    }
+    return appReducer(state, action)
+}
