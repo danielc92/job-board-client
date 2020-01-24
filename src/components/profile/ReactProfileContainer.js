@@ -29,7 +29,7 @@ class ReactProfileContainer extends Component {
 
     render() {
         const { profile, auth } = this.props;
-        const { loaded, error, data, message, is_employer } = profile;
+        const { loaded, error, data, message } = profile;
         if(!auth.isAuthenticated) {
             return (
                 <Segment basic>
@@ -85,13 +85,13 @@ class ReactProfileContainer extends Component {
                                         <Header content="Joined" as="h5"/>
                                         {dateDiffString(data.createdAt)}
                                         <Header content="Member Type" as="h5"/>
-                                        <Label color="green" content={is_employer ? 'employer' : 'job seeker'}/>
+                                        <Label color="green" content={data.is_employer ? 'employer' : 'job seeker'}/>
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>
                         </Segment>
                         {
-                            (!is_employer) ?
+                            (!data.is_employer) ?
                             <Seeker/>
                             : null
                         }
