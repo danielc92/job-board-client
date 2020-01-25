@@ -33,11 +33,11 @@ class ReactJobViewContainer extends Component {
     })
   }
 
-  handleViewJob = id => {
+  handleViewJob = job_id => {
     const { history } = this.props
     history.push({
       pathname: '/view-job',
-      search: `?id=${id}`,
+      state: { job_id },
     })
   }
 
