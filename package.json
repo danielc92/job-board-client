@@ -26,8 +26,14 @@
     "extends": "react-app",
     "rules": {
       "object-property-newline": "warn",
-      "object-curly-spacing": "warn",
-      "comma-dangle": "warn"
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "operator-linebreak": [
+        "warn",
+        "before"
+      ]
     }
   },
   "browserslist": {
