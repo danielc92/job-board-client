@@ -328,7 +328,7 @@ class Seeker extends Component {
                       onClick={this.handleUpdateSkills}
                     >
                       <Icon name="refresh" />
-                      Add Experience
+                      Update
                     </Button>
                     <Button
                       size="small"
@@ -634,7 +634,7 @@ class Seeker extends Component {
                         onClick={this.handleUpdateEducation}
                       >
                         <Icon name="refresh" />
-                        Add Experience
+                        Add Education
                       </Button>
                       <Button
                         size="small"

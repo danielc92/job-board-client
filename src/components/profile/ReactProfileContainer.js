@@ -16,6 +16,7 @@ import { loginRefresh } from '../../actions/auth'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Seeker from './Seeker'
 import ResusableLoader from '../placeholder/ResusableLoader'
+import ResuableAuthenticationMessage from '../placeholder/ResuableAuthenticationMessage'
 
 class ReactProfileContainer extends Component {
   state = {
@@ -48,11 +49,11 @@ class ReactProfileContainer extends Component {
           <Container>
             <VerticallyPaddedContainer size="4">
               <Header as="h1" content="Profile" />
+              <p>Customize your profile, career details and more.</p>
               <Divider />
-              <Message
-                warning
+              <ResuableAuthenticationMessage
                 header="Authentication required"
-                content="You need to be logged in, in order to view your profile."
+                content="You need to be logged in to view your profile."
               />
             </VerticallyPaddedContainer>
           </Container>
@@ -91,7 +92,8 @@ class ReactProfileContainer extends Component {
                         {dateDiffString(data.createdAt)}
                         <Header content="Member Type" as="h5" />
                         <Label
-                          color="green"
+                          color="violet"
+                          basic
                           content={data.is_employer ? 'employer' : 'job seeker'}
                         />
                       </Grid.Column>
