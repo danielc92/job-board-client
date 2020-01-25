@@ -29,14 +29,17 @@ class Employer extends Component {
   componentWillReceiveProps() {
     // If the page has changed in router props call new data from api
     const { history, location } = this.props
-    if (
-      location.state &&
-      history.location.state &&
-      history.location.state.page !== location.state.page
-    ) {
-      this.props.propsgetJobListForEmployer({
-        page: history.location.state.page,
+    if (!history.location.state || !location.state) {
+      history.push({
+        pathname: '/dashboard',
+        state: { page: 1 },
       })
+    } else {
+      if (history.location.state.page !== location.state.page) {
+        this.props.propsgetJobListForEmployer({
+          page: history.location.state.page,
+        })
+      }
     }
   }
 
