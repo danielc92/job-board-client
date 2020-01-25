@@ -23,7 +23,7 @@ export const IsEmptyValidator = (string, tag) => {
 // Check each section is in range
 // Check each section has correct day to month
 
-export const stringDateValidator = (string, dateString) => {
+export const DateValidator = (string, dateString) => {
   let allowed = '/0987654321'
   let errors = []
   let uniqueChars = [...new Set(dateString.split(''))]
