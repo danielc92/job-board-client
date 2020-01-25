@@ -65,6 +65,7 @@ class ReactProfileContainer extends Component {
         <Container>
           <VerticallyPaddedContainer size="4">
             <Header as="h1" content="Profile" />
+            <p>Customize your profile, career details and more.</p>
             <Divider />
             {!loaded && !error ? <ResusableLoader /> : null}
             {error ? (

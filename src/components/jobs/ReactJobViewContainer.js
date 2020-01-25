@@ -112,10 +112,9 @@ class ReactJobViewContainer extends Component {
                         <Segment stacked key={item._id}>
                           <Header as="h3">
                             {properCaseTransform(item.title)}
-                            <Header.Subheader>
-                              {item.job_summary}
-                            </Header.Subheader>
                           </Header>
+
+                          <p>{item.job_summary}</p>
                           <Label color="green" basic>
                             ${item.salary_range_low} - ${item.salary_range_high}
                           </Label>

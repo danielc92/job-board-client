@@ -4,6 +4,7 @@ import {
   Header,
   Modal,
   Container,
+  Grid,
   Button,
   Label,
   Form,
@@ -26,17 +27,12 @@ class ReactJobDetailContainer extends Component {
     this.props.propsSetMenuItem('find')
   }
 
-  applyForJob = () => {
+  applyForJob = job_id => {
     const { user_message } = this.state
 
-    let payload = {
-      job_id: this.props.jobDetails[0]._id,
-      applicant_id: this.props.auth.user._id,
-    }
+    let payload = { job_id }
+    if (user_message.length > 0) payload.user_message = user_message
 
-    if (user_message.length > 0) {
-      payload = { ...payload, user_message }
-    }
     this.props.propsCreateApplication(payload)
   }
 
@@ -54,47 +50,62 @@ class ReactJobDetailContainer extends Component {
 
   render() {
     const charLimit = 1000
-    const jobSearch = this.props.jobDetails.filter(
-      item => item._id === this.props.location.state.job_id
-    )
-    const jobDetails = jobSearch.length > 0 ? jobSearch[0] : null
+    const { job_details } = this.props
     const { user_message } = this.state
     const { error, flag, message } = this.props.application
     return (
       <Segment basic>
         <Container>
           <VerticallyPaddedContainer size="3">
-            {jobDetails ? (
+            {job_details.data ? (
               <React.Fragment>
                 <Header as="h2">
-                  {properCaseTransform(jobDetails.title)}
-                  <Label color="violet" content={jobDetails.category} basic />
+                  {properCaseTransform(job_details.data.title)}
+                  <Label
+                    color="violet"
+                    content={job_details.data.category}
+                    basic
+                  />
                 </Header>
                 <Segment padded stacked>
-                  <Header as="h5" content="Location" />
-                  <p>{jobDetails.location_string}</p>
+                  <Grid stackable>
+                    <Grid.Row>
+                      <Grid.Column width={8}>
+                        <Header as="h5">About the job</Header>
+                        <p>{job_details.data.job_summary}</p>
+                      </Grid.Column>
+                      <Grid.Column width={8}>
+                        <Header as="h5" content="Location" />
+                        <p>{job_details.data.location_string}</p>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
 
-                  <Header as="h5">About the job</Header>
-                  <p>{jobDetails.job_summary}</p>
-
-                  <Header as="h5">Salary</Header>
-                  <Label color="green" basic size="large">
-                    ${jobDetails.salary_range_low} - $
-                    {jobDetails.salary_range_high}
-                  </Label>
+                  <Grid stackable>
+                    <Grid.Row>
+                      <Grid.Column width={8}>
+                        <Header as="h5">Salary</Header>
+                        <Label color="blue" basic>
+                          ${job_details.data.salary_range_low} - $
+                          {job_details.data.salary_range_high}
+                        </Label>
+                      </Grid.Column>
+                      <Grid.Column width={8}>
+                        <Header as="h5">Benefits</Header>
+                        <Label.Group>
+                          {job_details.data.benefits.map(item => (
+                            <Label basic color="green">
+                              {item}
+                            </Label>
+                          ))}
+                        </Label.Group>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
 
                   <Header as="h5">Skills</Header>
                   <Label.Group>
-                    {jobDetails.skills.map(item => (
-                      <Label basic color="green">
-                        {item}
-                      </Label>
-                    ))}
-                  </Label.Group>
-
-                  <Header as="h5">Benefits</Header>
-                  <Label.Group>
-                    {jobDetails.benefits.map(item => (
+                    {job_details.data.skills.map(item => (
                       <Label basic color="green">
                         {item}
                       </Label>
@@ -102,12 +113,12 @@ class ReactJobDetailContainer extends Component {
                   </Label.Group>
 
                   <Header as="h5">About the company</Header>
-                  <p>{jobDetails.company_summary}</p>
+                  <p>{job_details.data.company_summary}</p>
                   <Header as="h5">Contact Summary</Header>
-                  <p>{jobDetails.contact_summary}</p>
+                  <p>{job_details.data.contact_summary}</p>
                 </Segment>
                 {/* If the job is open allow user to apply */}
-                {!jobDetails.open ? (
+                {!job_details.data.open ? (
                   <Segment stacked color="orange">
                     <Header>Job Unavailable</Header>
                     <p>
@@ -132,7 +143,9 @@ class ReactJobDetailContainer extends Component {
                         </Form.Field>
                         <Form.Field>
                           <Form.Button
-                            onClick={this.applyForJob}
+                            onClick={() =>
+                              this.applyForJob(job_details.data._id)
+                            }
                             content="Apply for this job"
                             color="violet"
                             icon="paper plane"
@@ -171,9 +184,9 @@ class ReactJobDetailContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const { jobDetails, auth, application } = state
+  const { job_details, auth, application } = state
   return {
-    jobDetails,
+    job_details,
     application,
     auth,
   }

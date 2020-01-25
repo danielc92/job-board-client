@@ -221,6 +221,7 @@ class ReactJobPostContainer extends Component {
         <Container>
           <VerticallyPaddedContainer size="4">
             <Header as="h1">Post a job</Header>
+            <p>Start a new job posting for the world to see.</p>
             <Divider />
             {!auth.isAuthenticated ? (
               <ResuableAuthenticationMessage
