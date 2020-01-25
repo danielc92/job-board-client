@@ -1,10 +1,13 @@
 # Job Board App
+
 The front end application for the job board api. This application will be built using mainly `React` as a frontend library. The UI will be taken care of by `Semantic UI React`. The global state will be managed with Redux and Redux-thunk. Routing will be done via `react-router-dom`. The authorization mechanism will be using JWT with a slow hashing process in place for security.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Before you get started
-Brush  up on the following things before getting started with this project.
+
+Brush up on the following things before getting started with this project.
+
 - Nodejs backends
 - Express.js
 - React.js
@@ -13,6 +16,7 @@ Brush  up on the following things before getting started with this project.
 - Babel/Webpack
 
 ### Requirements
+
 - redux
 - redux-thunk
 - react-router-dom
@@ -89,6 +93,11 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### Notes
 
 Creating artificial delays
+
 ```sh
 await new Promise(r => setTimeout(r, 750));
 ```
+
+##### Undraw images
+
+Replace `#6C63FF` with desired hex code. Save from source as `.svg`.
