@@ -205,6 +205,20 @@ class Seeker extends Component {
     this.setState({ skills: data.value })
   }
 
+  handleDeleteExperience = key => {
+    let experience = this.props.career_profile.data.experience.filter(
+      item => item.key !== key
+    )
+    this.props.propsUpdateCareerProfile({ experience })
+  }
+
+  handleDeleteEducation = key => {
+    let education = this.props.career_profile.data.education.filter(
+      item => item.key !== key
+    )
+    this.props.propsUpdateCareerProfile({ education })
+  }
+
   render() {
     const {
       editAvailability,
@@ -528,15 +542,29 @@ class Seeker extends Component {
                         <Table.HeaderCell content="Started" />
                         <Table.HeaderCell content="Ended" />
                         <Table.HeaderCell content="Details" />
+                        <Table.HeaderCell content="Action" />
                       </Table.Header>
                       <Table.Body>
-                        {data.experience.map((e, index) => (
-                          <Table.Row key={index.toString()}>
+                        {data.experience.map(e => (
+                          <Table.Row key={e.key}>
                             <Table.Cell content={e.title} />
                             <Table.Cell content={e.company} />
                             <Table.Cell content={e.start} />
                             <Table.Cell content={e.end} />
                             <Table.Cell content={e.details} />
+                            <Table.Cell>
+                              <Button
+                                size="tiny"
+                                compact
+                                onClick={() =>
+                                  this.handleDeleteExperience(e.key)
+                                }
+                                color="red"
+                              >
+                                <Icon name="cancel" />
+                                Remove
+                              </Button>
+                            </Table.Cell>
                           </Table.Row>
                         ))}
                       </Table.Body>
@@ -549,8 +577,8 @@ class Seeker extends Component {
                     color="green"
                     onClick={this.handleEditExperience}
                   >
-                    <Icon name="edit outline" />
-                    Edit
+                    <Icon name="add" />
+                    Add experience
                   </Button>
                 </Fragment>
               )}
@@ -635,29 +663,43 @@ class Seeker extends Component {
                         <Table.HeaderCell content="Started" />
                         <Table.HeaderCell content="Ended" />
                         <Table.HeaderCell content="Grade/GPA" />
+                        <Table.HeaderCell content="Action" />
                       </Table.Header>
                       <Table.Body>
-                        {data.education.map((e, index) => (
-                          <Table.Row key={index.toString()}>
+                        {data.education.map(e => (
+                          <Table.Row key={e.key}>
                             <Table.Cell content={e.school} />
                             <Table.Cell content={e.course} />
                             <Table.Cell content={e.start} />
                             <Table.Cell content={e.end} />
                             <Table.Cell content={e.gpa} />
+                            <Table.Cell>
+                              <Button
+                                size="tiny"
+                                compact
+                                onClick={() =>
+                                  this.handleDeleteEducation(e.key)
+                                }
+                                color="red"
+                              >
+                                <Icon name="cancel" />
+                                Remove
+                              </Button>
+                            </Table.Cell>
                           </Table.Row>
                         ))}
                       </Table.Body>
                     </Table>
                   ) : (
-                    <p>You have no experiences, click below to add some.</p>
+                    <p>You have no education, click below to add some.</p>
                   )}
                   <Button
                     size="small"
                     color="green"
                     onClick={this.handleEditEducation}
                   >
-                    <Icon name="edit outline" />
-                    Edit
+                    <Icon name="add" />
+                    Add education
                   </Button>
                 </Fragment>
               )}
