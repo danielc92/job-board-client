@@ -23,7 +23,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "object-property-newline": "warn",
+      "object-curly-spacing": "warn",
+      "comma-dangle": "warn"
+    }
   },
   "browserslist": {
     "production": [
