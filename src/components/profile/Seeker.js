@@ -368,6 +368,7 @@ class Seeker extends Component {
                 <Fragment>
                   <Form>
                     <Input
+                      maxLength={20}
                       style={marginBottom}
                       value={phone}
                       onChange={e => this.setState({ phone: e.target.value })}
@@ -469,6 +470,7 @@ class Seeker extends Component {
                   <Form>
                     <Form.Field>
                       <Form.Input
+                        maxLength={50}
                         label="Company/Organization"
                         value={experienceCompany}
                         onChange={e =>
@@ -476,6 +478,7 @@ class Seeker extends Component {
                         }
                       />
                       <Form.Input
+                        maxLength={50}
                         label="Job Title"
                         value={experienceTitle}
                         onChange={e =>
@@ -483,6 +486,7 @@ class Seeker extends Component {
                         }
                       />
                       <Form.Input
+                        maxLength={10}
                         label="Start Date"
                         value={experienceStart}
                         onChange={e =>
@@ -490,6 +494,7 @@ class Seeker extends Component {
                         }
                       />
                       <Form.Input
+                        maxLength={10}
                         label="End Date"
                         value={experienceEnd}
                         onChange={e =>
@@ -503,7 +508,7 @@ class Seeker extends Component {
                         onChange={e =>
                           this.setState({ experienceDetails: e.target.value })
                         }
-                        maxLength="300"
+                        maxLength={300}
                       />
                     </Form.Field>
                     <Form.Field>
@@ -591,6 +596,7 @@ class Seeker extends Component {
                   <Form>
                     <Form.Field>
                       <Form.Input
+                        maxLength={50}
                         label="School/University"
                         value={educationSchool}
                         onChange={e =>
@@ -599,12 +605,14 @@ class Seeker extends Component {
                       />
                       <Form.Input
                         label="Course"
+                        maxLength={50}
                         value={educationCourse}
                         onChange={e =>
                           this.setState({ educationCourse: e.target.value })
                         }
                       />
                       <Form.Input
+                        maxLength={10}
                         label="Start Date"
                         value={educationStart}
                         onChange={e =>
@@ -612,6 +620,7 @@ class Seeker extends Component {
                         }
                       />
                       <Form.Input
+                        maxLength={10}
                         label="End Date"
                         value={educationEnd}
                         onChange={e =>
