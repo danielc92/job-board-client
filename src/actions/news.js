@@ -1,10 +1,14 @@
 import jobApi from '../api'
 import { handleApiError } from '../helpers/api'
+import { objectToQueryStringParser } from '../helpers/query'
 
-export const getNewsList = () => async (dispatch, getState) => {
+export const getNewsList = object => async (dispatch, getState) => {
   try {
-    const response = await jobApi.get('news/list')
-    await new Promise(r => setTimeout(r, 2250))
+    const queryString = objectToQueryStringParser(object)
+    const url = `news/list${queryString}`
+    console.log(url)
+    const response = await jobApi.get(url)
+    await new Promise(r => setTimeout(r, 300))
     dispatch({
       type: 'GET_NEWS_LIST_SUCCESS',
       payload: {
@@ -26,7 +30,7 @@ export const getNewsList = () => async (dispatch, getState) => {
 export const getNewsDetail = _id => async (dispatch, getState) => {
   try {
     const response = await jobApi.get(`news?_id=${_id}`)
-    await new Promise(r => setTimeout(r, 2250))
+    await new Promise(r => setTimeout(r, 300))
     dispatch({
       type: 'GET_NEWS_DETAIL_SUCCESS',
       payload: {

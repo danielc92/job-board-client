@@ -22,7 +22,6 @@ class ReactJobViewContainer extends Component {
     this.props.propsSetMenuItem('find')
     this.props.propsGetJobList({ ...this.props.history.location.state })
   }
-  a
 
   handlePageChange = (event, data) => {
     const { history } = this.props

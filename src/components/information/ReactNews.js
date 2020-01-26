@@ -9,6 +9,7 @@ import {
   Button,
   Placeholder,
   Message,
+  Pagination,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
@@ -18,13 +19,37 @@ import { getNewsList } from '../../actions/news'
 class ReactNews extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('news')
-    this.props.propsGetNewsList()
+    this.props.propsGetNewsList({})
+  }
+
+  componentWillReceiveProps() {
+    // If the page has changed in router props call new data from api
+    const { history, location } = this.props
+    if (!history.location.state || !location.state) {
+      history.push({
+        pathname: '/news/list',
+        state: { page: 1 },
+      })
+    } else {
+      if (history.location.state.page !== location.state.page) {
+        this.props.propsGetNewsList({
+          page: history.location.state.page,
+        })
+      }
+    }
   }
 
   handleViewNewsArticle = news_id => {
     this.props.history.push({
       pathname: '/news',
       state: { news_id },
+    })
+  }
+
+  handlePageChange = (e, data) => {
+    this.props.history.push({
+      pathname: '/news/list',
+      state: { page: data.activePage },
     })
   }
 
@@ -47,7 +72,7 @@ class ReactNews extends Component {
               ) : news_list.docs ? (
                 <React.Fragment>
                   {news_list.docs.map(item => (
-                    <Segment stacked color="green">
+                    <Segment key={item._id} stacked color="green">
                       <Header as="h3">{item.title}</Header>
                       <p>{item.summary}</p>
                       <Label.Group>
@@ -62,6 +87,27 @@ class ReactNews extends Component {
                       </Button>
                     </Segment>
                   ))}
+                  <Pagination
+                    activePage={news_list.page}
+                    firstItem={{
+                      content: <Icon name="angle double left" />,
+                      icon: true,
+                    }}
+                    lastItem={{
+                      content: <Icon name="angle double right" />,
+                      icon: true,
+                    }}
+                    prevItem={{
+                      content: <Icon name="angle left" />,
+                      icon: true,
+                    }}
+                    nextItem={{
+                      content: <Icon name="angle right" />,
+                      icon: true,
+                    }}
+                    totalPages={news_list.totalPages}
+                    onPageChange={this.handlePageChange}
+                  />
                 </React.Fragment>
               ) : (
                 <React.Fragment>
