@@ -17,6 +17,7 @@ import { getJobList } from '../../actions/job_list_seeker'
 import { properCaseTransform } from '../../helpers/generic'
 import SearchContainer from './SearchContainer'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 class ReactJobViewContainer extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('find')
@@ -78,93 +79,81 @@ class ReactJobViewContainer extends Component {
     const { state } = this.props.history.location
     return (
       <React.Fragment>
-        <SearchContainer />
         <Container>
           <VerticallyPaddedContainer size="4">
-            <Grid stackable>
-              <Grid.Row columns={2}>
-                <Grid.Column width={10}>
-                  {error ? (
-                    <Segment color="red" stacked>
-                      <Header as="h3" content="Error" />
-                      <p>{message}</p>
-                    </Segment>
+            {error ? (
+              <React.Fragment>
+                <Header as="h1" content="Job listings" />
+                <CustomErrorMessage
+                  header="An error occured"
+                  content={message}
+                />
+              </React.Fragment>
+            ) : null}
+            {loaded ? (
+              <React.Fragment>
+                <SearchContainer />
+                <Segment basic>
+                  <Header as="h1" content="Results" />
+                  <p>We found {data.totalDocs} jobs matching your search</p>
+                  {state ? (
+                    <Label.Group>
+                      {[
+                        state.title,
+                        state.location_string,
+                        state.category,
+                      ].map(i => (i ? <Label size="tiny">{i}</Label> : null))}
+                    </Label.Group>
                   ) : null}
-                  {loaded ? (
-                    <Segment basic>
-                      <Header as="h1" content="Results" />
-                      <p>We found {data.totalDocs} jobs matching your search</p>
-                      {state ? (
-                        <Label.Group>
-                          {[
-                            state.title,
-                            state.location_string,
-                            state.category,
-                          ].map(i =>
-                            i ? <Label size="tiny">{i}</Label> : null
-                          )}
-                        </Label.Group>
-                      ) : null}
 
-                      <Divider></Divider>
-                      {data.docs.map(item => (
-                        <Segment stacked key={item._id}>
-                          <Header as="h3">
-                            {properCaseTransform(item.title)}
-                          </Header>
+                  <Divider></Divider>
+                  {data.docs.map(item => (
+                    <Segment stacked key={item._id}>
+                      <Header as="h3">{properCaseTransform(item.title)}</Header>
 
-                          <p>{item.job_summary}</p>
-                          <Label color="green" basic>
-                            ${item.salary_range_low} - ${item.salary_range_high}
-                          </Label>
-                          <Divider />
-                          <Button
-                            color={this.props.theme}
-                            size="tiny"
-                            onClick={() => this.handleViewJob(item._id)}
-                          >
-                            <Icon name="eye"></Icon>view this job
-                          </Button>
-                        </Segment>
-                      ))}
-
-                      <Pagination
-                        activePage={data.page}
-                        ellipsisItem={{
-                          content: <Icon name="ellipsis horizontal" />,
-                          icon: true,
-                        }}
-                        firstItem={{
-                          content: <Icon name="angle double left" />,
-                          icon: true,
-                        }}
-                        lastItem={{
-                          content: <Icon name="angle double right" />,
-                          icon: true,
-                        }}
-                        prevItem={{
-                          content: <Icon name="angle left" />,
-                          icon: true,
-                        }}
-                        nextItem={{
-                          content: <Icon name="angle right" />,
-                          icon: true,
-                        }}
-                        totalPages={data.totalPages}
-                        onPageChange={this.handlePageChange}
-                      />
+                      <p>{item.job_summary}</p>
+                      <Label color="green" basic>
+                        ${item.salary_range_low} - ${item.salary_range_high}
+                      </Label>
+                      <Divider />
+                      <Button
+                        color={this.props.theme}
+                        size="tiny"
+                        onClick={() => this.handleViewJob(item._id)}
+                      >
+                        <Icon name="eye"></Icon>view this job
+                      </Button>
                     </Segment>
-                  ) : null}
-                </Grid.Column>
-                <Grid.Column width={6}>
-                  <Message
-                    info
-                    header="Placeholder"
-                    content="Sit do aute minim ex exercitation laboris esse. Amet Lorem labore et sit ex. Consectetur Lorem tempor reprehenderit et esse quis minim exercitation velit eu. Anim voluptate nostrud amet aliqua aute do velit deserunt qui magna irure. Magna fugiat nisi nostrud deserunt ea tempor proident anim. Eu veniam ullamco anim in cillum."
-                  ></Message>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
+                  ))}
+
+                  <Pagination
+                    activePage={data.page}
+                    ellipsisItem={{
+                      content: <Icon name="ellipsis horizontal" />,
+                      icon: true,
+                    }}
+                    firstItem={{
+                      content: <Icon name="angle double left" />,
+                      icon: true,
+                    }}
+                    lastItem={{
+                      content: <Icon name="angle double right" />,
+                      icon: true,
+                    }}
+                    prevItem={{
+                      content: <Icon name="angle left" />,
+                      icon: true,
+                    }}
+                    nextItem={{
+                      content: <Icon name="angle right" />,
+                      icon: true,
+                    }}
+                    totalPages={data.totalPages}
+                    onPageChange={this.handlePageChange}
+                  />
+                </Segment>
+              </React.Fragment>
+            ) : null}
           </VerticallyPaddedContainer>
         </Container>
       </React.Fragment>

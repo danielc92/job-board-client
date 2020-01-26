@@ -22,6 +22,7 @@ import {
   properCaseTransform,
 } from '../../../../helpers/generic'
 import SeekerTableHeader from './SeekerTableHeader'
+import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
 
 class Seeker extends Component {
   componentDidMount() {
@@ -48,10 +49,7 @@ class Seeker extends Component {
         <Header as="h1" content="Your applications" />
         <Divider />
         {application_list.error ? (
-          <Segment color="red" stacked>
-            <Header as="h3" content="Error" />
-            <p>{message}</p>
-          </Segment>
+          <CustomErrorMessage header="An error occured" content={message} />
         ) : data.length > 0 && !application_list.error ? (
           <Table striped celled>
             <SeekerTableHeader />

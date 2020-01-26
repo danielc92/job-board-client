@@ -20,6 +20,7 @@ import {
 import { properCaseTransform } from '../../../../helpers/generic'
 import EmployerTableHeader from './EmployerTableHeader'
 import { dateDiffString } from '../../../../helpers/generic'
+import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
 
 class Employer extends Component {
   componentDidMount() {
@@ -78,10 +79,7 @@ class Employer extends Component {
         <Header as="h1" content="My Job Postings" />
         <Divider />
         {error ? (
-          <Segment color="red" stacked>
-            <Header as="h3" content="Error" />
-            <p>{message}</p>
-          </Segment>
+          <CustomErrorMessage header="An error has occured" content={message} />
         ) : null}
         {loaded ? (
           <React.Fragment>

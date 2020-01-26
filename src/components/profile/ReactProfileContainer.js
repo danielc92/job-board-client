@@ -4,7 +4,7 @@ import {
   Container,
   Grid,
   Label,
-  Message,
+  Placeholder,
   Segment,
   Divider,
 } from 'semantic-ui-react'
@@ -17,6 +17,8 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Seeker from './Seeker'
 import ResusableLoader from '../placeholder/ResusableLoader'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
+import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+const { Line, Paragraph } = Placeholder
 
 class ReactProfileContainer extends Component {
   state = {
@@ -67,12 +69,22 @@ class ReactProfileContainer extends Component {
             <Header as="h1" content="Profile" />
             <p>Customize your profile, career details and more.</p>
             <Divider />
-            {!loaded && !error ? <ResusableLoader /> : null}
-            {error ? (
-              <Segment stacked color="red">
-                <Header as="h3" content="Error" />
-                <p>{message}</p>
+            {!loaded && !error ? (
+              <Segment stacked padded>
+                <Placeholder>
+                  <Paragraph>
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                  </Paragraph>
+                </Placeholder>
               </Segment>
+            ) : null}
+            {error ? (
+              <CustomErrorMessage header="An error occured" content={message} />
             ) : null}
             {loaded ? (
               <React.Fragment>
