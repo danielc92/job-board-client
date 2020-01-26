@@ -25,9 +25,8 @@ export const getNewsList = () => async (dispatch, getState) => {
 
 export const getNewsDetail = _id => async (dispatch, getState) => {
   try {
-    const payload = { _id }
-    const response = await jobApi.get(`news?news_id=${_id}`, payload)
-
+    const response = await jobApi.get(`news?_id=${_id}`)
+    await new Promise(r => setTimeout(r, 2250))
     dispatch({
       type: 'GET_NEWS_DETAIL_SUCCESS',
       payload: {

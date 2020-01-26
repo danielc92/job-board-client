@@ -13,12 +13,19 @@ import {
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import { getNewsList } from '../../actions/news_list'
+import { getNewsList } from '../../actions/news'
 
 class ReactNews extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('news')
     this.props.propsGetNewsList()
+  }
+
+  handleViewNewsArticle = news_id => {
+    this.props.history.push({
+      pathname: '/news',
+      state: { news_id },
+    })
   }
 
   render() {
@@ -46,7 +53,10 @@ class ReactNews extends Component {
                       <Label.Group>
                         <Label size="tiny" content={item.createdAt} />
                       </Label.Group>
-                      <Button color="green">
+                      <Button
+                        color="green"
+                        onClick={() => this.handleViewNewsArticle(item._id)}
+                      >
                         <Icon name="book" />
                         Read more
                       </Button>
