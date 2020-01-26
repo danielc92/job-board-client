@@ -7,17 +7,21 @@ import {
   Divider,
   Header,
   Button,
+  Message,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import { getNewsList } from '../../actions/news_list'
 
 class ReactNews extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('news')
+    this.props.propsGetNewsList()
   }
 
   render() {
+    const { news_list } = this.props
     return (
       <div>
         <Segment basic>
@@ -26,22 +30,27 @@ class ReactNews extends Component {
               <Header as="h1">News</Header>
               <p>Read about the latest updates and progress.</p>
               <Divider />
-              {new Array(3).fill(null).map(x => (
-                <Segment stacked color="green">
-                  <Header as="h3">Culpa non eiusmod et dolor.</Header>
-                  <p>
-                    Mollit ng non fugiat dolore sunodo duis. Aliquip ipsum
-                    pariatur ametsse deserunt.
-                  </p>
-                  <Label.Group>
-                    <Label size="tiny" content="Created on 20th August 2019" />
-                  </Label.Group>
-                  <Button color="green">
-                    <Icon name="book" />
-                    Read more
-                  </Button>
-                </Segment>
-              ))}
+              {news_list.error ? (
+                <Message color="red">There is an error</Message>
+              ) : news_list.docs ? (
+                <React.Fragment>
+                  {news_list.docs.map(item => (
+                    <Segment stacked color="green">
+                      <Header as="h3">{item.title}</Header>
+                      <p>{item.summary}</p>
+                      <Label.Group>
+                        <Label size="tiny" content={item.createdAt} />
+                      </Label.Group>
+                      <Button color="green">
+                        <Icon name="book" />
+                        Read more
+                      </Button>
+                    </Segment>
+                  ))}
+                </React.Fragment>
+              ) : (
+                <Message>Loading</Message>
+              )}
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
@@ -50,8 +59,16 @@ class ReactNews extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  propsSetMenuItem: setMenuItem,
+const mapStateToProps = state => {
+  const { news_list } = state
+  return {
+    news_list,
+  }
 }
 
-export default connect(null, mapDispatchToProps)(ReactNews)
+const mapDispatchToProps = {
+  propsSetMenuItem: setMenuItem,
+  propsGetNewsList: getNewsList,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReactNews)

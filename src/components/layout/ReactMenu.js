@@ -45,7 +45,7 @@ class ReactMenu extends Component {
           />
           <Menu.Item
             as={Link}
-            to="/news"
+            to="/news/list"
             name="news"
             active={menu.item === 'news'}
             onClick={this.handleItemClick}

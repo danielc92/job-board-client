@@ -9,7 +9,7 @@ export const getNewsList = () => async (dispatch, getState) => {
       type: 'GET_NEWS_LIST_SUCCESS',
       payload: {
         error: false,
-        data: response.data.results,
+        ...response.data.results,
       },
     })
   } catch (error) {

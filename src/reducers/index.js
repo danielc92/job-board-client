@@ -18,27 +18,31 @@ import { profileReducer } from './profile'
 import { jobStatusUpdateReducer } from './jobs/job_status_update'
 import { applicationListEmployerReducer } from './applications/application_list_employer'
 import { careerProfileReducer } from './career_profile'
+import { newsListReducer, newsDetailReducer } from './news'
 import { TOKEN_NAME } from '../constants/'
+
 const appReducer = combineReducers({
+  application_list_employer: applicationListEmployerReducer,
   application_list: applicationListReducer,
   application_update: applicationUpdateReducer,
   application: applicationReducer,
-  application_list_employer: applicationListEmployerReducer,
   auth: authReducer,
   benefit: benefitReducer,
   career_profile: careerProfileReducer,
   category: categoryReducer,
-  job: jobReducer,
   job_details: jobDetailReducer,
-  jobUpdateStatus: jobStatusUpdateReducer,
+  job: jobReducer,
   jobList: jobListReducer,
   jobListEmployer: jobListEmployerReducer,
+  jobUpdateStatus: jobStatusUpdateReducer,
   locationList: locationListReducer,
   menu: menuReducer,
+  news_detail: newsDetailReducer,
+  news_list: newsListReducer,
+  profile: profileReducer,
   register: registerReducer,
   skill: skillReducer,
   theme: themeReducer,
-  profile: profileReducer,
 })
 
 export const rootReducer = (state, action) => {
