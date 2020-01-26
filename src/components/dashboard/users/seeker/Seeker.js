@@ -87,7 +87,7 @@ class Seeker extends Component {
                         color="green"
                         onClick={() =>
                           this.props.history.push({
-                            pathname: '/view-job',
+                            pathname: '/job',
                             state: { job_id: item.job_id._id },
                           })
                         }

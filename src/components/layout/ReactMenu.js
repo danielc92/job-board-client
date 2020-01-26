@@ -31,7 +31,7 @@ class ReactMenu extends Component {
 
           <Menu.Item
             as={Link}
-            to="/view-jobs"
+            to="/job/list"
             name="find"
             active={menu.item === 'find'}
             onClick={this.handleItemClick}

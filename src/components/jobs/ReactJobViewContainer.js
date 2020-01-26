@@ -28,7 +28,7 @@ class ReactJobViewContainer extends Component {
     const { history } = this.props
     const { activePage } = data
     history.push({
-      pathname: '/view-jobs',
+      pathname: '/job/list',
       state: { ...history.location.state, page: activePage },
     })
   }
@@ -36,7 +36,7 @@ class ReactJobViewContainer extends Component {
   handleViewJob = job_id => {
     const { history } = this.props
     history.push({
-      pathname: '/view-job',
+      pathname: '/job',
       state: { job_id },
     })
   }
