@@ -25,7 +25,6 @@ import SeekerTableHeader from './SeekerTableHeader'
 
 class Seeker extends Component {
   componentDidMount() {
-    const { data, error } = this.props.application_list
     this.props.propsGetApplicationList()
   }
 

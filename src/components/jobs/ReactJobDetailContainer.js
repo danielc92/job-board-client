@@ -10,7 +10,6 @@ import {
   Form,
 } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import { queryStringToObjectParser } from '../../helpers/query'
 import { getJob } from '../../actions/job'
 import { setMenuItem } from '../../actions/menu'
 import { createApplication, resetApplication } from '../../actions/application'

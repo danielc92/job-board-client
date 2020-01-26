@@ -8,7 +8,6 @@ import {
   Form,
   Message,
   Icon,
-  Image,
   Divider,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
-import { Segment, Container, Header, Divider, Message } from 'semantic-ui-react'
+import { Segment, Container, Header, Divider } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Employer from './users/employer/Employer'
 import Seeker from './users/seeker/Seeker'
