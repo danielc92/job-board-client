@@ -7,12 +7,12 @@ export const updateApplicationStatus = payload => async (
   getState
 ) => {
   try {
-    const { job_id, applicant_id, status } = payload
+    const { job_id, status } = payload
     const token = localStorage.getItem(TOKEN_NAME)
     const config = { headers: { 'x-access-token': token } }
-    const url = `application?job_id=${job_id}&applicant_id=${applicant_id}&status=${status}`
+    const url = `application?job_id=${job_id}&status=${status}`
+    console.log(url)
     const response = await jobApi.patch(url, null, config)
-    console.log(response)
     dispatch({
       type: 'APPLICATION_UPDATE_SUCCESS',
       payload: {
@@ -36,7 +36,6 @@ export const createApplication = payload => async (dispatch, getState) => {
   try {
     const token = localStorage.getItem(TOKEN_NAME)
     const config = { headers: { 'x-access-token': token } }
-    console.log('APPLICATION FOR', payload)
     const response = await jobApi.post('application', payload, config)
     dispatch({
       type: 'APPLICATION_SUCCESS',

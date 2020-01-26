@@ -4,11 +4,13 @@ import {
   Header,
   Label,
   Modal,
+  Pagination,
   Segment,
   Icon,
   Divider,
   Button,
   Table,
+  Placeholder,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -23,10 +25,12 @@ import {
 } from '../../../../helpers/generic'
 import SeekerTableHeader from './SeekerTableHeader'
 import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
+import CustomNoResultsMessage from '../../../placeholder/CustomNoResultsMessage'
+const { Line, Paragraph } = Placeholder
 
 class Seeker extends Component {
   componentDidMount() {
-    this.props.propsGetApplicationList()
+    this.props.propsGetApplicationList({})
   }
 
   handleWithdrawApplication = payload => {
@@ -39,9 +43,40 @@ class Seeker extends Component {
     this.props.history.push('/dashboard')
   }
 
+  handleViewJobPosting = job_id => {
+    this.props.history.push({
+      pathname: '/job',
+      state: { job_id },
+    })
+  }
+
+  componentWillReceiveProps() {
+    // If the page has changed in router props call new data from api
+    const { history, location } = this.props
+    if (!history.location.state || !location.state) {
+      history.push({
+        pathname: '/dashboard',
+        state: { page: 1 },
+      })
+    } else {
+      if (history.location.state.page !== location.state.page) {
+        this.props.propsGetApplicationList({
+          page: history.location.state.page,
+        })
+      }
+    }
+  }
+
+  handlePageChange = (e, data) => {
+    this.props.history.push({
+      pathname: '/dashboard',
+      state: { page: data.activePage },
+    })
+  }
+
   render() {
     const { application_list, application_update } = this.props
-    const { data, message } = application_list
+    const { docs, message } = application_list
     const { flag, error } = application_update
 
     return (
@@ -50,59 +85,87 @@ class Seeker extends Component {
         <Divider />
         {application_list.error ? (
           <CustomErrorMessage header="An error occured" content={message} />
-        ) : data.length > 0 && !application_list.error ? (
-          <Table striped celled>
-            <SeekerTableHeader />
-            <Table.Body>
-              {data.map(item => {
-                return (
-                  <Table.Row>
-                    <Table.Cell>
-                      {properCaseTransform(item.job_id.title)}
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Label>{item.status}</Label>
-                    </Table.Cell>
-                    <Table.Cell>{dateDiffString(item.createdAt)}</Table.Cell>
-                    <Table.Cell>
-                      <Button
-                        disabled={item.status === 'withdrawn' ? true : false}
-                        compact
-                        onClick={() =>
-                          this.handleWithdrawApplication({
-                            job_id: item.job_id._id,
-                            applicant_id: item.applicant_id,
-                          })
-                        }
-                        size="small"
-                        color="red"
-                      >
-                        <Icon name="window close" />
-                        withdraw application
-                      </Button>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Button
-                        compact
-                        color="green"
-                        onClick={() =>
-                          this.props.history.push({
-                            pathname: '/job',
-                            state: { job_id: item.job_id._id },
-                          })
-                        }
-                      >
-                        <Icon name="eye"></Icon>view job posting
-                      </Button>
-                    </Table.Cell>
-                  </Table.Row>
-                )
-              })}
-            </Table.Body>
-          </Table>
+        ) : docs && docs.length > 0 ? (
+          <React.Fragment>
+            <Table striped celled>
+              <SeekerTableHeader />
+              <Table.Body>
+                {docs.map(item => {
+                  const { job_id, applicant_id, status, createdAt } = item
+                  return (
+                    <Table.Row>
+                      <Table.Cell>
+                        {properCaseTransform(item.job_id.title)}
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Label>{status}</Label>
+                      </Table.Cell>
+                      <Table.Cell>{dateDiffString(createdAt)}</Table.Cell>
+                      <Table.Cell>
+                        <Button
+                          disabled={status === 'withdrawn' ? true : false}
+                          compact
+                          onClick={() =>
+                            this.handleWithdrawApplication({
+                              job_id: job_id._id,
+                            })
+                          }
+                          size="small"
+                          color="red"
+                        >
+                          <Icon name="window close" />
+                          withdraw application
+                        </Button>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Button
+                          compact
+                          color="green"
+                          onClick={() => this.handleViewJobPosting(job_id._id)}
+                        >
+                          <Icon name="eye"></Icon>view job posting
+                        </Button>
+                      </Table.Cell>
+                    </Table.Row>
+                  )
+                })}
+              </Table.Body>
+            </Table>
+            <Pagination
+              activePage={application_list.page}
+              firstItem={{
+                content: <Icon name="angle double left" />,
+                icon: true,
+              }}
+              lastItem={{
+                content: <Icon name="angle double right" />,
+                icon: true,
+              }}
+              prevItem={{
+                content: <Icon name="angle left" />,
+                icon: true,
+              }}
+              nextItem={{
+                content: <Icon name="angle right" />,
+                icon: true,
+              }}
+              totalPages={application_list.totalPages}
+              onPageChange={this.handlePageChange}
+            />
+          </React.Fragment>
+        ) : docs && docs.length === 0 ? (
+          <CustomNoResultsMessage
+            header="No results"
+            content="Try applying for some jobs to view your applications."
+          />
         ) : (
-          <Segment stacked padded>
-            <p>You have no applications yet.</p>
+          <Segment>
+            <Placeholder>
+              <Paragraph>
+                <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+                <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+              </Paragraph>
+            </Placeholder>
           </Segment>
         )}
         <Modal

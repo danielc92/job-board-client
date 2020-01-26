@@ -6,6 +6,7 @@ import {
   Divider,
   Modal,
   Segment,
+  Placeholder,
   Button,
   Header,
   Icon,
@@ -21,6 +22,7 @@ import { properCaseTransform } from '../../../../helpers/generic'
 import EmployerTableHeader from './EmployerTableHeader'
 import { dateDiffString } from '../../../../helpers/generic'
 import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
+const { Line, Paragraph } = Placeholder
 
 class Employer extends Component {
   componentDidMount() {
@@ -72,21 +74,19 @@ class Employer extends Component {
 
   render() {
     const { job_list_employer, auth, jobUpdateStatus } = this.props
-    const { error, data, message } = job_list_employer
-    const loaded = Object.entries(data).length > 0 ? true : false
+    const { error, docs, message } = job_list_employer
     return (
       <React.Fragment>
         <Header as="h1" content="My Job Postings" />
         <Divider />
         {error ? (
           <CustomErrorMessage header="An error has occured" content={message} />
-        ) : null}
-        {loaded ? (
+        ) : docs && docs.length > 0 ? (
           <React.Fragment>
             <Table striped celled>
               <EmployerTableHeader />
               <Table.Body>
-                {data.docs.map(item => (
+                {docs.map(item => (
                   <Table.Row>
                     <Table.Cell>
                       <Header>
@@ -136,7 +136,7 @@ class Employer extends Component {
               </Table.Body>
             </Table>
             <Pagination
-              activePage={data.page}
+              activePage={job_list_employer.page}
               ellipsisItem={{
                 content: <Icon name="ellipsis horizontal" />,
                 icon: true,
@@ -151,7 +151,7 @@ class Employer extends Component {
               }}
               prevItem={{ content: <Icon name="angle left" />, icon: true }}
               nextItem={{ content: <Icon name="angle right" />, icon: true }}
-              totalPages={data.totalPages}
+              totalPages={job_list_employer.totalPages}
               onPageChange={this.handlePageChange}
             />
             <Modal
@@ -170,7 +170,18 @@ class Employer extends Component {
               </Modal.Actions>
             </Modal>
           </React.Fragment>
-        ) : null}
+        ) : docs && docs.length === 0 ? (
+          <p>no results</p>
+        ) : (
+          <Segment>
+            <Placeholder>
+              <Paragraph>
+                <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+                <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+              </Paragraph>
+            </Placeholder>
+          </Segment>
+        )}
       </React.Fragment>
     )
   }

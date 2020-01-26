@@ -6,9 +6,8 @@ export const getNewsList = object => async (dispatch, getState) => {
   try {
     const queryString = objectToQueryStringParser(object)
     const url = `news/list${queryString}`
-    console.log(url)
+    await new Promise(r => setTimeout(r, 500))
     const response = await jobApi.get(url)
-    await new Promise(r => setTimeout(r, 300))
     dispatch({
       type: 'GET_NEWS_LIST_SUCCESS',
       payload: {
@@ -29,8 +28,9 @@ export const getNewsList = object => async (dispatch, getState) => {
 
 export const getNewsDetail = _id => async (dispatch, getState) => {
   try {
+    await new Promise(r => setTimeout(r, 500))
     const response = await jobApi.get(`news?_id=${_id}`)
-    await new Promise(r => setTimeout(r, 300))
+
     dispatch({
       type: 'GET_NEWS_DETAIL_SUCCESS',
       payload: {

@@ -8,7 +8,6 @@ import {
   Header,
   Button,
   Placeholder,
-  Message,
   Pagination,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'

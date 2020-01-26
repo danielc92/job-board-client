@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Image, Message } from 'semantic-ui-react'
-import src from '../../images/undraw_authentication_fsn5.svg'
+import src from '../../images/empty_xct9.svg'
 
-export default function CustomAuthMessage(props) {
+export default function CustomNoResultsMessage(props) {
   return (
     <section
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
     >
       <Image style={{ maxWidth: '375px' }} centered fluid src={src} />
-      <Message color="orange" header={props.header} content={props.content} />
+      <Message color="blue" header={props.header} content={props.content} />
     </section>
   )
 }
