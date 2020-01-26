@@ -15,6 +15,7 @@ import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getNewsList } from '../../actions/news'
+import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 
 class ReactNews extends Component {
   componentDidMount() {
@@ -64,8 +65,7 @@ class ReactNews extends Component {
               <p>Read about the latest updates and progress.</p>
               <Divider />
               {news_list.error ? (
-                <Message
-                  color="red"
+                <CustomErrorMessage
                   header="An error occured"
                   content={news_list.message}
                 />

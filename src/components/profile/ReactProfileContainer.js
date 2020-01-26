@@ -16,7 +16,7 @@ import { loginRefresh } from '../../actions/auth'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Seeker from './Seeker'
 import ResusableLoader from '../placeholder/ResusableLoader'
-import ResuableAuthenticationMessage from '../placeholder/ResuableAuthenticationMessage'
+import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 
 class ReactProfileContainer extends Component {
   state = {
@@ -51,7 +51,7 @@ class ReactProfileContainer extends Component {
               <Header as="h1" content="Profile" />
               <p>Customize your profile, career details and more.</p>
               <Divider />
-              <ResuableAuthenticationMessage
+              <CustomAuthMessage
                 header="Authentication required"
                 content="You need to be logged in to view your profile."
               />

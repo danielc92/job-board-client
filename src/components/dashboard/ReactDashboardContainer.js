@@ -5,7 +5,7 @@ import { Segment, Container, Header, Divider } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Employer from './users/employer/Employer'
 import Seeker from './users/seeker/Seeker'
-import ResuableAuthenticationMessage from '../placeholder/ResuableAuthenticationMessage'
+import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 
 class ReactDashboardContainer extends Component {
   componentDidMount() {
@@ -24,7 +24,7 @@ class ReactDashboardContainer extends Component {
                 <Header as="h1" content="Dashboard" />
                 <p>View and update your applications/job postings.</p>
                 <Divider />
-                <ResuableAuthenticationMessage
+                <CustomAuthMessage
                   content="You need to be logged in to view your dashboard."
                   header="Authentication required"
                 />

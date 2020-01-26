@@ -29,7 +29,7 @@ import {
 import { calculateProgress } from '../../helpers/progressbar'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ReactProgressContainer'
-import ResuableAuthenticationMessage from '../placeholder/ResuableAuthenticationMessage'
+import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 
 class ReactJobPostContainer extends Component {
   //Internal state holds information pertaining to the form
@@ -223,12 +223,12 @@ class ReactJobPostContainer extends Component {
             <p>Start a new job posting for the world to see.</p>
             <Divider />
             {!auth.isAuthenticated ? (
-              <ResuableAuthenticationMessage
+              <CustomAuthMessage
                 header="Authentication required"
                 content="You need to be logged in to post a job."
               />
             ) : !auth.user.is_employer ? (
-              <ResuableAuthenticationMessage
+              <CustomAuthMessage
                 header="Invalid member type"
                 content="You need to be logged in as an employer to post a job."
               />
