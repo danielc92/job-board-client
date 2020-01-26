@@ -4,7 +4,7 @@ import { handleApiError } from '../helpers/api'
 export const getNewsList = () => async (dispatch, getState) => {
   try {
     const response = await jobApi.get('news/list')
-
+    await new Promise(r => setTimeout(r, 2250))
     dispatch({
       type: 'GET_NEWS_LIST_SUCCESS',
       payload: {

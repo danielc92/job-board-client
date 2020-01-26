@@ -7,6 +7,7 @@ import {
   Divider,
   Header,
   Button,
+  Placeholder,
   Message,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -31,7 +32,11 @@ class ReactNews extends Component {
               <p>Read about the latest updates and progress.</p>
               <Divider />
               {news_list.error ? (
-                <Message color="red">There is an error</Message>
+                <Message
+                  color="red"
+                  header="An error occured"
+                  content={news_list.message}
+                />
               ) : news_list.docs ? (
                 <React.Fragment>
                   {news_list.docs.map(item => (
@@ -49,7 +54,24 @@ class ReactNews extends Component {
                   ))}
                 </React.Fragment>
               ) : (
-                <Message>Loading</Message>
+                <React.Fragment>
+                  {new Array(5).fill(true).map(x => (
+                    <Segment>
+                      <Placeholder>
+                        <Placeholder.Paragraph>
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                        </Placeholder.Paragraph>
+                      </Placeholder>
+                    </Segment>
+                  ))}
+                </React.Fragment>
               )}
             </VerticallyPaddedContainer>
           </Container>
