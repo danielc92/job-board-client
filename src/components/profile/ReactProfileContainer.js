@@ -70,7 +70,7 @@ class ReactProfileContainer extends Component {
             <Divider />
             {!loaded && !error ? (
               <Segment stacked padded>
-                <Placeholder>
+                <Placeholder fluid>
                   <Paragraph>
                     <Line />
                     <Line />

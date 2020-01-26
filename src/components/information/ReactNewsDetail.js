@@ -50,7 +50,7 @@ class ReactNewsDetail extends Component {
             </Segment>
           ) : (
             <Segment stacked padded>
-              <Placeholder>
+              <Placeholder fluid>
                 <Placeholder.Paragraph>
                   <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />{' '}
                   <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />{' '}

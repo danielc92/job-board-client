@@ -33,12 +33,13 @@ export const resetJob = () => async (dispatch, getState) => {
 
 export const getJob = id => async (dispatch, getState) => {
   try {
+    await new Promise(r => setTimeout(r, 500))
     const token = localStorage.getItem(TOKEN_NAME)
     const config = { headers: { 'x-access-token': token } }
     const response = await jobApi.get(`job?id=${id}`, null, config)
     console.log('JOB_DETAIL: ', response.data.results)
     dispatch({
-      type: 'JOB_FETCH_SUCCESS',
+      type: 'GET_JOB_DETAIL_SUCCESS',
       payload: {
         error: false,
         data: response.data.results,
@@ -46,7 +47,7 @@ export const getJob = id => async (dispatch, getState) => {
     })
   } catch (error) {
     dispatch({
-      type: 'JOB_FETCH_FAILURE',
+      type: 'GET_JOB_DETAIL_FAILURE',
       payload: {
         error: true,
         message: handleApiError(error),

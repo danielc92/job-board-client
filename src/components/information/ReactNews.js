@@ -112,7 +112,7 @@ class ReactNews extends Component {
                 <React.Fragment>
                   {new Array(5).fill(true).map(x => (
                     <Segment>
-                      <Placeholder>
+                      <Placeholder fluid>
                         <Placeholder.Paragraph>
                           <Placeholder.Line />
                           <Placeholder.Line />

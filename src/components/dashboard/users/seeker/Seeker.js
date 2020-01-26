@@ -160,7 +160,7 @@ class Seeker extends Component {
           />
         ) : (
           <Segment>
-            <Placeholder>
+            <Placeholder fluid>
               <Paragraph>
                 <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
                 <Line /> <Line /> <Line /> <Line /> <Line /> <Line />

@@ -8,6 +8,7 @@ import {
   Button,
   Label,
   Form,
+  Placeholder,
 } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getJob } from '../../actions/job'
@@ -15,7 +16,8 @@ import { setMenuItem } from '../../actions/menu'
 import { createApplication, resetApplication } from '../../actions/application'
 import { connect } from 'react-redux'
 import { properCaseTransform } from '../../helpers/generic'
-
+import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+const { Line, Paragraph } = Placeholder
 class ReactJobDetailContainer extends Component {
   state = {
     user_message: '',
@@ -57,15 +59,25 @@ class ReactJobDetailContainer extends Component {
         <Container>
           <VerticallyPaddedContainer size="3">
             {job_details.data ? (
+              <Header as="h2">
+                {properCaseTransform(job_details.data.title)}
+                <Label
+                  color="violet"
+                  content={job_details.data.category}
+                  basic
+                />
+              </Header>
+            ) : (
+              <Header as="h2" content="Job detail page" />
+            )}
+            <p>Quis laboris excepteur eiusmod aliqua nisi magna labore.</p>
+            {job_details.error ? (
+              <CustomErrorMessage
+                header="An error has occured"
+                content={job_details.message}
+              />
+            ) : job_details.data ? (
               <React.Fragment>
-                <Header as="h2">
-                  {properCaseTransform(job_details.data.title)}
-                  <Label
-                    color="violet"
-                    content={job_details.data.category}
-                    basic
-                  />
-                </Header>
                 <Segment padded stacked>
                   <Grid stackable>
                     <Grid.Row>
@@ -173,7 +185,22 @@ class ReactJobDetailContainer extends Component {
                 </Modal>
               </React.Fragment>
             ) : (
-              <Segment>Job not found.</Segment>
+              <Segment padded stacked>
+                <Placeholder fluid>
+                  <Paragraph>
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                    <Line />
+                  </Paragraph>
+                </Placeholder>
+              </Segment>
             )}
           </VerticallyPaddedContainer>
         </Container>

@@ -178,7 +178,7 @@ class Employer extends Component {
           />
         ) : (
           <Segment stacked padded>
-            <Placeholder>
+            <Placeholder fluid>
               <Paragraph>
                 <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
                 <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
