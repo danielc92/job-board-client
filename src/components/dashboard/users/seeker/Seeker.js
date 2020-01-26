@@ -91,7 +91,7 @@ class Seeker extends Component {
               <SeekerTableHeader />
               <Table.Body>
                 {docs.map(item => {
-                  const { job_id, applicant_id, status, createdAt } = item
+                  const { job_id, status, createdAt } = item
                   return (
                     <Table.Row>
                       <Table.Cell>

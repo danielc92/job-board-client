@@ -1,16 +1,14 @@
 import jobApi from '../api'
 import { TOKEN_NAME } from '../constants'
 import { handleApiError } from '../helpers/api'
+import { objectToQueryStringParser } from '../helpers/query'
 
-export const updateApplicationStatus = payload => async (
-  dispatch,
-  getState
-) => {
+export const updateApplicationStatus = object => async (dispatch, getState) => {
   try {
-    const { job_id, status } = payload
+    const queryString = objectToQueryStringParser(object)
     const token = localStorage.getItem(TOKEN_NAME)
     const config = { headers: { 'x-access-token': token } }
-    const url = `application?job_id=${job_id}&status=${status}`
+    const url = `application${queryString}`
     console.log(url)
     const response = await jobApi.patch(url, null, config)
     dispatch({

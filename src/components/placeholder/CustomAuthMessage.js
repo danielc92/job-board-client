@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Image, Message } from 'semantic-ui-react'
 import src from '../../images/undraw_authentication_fsn5.svg'
 

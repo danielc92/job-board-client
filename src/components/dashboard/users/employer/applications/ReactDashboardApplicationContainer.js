@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { queryStringToObjectParser } from '../../../../../helpers/query'
 import {
   dateDiffString,
   properCaseTransform,
@@ -18,10 +17,16 @@ import {
   Icon,
   Button,
   Table,
+  Placeholder,
   Header,
 } from 'semantic-ui-react'
+import { setMenuItem } from '../../../../../actions/menu'
+
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer'
 import ApplicationHeader from './ApplicationHeader'
+import CustomErrorMessage from '../../../../placeholder/CustomErrorMessage'
+import CustomNoResultsMessage from '../../../../placeholder/CustomNoResultsMessage'
+const { Line, Paragraph } = Placeholder
 class ReactDashboardApplicationContainer extends Component {
   state = {
     modalContent: {},
@@ -33,6 +38,7 @@ class ReactDashboardApplicationContainer extends Component {
     this.props.propsGetApplicationEmployerList({
       job_id,
     })
+    this.props.propsSetMenuItem('dashboard')
   }
 
   handleModalContentChange = modalContent => {
@@ -58,50 +64,49 @@ class ReactDashboardApplicationContainer extends Component {
   }
 
   render() {
-    const { application_list_employer } = this.props
-    const { error, data } = application_list_employer
+    const { application_list_employer, history } = this.props
+    const { error, docs, message } = application_list_employer
     const { modalShow, modalContent } = this.state
+    const title = history.location.state
+      ? history.location.state.jobTitle
+      : 'Unknown'
+
     return (
       <React.Fragment>
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
               <Header as="h1" content={`Applications`} />
-              <p>
-                Review and update statuses for your{' '}
-                <Label size="tiny">
-                  {properCaseTransform(
-                    this.props.history.location.state.jobTitle
-                  )}
-                </Label>{' '}
-                applications.
-              </p>
+              <p>{`Review and update statuses for your ${properCaseTransform(
+                title
+              )} applications.`}</p>
               <Divider />
               {error ? (
-                <Segment color="red" stacked>
-                  <Header>An error occured</Header>
-                  <p>{application_list_employer.message}</p>
-                </Segment>
-              ) : data.length > 0 ? (
+                <CustomErrorMessage
+                  header="An error has occured"
+                  content={message}
+                />
+              ) : docs && docs.length > 0 ? (
                 <Table celled striped>
                   <ApplicationHeader />
                   <Table.Body>
-                    {data.map(x => {
+                    {docs.map(item => {
+                      const { applicant_id, status, createdAt } = item
                       return (
-                        <Table.Row>
+                        <Table.Row key={item._id}>
                           <Table.Cell
                             content={`${properCaseTransform(
-                              x.applicant_id.first_name
-                            )} ${properCaseTransform(
-                              x.applicant_id.last_name
-                            )}`}
+                              applicant_id.first_name
+                            )} ${properCaseTransform(applicant_id.last_name)}`}
                           />
-                          <Table.Cell content={x.status} />
-                          <Table.Cell content={dateDiffString(x.createdAt)} />
+                          <Table.Cell content={status} />
+                          <Table.Cell content={dateDiffString(createdAt)} />
                           <Table.Cell>
                             <Button
                               compact
-                              onClick={() => this.handleModalContentChange(x)}
+                              onClick={() =>
+                                this.handleModalContentChange(item)
+                              }
                               color="violet"
                             >
                               <Icon name="eye" />
@@ -113,14 +118,25 @@ class ReactDashboardApplicationContainer extends Component {
                     })}
                   </Table.Body>
                 </Table>
+              ) : docs && docs.length === 0 ? (
+                <CustomNoResultsMessage
+                  header="No reults"
+                  content="There are currently no application submitted for this job, please try again later."
+                />
               ) : (
-                <Segment color="green" stacked padded>
-                  There is currently no applications for this job.
+                <Segment stacked padded>
+                  <Placeholder>
+                    <Paragraph>
+                      <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+                      <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+                    </Paragraph>
+                  </Placeholder>
                 </Segment>
               )}
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
+
         {Object.entries(modalContent).length > 0 ? (
           <Modal
             open={modalShow}
@@ -172,6 +188,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   propsGetApplicationEmployerList: getApplicationEmployerList,
   propsUpdateApplicationStatus: updateApplicationStatus,
+  propsSetMenuItem: setMenuItem,
 }
 
 export default compose(

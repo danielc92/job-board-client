@@ -22,6 +22,7 @@ import { properCaseTransform } from '../../../../helpers/generic'
 import EmployerTableHeader from './EmployerTableHeader'
 import { dateDiffString } from '../../../../helpers/generic'
 import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
+import CustomNoResultsMessage from '../../../placeholder/CustomNoResultsMessage'
 const { Line, Paragraph } = Placeholder
 
 class Employer extends Component {
@@ -171,9 +172,12 @@ class Employer extends Component {
             </Modal>
           </React.Fragment>
         ) : docs && docs.length === 0 ? (
-          <p>no results</p>
+          <CustomNoResultsMessage
+            header="No results"
+            content="It looks like you have not posted any jobs so far."
+          />
         ) : (
-          <Segment>
+          <Segment stacked padded>
             <Placeholder>
               <Paragraph>
                 <Line /> <Line /> <Line /> <Line /> <Line /> <Line />

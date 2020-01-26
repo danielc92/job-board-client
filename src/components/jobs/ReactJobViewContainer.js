@@ -4,11 +4,9 @@ import {
   Button,
   Container,
   Divider,
-  Grid,
   Header,
   Icon,
   Label,
-  Message,
   Pagination,
   Segment,
 } from 'semantic-ui-react'

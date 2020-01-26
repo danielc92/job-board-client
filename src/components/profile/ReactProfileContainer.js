@@ -15,7 +15,6 @@ import { getUserDetails } from '../../actions/profile'
 import { loginRefresh } from '../../actions/auth'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Seeker from './Seeker'
-import ResusableLoader from '../placeholder/ResusableLoader'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 const { Line, Paragraph } = Placeholder
