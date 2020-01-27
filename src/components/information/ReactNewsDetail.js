@@ -39,7 +39,7 @@ class ReactNewsDetail extends Component {
                   <Icon name="clock" />
                   {dateDiffString(data.createdAt)}
                 </Label>
-                <Label>
+                <Label color="violet">
                   <Icon name="tag" />
                   {data.category}
                 </Label>

@@ -15,6 +15,7 @@ import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getNewsList } from '../../actions/news'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import { dateDiffString } from '../../helpers/generic'
 
 class ReactNews extends Component {
   componentDidMount() {
@@ -71,17 +72,23 @@ class ReactNews extends Component {
               ) : news_list.docs ? (
                 <React.Fragment>
                   {news_list.docs.map(item => (
-                    <Segment key={item._id} stacked color="green">
+                    <Segment key={item._id} stacked padded>
                       <Header as="h3">{item.title}</Header>
-                      <p>{item.summary}</p>
                       <Label.Group>
-                        <Label size="tiny" content={item.createdAt} />
+                        <Label
+                          icon="clock"
+                          size="tiny"
+                          content={dateDiffString(item.createdAt)}
+                        />
                       </Label.Group>
+                      <p>{item.summary}</p>
+
                       <Button
+                        size="tiny"
                         color="green"
                         onClick={() => this.handleViewNewsArticle(item._id)}
                       >
-                        <Icon name="book" />
+                        <Icon name="eye" />
                         Read more
                       </Button>
                     </Segment>
@@ -111,7 +118,7 @@ class ReactNews extends Component {
               ) : (
                 <React.Fragment>
                   {new Array(5).fill(true).map(x => (
-                    <Segment>
+                    <Segment padded stacked>
                       <Placeholder fluid>
                         <Placeholder.Paragraph>
                           <Placeholder.Line />
