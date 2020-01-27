@@ -156,7 +156,7 @@ class Seeker extends Component {
             content="Try applying for some jobs to view your applications."
           />
         ) : (
-          <Segment>
+          <Segment padded stacked>
             <Placeholder fluid>
               <Paragraph>
                 <Line /> <Line /> <Line /> <Line /> <Line /> <Line />

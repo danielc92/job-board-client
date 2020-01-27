@@ -14,7 +14,6 @@ import {
   Modal,
   Label,
   Divider,
-  Icon,
   Button,
   Table,
   Placeholder,
