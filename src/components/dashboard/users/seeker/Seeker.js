@@ -102,29 +102,26 @@ class Seeker extends Component {
                       </Table.Cell>
                       <Table.Cell>{dateDiffString(createdAt)}</Table.Cell>
                       <Table.Cell>
-                        <Button
-                          disabled={status === 'withdrawn' ? true : false}
-                          compact
-                          onClick={() =>
-                            this.handleWithdrawApplication({
-                              job_id: job_id._id,
-                            })
-                          }
-                          size="small"
-                          color="red"
-                        >
-                          <Icon name="window close" />
-                          withdraw application
-                        </Button>
-                      </Table.Cell>
-                      <Table.Cell>
-                        <Button
-                          compact
-                          color="green"
-                          onClick={() => this.handleViewJobPosting(job_id._id)}
-                        >
-                          <Icon name="eye"></Icon>view job posting
-                        </Button>
+                        <Button.Group size="tiny">
+                          <Button
+                            disabled={status !== 'pending' ? true : false}
+                            onClick={() =>
+                              this.handleWithdrawApplication({
+                                job_id: job_id._id,
+                              })
+                            }
+                            color="red"
+                            content="Withdraw"
+                          />
+                          <Button.Or />
+                          <Button
+                            content="View job"
+                            color="green"
+                            onClick={() =>
+                              this.handleViewJobPosting(job_id._id)
+                            }
+                          />
+                        </Button.Group>
                       </Table.Cell>
                     </Table.Row>
                   )

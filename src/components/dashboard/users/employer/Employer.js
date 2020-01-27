@@ -27,7 +27,7 @@ const { Line, Paragraph } = Placeholder
 
 class Employer extends Component {
   componentDidMount() {
-    this.props.propsgetJobListForEmployer({})
+    this.props.propsGetJobListForEmployer({})
   }
 
   componentWillReceiveProps() {
@@ -40,7 +40,7 @@ class Employer extends Component {
       })
     } else {
       if (history.location.state.page !== location.state.page) {
-        this.props.propsgetJobListForEmployer({
+        this.props.propsGetJobListForEmployer({
           page: history.location.state.page,
         })
       }
@@ -61,9 +61,11 @@ class Employer extends Component {
   }
 
   handleCloseModal = () => {
-    const { propsResetJobStatus } = this.props
+    const { propsResetJobStatus, history } = this.props
     propsResetJobStatus()
-    this.getJobListForEmployer()
+    this.props.propsGetJobListForEmployer({
+      page: history.location.state.page,
+    })
   }
 
   handleNavigateApplications = (job_id, jobTitle) => {
@@ -107,30 +109,30 @@ class Employer extends Component {
                     </Table.Cell>
                     <Table.Cell>{dateDiffString(item.createdAt)}</Table.Cell>
                     <Table.Cell>
-                      <Button
-                        compact
-                        size="tiny"
-                        content="view applications"
-                        color="violet"
-                        onClick={() =>
-                          this.handleNavigateApplications(item._id, item.title)
-                        }
-                      />
-                    </Table.Cell>
-                    <Table.Cell>
-                      <Button
-                        compact
-                        size="tiny"
-                        disabled={!item.open}
-                        content="close this job"
-                        color="red"
-                        onClick={() =>
-                          this.handleCloseJob({
-                            job_id: item._id,
-                            creator_id: auth.user._id,
-                          })
-                        }
-                      />
+                      <Button.Group size="tiny">
+                        <Button
+                          content="View applications"
+                          color="green"
+                          onClick={() =>
+                            this.handleNavigateApplications(
+                              item._id,
+                              item.title
+                            )
+                          }
+                        />
+                        <Button.Or />
+                        <Button
+                          disabled={!item.open}
+                          content="Close job"
+                          color="red"
+                          onClick={() =>
+                            this.handleCloseJob({
+                              job_id: item._id,
+                              creator_id: auth.user._id,
+                            })
+                          }
+                        />
+                      </Button.Group>
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -200,7 +202,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  propsgetJobListForEmployer: getJobListForEmployer,
+  propsGetJobListForEmployer: getJobListForEmployer,
   propsUpdateJobStatus: updateJobStatus,
   propsResetJobStatus: resetJobStatus,
 }

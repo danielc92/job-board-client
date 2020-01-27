@@ -292,7 +292,11 @@ class Seeker extends Component {
                 </Fragment>
               ) : (
                 <Fragment>
-                  <p>{data.summary}</p>
+                  <p>
+                    {data.summary.length > 0
+                      ? data.summary
+                      : 'You have no summary, click edit to begin.'}
+                  </p>
                   <Button
                     size="small"
                     color="green"
@@ -342,13 +346,18 @@ class Seeker extends Component {
                 </Form>
               ) : (
                 <Fragment>
-                  <Label.Group>
-                    {data.skills.map(skill_name => (
-                      <Label color="green" basic size="medium">
-                        {skill_name}
-                      </Label>
-                    ))}
-                  </Label.Group>
+                  {data.skills.length > 0 ? (
+                    <Label.Group>
+                      {data.skills.map(skill_name => (
+                        <Label color="green" basic size="medium">
+                          {skill_name}
+                        </Label>
+                      ))}
+                    </Label.Group>
+                  ) : (
+                    <p>You have no skills added, click edit to begin.</p>
+                  )}
+
                   <Button
                     size="small"
                     color="green"

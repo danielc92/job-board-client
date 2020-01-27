@@ -41,13 +41,20 @@ class SearchContainer extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const { title, location_string, category } = this.state
-    this.props.history.push({
+    const { history, propsGetJobList } = this.props
+    history.push({
       pathname: '/job/list',
       state: {
         title,
         location_string: location_string.location_string,
         category,
       },
+    })
+
+    propsGetJobList({
+      title,
+      location_string: location_string.location_string,
+      category,
     })
   }
 
