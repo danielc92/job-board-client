@@ -107,10 +107,9 @@ class ReactDashboardApplicationContainer extends Component {
                               onClick={() =>
                                 this.handleModalContentChange(item)
                               }
-                              color="violet"
+                              color="green"
                             >
-                              <Icon name="eye" />
-                              view application
+                              View application
                             </Button>
                           </Table.Cell>
                         </Table.Row>
