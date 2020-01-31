@@ -14,6 +14,7 @@ import {
 } from 'semantic-ui-react'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 
 class ReactNewsDetail extends Component {
   componentDidMount() {
@@ -30,7 +31,10 @@ class ReactNewsDetail extends Component {
           <Header as="h2" content="News Article Page" />
           <Divider />
           {news_detail.error ? (
-            <Message color="red">Error occured {data.message}</Message>
+            <CustomErrorMessage
+              header="An error has occured"
+              content={news_detail.message}
+            />
           ) : data ? (
             <Segment stacked padded>
               <Header as="h3" content={data.title} />
