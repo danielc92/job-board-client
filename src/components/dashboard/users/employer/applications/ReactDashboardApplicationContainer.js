@@ -33,11 +33,15 @@ class ReactDashboardApplicationContainer extends Component {
   }
 
   componentDidMount() {
+    this.getApplications()
+    this.props.propsSetMenuItem('dashboard')
+  }
+
+  getApplications() {
     const { job_id } = this.props.history.location.state
     this.props.propsGetApplicationEmployerList({
       job_id,
     })
-    this.props.propsSetMenuItem('dashboard')
   }
 
   handleModalContentChange = modalContent => {
@@ -60,6 +64,7 @@ class ReactDashboardApplicationContainer extends Component {
     }
     this.props.propsUpdateApplicationStatus(payload)
     this.setState({ modalShow: false })
+    this.getApplications()
   }
 
   render() {

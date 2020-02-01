@@ -194,10 +194,11 @@ class Employer extends Component {
 }
 
 const mapStateToProps = state => {
+  const { auth, job_list_employer, jobUpdateStatus } = state
   return {
-    auth: state.auth,
-    job_list_employer: state.jobListEmployer,
-    jobUpdateStatus: state.jobUpdateStatus,
+    auth,
+    job_list_employer,
+    jobUpdateStatus,
   }
 }
 

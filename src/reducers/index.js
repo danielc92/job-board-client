@@ -7,7 +7,7 @@ import { categoryReducer } from './categories'
 import { combineReducers } from 'redux'
 import { jobDetailReducer } from './jobs/job_detail'
 import { jobListEmployerReducer } from './jobs/job_list_employer'
-import { jobListReducer } from './jobs/joblist'
+import { jobListReducer } from './jobs/job_list_seeker'
 import { jobReducer } from './jobs/job'
 import { locationListReducer } from './location'
 import { menuReducer } from './menu'
@@ -32,8 +32,8 @@ const appReducer = combineReducers({
   category: categoryReducer,
   job_details: jobDetailReducer,
   job: jobReducer,
-  jobList: jobListReducer,
-  jobListEmployer: jobListEmployerReducer,
+  job_list_seeker: jobListReducer,
+  job_list_employer: jobListEmployerReducer,
   jobUpdateStatus: jobStatusUpdateReducer,
   locationList: locationListReducer,
   menu: menuReducer,

@@ -9,6 +9,7 @@ import {
   Label,
   Pagination,
   Segment,
+  Placeholder,
 } from 'semantic-ui-react'
 import { setMenuItem } from '../../actions/menu'
 import { getJobList } from '../../actions/job_list_seeker'
@@ -16,6 +17,7 @@ import { properCaseTransform } from '../../helpers/generic'
 import SearchContainer from './SearchContainer'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+const { Line, Paragraph } = Placeholder
 class ReactJobViewContainer extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('find')
@@ -73,7 +75,7 @@ class ReactJobViewContainer extends Component {
   }
 
   render() {
-    const { data, error, loaded, message } = this.props.jobList
+    const { data, error, message } = this.props.job_list_seeker
     const { state } = this.props.history.location
     return (
       <React.Fragment>
@@ -87,8 +89,7 @@ class ReactJobViewContainer extends Component {
                   content={message}
                 />
               </React.Fragment>
-            ) : null}
-            {loaded ? (
+            ) : data ? (
               <React.Fragment>
                 <SearchContainer />
                 <Segment basic>
@@ -126,10 +127,6 @@ class ReactJobViewContainer extends Component {
 
                   <Pagination
                     activePage={data.page}
-                    ellipsisItem={{
-                      content: <Icon name="ellipsis horizontal" />,
-                      icon: true,
-                    }}
                     firstItem={{
                       content: <Icon name="angle double left" />,
                       icon: true,
@@ -151,7 +148,21 @@ class ReactJobViewContainer extends Component {
                   />
                 </Segment>
               </React.Fragment>
-            ) : null}
+            ) : (
+              <React.Fragment>
+                <Header as="h1" content="Results" />
+                <p>Loading results...</p>
+                {new Array(6).fill(true).map(item => (
+                  <Segment padded stacked>
+                    <Placeholder>
+                      <Paragraph>
+                        <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+                      </Paragraph>
+                    </Placeholder>
+                  </Segment>
+                ))}
+              </React.Fragment>
+            )}
           </VerticallyPaddedContainer>
         </Container>
       </React.Fragment>
@@ -160,9 +171,9 @@ class ReactJobViewContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const { jobList, theme } = state
+  const { job_list_seeker, theme } = state
   return {
-    jobList,
+    job_list_seeker,
     theme,
   }
 }

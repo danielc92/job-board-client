@@ -28,7 +28,7 @@ export const getNewsList = object => async (dispatch, getState) => {
 
 export const getNewsDetail = _id => async (dispatch, getState) => {
   try {
-    await new Promise(r => setTimeout(r, 500))
+    await new Promise(r => setTimeout(r, 2000))
     const response = await jobApi.get(`news?_id=${_id}`)
 
     dispatch({
