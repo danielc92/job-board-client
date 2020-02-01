@@ -9,7 +9,6 @@ export const updateApplicationStatus = object => async (dispatch, getState) => {
     const token = localStorage.getItem(TOKEN_NAME)
     const config = { headers: { 'x-access-token': token } }
     const url = `application${queryString}`
-    console.log(url)
     const response = await jobApi.patch(url, null, config)
     dispatch({
       type: 'APPLICATION_UPDATE_SUCCESS',

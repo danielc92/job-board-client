@@ -4,6 +4,7 @@ import {
   properCaseTransform,
 } from '../../../../../helpers/generic'
 import { getApplicationEmployerList } from '../../../../../actions/application_list_employer'
+import { getCareerProfileEmployer } from '../../../../../actions/career_profile'
 import { updateApplicationStatus } from '../../../../../actions/application'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -12,6 +13,7 @@ import {
   Container,
   Segment,
   Modal,
+  Message,
   Label,
   Divider,
   Button,
@@ -24,6 +26,7 @@ import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContai
 import ApplicationHeader from './ApplicationHeader'
 import CustomErrorMessage from '../../../../placeholder/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../../placeholder/CustomNoResultsMessage'
+import RenderApplicantProfile from './RenderApplicantProfile'
 const { Line, Paragraph } = Placeholder
 
 class ReactDashboardApplicationContainer extends Component {
@@ -46,7 +49,11 @@ class ReactDashboardApplicationContainer extends Component {
 
   handleModalContentChange = modalContent => {
     this.setState({ modalContent }, () => {
-      this.setState({ modalShow: true })
+      this.setState({ modalShow: true }, () => {
+        console.log('THIS IS THE ID', modalContent.applicant_id._id)
+        const { _id } = modalContent.applicant_id
+        this.props.propsGetCareerProfileEmployer(_id)
+      })
     })
   }
 
@@ -68,7 +75,11 @@ class ReactDashboardApplicationContainer extends Component {
   }
 
   render() {
-    const { application_list_employer, history } = this.props
+    const {
+      application_list_employer,
+      history,
+      career_profile_employer,
+    } = this.props
     const { error, docs, message } = application_list_employer
     const { modalShow, modalContent } = this.state
     const title = history.location.state
@@ -156,12 +167,38 @@ class ReactDashboardApplicationContainer extends Component {
             <Modal.Content>
               <Header as="h3" content="Current status" />
               <Label content={modalContent.status} />
-              <Header as="h3">Applicants message</Header>
+              <Header as="h3">Message</Header>
               <p>
                 {modalContent.user_message
                   ? modalContent.user_message
                   : 'This applicant did not choose to a leave a message.'}
               </p>
+
+              {career_profile_employer.error ? (
+                <Message
+                  color="red"
+                  header="An error occured."
+                  content="Failed to fetch applicants profile"
+                />
+              ) : career_profile_employer.data ? (
+                <RenderApplicantProfile
+                  data={career_profile_employer.data}
+                  applicant={modalContent.applicant_id}
+                />
+              ) : (
+                new Array(4).fill(true).map(i => (
+                  <Segment stacked padded>
+                    <Placeholder>
+                      <Placeholder.Paragraph>
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                      </Placeholder.Paragraph>
+                    </Placeholder>
+                  </Segment>
+                ))
+              )}
             </Modal.Content>
             <Modal.Actions>
               <Button
@@ -174,6 +211,11 @@ class ReactDashboardApplicationContainer extends Component {
                 color="red"
                 content="I'm not interested"
               />
+              <Button
+                secondary
+                onClick={this.handleCloseModal}
+                content="Close"
+              />
             </Modal.Actions>
           </Modal>
         ) : null}
@@ -183,15 +225,17 @@ class ReactDashboardApplicationContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const { application_list_employer } = state
+  const { application_list_employer, career_profile_employer } = state
   return {
     application_list_employer,
+    career_profile_employer,
   }
 }
 const mapDispatchToProps = {
   propsGetApplicationEmployerList: getApplicationEmployerList,
   propsUpdateApplicationStatus: updateApplicationStatus,
   propsSetMenuItem: setMenuItem,
+  propsGetCareerProfileEmployer: getCareerProfileEmployer,
 }
 
 export default compose(

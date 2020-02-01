@@ -23,7 +23,7 @@ class ReactHero extends Component {
               <Grid.Row columns={2}>
                 <Grid.Column verticalAlign="middle">
                   <Header as="h1" style={{ fontSize: '3rem' }}>
-                    Data driven job board.
+                    Welcome to Daniel's Job Board.
                     <Header.Subheader>
                       Irure nostrud ea aliqua incididunt ex irure sint
                       excepteur.

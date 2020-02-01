@@ -17,7 +17,10 @@ import { themeReducer } from './theme'
 import { profileReducer } from './profile'
 import { jobStatusUpdateReducer } from './jobs/job_status_update'
 import { applicationListEmployerReducer } from './applications/application_list_employer'
-import { careerProfileReducer } from './career_profile'
+import {
+  careerProfileReducer,
+  careerProfileEmployerReducer,
+} from './career_profile'
 import { newsListReducer, newsDetailReducer } from './news'
 import { TOKEN_NAME } from '../constants/'
 
@@ -29,6 +32,7 @@ const appReducer = combineReducers({
   auth: authReducer,
   benefit: benefitReducer,
   career_profile: careerProfileReducer,
+  career_profile_employer: careerProfileEmployerReducer,
   category: categoryReducer,
   job_details: jobDetailReducer,
   job: jobReducer,
