@@ -23,21 +23,21 @@ class ReactHomeContainer extends Component {
         <ReactFeatures />
 
         <SectionSplitHero
-          ctaHeader="Header"
+          ctaHeader="Flow"
           ctaSubHeader="This is a sub header for the cta component"
           image={image2}
           left
         />
 
         <SectionSplitHero
-          ctaHeader="Header"
+          ctaHeader="Personalization"
           ctaSubHeader="This is a sub header for the cta component"
           image={image3}
           left={false}
         />
 
         <SectionSplitHero
-          ctaHeader="Header"
+          ctaHeader="Feedback"
           ctaSubHeader="This is a sub header for the cta component"
           image={image4}
           left
