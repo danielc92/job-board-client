@@ -20,12 +20,12 @@ import {
   Header,
 } from 'semantic-ui-react'
 import { setMenuItem } from '../../../../../actions/menu'
-
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer'
 import ApplicationHeader from './ApplicationHeader'
 import CustomErrorMessage from '../../../../placeholder/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../../placeholder/CustomNoResultsMessage'
 const { Line, Paragraph } = Placeholder
+
 class ReactDashboardApplicationContainer extends Component {
   state = {
     modalContent: {},

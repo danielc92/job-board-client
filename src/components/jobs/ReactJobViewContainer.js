@@ -18,6 +18,7 @@ import SearchContainer from './SearchContainer'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 const { Line, Paragraph } = Placeholder
+
 class ReactJobViewContainer extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('find')

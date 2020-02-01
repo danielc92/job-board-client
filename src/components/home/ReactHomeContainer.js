@@ -7,7 +7,7 @@ import SectionSplitHero from './SectionSplitHero'
 import image from '../../images/undraw_interview_rmcf.svg'
 import image2 from '../../images/process_e90d.svg'
 import image3 from '../../images/success_factors_fay0.svg'
-import image4 from '../../images/Job_hunt_tinb.svg'
+import image4 from '../../images/feedback.svg'
 
 class ReactHomeContainer extends Component {
   componentDidMount() {
@@ -39,7 +39,7 @@ class ReactHomeContainer extends Component {
         <SectionSplitHero
           ctaHeader="Header"
           ctaSubHeader="This is a sub header for the cta component"
-          image={image}
+          image={image4}
           left
         />
       </React.Fragment>
