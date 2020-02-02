@@ -17,6 +17,7 @@ import { properCaseTransform } from '../../helpers/generic'
 import SearchContainer from './SearchContainer'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import FeedbackCta from '../feedback/FeedbackCta'
 const { Line, Paragraph } = Placeholder
 
 class ReactJobViewContainer extends Component {
@@ -166,6 +167,7 @@ class ReactJobViewContainer extends Component {
             )}
           </VerticallyPaddedContainer>
         </Container>
+        <FeedbackCta />
       </React.Fragment>
     )
   }

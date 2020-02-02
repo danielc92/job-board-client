@@ -16,6 +16,7 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getNewsList } from '../../actions/news'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 import { dateDiffString } from '../../helpers/generic'
+import FeedbackCta from '../feedback/FeedbackCta'
 
 class ReactNews extends Component {
   componentDidMount() {
@@ -145,6 +146,7 @@ class ReactNews extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
+        <FeedbackCta />
       </div>
     )
   }

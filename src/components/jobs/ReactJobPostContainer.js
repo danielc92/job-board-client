@@ -30,6 +30,7 @@ import { calculateProgress } from '../../helpers/progressbar'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ReactProgressContainer'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
+import FeedbackCta from '../feedback/FeedbackCta'
 
 class ReactJobPostContainer extends Component {
   //Internal state holds information pertaining to the form
@@ -216,173 +217,176 @@ class ReactJobPostContainer extends Component {
     )
 
     return (
-      <Segment basic>
-        <Container>
-          <VerticallyPaddedContainer size="4">
-            <Header as="h1">Post a job</Header>
-            <p>Start a new job posting for the world to see.</p>
-            <Divider />
-            {!auth.isAuthenticated ? (
-              <CustomAuthMessage
-                header="Authentication required"
-                content="You need to be logged in to post a job."
-              />
-            ) : !auth.user.is_employer ? (
-              <CustomAuthMessage
-                header="Invalid member type"
-                content="You need to be logged in as an employer to post a job."
-              />
-            ) : (
-              <React.Fragment>
-                <ReactProgressContainer percent={percent} />
-                <Form onSubmit={this.handleSubmit}>
-                  <Form.Group widths={'equal'}>
-                    <Form.Input
+      <React.Fragment>
+        <Segment basic>
+          <Container>
+            <VerticallyPaddedContainer size="4">
+              <Header as="h1">Post a job</Header>
+              <p>Start a new job posting for the world to see.</p>
+              <Divider />
+              {!auth.isAuthenticated ? (
+                <CustomAuthMessage
+                  header="Authentication required"
+                  content="You need to be logged in to post a job."
+                />
+              ) : !auth.user.is_employer ? (
+                <CustomAuthMessage
+                  header="Invalid member type"
+                  content="You need to be logged in as an employer to post a job."
+                />
+              ) : (
+                <React.Fragment>
+                  <ReactProgressContainer percent={percent} />
+                  <Form onSubmit={this.handleSubmit}>
+                    <Form.Group widths={'equal'}>
+                      <Form.Input
+                        onChange={this.handleInputChange}
+                        name="title"
+                        placeholder="Zoo keeper"
+                        label="Job Title"
+                      />
+
+                      <Form.Dropdown
+                        onChange={this.handleDropdownChange}
+                        name="skills"
+                        label="Skills"
+                        placeholder="Add skills"
+                        multiple
+                        search
+                        selection
+                        options={skill.data}
+                        renderLabel={this.customRender}
+                      ></Form.Dropdown>
+
+                      <Form.Dropdown
+                        onChange={this.handleDropdownChange}
+                        name="benefits"
+                        label="Benefits"
+                        placeholder="Add benefits"
+                        multiple
+                        search
+                        selection
+                        options={benefit.data}
+                        renderLabel={this.customRender}
+                      ></Form.Dropdown>
+                    </Form.Group>
+
+                    <Form.Group widths="equal">
+                      <Form.Dropdown
+                        onSearchChange={this.handleBetaLocationHandler}
+                        onChange={this.handleDropdownChange}
+                        name="location"
+                        label="Location"
+                        placeholder="Search for a location"
+                        fluid
+                        selectOnNavigation={false}
+                        selection
+                        search
+                        renderLabel={this.customRender}
+                        options={
+                          locationOptions.length > 0
+                            ? locationOptions[0]['data']
+                            : null
+                        }
+                      />
+                      <Form.Dropdown
+                        onChange={this.handleDropdownChange}
+                        name="category"
+                        label="Category"
+                        placeholder="Select category"
+                        fluid
+                        selection
+                        search
+                        options={category.data}
+                      />
+                      <Form.Input
+                        onChange={this.handleInputChange}
+                        name="salary_range_low"
+                        type="number"
+                        label="Minimum salary ($)"
+                      />
+
+                      <Form.Input
+                        onChange={this.handleInputChange}
+                        name="salary_range_high"
+                        type="number"
+                        label="Maximum salary ($)"
+                      />
+                    </Form.Group>
+
+                    <Form.TextArea
+                      width={12}
                       onChange={this.handleInputChange}
-                      name="title"
-                      placeholder="Zoo keeper"
-                      label="Job Title"
+                      name="company_summary"
+                      maxLength="500"
+                      placeholder="A short description about the company"
+                      label={`About the company (${500 -
+                        company_summary.length} chars remaining)`}
                     />
 
-                    <Form.Dropdown
-                      onChange={this.handleDropdownChange}
-                      name="skills"
-                      label="Skills"
-                      placeholder="Add skills"
-                      multiple
-                      search
-                      selection
-                      options={skill.data}
-                      renderLabel={this.customRender}
-                    ></Form.Dropdown>
-
-                    <Form.Dropdown
-                      onChange={this.handleDropdownChange}
-                      name="benefits"
-                      label="Benefits"
-                      placeholder="Add benefits"
-                      multiple
-                      search
-                      selection
-                      options={benefit.data}
-                      renderLabel={this.customRender}
-                    ></Form.Dropdown>
-                  </Form.Group>
-
-                  <Form.Group widths="equal">
-                    <Form.Dropdown
-                      onSearchChange={this.handleBetaLocationHandler}
-                      onChange={this.handleDropdownChange}
-                      name="location"
-                      label="Location"
-                      placeholder="Search for a location"
-                      fluid
-                      selectOnNavigation={false}
-                      selection
-                      search
-                      renderLabel={this.customRender}
-                      options={
-                        locationOptions.length > 0
-                          ? locationOptions[0]['data']
-                          : null
-                      }
-                    />
-                    <Form.Dropdown
-                      onChange={this.handleDropdownChange}
-                      name="category"
-                      label="Category"
-                      placeholder="Select category"
-                      fluid
-                      selection
-                      search
-                      options={category.data}
-                    />
-                    <Form.Input
+                    <Form.TextArea
+                      width={12}
                       onChange={this.handleInputChange}
-                      name="salary_range_low"
-                      type="number"
-                      label="Minimum salary ($)"
+                      name="job_summary"
+                      maxLength="500"
+                      placeholder="A short description about the job"
+                      label={`About the job (${500 -
+                        job_summary.length} chars remaining)`}
                     />
 
-                    <Form.Input
+                    <Form.TextArea
+                      width={12}
                       onChange={this.handleInputChange}
-                      name="salary_range_high"
-                      type="number"
-                      label="Maximum salary ($)"
+                      name="contact_summary"
+                      maxLength="500"
+                      placeholder="Enter any contact details..."
+                      label={`Contact details (${500 -
+                        contact_summary.length} chars remaining)`}
                     />
-                  </Form.Group>
 
-                  <Form.TextArea
-                    width={12}
-                    onChange={this.handleInputChange}
-                    name="company_summary"
-                    maxLength="500"
-                    placeholder="A short description about the company"
-                    label={`About the company (${500 -
-                      company_summary.length} chars remaining)`}
-                  />
+                    <Form.Button size="big" color="green">
+                      <Icon name="add square"></Icon>Create job
+                    </Form.Button>
 
-                  <Form.TextArea
-                    width={12}
-                    onChange={this.handleInputChange}
-                    name="job_summary"
-                    maxLength="500"
-                    placeholder="A short description about the job"
-                    label={`About the job (${500 -
-                      job_summary.length} chars remaining)`}
-                  />
+                    <Message
+                      error
+                      visible={job.error}
+                      header="Error"
+                      content={job.message}
+                    ></Message>
 
-                  <Form.TextArea
-                    width={12}
-                    onChange={this.handleInputChange}
-                    name="contact_summary"
-                    maxLength="500"
-                    placeholder="Enter any contact details..."
-                    label={`Contact details (${500 -
-                      contact_summary.length} chars remaining)`}
-                  />
-
-                  <Form.Button size="big" color="green">
-                    <Icon name="add square"></Icon>Create job
-                  </Form.Button>
-
-                  <Message
-                    error
-                    visible={job.error}
-                    header="Error"
-                    content={job.message}
-                  ></Message>
-
-                  <Modal
-                    open={Object.entries(job.data).length > 0}
-                    dimmer="blurring"
-                    onClose={this.closeModal}
-                  >
-                    <Modal.Header>Success</Modal.Header>
-                    <Modal.Content>
-                      Your job has been posted successfully!
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <Button onClick={this.closeModal} color="green">
-                        Confirm
-                      </Button>
-                    </Modal.Actions>
-                  </Modal>
-                </Form>
-                {errors.length === 0 ? (
-                  <Message
-                    success
-                    header="Validation successful"
-                    content="You may proceed to post this job."
-                  ></Message>
-                ) : (
-                  <Message info list={errors} header="Form requirements" />
-                )}
-              </React.Fragment>
-            )}
-          </VerticallyPaddedContainer>
-        </Container>
-      </Segment>
+                    <Modal
+                      open={Object.entries(job.data).length > 0}
+                      dimmer="blurring"
+                      onClose={this.closeModal}
+                    >
+                      <Modal.Header>Success</Modal.Header>
+                      <Modal.Content>
+                        Your job has been posted successfully!
+                      </Modal.Content>
+                      <Modal.Actions>
+                        <Button onClick={this.closeModal} color="green">
+                          Confirm
+                        </Button>
+                      </Modal.Actions>
+                    </Modal>
+                  </Form>
+                  {errors.length === 0 ? (
+                    <Message
+                      success
+                      header="Validation successful"
+                      content="You may proceed to post this job."
+                    ></Message>
+                  ) : (
+                    <Message info list={errors} header="Form requirements" />
+                  )}
+                </React.Fragment>
+              )}
+            </VerticallyPaddedContainer>
+          </Container>
+        </Segment>
+        <FeedbackCta />
+      </React.Fragment>
     )
   }
 }

@@ -15,6 +15,7 @@ import {
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import FeedbackCta from '../feedback/FeedbackCta'
 
 class ReactNewsDetail extends Component {
   componentDidMount() {
@@ -26,51 +27,56 @@ class ReactNewsDetail extends Component {
     const { news_detail } = this.props
     const { data } = news_detail
     return (
-      <Container>
-        <VerticallyPaddedContainer size={4}>
-          <Header as="h2" content="News Article Page" />
-          <Divider />
-          {news_detail.error ? (
-            <CustomErrorMessage
-              header="An error has occured"
-              content={news_detail.message}
-            />
-          ) : data ? (
-            <Segment stacked padded>
-              <Header as="h3" content={data.title} />
+      <section>
+        <Container>
+          <VerticallyPaddedContainer size={4}>
+            <Header as="h2" content="News Article Page" />
+            <Divider />
+            {news_detail.error ? (
+              <CustomErrorMessage
+                header="An error has occured"
+                content={news_detail.message}
+              />
+            ) : data ? (
+              <Segment stacked padded>
+                <Header as="h3" content={data.title} />
 
-              {data.content.map(para => (
-                <p>{para}</p>
-              ))}
-              <Divider />
-              <Label.Group>
-                <Label>
-                  <Icon name="clock" />
-                  Posted {dateDiffString(data.createdAt)}
-                </Label>
-                <Label color="violet">
-                  <Icon name="tag" />
-                  {data.category}
-                </Label>
-              </Label.Group>
-            </Segment>
-          ) : (
-            <Segment stacked padded>
-              <Placeholder fluid>
-                <Placeholder.Paragraph>
-                  <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />{' '}
-                  <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />{' '}
-                  <Placeholder.Line />
-                  <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />{' '}
-                  <Placeholder.Line />
-                  <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />{' '}
-                  <Placeholder.Line /> <Placeholder.Line /> <Placeholder.Line />
-                </Placeholder.Paragraph>
-              </Placeholder>
-            </Segment>
-          )}
-        </VerticallyPaddedContainer>
-      </Container>
+                {data.content.map(para => (
+                  <p>{para}</p>
+                ))}
+                <Divider />
+                <Label.Group>
+                  <Label>
+                    <Icon name="clock" />
+                    Posted {dateDiffString(data.createdAt)}
+                  </Label>
+                  <Label color="violet">
+                    <Icon name="tag" />
+                    {data.category}
+                  </Label>
+                </Label.Group>
+              </Segment>
+            ) : (
+              <Segment stacked padded>
+                <Placeholder fluid>
+                  <Placeholder.Paragraph>
+                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                    <Placeholder.Line />
+                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                    <Placeholder.Line /> <Placeholder.Line />
+                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                    <Placeholder.Line /> <Placeholder.Line />
+                  </Placeholder.Paragraph>
+                </Placeholder>
+              </Segment>
+            )}
+          </VerticallyPaddedContainer>
+        </Container>
+        <FeedbackCta />
+      </section>
     )
   }
 }
