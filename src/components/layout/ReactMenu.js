@@ -18,7 +18,7 @@ class ReactMenu extends Component {
         color={theme}
         pointing
         stackable
-        style={{ margin: '0', borderRadius: 'none', boxShadow: 'none' }}
+        style={{ margin: '0', borderRadius: '0', boxShadow: 'none' }}
       >
         <Container>
           <Menu.Item

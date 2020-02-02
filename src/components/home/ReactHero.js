@@ -24,11 +24,10 @@ class ReactHero extends Component {
                 <Grid.Column verticalAlign="middle">
                   <Header as="h1" style={{ fontSize: '3rem' }}>
                     Welcome to Daniel's Job Board.
-                    <Header.Subheader>
-                      Irure nostrud ea aliqua incididunt ex irure sint
-                      excepteur.
-                    </Header.Subheader>
                   </Header>
+                  <p>
+                    Irure nostrud ea aliqua incididunt ex irure sint excepteur.
+                  </p>
                   <Button
                     to="/job/list"
                     as={Link}

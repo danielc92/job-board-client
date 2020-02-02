@@ -57,7 +57,7 @@ class ReactLogin extends Component {
     }
 
     return (
-      <Container style={{ minHeight: '60vh' }}>
+      <Container>
         <VerticallyPaddedContainer size="4">
           <Grid columns={2} stackable padded>
             <Grid.Row>
@@ -68,10 +68,7 @@ class ReactLogin extends Component {
                     Unlock all the features by creating an account and signing
                     in.
                   </p>
-                  <Form
-                    onSubmit={this.handleSubmit}
-                    style={{ maxWidth: '500px' }}
-                  >
+                  <Form onSubmit={this.handleSubmit}>
                     <Form.Input
                       icon="at"
                       iconPosition="left"

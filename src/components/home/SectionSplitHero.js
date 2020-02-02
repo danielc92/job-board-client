@@ -22,8 +22,8 @@ class SectionSplitHero extends Component {
                 <Grid.Column verticalAlign="middle" style={style}>
                   <Header as="h1" style={{ fontSize: '3rem' }}>
                     {ctaHeader}
-                    <Header.Subheader>{ctaSubHeader}</Header.Subheader>
                   </Header>
+                  <p>{ctaSubHeader}</p>
                 </Grid.Column>
                 {left === false ? (
                   <Grid.Column>

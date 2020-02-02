@@ -53,7 +53,8 @@ class ReactFooter extends Component {
           color="black"
           inverted
           basic
-          style={{ margin: '0', textAlign: 'center' }}
+          textAlign="center"
+          style={{ margin: '0' }}
         >
           Created with{' '}
           <span role="img" aria-label="with-love-heart">

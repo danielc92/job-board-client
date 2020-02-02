@@ -32,7 +32,7 @@ class App extends Component {
         <Message
           style={{ textAlign: 'center', borderRadius: '0', margin: '0' }}
           color="violet"
-          size="large"
+          size="normal"
         >
           This application is currently in <strong>development</strong> phase.
         </Message>
