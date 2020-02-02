@@ -1,12 +1,10 @@
 import jobApi from '../api'
-import { TOKEN_NAME } from '../constants'
-import { handleApiError } from '../helpers/api'
+import { handleApiError, getConfig } from '../helpers/api'
 
 export const updateJobStatus = payload => async (dispatch, getState) => {
   try {
     const { job_id } = payload
-    const token = localStorage.getItem(TOKEN_NAME)
-    const config = { headers: { 'x-access-token': token } }
+    const config = getConfig()
     const url = `job?job_id=${job_id}`
     const response = await jobApi.patch(url, null, config)
     dispatch({

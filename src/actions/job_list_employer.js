@@ -1,16 +1,14 @@
 import jobApi from '../api'
 import { objectToQueryStringParser } from '../helpers/query'
-import { TOKEN_NAME } from '../constants/index'
-import { handleApiError } from '../helpers/api'
+import { handleApiError, getConfig } from '../helpers/api'
 
 export const getJobListForEmployer = object => async (dispatch, getState) => {
   try {
     await new Promise(r => setTimeout(r, 500))
     let queryString = objectToQueryStringParser(object)
-    const token = localStorage.getItem(TOKEN_NAME)
     const url = `job/list/employer${queryString}`
-    const options = { headers: { 'x-access-token': token } }
-    const response = await jobApi.get(url, options)
+    const config = getConfig()
+    const response = await jobApi.get(url, config)
     dispatch({
       type: 'GET_JOB_LIST_EMPLOYER_SUCCESS',
       payload: {

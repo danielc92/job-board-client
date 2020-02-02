@@ -1,15 +1,11 @@
 import jobApi from '../api'
-import { TOKEN_NAME } from '../constants/index'
-import { handleApiError } from '../helpers/api'
+import { handleApiError, getConfig } from '../helpers/api'
 
 export const getCareerProfile = () => async (dispatch, getState) => {
-  const token = localStorage.getItem(TOKEN_NAME)
-
   try {
     await new Promise(r => setTimeout(r, 500))
-    const response = await jobApi.get('career-profile', {
-      headers: { 'x-access-token': token },
-    })
+    const config = getConfig()
+    const response = await jobApi.get('career-profile', config)
 
     dispatch({
       type: 'GET_CAREER_PROFILE_SUCCESS',
@@ -30,14 +26,11 @@ export const getCareerProfile = () => async (dispatch, getState) => {
 }
 
 export const getCareerProfileEmployer = _id => async (dispatch, getState) => {
-  const token = localStorage.getItem(TOKEN_NAME)
-
   try {
     await new Promise(r => setTimeout(r, 500))
     const url = `career-profile/employer?_id=${_id}`
-    const response = await jobApi.get(url, {
-      headers: { 'x-access-token': token },
-    })
+    const config = getConfig()
+    const response = await jobApi.get(url, config)
     console.log(response.data.result)
     dispatch({
       type: 'GET_CAREER_PROFILE_EMPLOYER_SUCCESS',
@@ -58,10 +51,9 @@ export const getCareerProfileEmployer = _id => async (dispatch, getState) => {
 }
 
 export const updateCareerProfile = payload => async (dispatch, getState) => {
-  const token = localStorage.getItem(TOKEN_NAME)
-  const options = { headers: { 'x-access-token': token } }
+  const config = getConfig()
   try {
-    const response = await jobApi.patch('career-profile', payload, options)
+    const response = await jobApi.patch('career-profile', payload, config)
     dispatch({
       type: 'UPDATE_CAREER_PROFILE_SUCCESS',
       payload: {
