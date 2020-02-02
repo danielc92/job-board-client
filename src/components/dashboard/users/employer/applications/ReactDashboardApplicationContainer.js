@@ -27,6 +27,7 @@ import ApplicationHeader from './ApplicationHeader'
 import CustomErrorMessage from '../../../../placeholder/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../../placeholder/CustomNoResultsMessage'
 import RenderApplicantProfile from './RenderApplicantProfile'
+import CustomWithdrawnMessage from '../../../../placeholder/CustomWithdrawnMessage'
 const { Line, Paragraph } = Placeholder
 
 class ReactDashboardApplicationContainer extends Component {
@@ -164,49 +165,62 @@ class ReactDashboardApplicationContainer extends Component {
                 modalContent.applicant_id.last_name
               )}'s application`}
             </Modal.Header>
-            <Modal.Content>
-              <Header as="h3" content="Current status" />
-              <Label content={modalContent.status} />
-              <Header as="h3">Message</Header>
-              <p>
-                {modalContent.user_message
-                  ? modalContent.user_message
-                  : 'This applicant did not choose to a leave a message.'}
-              </p>
 
-              {career_profile_employer.error ? (
-                <Message
-                  color="red"
-                  header="An error occured."
-                  content="Failed to fetch applicants profile"
+            {modalContent.status === 'withdrawn' ? (
+              <Modal.Content>
+                <CustomWithdrawnMessage
+                  header="Application was withdrawn"
+                  content="This applicant is no longer interested in applying for this job."
                 />
-              ) : career_profile_employer.data ? (
-                <RenderApplicantProfile
-                  data={career_profile_employer.data}
-                  applicant={modalContent.applicant_id}
-                />
-              ) : (
-                new Array(4).fill(true).map(i => (
-                  <Segment stacked padded>
-                    <Placeholder>
-                      <Placeholder.Paragraph>
-                        <Placeholder.Line />
-                        <Placeholder.Line />
-                        <Placeholder.Line />
-                        <Placeholder.Line />
-                      </Placeholder.Paragraph>
-                    </Placeholder>
-                  </Segment>
-                ))
-              )}
-            </Modal.Content>
+              </Modal.Content>
+            ) : (
+              <Modal.Content>
+                <Header as="h3" content="Current status" />
+                <Label content={modalContent.status} />
+                <Header as="h3">Message</Header>
+                <p>
+                  {modalContent.user_message
+                    ? modalContent.user_message
+                    : 'This applicant did not choose to a leave a message.'}
+                </p>
+
+                {career_profile_employer.error ? (
+                  <Message
+                    color="red"
+                    header="An error occured."
+                    content="Failed to fetch applicants profile"
+                  />
+                ) : career_profile_employer.data ? (
+                  <RenderApplicantProfile
+                    data={career_profile_employer.data}
+                    applicant={modalContent.applicant_id}
+                  />
+                ) : (
+                  new Array(4).fill(true).map(i => (
+                    <Segment stacked padded>
+                      <Placeholder>
+                        <Placeholder.Paragraph>
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                          <Placeholder.Line />
+                        </Placeholder.Paragraph>
+                      </Placeholder>
+                    </Segment>
+                  ))
+                )}
+              </Modal.Content>
+            )}
+
             <Modal.Actions>
               <Button
+                disabled={modalContent.status === 'withdrawn'}
                 color="green"
                 content="I'm interested"
                 onClick={() => this.handleApplicationStatusChange('interested')}
               />
               <Button
+                disabled={modalContent.status === 'withdrawn'}
                 onClick={() => this.handleApplicationStatusChange('rejected')}
                 color="red"
                 content="I'm not interested"
