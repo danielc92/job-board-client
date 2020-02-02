@@ -6,27 +6,31 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 class SectionSplitHero extends Component {
   render() {
     const { ctaHeader, ctaSubHeader, image, left } = this.props
-    const style = left ? { textAlign: 'right' } : null
-    const imageStyle = { maxWidth: '400px' }
+    const imageStyle = { padding: '0.5rem', maxWidth: '400px' }
+    const centerStyle = {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }
     return (
-      <Segment basic>
+      <Segment basic textAlign="center">
         <Container>
           <VerticallyPaddedContainer size="5">
             <Grid divided="vertically" stackable>
               <Grid.Row columns={2}>
                 {left === true ? (
-                  <Grid.Column>
+                  <Grid.Column style={centerStyle}>
                     <Image src={image} style={imageStyle} />
                   </Grid.Column>
                 ) : null}
-                <Grid.Column verticalAlign="middle" style={style}>
+                <Grid.Column verticalAlign="middle" style={centerStyle}>
                   <Header as="h1" style={{ fontSize: '3rem' }}>
                     {ctaHeader}
                   </Header>
                   <p>{ctaSubHeader}</p>
                 </Grid.Column>
                 {left === false ? (
-                  <Grid.Column>
+                  <Grid.Column style={centerStyle}>
                     <Image src={image} style={imageStyle} />
                   </Grid.Column>
                 ) : null}
