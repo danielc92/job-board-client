@@ -4,9 +4,14 @@ import { handleApiError } from '../helpers/api'
 
 export const getJobList = object => async (dispatch, getState) => {
   try {
-    await new Promise(r => setTimeout(r, 1700))
+    dispatch({
+      type: 'RESET_JOB_LIST',
+      payload: {
+        error: false,
+      },
+    })
+    await new Promise(r => setTimeout(r, 1000))
     const queryString = objectToQueryStringParser(object)
-    console.log('TRIGGERED ', queryString)
     const response = await jobApi.get(`job/list${queryString}`)
     dispatch({
       type: 'GET_JOB_LIST_SUCCESS',

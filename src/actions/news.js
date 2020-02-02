@@ -4,6 +4,12 @@ import { objectToQueryStringParser } from '../helpers/query'
 
 export const getNewsList = object => async (dispatch, getState) => {
   try {
+    dispatch({
+      type: 'RESET_NEWS_LIST',
+      payload: {
+        error: false,
+      },
+    })
     const queryString = objectToQueryStringParser(object)
     const url = `news/list${queryString}`
     await new Promise(r => setTimeout(r, 500))
@@ -28,6 +34,12 @@ export const getNewsList = object => async (dispatch, getState) => {
 
 export const getNewsDetail = _id => async (dispatch, getState) => {
   try {
+    dispatch({
+      type: 'RESET_NEWS_DETAIL',
+      payload: {
+        error: false,
+      },
+    })
     await new Promise(r => setTimeout(r, 2000))
     const response = await jobApi.get(`news?_id=${_id}`)
 

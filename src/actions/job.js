@@ -31,6 +31,12 @@ export const resetJob = () => async (dispatch, getState) => {
 
 export const getJob = id => async (dispatch, getState) => {
   try {
+    dispatch({
+      type: 'RESET_JOB_DETAIL',
+      payload: {
+        error: false,
+      },
+    })
     await new Promise(r => setTimeout(r, 500))
     const config = getConfig()
     const response = await jobApi.get(`job?id=${id}`, null, config)

@@ -59,7 +59,10 @@ class SearchContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.propsGetCategories()
+    const { category } = this.props
+    if (!category.data) {
+      this.props.propsGetCategories()
+    }
   }
 
   render() {

@@ -6,6 +6,8 @@ export const jobDetailReducer = (state = { error: false }, action) => {
       return payload
     case 'GET_JOB_DETAIL_FAILURE':
       return payload
+    case 'RESET_JOB_DETAIL':
+      return payload
     default:
       return state
   }
