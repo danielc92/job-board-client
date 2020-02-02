@@ -74,23 +74,30 @@ class ReactNews extends Component {
                   {news_list.docs.map(item => (
                     <Segment key={item._id} stacked padded>
                       <Header as="h3">{item.title}</Header>
-                      <Label.Group>
-                        <Label
-                          icon="clock"
-                          size="tiny"
-                          content={dateDiffString(item.createdAt)}
-                        />
-                      </Label.Group>
-                      <p>{item.summary}</p>
 
+                      <p>{item.summary}</p>
                       <Button
-                        size="tiny"
+                        compact
                         color="green"
                         onClick={() => this.handleViewNewsArticle(item._id)}
                       >
                         <Icon name="eye" />
                         Read more
                       </Button>
+                      <Divider />
+                      <Label.Group>
+                        <Label
+                          icon="clock"
+                          size="tiny"
+                          content={`Posted ${dateDiffString(item.createdAt)}`}
+                        />
+                        <Label
+                          icon="tag"
+                          color="violet"
+                          size="tiny"
+                          content={item.category}
+                        />
+                      </Label.Group>
                     </Segment>
                   ))}
                   <Pagination

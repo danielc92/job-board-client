@@ -38,19 +38,21 @@ class ReactNewsDetail extends Component {
           ) : data ? (
             <Segment stacked padded>
               <Header as="h3" content={data.title} />
+
+              {data.content.map(para => (
+                <p>{para}</p>
+              ))}
+              <Divider />
               <Label.Group>
                 <Label>
                   <Icon name="clock" />
-                  {dateDiffString(data.createdAt)}
+                  Posted {dateDiffString(data.createdAt)}
                 </Label>
                 <Label color="violet">
                   <Icon name="tag" />
                   {data.category}
                 </Label>
               </Label.Group>
-              {data.content.map(para => (
-                <p>{para}</p>
-              ))}
             </Segment>
           ) : (
             <Segment stacked padded>
