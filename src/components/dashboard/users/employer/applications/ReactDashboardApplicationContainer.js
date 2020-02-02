@@ -53,7 +53,8 @@ class ReactDashboardApplicationContainer extends Component {
       this.setState({ modalShow: true }, () => {
         console.log('THIS IS THE ID', modalContent.applicant_id._id)
         const { _id } = modalContent.applicant_id
-        this.props.propsGetCareerProfileEmployer(_id)
+        if (modalContent.status !== 'withdrawn')
+          this.props.propsGetCareerProfileEmployer(_id)
       })
     })
   }
