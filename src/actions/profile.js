@@ -1,11 +1,12 @@
 import jobApi from '../api'
-import { handleApiError } from '../helpers/api'
+import { handleApiError, getConfig } from '../helpers/api'
 
 export const getUserDetails = search => async (dispatch, getState) => {
   try {
     await new Promise(r => setTimeout(r, 500))
+    const config = getConfig()
     const url = `auth/?id=${search}`
-    const response = await jobApi.get(url)
+    const response = await jobApi.get(url, config)
 
     // Transform locations for semantic component
     dispatch({

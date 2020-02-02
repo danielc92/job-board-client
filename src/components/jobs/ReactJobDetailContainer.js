@@ -79,11 +79,16 @@ class ReactJobDetailContainer extends Component {
             ) : job_details.data ? (
               <React.Fragment>
                 <Segment padded stacked>
+                  <Header as="h5">About the job</Header>
+                  <p>{job_details.data.job_summary}</p>
                   <Grid stackable>
                     <Grid.Row>
                       <Grid.Column width={8}>
-                        <Header as="h5">About the job</Header>
-                        <p>{job_details.data.job_summary}</p>
+                        <Header as="h5">Salary</Header>
+                        <Label color="blue" basic>
+                          ${job_details.data.salary_range_low} - $
+                          {job_details.data.salary_range_high}
+                        </Label>
                       </Grid.Column>
                       <Grid.Column width={8}>
                         <Header as="h5" content="Location" />
@@ -95,11 +100,14 @@ class ReactJobDetailContainer extends Component {
                   <Grid stackable>
                     <Grid.Row>
                       <Grid.Column width={8}>
-                        <Header as="h5">Salary</Header>
-                        <Label color="blue" basic>
-                          ${job_details.data.salary_range_low} - $
-                          {job_details.data.salary_range_high}
-                        </Label>
+                        <Header as="h5">Skills</Header>
+                        <Label.Group>
+                          {job_details.data.skills.map(item => (
+                            <Label basic color="green">
+                              {item}
+                            </Label>
+                          ))}
+                        </Label.Group>
                       </Grid.Column>
                       <Grid.Column width={8}>
                         <Header as="h5">Benefits</Header>
@@ -113,15 +121,6 @@ class ReactJobDetailContainer extends Component {
                       </Grid.Column>
                     </Grid.Row>
                   </Grid>
-
-                  <Header as="h5">Skills</Header>
-                  <Label.Group>
-                    {job_details.data.skills.map(item => (
-                      <Label basic color="green">
-                        {item}
-                      </Label>
-                    ))}
-                  </Label.Group>
 
                   <Header as="h5">About the company</Header>
                   <p>{job_details.data.company_summary}</p>
