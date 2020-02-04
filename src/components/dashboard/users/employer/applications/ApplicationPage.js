@@ -135,7 +135,7 @@ class ApplicationPage extends Component {
                 </Table>
               ) : docs && docs.length === 0 ? (
                 <CustomNoResultsMessage
-                  header="No reults"
+                  header="No results"
                   content="There are currently no application submitted for this job, please try again later."
                 />
               ) : (
@@ -177,7 +177,7 @@ class ApplicationPage extends Component {
               <Modal.Content>
                 <Header as="h3" content="Current status" />
                 <Label content={modalContent.status} />
-                <Header as="h3">Message</Header>
+                <Header as="h3" content="Message" />
                 <p>
                   {modalContent.user_message
                     ? modalContent.user_message

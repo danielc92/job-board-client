@@ -62,7 +62,7 @@ class FeaturesSection extends Component {
                       name={item.icon}
                       size="big"
                     />
-                    <Header as={featureHeader}>{item.title}</Header>
+                    <Header as={featureHeader} content={item.title} />
                     <p>{item.content}</p>
                   </Grid.Column>
                 ))}
@@ -75,7 +75,7 @@ class FeaturesSection extends Component {
                       name={item.icon}
                       size="big"
                     />
-                    <Header as={featureHeader}>{item.title}</Header>
+                    <Header as={featureHeader} content={item.title} />
                     <p>{item.content}</p>
                   </Grid.Column>
                 ))}

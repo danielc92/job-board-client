@@ -79,21 +79,21 @@ class JobListContainer extends Component {
     const { state } = this.props.history.location
     return (
       <Fragment>
-        <Container>
-          <VerticallyPaddedContainer size="4">
-            {error ? (
-              <Fragment>
-                <Header as="h1" content="Job listings" />
-                <CustomErrorMessage
-                  header="An error occured"
-                  content={message}
-                />
-              </Fragment>
-            ) : data ? (
-              <Fragment>
-                <SearchContainer />
-                <Segment basic>
-                  <Header as="h1" content="Results" />
+        <SearchContainer />
+        <Segment basic>
+          <Container>
+            <VerticallyPaddedContainer size="1">
+              {error ? (
+                <Fragment>
+                  <Header as="h1" content="Job listings" />
+                  <CustomErrorMessage
+                    header="An error occured"
+                    content={message}
+                  />
+                </Fragment>
+              ) : data ? (
+                <Fragment>
+                  <Header as="h1" content="Job listings" />
                   <p>We found {data.totalDocs} jobs matching your search</p>
                   {state ? (
                     <Label.Group>
@@ -108,7 +108,10 @@ class JobListContainer extends Component {
                   <Divider></Divider>
                   {data.docs.map(item => (
                     <Segment stacked key={item._id}>
-                      <Header as="h3">{properCaseTransform(item.title)}</Header>
+                      <Header
+                        as="h3"
+                        content={properCaseTransform(item.title)}
+                      />
 
                       <p>{item.job_summary}</p>
                       <Label color="green" basic>
@@ -146,25 +149,25 @@ class JobListContainer extends Component {
                     totalPages={data.totalPages}
                     onPageChange={this.handlePageChange}
                   />
-                </Segment>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <Header as="h1" content="Results" />
-                <p>Loading results...</p>
-                {new Array(6).fill(true).map(item => (
-                  <Segment padded stacked>
-                    <Placeholder>
-                      <Paragraph>
-                        <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
-                      </Paragraph>
-                    </Placeholder>
-                  </Segment>
-                ))}
-              </Fragment>
-            )}
-          </VerticallyPaddedContainer>
-        </Container>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <Header as="h1" content="Job listings" />
+
+                  {new Array(6).fill(true).map(item => (
+                    <Segment padded stacked>
+                      <Placeholder>
+                        <Paragraph>
+                          <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
+                        </Paragraph>
+                      </Placeholder>
+                    </Segment>
+                  ))}
+                </Fragment>
+              )}
+            </VerticallyPaddedContainer>
+          </Container>
+        </Segment>
         <FeedbackCtaSection />
       </Fragment>
     )

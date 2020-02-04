@@ -22,9 +22,11 @@ class MainBannerSection extends Component {
             <Grid divided="vertically" stackable>
               <Grid.Row columns={2}>
                 <Grid.Column verticalAlign="middle">
-                  <Header as="h1" style={{ fontSize: '3rem' }}>
-                    Welcome to Daniel's Job Board.
-                  </Header>
+                  <Header
+                    as="h1"
+                    style={{ fontSize: '3rem' }}
+                    content="Welcome to Daniel's Job Board."
+                  />
                   <p>
                     Irure nostrud ea aliqua incididunt ex irure sint excepteur.
                   </p>

@@ -16,7 +16,7 @@ import MenuSection from './layout/MenuSection'
 import NewsDetailPage from './information/NewsDetailPage'
 import NewsListPage from './information/NewsListPage'
 import ProfilePage from './profile/ProfilePage'
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import RegisterPage from './account/RegisterPage'
 
 class App extends Component {
@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <div shit="wow this is shit">
+      <Fragment>
         {/* Small message box indicating state of development*/}
         <Message
           style={{ textAlign: 'center', borderRadius: '0', margin: '0' }}
@@ -59,7 +59,7 @@ class App extends Component {
         />
         {/* Footer */}
         <FooterSection />
-      </div>
+      </Fragment>
     )
   }
 }

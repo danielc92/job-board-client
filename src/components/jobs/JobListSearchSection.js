@@ -79,6 +79,7 @@ class JobListSearchSection extends Component {
             <Form onSubmit={this.handleSubmit}>
               <Form.Group>
                 <Form.Input
+                  style={{ marginBottom: '12px' }}
                   label="What"
                   autoComplete="off"
                   maxLength={30}
@@ -88,6 +89,7 @@ class JobListSearchSection extends Component {
                   value={title}
                 />
                 <Form.Dropdown
+                  style={{ marginBottom: '12px' }}
                   clearable
                   label="Where"
                   onChange={this.handleDropDownChange}
@@ -102,6 +104,7 @@ class JobListSearchSection extends Component {
                   name="location_string"
                 />
                 <Form.Dropdown
+                  style={{ marginBottom: '12px' }}
                   clearable
                   onChange={this.handleDropDownChange}
                   name="category"

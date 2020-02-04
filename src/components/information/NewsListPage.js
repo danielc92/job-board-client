@@ -62,7 +62,7 @@ class NewsListPage extends Component {
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
-              <Header as="h1">News</Header>
+              <Header as="h1" content="News" />
               <p>Read about the latest updates and progress.</p>
               <Divider />
               {news_list.error ? (
@@ -74,7 +74,7 @@ class NewsListPage extends Component {
                 <Fragment>
                   {news_list.docs.map(item => (
                     <Segment key={item._id} stacked padded>
-                      <Header as="h3">{item.title}</Header>
+                      <Header as="h3" content={item.title} />
 
                       <p>{item.summary}</p>
                       <Button

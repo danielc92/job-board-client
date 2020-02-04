@@ -221,7 +221,7 @@ class JobPostPage extends Component {
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
-              <Header as="h1">Post a job</Header>
+              <Header as="h1" content="Post a job" />
               <p>Start a new job posting for the world to see.</p>
               <Divider />
               {!auth.isAuthenticated ? (

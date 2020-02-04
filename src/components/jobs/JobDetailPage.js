@@ -81,12 +81,12 @@ class JobDetailContainer extends Component {
               ) : job_details.data ? (
                 <Fragment>
                   <Segment padded stacked>
-                    <Header as="h5">About the job</Header>
+                    <Header as="h5" content="About the job" />
                     <p>{job_details.data.job_summary}</p>
                     <Grid stackable>
                       <Grid.Row>
                         <Grid.Column width={8}>
-                          <Header as="h5">Salary</Header>
+                          <Header as="h5" content="Salary" />
                           <Label color="blue" basic>
                             ${job_details.data.salary_range_low} - $
                             {job_details.data.salary_range_high}
@@ -102,7 +102,7 @@ class JobDetailContainer extends Component {
                     <Grid stackable>
                       <Grid.Row>
                         <Grid.Column width={8}>
-                          <Header as="h5">Skills</Header>
+                          <Header as="h5" content="Skills" />
                           <Label.Group>
                             {job_details.data.skills.map(item => (
                               <Label basic color="green">
@@ -112,7 +112,7 @@ class JobDetailContainer extends Component {
                           </Label.Group>
                         </Grid.Column>
                         <Grid.Column width={8}>
-                          <Header as="h5">Benefits</Header>
+                          <Header as="h5" content="Benefits" />
                           <Label.Group>
                             {job_details.data.benefits.map(item => (
                               <Label basic color="green">
@@ -124,15 +124,15 @@ class JobDetailContainer extends Component {
                       </Grid.Row>
                     </Grid>
 
-                    <Header as="h5">About the company</Header>
+                    <Header as="h5" content="About the company" />
                     <p>{job_details.data.company_summary}</p>
-                    <Header as="h5">Contact Summary</Header>
+                    <Header as="h5" content="Contact Summary" />
                     <p>{job_details.data.contact_summary}</p>
                   </Segment>
                   {/* If the job is open allow user to apply */}
                   {!job_details.data.open ? (
                     <Segment stacked color="orange">
-                      <Header>Job Unavailable</Header>
+                      <Header content="Job Unavailable" />
                       <p>
                         The member who posted this job, has closed it off and is
                         no longer accepting applications.

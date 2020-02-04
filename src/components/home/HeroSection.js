@@ -24,9 +24,11 @@ class HeroSection extends Component {
                   </Grid.Column>
                 ) : null}
                 <Grid.Column verticalAlign="middle" style={centerStyle}>
-                  <Header as="h1" style={{ fontSize: '3rem' }}>
-                    {ctaHeader}
-                  </Header>
+                  <Header
+                    as="h1"
+                    style={{ fontSize: '3rem' }}
+                    content={ctaHeader}
+                  />
                   <p>{ctaSubHeader}</p>
                 </Grid.Column>
                 {left === false ? (
