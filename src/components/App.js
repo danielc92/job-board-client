@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import ReactMenu from './layout/ReactMenu'
-import ReactLogin from './account/ReactLogin'
-import ReactRegister from './account/ReactRegister'
-import ReactHomeContainer from './home/ReactHomeContainer'
-import ReactJobPostContainer from './jobs/ReactJobPostContainer'
-import ReactJobViewContainer from './jobs/ReactJobViewContainer'
-import ReactJobDetailContainer from './jobs/ReactJobDetailContainer'
-import ReactProfileContainer from './profile/ReactProfileContainer'
-import ReactFooter from './layout/ReactFooter'
-import ReactNews from './information/ReactNews'
-import ReactNewsDetail from './information/ReactNewsDetail'
+import './App.css'
+import { checkTokenRefresh } from '../helpers/auth'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth'
 import { Message } from 'semantic-ui-react'
-import { checkTokenRefresh } from '../helpers/auth'
 import { Route } from 'react-router-dom'
-import './App.css'
-import ReactDashboardContainer from './dashboard/ReactDashboardContainer'
-import ReactDashboardApplicationContainer from './dashboard/users/employer/applications/ReactDashboardApplicationContainer'
+import ApplicationPage from './dashboard/users/employer/applications/ApplicationPage'
+import DashboardPage from './dashboard/DashboardPage'
+import FooterSection from './layout/FooterSection'
+import HomePage from './home/HomePage'
+import JobDetailPage from './jobs/JobDetailPage'
+import JobListPage from './jobs/JobListPage'
+import JobPostPage from './jobs/JobPostPage'
+import LoginPage from './account/LoginPage'
+import MenuSection from './layout/MenuSection'
+import NewsDetailPage from './information/NewsDetailPage'
+import NewsListPage from './information/NewsListPage'
+import ProfilePage from './profile/ProfilePage'
+import React, { Component } from 'react'
+import RegisterPage from './account/RegisterPage'
 
 class App extends Component {
   componentDidMount() {
@@ -27,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div shit="wow this is shit">
         {/* Small message box indicating state of development*/}
         <Message
           style={{ textAlign: 'center', borderRadius: '0', margin: '0' }}
@@ -38,27 +38,27 @@ class App extends Component {
         </Message>
 
         {/* Navigation Menu */}
-        <ReactMenu />
+        <MenuSection />
 
         {/* Components for home route */}
 
-        <Route path="/" exact component={ReactHomeContainer} />
-        <Route path="/create-jobs" exact component={ReactJobPostContainer} />
-        <Route path="/job/list" exact component={ReactJobViewContainer} />
-        <Route path="/news/list" exact component={ReactNews} />
-        <Route path="/news" exact component={ReactNewsDetail} />
-        <Route path="/sign-in" exact component={ReactLogin} />
-        <Route path="/register" exact component={ReactRegister} />
-        <Route path="/job" exact component={ReactJobDetailContainer} />
-        <Route path="/profile" exact component={ReactProfileContainer} />
-        <Route path="/dashboard" exact component={ReactDashboardContainer} />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/create-jobs" exact component={JobPostPage} />
+        <Route path="/job/list" exact component={JobListPage} />
+        <Route path="/news/list" exact component={NewsListPage} />
+        <Route path="/news" exact component={NewsDetailPage} />
+        <Route path="/sign-in" exact component={LoginPage} />
+        <Route path="/register" exact component={RegisterPage} />
+        <Route path="/job" exact component={JobDetailPage} />
+        <Route path="/profile" exact component={ProfilePage} />
+        <Route path="/dashboard" exact component={DashboardPage} />
         <Route
           path="/dashboard/applications"
           exact
-          component={ReactDashboardApplicationContainer}
+          component={ApplicationPage}
         />
         {/* Footer */}
-        <ReactFooter />
+        <FooterSection />
       </div>
     )
   }

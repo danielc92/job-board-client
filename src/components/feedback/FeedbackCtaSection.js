@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
-import {
-  Segment,
-  Container,
-  Button,
-  Grid,
-  Header,
-  Icon,
-} from 'semantic-ui-react'
+import { Segment, Container, Button, Header, Icon } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 
-export default class FeedbackCta extends Component {
+export default class FeedbackCtaSection extends Component {
   render() {
     return (
       <Segment
         basic
         inverted
         color="green"
-        textAlign="center"
         style={{ margin: 0 }}
+        textAlign="center"
       >
         <Container>
           <VerticallyPaddedContainer size="4">

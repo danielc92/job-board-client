@@ -3,7 +3,7 @@ import { Segment, Container, Header, Grid, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 
-class ReactFeatures extends Component {
+class FeaturesSection extends Component {
   state = {
     featureHeader: 'h3',
     featureData: [
@@ -94,4 +94,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ReactFeatures)
+export default connect(mapStateToProps)(FeaturesSection)

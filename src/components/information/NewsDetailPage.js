@@ -6,7 +6,6 @@ import {
   Container,
   Segment,
   Label,
-  Message,
   Header,
   Placeholder,
   Divider,
@@ -15,11 +14,10 @@ import {
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
-class ReactNewsDetail extends Component {
+class NewsDetailPage extends Component {
   componentDidMount() {
-    console.log(this.props.location.state, 'NEWS DETAIL PROPS')
     this.props.propsGetNewsDetail(this.props.location.state.news_id)
     this.props.propsSetMenuItem('news')
   }
@@ -75,7 +73,7 @@ class ReactNewsDetail extends Component {
             )}
           </VerticallyPaddedContainer>
         </Container>
-        <FeedbackCta />
+        <FeedbackCtaSection />
       </section>
     )
   }
@@ -93,4 +91,4 @@ const mapDispatchToProps = {
   propsSetMenuItem: setMenuItem,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReactNewsDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(NewsDetailPage)

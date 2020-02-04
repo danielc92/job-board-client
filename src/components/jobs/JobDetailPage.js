@@ -9,7 +9,6 @@ import {
   Label,
   Form,
   Placeholder,
-  Feed,
 } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getJob } from '../../actions/job'
@@ -18,9 +17,9 @@ import { createApplication, resetApplication } from '../../actions/application'
 import { connect } from 'react-redux'
 import { properCaseTransform } from '../../helpers/generic'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 const { Line, Paragraph } = Placeholder
-class ReactJobDetailContainer extends Component {
+class JobDetailContainer extends Component {
   state = {
     user_message: '',
   }
@@ -57,7 +56,7 @@ class ReactJobDetailContainer extends Component {
     const { user_message } = this.state
     const { error, flag, message } = this.props.application
     return (
-      <React.Fragment>
+      <Fragment>
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="3">
@@ -80,7 +79,7 @@ class ReactJobDetailContainer extends Component {
                   content={job_details.message}
                 />
               ) : job_details.data ? (
-                <React.Fragment>
+                <Fragment>
                   <Segment padded stacked>
                     <Header as="h5">About the job</Header>
                     <p>{job_details.data.job_summary}</p>
@@ -185,7 +184,7 @@ class ReactJobDetailContainer extends Component {
                       </Button>
                     </Modal.Actions>
                   </Modal>
-                </React.Fragment>
+                </Fragment>
               ) : (
                 <Segment padded stacked>
                   <Placeholder fluid>
@@ -207,8 +206,8 @@ class ReactJobDetailContainer extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCta />
-      </React.Fragment>
+        <FeedbackCtaSection />
+      </Fragment>
     )
   }
 }
@@ -229,7 +228,4 @@ const mapDispatchToProps = {
   propsResetApplication: resetApplication,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReactJobDetailContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(JobDetailContainer)

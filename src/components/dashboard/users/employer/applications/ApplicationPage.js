@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   dateDiffString,
   properCaseTransform,
@@ -30,7 +30,7 @@ import RenderApplicantProfile from './RenderApplicantProfile'
 import CustomWithdrawnMessage from '../../../../placeholder/CustomWithdrawnMessage'
 const { Line, Paragraph } = Placeholder
 
-class ReactDashboardApplicationContainer extends Component {
+class ApplicationPage extends Component {
   state = {
     modalContent: {},
     modalShow: false,
@@ -51,7 +51,6 @@ class ReactDashboardApplicationContainer extends Component {
   handleModalContentChange = modalContent => {
     this.setState({ modalContent }, () => {
       this.setState({ modalShow: true }, () => {
-        console.log('THIS IS THE ID', modalContent.applicant_id._id)
         const { _id } = modalContent.applicant_id
         if (modalContent.status !== 'withdrawn')
           this.props.propsGetCareerProfileEmployer(_id)
@@ -89,7 +88,7 @@ class ReactDashboardApplicationContainer extends Component {
       : 'Unknown'
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
@@ -234,7 +233,7 @@ class ReactDashboardApplicationContainer extends Component {
             </Modal.Actions>
           </Modal>
         ) : null}
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
@@ -256,4 +255,4 @@ const mapDispatchToProps = {
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(ReactDashboardApplicationContainer)
+)(ApplicationPage)

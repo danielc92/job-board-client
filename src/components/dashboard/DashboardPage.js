@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
-import { Segment, Container, Header, Divider, Feed } from 'semantic-ui-react'
+import { Segment, Container, Header, Divider } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Employer from './users/employer/Employer'
 import Seeker from './users/seeker/Seeker'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
-class ReactDashboardContainer extends Component {
+class DashboardPage extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('dashboard')
   }
@@ -16,13 +16,13 @@ class ReactDashboardContainer extends Component {
   render() {
     const { auth } = this.props
     return (
-      <React.Fragment>
+      <Fragment>
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
               {/* Handle Auth, then Employer/Seeker case */}
               {!auth.isAuthenticated ? (
-                <React.Fragment>
+                <Fragment>
                   <Header as="h1" content="Dashboard" />
                   <p>View and update your applications/job postings.</p>
                   <Divider />
@@ -30,7 +30,7 @@ class ReactDashboardContainer extends Component {
                     content="You need to be logged in to view your dashboard."
                     header="Authentication required"
                   />
-                </React.Fragment>
+                </Fragment>
               ) : auth.user.is_employer ? (
                 <Employer />
               ) : (
@@ -39,8 +39,8 @@ class ReactDashboardContainer extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCta />
-      </React.Fragment>
+        <FeedbackCtaSection />
+      </Fragment>
     )
   }
 }
@@ -55,7 +55,4 @@ const mapDispatchToProps = {
   propsSetMenuItem: setMenuItem,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReactDashboardContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)

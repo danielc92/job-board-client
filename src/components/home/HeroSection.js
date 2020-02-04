@@ -3,7 +3,7 @@ import { Grid, Container, Segment, Header, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 
-class SectionSplitHero extends Component {
+class HeroSection extends Component {
   render() {
     const { ctaHeader, ctaSubHeader, image, left } = this.props
     const imageStyle = { padding: '0.5rem', maxWidth: '400px' }
@@ -49,4 +49,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(SectionSplitHero)
+export default connect(mapStateToProps)(HeroSection)

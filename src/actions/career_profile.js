@@ -31,7 +31,6 @@ export const getCareerProfileEmployer = _id => async (dispatch, getState) => {
     const url = `career-profile/employer?_id=${_id}`
     const config = getConfig()
     const response = await jobApi.get(url, config)
-    console.log(response.data.result)
     dispatch({
       type: 'GET_CAREER_PROFILE_EMPLOYER_SUCCESS',
       payload: {

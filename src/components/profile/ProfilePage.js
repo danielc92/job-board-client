@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Header,
   Container,
@@ -7,7 +7,6 @@ import {
   Placeholder,
   Segment,
   Divider,
-  Feed,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { dateDiffString, properCaseTransform } from '../../helpers/generic'
@@ -15,13 +14,13 @@ import { setMenuItem } from '../../actions/menu'
 import { getUserDetails } from '../../actions/profile'
 import { loginRefresh } from '../../actions/auth'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import Seeker from './Seeker'
+import Seeker from './SeekerProfile'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 const { Line, Paragraph } = Placeholder
 
-class ReactProfileContainer extends Component {
+class ProfilePage extends Component {
   state = {
     sent: false,
   }
@@ -62,12 +61,12 @@ class ReactProfileContainer extends Component {
               </VerticallyPaddedContainer>
             </Container>
           </Segment>
-          <FeedbackCta />
+          <FeedbackCtaSection />
         </section>
       )
     }
     return (
-      <React.Fragment>
+      <Fragment>
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
@@ -95,7 +94,7 @@ class ReactProfileContainer extends Component {
                 />
               ) : null}
               {loaded ? (
-                <React.Fragment>
+                <Fragment>
                   <Header as="h3" content="Personal Details" />
                   <Segment stacked padded color="green">
                     <Grid divided="vertically">
@@ -124,13 +123,13 @@ class ReactProfileContainer extends Component {
                     </Grid>
                   </Segment>
                   {!data.is_employer ? <Seeker /> : null}
-                </React.Fragment>
+                </Fragment>
               ) : null}
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCta />
-      </React.Fragment>
+        <FeedbackCtaSection />
+      </Fragment>
     )
   }
 }
@@ -149,7 +148,4 @@ const mapDispatchToProps = {
   propsLoginRefresh: loginRefresh,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReactProfileContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)

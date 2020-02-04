@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Segment,
   Container,
@@ -16,9 +16,9 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getNewsList } from '../../actions/news'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 import { dateDiffString } from '../../helpers/generic'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
-class ReactNews extends Component {
+class NewsListPage extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('news')
     this.props.propsGetNewsList({})
@@ -71,7 +71,7 @@ class ReactNews extends Component {
                   content={news_list.message}
                 />
               ) : news_list.docs ? (
-                <React.Fragment>
+                <Fragment>
                   {news_list.docs.map(item => (
                     <Segment key={item._id} stacked padded>
                       <Header as="h3">{item.title}</Header>
@@ -122,9 +122,9 @@ class ReactNews extends Component {
                     totalPages={news_list.totalPages}
                     onPageChange={this.handlePageChange}
                   />
-                </React.Fragment>
+                </Fragment>
               ) : (
-                <React.Fragment>
+                <Fragment>
                   {new Array(5).fill(true).map(x => (
                     <Segment padded stacked>
                       <Placeholder fluid>
@@ -141,12 +141,12 @@ class ReactNews extends Component {
                       </Placeholder>
                     </Segment>
                   ))}
-                </React.Fragment>
+                </Fragment>
               )}
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCta />
+        <FeedbackCtaSection />
       </div>
     )
   }
@@ -164,4 +164,4 @@ const mapDispatchToProps = {
   propsGetNewsList: getNewsList,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReactNews)
+export default connect(mapStateToProps, mapDispatchToProps)(NewsListPage)

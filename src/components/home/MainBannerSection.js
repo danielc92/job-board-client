@@ -13,7 +13,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 
-class ReactHero extends Component {
+class MainBannerSection extends Component {
   render() {
     return (
       <Segment basic>
@@ -55,4 +55,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ReactHero)
+export default connect(mapStateToProps)(MainBannerSection)

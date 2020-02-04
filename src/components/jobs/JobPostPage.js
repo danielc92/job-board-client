@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {
   Segment,
   Modal,
@@ -28,11 +28,11 @@ import {
 } from '../../helpers/validation'
 import { calculateProgress } from '../../helpers/progressbar'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import ReactProgressContainer from './ReactProgressContainer'
+import ReactProgressContainer from './ProgressSection'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
-class ReactJobPostContainer extends Component {
+class JobPostPage extends Component {
   //Internal state holds information pertaining to the form
   state = {
     title: '',
@@ -217,7 +217,7 @@ class ReactJobPostContainer extends Component {
     )
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="4">
@@ -235,7 +235,7 @@ class ReactJobPostContainer extends Component {
                   content="You need to be logged in as an employer to post a job."
                 />
               ) : (
-                <React.Fragment>
+                <Fragment>
                   <ReactProgressContainer percent={percent} />
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Group widths={'equal'}>
@@ -380,13 +380,13 @@ class ReactJobPostContainer extends Component {
                   ) : (
                     <Message info list={errors} header="Form requirements" />
                   )}
-                </React.Fragment>
+                </Fragment>
               )}
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCta />
-      </React.Fragment>
+        <FeedbackCtaSection />
+      </Fragment>
     )
   }
 }
@@ -413,7 +413,4 @@ const mapDispatchToProps = {
   propsGetLocations: getLocationList,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReactJobPostContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(JobPostPage)

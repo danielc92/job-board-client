@@ -8,7 +8,7 @@ import { getJobList } from '../../actions/job_list_seeker'
 import { getLocationList } from '../../actions/location'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 
-class SearchContainer extends Component {
+class JobListSearchSection extends Component {
   state = {
     title: '',
     location_string: '',
@@ -141,4 +141,4 @@ const mapDispatchToProps = {
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(SearchContainer)
+)(JobListSearchSection)

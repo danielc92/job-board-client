@@ -18,7 +18,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter forceRefresh={false}>
-      <App />
+      <App theming="shit" />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Grid, List, Container, Header, Segment } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-class ReactFooter extends Component {
+class FooterSection extends Component {
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         <Segment
           color={this.props.theme}
           inverted
@@ -62,7 +62,7 @@ class ReactFooter extends Component {
           </span>{' '}
           by Daniel Corcoran.
         </Segment>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
@@ -73,4 +73,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(ReactFooter)
+export default connect(mapStateToProps)(FooterSection)

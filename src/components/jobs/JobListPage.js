@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import {
   Button,
@@ -14,13 +14,13 @@ import {
 import { setMenuItem } from '../../actions/menu'
 import { getJobList } from '../../actions/job_list_seeker'
 import { properCaseTransform } from '../../helpers/generic'
-import SearchContainer from './SearchContainer'
+import SearchContainer from './JobListSearchSection'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
-import FeedbackCta from '../feedback/FeedbackCta'
+import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 const { Line, Paragraph } = Placeholder
 
-class ReactJobViewContainer extends Component {
+class JobListContainer extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('find')
     this.props.propsGetJobList({ ...this.props.history.location.state })
@@ -44,8 +44,6 @@ class ReactJobViewContainer extends Component {
   }
 
   componentWillReceiveProps() {
-    // console.log('location', this.props.location.state)
-    // console.log('history', this.props.history.location.state)
     try {
       if (
         this.props.history.location.state.title !==
@@ -80,19 +78,19 @@ class ReactJobViewContainer extends Component {
     const { data, error, message } = this.props.job_list_seeker
     const { state } = this.props.history.location
     return (
-      <React.Fragment>
+      <Fragment>
         <Container>
           <VerticallyPaddedContainer size="4">
             {error ? (
-              <React.Fragment>
+              <Fragment>
                 <Header as="h1" content="Job listings" />
                 <CustomErrorMessage
                   header="An error occured"
                   content={message}
                 />
-              </React.Fragment>
+              </Fragment>
             ) : data ? (
-              <React.Fragment>
+              <Fragment>
                 <SearchContainer />
                 <Segment basic>
                   <Header as="h1" content="Results" />
@@ -149,9 +147,9 @@ class ReactJobViewContainer extends Component {
                     onPageChange={this.handlePageChange}
                   />
                 </Segment>
-              </React.Fragment>
+              </Fragment>
             ) : (
-              <React.Fragment>
+              <Fragment>
                 <Header as="h1" content="Results" />
                 <p>Loading results...</p>
                 {new Array(6).fill(true).map(item => (
@@ -163,12 +161,12 @@ class ReactJobViewContainer extends Component {
                     </Placeholder>
                   </Segment>
                 ))}
-              </React.Fragment>
+              </Fragment>
             )}
           </VerticallyPaddedContainer>
         </Container>
-        <FeedbackCta />
-      </React.Fragment>
+        <FeedbackCtaSection />
+      </Fragment>
     )
   }
 }
@@ -186,7 +184,4 @@ const mapDispatchToProps = {
   propsGetJobList: getJobList,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReactJobViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(JobListContainer)

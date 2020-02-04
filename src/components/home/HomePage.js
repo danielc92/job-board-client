@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import ReactHero from './ReactHero'
-import ReactFeatures from './ReactFeatures'
+import React, { Component, Fragment } from 'react'
+import ReactHero from './MainBannerSection'
+import ReactFeatures from './FeaturesSection'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
-import SectionSplitHero from './SectionSplitHero'
+import SectionSplitHero from './HeroSection'
 import image2 from '../../images/process_e90d.svg'
 import image3 from '../../images/success_factors_fay0.svg'
 import image4 from '../../images/feedback.svg'
 
-class ReactHomeContainer extends Component {
+class HomePage extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('home')
   }
   render() {
     return (
-      <React.Fragment>
+      <Fragment>
         {/* Hero (split into two panes) */}
         <ReactHero />
 
@@ -41,7 +41,7 @@ class ReactHomeContainer extends Component {
           image={image4}
           left
         />
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
@@ -50,4 +50,4 @@ const mapDispatchToProps = {
   propsSetMenuItem: setMenuItem,
 }
 
-export default connect(null, mapDispatchToProps)(ReactHomeContainer)
+export default connect(null, mapDispatchToProps)(HomePage)

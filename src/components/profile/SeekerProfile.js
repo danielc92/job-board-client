@@ -20,7 +20,7 @@ import { getSkills } from '../../actions/skills'
 import { connect } from 'react-redux'
 const uuidv4 = require('uuid/v4')
 const marginBottom = { marginBottom: '8px' }
-class Seeker extends Component {
+class SeekerProfile extends Component {
   state = {
     achievements: [],
     available: false,
@@ -743,4 +743,4 @@ const mapDispatchToProps = {
   propsGetSkills: getSkills,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Seeker)
+export default connect(mapStateToProps, mapDispatchToProps)(SeekerProfile)

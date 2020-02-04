@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router'
 import {
   Header,
@@ -80,13 +80,13 @@ class Seeker extends Component {
     const { flag, error } = application_update
 
     return (
-      <React.Fragment>
+      <Fragment>
         <Header as="h1" content="Your applications" />
         <Divider />
         {application_list.error ? (
           <CustomErrorMessage header="An error occured" content={message} />
         ) : docs && docs.length > 0 ? (
-          <React.Fragment>
+          <Fragment>
             <Table striped celled>
               <SeekerTableHeader />
               <Table.Body>
@@ -149,7 +149,7 @@ class Seeker extends Component {
               totalPages={application_list.totalPages}
               onPageChange={this.handlePageChange}
             />
-          </React.Fragment>
+          </Fragment>
         ) : docs && docs.length === 0 ? (
           <CustomNoResultsMessage
             header="No results"
@@ -178,7 +178,7 @@ class Seeker extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

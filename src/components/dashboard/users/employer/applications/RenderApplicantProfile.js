@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Label, Header, Table, Icon, Divider } from 'semantic-ui-react'
+import React, { Component, Fragment } from 'react'
+import { Label, Header, Table, Divider } from 'semantic-ui-react'
 
 export default class RenderApplicantProfile extends Component {
   render() {
@@ -12,7 +12,7 @@ export default class RenderApplicantProfile extends Component {
       phone,
     } = this.props.data
     return (
-      <React.Fragment>
+      <Fragment>
         <Header as="h2" content="Career Profile" />
         <Divider />
         <Header content="Summary" />
@@ -98,7 +98,7 @@ export default class RenderApplicantProfile extends Component {
         ) : (
           <p>Applicant does not have any recorded education details.</p>
         )}
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

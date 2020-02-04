@@ -40,7 +40,6 @@ export const getJob = id => async (dispatch, getState) => {
     await new Promise(r => setTimeout(r, 500))
     const config = getConfig()
     const response = await jobApi.get(`job?id=${id}`, null, config)
-    console.log('JOB_DETAIL: ', response.data.results)
     dispatch({
       type: 'GET_JOB_DETAIL_SUCCESS',
       payload: {

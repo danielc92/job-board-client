@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
@@ -79,13 +79,13 @@ class Employer extends Component {
     const { job_list_employer, auth, jobUpdateStatus } = this.props
     const { error, docs, message } = job_list_employer
     return (
-      <React.Fragment>
+      <Fragment>
         <Header as="h1" content="My Job Postings" />
         <Divider />
         {error ? (
           <CustomErrorMessage header="An error has occured" content={message} />
         ) : docs && docs.length > 0 ? (
-          <React.Fragment>
+          <Fragment>
             <Table striped celled>
               <EmployerTableHeader />
               <Table.Body>
@@ -172,7 +172,7 @@ class Employer extends Component {
                 </Button>
               </Modal.Actions>
             </Modal>
-          </React.Fragment>
+          </Fragment>
         ) : docs && docs.length === 0 ? (
           <CustomNoResultsMessage
             header="No results"
@@ -188,7 +188,7 @@ class Employer extends Component {
             </Placeholder>
           </Segment>
         )}
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

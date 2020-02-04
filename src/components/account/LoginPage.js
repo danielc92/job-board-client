@@ -13,9 +13,9 @@ import { loginUser } from '../../actions/auth'
 import { setMenuItem } from '../../actions/menu'
 import loginImage from '../../images/fingerprint_swrc.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import './ReactLogin.css'
+import './LoginPage.css'
 
-class ReactLogin extends Component {
+class LoginPage extends Component {
   state = {
     email: '',
     password: '',
@@ -42,7 +42,6 @@ class ReactLogin extends Component {
   }
 
   handleTogglePasswordView = e => {
-    console.log(e)
     this.setState({ passwordHidden: !this.state.passwordHidden })
   }
   componentDidMount() {
@@ -143,4 +142,4 @@ const mapDispatchToProps = {
   propsSetMenuItem: setMenuItem,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReactLogin)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

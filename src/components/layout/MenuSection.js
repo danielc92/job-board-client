@@ -6,7 +6,7 @@ import { logoutUser } from '../../actions/auth'
 import { withRouter } from 'react-router'
 import { compose } from 'redux'
 
-class ReactMenu extends Component {
+class MenuSection extends Component {
   handleLogout = () => {
     this.props.history.push('/sign-in')
     this.props.propsLogoutUser()
@@ -110,4 +110,4 @@ const mapDispatchToProps = {
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(ReactMenu)
+)(MenuSection)
