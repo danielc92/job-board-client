@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
-import { Segment, Container, Header, Divider } from 'semantic-ui-react'
+import { Segment, Container } from 'semantic-ui-react'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Employer from './users/employer/Employer'
 import Seeker from './users/seeker/Seeker'
-import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
 class DashboardPage extends Component {

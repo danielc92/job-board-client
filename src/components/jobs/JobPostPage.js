@@ -18,7 +18,6 @@ import { getCategories } from '../../actions/category'
 import { getLocationList } from '../../actions/location'
 import { createJob, resetJob } from '../../actions/job'
 import { checkTokenIsValid } from '../../helpers/auth'
-import { TOKEN_NAME } from '../../constants'
 import { logoutUser } from '../../actions/auth'
 import {
   StringValidator,
