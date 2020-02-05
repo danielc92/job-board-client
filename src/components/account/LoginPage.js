@@ -103,10 +103,11 @@ class LoginPage extends Component {
                     ></Message>
 
                     {this.props.auth.error ? (
-                      <Segment color="red" stacked>
-                        <Header as="h3" content="Error" />
-                        <p>{this.props.auth.message}</p>
-                      </Segment>
+                      <Message
+                        content={this.props.auth.message}
+                        color="red"
+                        header="An error occured"
+                      />
                     ) : null}
 
                     <Form.Button color="green" size="large">
