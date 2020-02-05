@@ -21,12 +21,3 @@ export const checkTokenIsValid = () => {
     return true
   }
 }
-
-export const checkTokenRefresh = authState => {
-  // Everytime browser refreshes attempt to refresh the token in global state
-  const token = localStorage.getItem(TOKEN_NAME)
-
-  if (token && !authState.isAuthenticated) {
-    return checkTokenIsValid()
-  }
-}

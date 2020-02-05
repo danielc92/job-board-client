@@ -1,5 +1,5 @@
 import './App.css'
-import { checkTokenRefresh } from '../helpers/auth'
+import { checkTokenRefresh, checkTokenIsValid } from '../helpers/auth'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth'
 import { Message } from 'semantic-ui-react'
@@ -22,8 +22,10 @@ import ProtectedRoute from './ProtectedRoute'
 
 class App extends Component {
   componentDidMount() {
-    const result = checkTokenRefresh(this.props.auth)
-    if (result) this.props.propsLoginRefresh()
+    // Regenerate auth object in redux upon refresh
+    const { auth } = this.props
+    if (checkTokenIsValid() && !auth.isAuthenticated)
+      this.props.propsLoginRefresh()
   }
 
   render() {

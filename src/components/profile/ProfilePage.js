@@ -12,7 +12,6 @@ import { connect } from 'react-redux'
 import { dateDiffString, properCaseTransform } from '../../helpers/generic'
 import { setMenuItem } from '../../actions/menu'
 import { getUserDetails } from '../../actions/profile'
-import { loginRefresh } from '../../actions/auth'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Seeker from './SeekerProfile'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
@@ -124,7 +123,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   propsSetMenuItem: setMenuItem,
   propsGetUserDetails: getUserDetails,
-  propsLoginRefresh: loginRefresh,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
