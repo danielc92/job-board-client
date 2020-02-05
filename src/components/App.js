@@ -18,6 +18,7 @@ import NewsListPage from './information/NewsListPage'
 import ProfilePage from './profile/ProfilePage'
 import React, { Component, Fragment } from 'react'
 import RegisterPage from './account/RegisterPage'
+import ProtectedRoute from './ProtectedRoute'
 
 class App extends Component {
   componentDidMount() {
@@ -42,21 +43,22 @@ class App extends Component {
 
         {/* Components for home route */}
 
-        <Route path="/" exact component={HomePage} />
-        <Route path="/create-jobs" exact component={JobPostPage} />
-        <Route path="/job/list" exact component={JobListPage} />
-        <Route path="/news/list" exact component={NewsListPage} />
-        <Route path="/news" exact component={NewsDetailPage} />
-        <Route path="/sign-in" exact component={LoginPage} />
-        <Route path="/register" exact component={RegisterPage} />
-        <Route path="/job" exact component={JobDetailPage} />
-        <Route path="/profile" exact component={ProfilePage} />
-        <Route path="/dashboard" exact component={DashboardPage} />
-        <Route
+        <ProtectedRoute path="/create-jobs" exact component={JobPostPage} />
+        <ProtectedRoute path="/dashboard" exact component={DashboardPage} />
+        <ProtectedRoute path="/profile" exact component={ProfilePage} />
+        <ProtectedRoute
           path="/dashboard/applications"
           exact
           component={ApplicationPage}
         />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/job" exact component={JobDetailPage} />
+        <Route path="/job/list" exact component={JobListPage} />
+        <Route path="/news" exact component={NewsDetailPage} />
+        <Route path="/news/list" exact component={NewsListPage} />
+        <Route path="/register" exact component={RegisterPage} />
+        <Route path="/sign-in" exact component={LoginPage} />
+
         {/* Footer */}
         <FooterSection />
       </Fragment>

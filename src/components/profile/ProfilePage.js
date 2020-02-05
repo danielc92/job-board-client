@@ -43,28 +43,8 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { profile, auth } = this.props
+    const { profile } = this.props
     const { loaded, error, data, message } = profile
-    if (!auth.isAuthenticated) {
-      return (
-        <section>
-          <Segment basic>
-            <Container>
-              <VerticallyPaddedContainer size="4">
-                <Header as="h1" content="Profile" />
-                <p>Customize your profile, career details and more.</p>
-                <Divider />
-                <CustomAuthMessage
-                  header="Authentication required"
-                  content="You need to be logged in to view your profile."
-                />
-              </VerticallyPaddedContainer>
-            </Container>
-          </Segment>
-          <FeedbackCtaSection />
-        </section>
-      )
-    }
     return (
       <Fragment>
         <Segment basic>

@@ -21,21 +21,7 @@ class DashboardPage extends Component {
           <Container>
             <VerticallyPaddedContainer size="4">
               {/* Handle Auth, then Employer/Seeker case */}
-              {!auth.isAuthenticated ? (
-                <Fragment>
-                  <Header as="h1" content="Dashboard" />
-                  <p>View and update your applications/job postings.</p>
-                  <Divider />
-                  <CustomAuthMessage
-                    content="You need to be logged in to view your dashboard."
-                    header="Authentication required"
-                  />
-                </Fragment>
-              ) : auth.user.is_employer ? (
-                <Employer />
-              ) : (
-                <Seeker />
-              )}
+              {auth.user.is_employer ? <Employer /> : <Seeker />}
             </VerticallyPaddedContainer>
           </Container>
         </Segment>

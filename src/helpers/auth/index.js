@@ -1,32 +1,32 @@
-import jwt_decode from 'jwt-decode';
-import {TOKEN_NAME} from '../../constants';
+import jwt_decode from 'jwt-decode'
+import { TOKEN_NAME } from '../../constants'
 
-export const checkTokenIsValid = (token) => {
-      
-      if (!token) return false
+export const checkTokenIsValid = () => {
+  const token = localStorage.getItem(TOKEN_NAME)
 
-      const decoded = jwt_decode(token)
+  if (!token) return false
 
-      // Get seconds current time, needs to be converted to seconds
-      const now = Math.floor(new Date().getTime() / 1000)
+  const decoded = jwt_decode(token)
 
-      // Subtract current time from the expiration time in the future
-      const diff = decoded.exp - now
+  // Get seconds current time, needs to be converted to seconds
+  const now = Math.floor(new Date().getTime() / 1000)
 
-      // Offset by a minute to allow for request to bounce back from api server
-      const offset = diff - 60
+  // Subtract current time from the expiration time in the future
+  const diff = decoded.exp - now
 
-      if (offset > 0) {
-        return true
-      }
+  // Offset by a minute to allow for request to bounce back from api server
+  const offset = diff - 60
+  console.log(offset)
+  if (offset > 0) {
+    return true
+  }
 }
 
+export const checkTokenRefresh = authState => {
+  // Everytime browser refreshes attempt to refresh the token in global state
+  const token = localStorage.getItem(TOKEN_NAME)
 
-export const checkTokenRefresh = (authState) => {
-    // Everytime browser refreshes attempt to refresh the token in global state
-    const token = localStorage.getItem(TOKEN_NAME)
-    
-    if ((token) && (!authState.isAuthenticated)) {
-      return checkTokenIsValid(token)
-    }
+  if (token && !authState.isAuthenticated) {
+    return checkTokenIsValid()
   }
+}

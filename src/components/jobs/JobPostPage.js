@@ -132,8 +132,7 @@ class JobPostPage extends Component {
     e.preventDefault()
     const { errors, location } = this.state
     // Initial check to see if token has expired
-    const token = localStorage.getItem(TOKEN_NAME)
-    if (!checkTokenIsValid(token)) {
+    if (!checkTokenIsValid()) {
       this.props.propsLogoutUser()
       this.props.history.push({
         pathname: '/sign-in',
@@ -224,12 +223,7 @@ class JobPostPage extends Component {
               <Header as="h1" content="Post a job" />
               <p>Start a new job posting for the world to see.</p>
               <Divider />
-              {!auth.isAuthenticated ? (
-                <CustomAuthMessage
-                  header="Authentication required"
-                  content="You need to be logged in to post a job."
-                />
-              ) : !auth.user.is_employer ? (
+              {!auth.user.is_employer ? (
                 <CustomAuthMessage
                   header="Invalid member type"
                   content="You need to be logged in as an employer to post a job."
