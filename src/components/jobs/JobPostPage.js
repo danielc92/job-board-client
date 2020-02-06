@@ -337,7 +337,11 @@ class JobPostPage extends Component {
                         contact_summary.length} chars remaining)`}
                     />
 
-                    <Form.Button size="big" color="green">
+                    <Form.Button
+                      disabled={!(errors.length === 0)}
+                      size="big"
+                      color="green"
+                    >
                       <Icon name="add square"></Icon>Create job
                     </Form.Button>
 
