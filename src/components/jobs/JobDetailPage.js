@@ -10,6 +10,8 @@ import {
   Form,
   Placeholder,
 } from 'semantic-ui-react'
+import { compose } from 'redux'
+import { withRouter } from 'react-router'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getJob } from '../../actions/job'
 import { setMenuItem } from '../../actions/menu'
@@ -18,6 +20,9 @@ import { connect } from 'react-redux'
 import { properCaseTransform } from '../../helpers/generic'
 import CustomErrorMessage from '../placeholder/CustomErrorMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import { checkTokenIsValid } from '../../helpers/auth'
+import { logoutUser } from '../../actions/auth'
+import { SESSION_EXPIRED_MESSAGE } from '../../constants'
 const { Line, Paragraph } = Placeholder
 class JobDetailContainer extends Component {
   state = {
@@ -30,6 +35,17 @@ class JobDetailContainer extends Component {
   }
 
   applyForJob = job_id => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const { user_message } = this.state
 
     let payload = { job_id }
@@ -226,6 +242,9 @@ const mapDispatchToProps = {
   propsSetMenuItem: setMenuItem,
   propsCreateApplication: createApplication,
   propsResetApplication: resetApplication,
+  propsLogoutUser: logoutUser,
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(JobDetailContainer)
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(JobDetailContainer)

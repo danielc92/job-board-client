@@ -30,6 +30,7 @@ import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ProgressSection'
 import CustomAuthMessage from '../placeholder/CustomAuthMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import { SESSION_EXPIRED_MESSAGE } from '../../constants'
 
 class JobPostPage extends Component {
   //Internal state holds information pertaining to the form
@@ -129,15 +130,18 @@ class JobPostPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+
     const { errors, location } = this.state
     // Initial check to see if token has expired
     if (!checkTokenIsValid()) {
       this.props.propsLogoutUser()
       this.props.history.push({
         pathname: '/sign-in',
-        state: { redirect_message: 'You need to be logged in to post a job.' },
+        state: { redirect_message: SESSION_EXPIRED_MESSAGE },
       })
+      return
     }
+
     // Check if there are errors present, before dispatching
     if (errors.length === 0) {
       const {

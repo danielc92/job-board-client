@@ -1,5 +1,5 @@
 import './App.css'
-import { checkTokenRefresh, checkTokenIsValid } from '../helpers/auth'
+import { checkTokenIsValid } from '../helpers/auth'
 import { connect } from 'react-redux'
 import { loginUser, logoutUser, loginRefresh } from '../actions/auth'
 import { Message } from 'semantic-ui-react'

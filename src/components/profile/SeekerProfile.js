@@ -15,9 +15,15 @@ import {
   getCareerProfile,
   updateCareerProfile,
 } from '../../actions/career_profile'
+import { logoutUser } from '../../actions/auth'
 import { DateValidator } from '../../helpers/validation'
 import { getSkills } from '../../actions/skills'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { withRouter } from 'react-router'
+import { checkTokenIsValid } from '../../helpers/auth'
+import { SESSION_EXPIRED_MESSAGE } from '../../constants'
+
 const uuidv4 = require('uuid/v4')
 const marginBottom = { marginBottom: '8px' }
 class SeekerProfile extends Component {
@@ -61,6 +67,17 @@ class SeekerProfile extends Component {
   }
 
   handleSummaryUpdate = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const { summary } = this.state
     const payload = { summary }
     this.props.propsUpdateCareerProfile(payload)
@@ -72,6 +89,17 @@ class SeekerProfile extends Component {
   }
 
   handleUpdateSummary = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const { summary } = this.state
     const { propsUpdateCareerProfile } = this.props
     propsUpdateCareerProfile({ summary })
@@ -84,6 +112,17 @@ class SeekerProfile extends Component {
   }
 
   handleUpdatePhone = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const { phone } = this.state
     const { propsUpdateCareerProfile } = this.props
     propsUpdateCareerProfile({ phone })
@@ -99,6 +138,17 @@ class SeekerProfile extends Component {
   }
 
   handleUpdateAvailability = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const { available } = this.state
     const { propsUpdateCareerProfile } = this.props
     propsUpdateCareerProfile({ available })
@@ -114,6 +164,17 @@ class SeekerProfile extends Component {
   }
 
   handleUpdateExperience = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const {
       experience,
       experienceCompany,
@@ -153,7 +214,19 @@ class SeekerProfile extends Component {
       editEducation: true,
     })
   }
+
   handleUpdateEducation = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const {
       education,
       educationCourse,
@@ -196,6 +269,17 @@ class SeekerProfile extends Component {
   }
 
   handleUpdateSkills = () => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     const { skills } = this.state
     this.props.propsUpdateCareerProfile({ skills })
     this.setState({ editSkills: false })
@@ -206,6 +290,17 @@ class SeekerProfile extends Component {
   }
 
   handleDeleteExperience = key => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     let experience = this.props.career_profile.data.experience.filter(
       item => item.key !== key
     )
@@ -213,6 +308,17 @@ class SeekerProfile extends Component {
   }
 
   handleDeleteEducation = key => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     let education = this.props.career_profile.data.education.filter(
       item => item.key !== key
     )
@@ -741,6 +847,10 @@ const mapDispatchToProps = {
   propsGetCareerProfile: getCareerProfile,
   propsUpdateCareerProfile: updateCareerProfile,
   propsGetSkills: getSkills,
+  propsLogoutUser: logoutUser,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SeekerProfile)
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(SeekerProfile)

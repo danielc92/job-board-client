@@ -9,6 +9,7 @@ import { updateApplicationStatus } from '../../../../../actions/application'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
+import { logoutUser } from '../../../../../actions/auth'
 import {
   Container,
   Segment,
@@ -28,6 +29,8 @@ import CustomErrorMessage from '../../../../placeholder/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../../placeholder/CustomNoResultsMessage'
 import RenderApplicantProfile from './RenderApplicantProfile'
 import CustomWithdrawnMessage from '../../../../placeholder/CustomWithdrawnMessage'
+import { checkTokenIsValid } from '../../../../../helpers/auth'
+import { SESSION_EXPIRED_MESSAGE } from '../../../../../constants'
 const { Line, Paragraph } = Placeholder
 
 class ApplicationPage extends Component {
@@ -49,6 +52,17 @@ class ApplicationPage extends Component {
   }
 
   handleModalContentChange = modalContent => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
+
     this.setState({ modalContent }, () => {
       this.setState({ modalShow: true }, () => {
         const { _id } = modalContent.applicant_id
@@ -63,6 +77,16 @@ class ApplicationPage extends Component {
   }
 
   handleApplicationStatusChange = status => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
     const { modalContent } = this.state
     const { job_id, applicant_id } = modalContent
     const payload = {
@@ -250,6 +274,7 @@ const mapDispatchToProps = {
   propsUpdateApplicationStatus: updateApplicationStatus,
   propsSetMenuItem: setMenuItem,
   propsGetCareerProfileEmployer: getCareerProfileEmployer,
+  propsLogoutUser: logoutUser,
 }
 
 export default compose(

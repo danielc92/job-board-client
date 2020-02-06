@@ -50,7 +50,7 @@ class LoginPage extends Component {
 
   render() {
     const { email, password, error, passwordHidden } = this.state
-
+    const { location, auth } = this.props
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/')
     }
@@ -102,9 +102,18 @@ class LoginPage extends Component {
                       content="Email and password is required to login."
                     ></Message>
 
-                    {this.props.auth.error ? (
+                    {location.state && location.state.redirect_message ? (
                       <Message
-                        content={this.props.auth.message}
+                        visible={error}
+                        color="blue"
+                        header="Session expired"
+                        content={location.state.redirect_message}
+                      ></Message>
+                    ) : null}
+
+                    {auth.error ? (
+                      <Message
+                        content={auth.message}
                         color="red"
                         header="An error occured"
                       />

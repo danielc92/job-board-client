@@ -26,6 +26,10 @@ import {
 import SeekerTableHeader from './SeekerTableHeader'
 import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../placeholder/CustomNoResultsMessage'
+import { checkTokenIsValid } from '../../../../helpers/auth'
+import { logoutUser } from '../../../../actions/auth'
+import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
+
 const { Line, Paragraph } = Placeholder
 
 class Seeker extends Component {
@@ -34,6 +38,16 @@ class Seeker extends Component {
   }
 
   handleWithdrawApplication = payload => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
     const newPayload = { ...payload, status: 'withdrawn' }
     this.props.propsUpdateApplicationStatus(newPayload)
   }
@@ -196,6 +210,7 @@ const mapDispatchToProps = {
   propsGetApplicationList: getApplicationList,
   propsUpdateApplicationStatus: updateApplicationStatus,
   propsResetApplicationUpdate: resetApplicationUpdate,
+  propsLogoutUser: logoutUser,
 }
 
 export default compose(

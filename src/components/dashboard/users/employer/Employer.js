@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
+import { logoutUser } from '../../../../actions/auth'
 import {
   Divider,
   Modal,
@@ -23,6 +24,8 @@ import EmployerTableHeader from './EmployerTableHeader'
 import { dateDiffString } from '../../../../helpers/generic'
 import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../placeholder/CustomNoResultsMessage'
+import { checkTokenIsValid } from '../../../../helpers/auth'
+import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
 const { Line, Paragraph } = Placeholder
 
 class Employer extends Component {
@@ -57,6 +60,16 @@ class Employer extends Component {
   }
 
   handleCloseJob = payload => {
+    if (!checkTokenIsValid()) {
+      this.props.propsLogoutUser()
+      this.props.history.push({
+        pathname: '/sign-in',
+        state: {
+          redirect_message: SESSION_EXPIRED_MESSAGE,
+        },
+      })
+      return
+    }
     this.props.propsUpdateJobStatus(payload)
   }
 
@@ -206,6 +219,7 @@ const mapDispatchToProps = {
   propsGetJobListForEmployer: getJobListForEmployer,
   propsUpdateJobStatus: updateJobStatus,
   propsResetJobStatus: resetJobStatus,
+  propsLogoutUser: logoutUser,
 }
 
 export default compose(
