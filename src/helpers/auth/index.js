@@ -15,8 +15,7 @@ export const checkTokenIsValid = () => {
   const diff = decoded.exp - now
 
   // Offset by a minute to allow for request to bounce back from api server
-  const offset = diff - 60
-  console.log(offset)
+  const offset = diff - 300 // 5 minutes
   if (offset > 0) {
     return true
   }
