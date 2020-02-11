@@ -42,12 +42,13 @@ class LoginPage extends Component {
     const { validation_errors, password, password_confirm } = this.state
     const searchObject = queryStringToObjectParser(this.props.location.search)
 
-    if (validation_errors.length === 0 && searchObject) {
+    if (validation_errors.length === 0 && searchObject && searchObject.token) {
       const payload = {
         password,
         password_confirm,
         token: searchObject.token,
       }
+      console.log(payload)
       this.setState({ submit_error: false })
     } else {
       this.setState({ submit_error: true })
