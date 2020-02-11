@@ -48,6 +48,10 @@ class LoginPage extends Component {
     this.props.propsSetMenuItem('login')
   }
 
+  resetPassword() {
+    console.log('Resetting password test.')
+  }
+
   render() {
     const { email, password, error, passwordHidden } = this.state
     const { location, auth } = this.props
@@ -122,6 +126,16 @@ class LoginPage extends Component {
                     <Form.Button color="green" size="large">
                       Submit
                     </Form.Button>
+                    <p>
+                      Forgot your password?{' '}
+                      <a
+                        style={{ cursor: 'pointer' }}
+                        onClick={this.resetPassword}
+                      >
+                        Click here
+                      </a>{' '}
+                      to reset your password.
+                    </p>
                   </Form>
                 </Segment>
               </Grid.Column>
