@@ -7,6 +7,7 @@ export const sendResetPassword = payload => async (dispatch, getState) => {
       type: 'SEND_RESET_PASSWORD_LOADING',
       payload: {
         loading: true,
+        header: 'Processing your request',
       },
     })
     const response = await jobApi.post('auth/send-reset-password', payload)
@@ -15,6 +16,7 @@ export const sendResetPassword = payload => async (dispatch, getState) => {
       payload: {
         error: false,
         message: response.data.message,
+        header: 'Success',
       },
     })
   } catch (error) {
@@ -23,6 +25,7 @@ export const sendResetPassword = payload => async (dispatch, getState) => {
       payload: {
         error: true,
         message: handleApiError(error),
+        header: 'An error has occured',
       },
     })
   }

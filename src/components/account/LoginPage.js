@@ -142,11 +142,7 @@ class LoginPage extends Component {
                     </Form.Button>
                     <Modal open={!password_reset_request.flag}>
                       <Modal.Header>
-                        {password_reset_request.error
-                          ? 'Error'
-                          : password_reset_request.loading
-                          ? 'Loading'
-                          : 'Success'}
+                        {password_reset_request.header}
                       </Modal.Header>
                       <Modal.Content>
                         {error
