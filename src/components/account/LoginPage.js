@@ -14,9 +14,9 @@ import { connect } from 'react-redux'
 import { loginUser } from '../../actions/auth'
 import { setMenuItem } from '../../actions/menu'
 import {
-  sendResetPassword,
-  resetSendResetPassword,
-} from '../../actions/reset_password_request'
+  sendResetPasswordEmail,
+  resetSendPasswordEmail,
+} from '../../actions/reset_password_email'
 import loginImage from '../../images/fingerprint_swrc.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import './LoginPage.css'
@@ -30,7 +30,7 @@ class LoginPage extends Component {
   }
 
   closeModal = () => {
-    this.props.propsResetSendResetPassword()
+    this.props.propsResetSendPasswordEmail()
   }
 
   handleInputChange = e => {
@@ -62,13 +62,13 @@ class LoginPage extends Component {
   resetPassword = () => {
     const { email } = this.state
     if (email.length > 0) {
-      this.props.propsSendResetPassword({ email })
+      this.props.propsSendResetPasswordEmail({ email })
     }
   }
 
   render() {
     const { email, password, error, passwordHidden } = this.state
-    const { location, auth, password_reset_request } = this.props
+    const { location, auth, reset_password_email } = this.props
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/')
     }
@@ -140,20 +140,18 @@ class LoginPage extends Component {
                     <Form.Button color="green" size="large">
                       Submit
                     </Form.Button>
-                    <Modal open={!password_reset_request.flag}>
-                      <Modal.Header>
-                        {password_reset_request.header}
-                      </Modal.Header>
+                    <Modal open={!reset_password_email.modalIsClosed}>
+                      <Modal.Header>{reset_password_email.header}</Modal.Header>
                       <Modal.Content>
-                        {error
+                        {reset_password_email.error
                           ? 'Something went wrong please check that the email is correct.'
-                          : password_reset_request.loading
+                          : reset_password_email.loading
                           ? 'Please wait while we do the work.'
                           : 'Successfully sent reset request to your email, please check your inbox.'}
                       </Modal.Content>
                       <Modal.Actions>
                         <Button
-                          loading={password_reset_request.loading}
+                          loading={reset_password_email.loading}
                           onClick={this.closeModal}
                           color="green"
                         >
@@ -191,18 +189,18 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = state => {
-  const { auth, password_reset_request } = state
+  const { auth, reset_password_email } = state
   return {
     auth,
-    password_reset_request,
+    reset_password_email,
   }
 }
 
 const mapDispatchToProps = {
   propsLoginUser: loginUser,
   propsSetMenuItem: setMenuItem,
-  propsResetSendResetPassword: resetSendResetPassword,
-  propsSendResetPassword: sendResetPassword,
+  propsSendResetPasswordEmail: sendResetPasswordEmail,
+  propsResetSendPasswordEmail: resetSendPasswordEmail,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
