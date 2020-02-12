@@ -15,6 +15,7 @@ import { registerReducer } from './register'
 import { skillReducer } from './skills'
 import { themeReducer } from './theme'
 import { profileReducer } from './profile'
+import { sendResetPasswordReducer } from './reset_password_request'
 import { jobStatusUpdateReducer } from './jobs/job_status_update'
 import { applicationListEmployerReducer } from './applications/application_list_employer'
 import {
@@ -43,6 +44,7 @@ const appReducer = combineReducers({
   menu: menuReducer,
   news_detail: newsDetailReducer,
   news_list: newsListReducer,
+  password_reset_request: sendResetPasswordReducer,
   profile: profileReducer,
   register: registerReducer,
   skill: skillReducer,

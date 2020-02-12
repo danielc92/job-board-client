@@ -5,12 +5,18 @@ import {
   Segment,
   Message,
   Container,
+  Modal,
+  Button,
   Header,
   Grid,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { loginUser } from '../../actions/auth'
 import { setMenuItem } from '../../actions/menu'
+import {
+  sendResetPassword,
+  resetSendResetPassword,
+} from '../../actions/reset_password_request'
 import loginImage from '../../images/fingerprint_swrc.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import './LoginPage.css'
@@ -21,6 +27,10 @@ class LoginPage extends Component {
     password: '',
     error: false,
     passwordHidden: true,
+  }
+
+  closeModal = () => {
+    this.props.propsResetSendResetPassword()
   }
 
   handleInputChange = e => {
@@ -44,17 +54,21 @@ class LoginPage extends Component {
   handleTogglePasswordView = e => {
     this.setState({ passwordHidden: !this.state.passwordHidden })
   }
+
   componentDidMount() {
     this.props.propsSetMenuItem('login')
   }
 
-  resetPassword() {
-    console.log('Resetting password test.')
+  resetPassword = () => {
+    const { email } = this.state
+    if (email.length > 0) {
+      this.props.propsSendResetPassword({ email })
+    }
   }
 
   render() {
     const { email, password, error, passwordHidden } = this.state
-    const { location, auth } = this.props
+    const { location, auth, password_reset_request } = this.props
     if (this.props.auth.isAuthenticated) {
       this.props.history.push('/')
     }
@@ -126,13 +140,38 @@ class LoginPage extends Component {
                     <Form.Button color="green" size="large">
                       Submit
                     </Form.Button>
+                    <Modal open={!password_reset_request.flag}>
+                      <Modal.Header>
+                        {password_reset_request.error
+                          ? 'Error'
+                          : password_reset_request.loading
+                          ? 'Loading'
+                          : 'Success'}
+                      </Modal.Header>
+                      <Modal.Content>
+                        {error
+                          ? 'Something went wrong please check that the email is correct.'
+                          : password_reset_request.loading
+                          ? 'Please wait while we do the work.'
+                          : 'Successfully sent reset request to your email, please check your inbox.'}
+                      </Modal.Content>
+                      <Modal.Actions>
+                        <Button
+                          loading={password_reset_request.loading}
+                          onClick={this.closeModal}
+                          color="green"
+                        >
+                          Confirm
+                        </Button>
+                      </Modal.Actions>
+                    </Modal>
                     <p>
-                      Forgot your password?{' '}
+                      Forgotten password? Fill in your email and{' '}
                       <a
                         style={{ cursor: 'pointer' }}
                         onClick={this.resetPassword}
                       >
-                        Click here
+                        click here
                       </a>{' '}
                       to reset your password.
                     </p>
@@ -156,14 +195,18 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = state => {
+  const { auth, password_reset_request } = state
   return {
-    auth: state.auth,
+    auth,
+    password_reset_request,
   }
 }
 
 const mapDispatchToProps = {
   propsLoginUser: loginUser,
   propsSetMenuItem: setMenuItem,
+  propsResetSendResetPassword: resetSendResetPassword,
+  propsSendResetPassword: sendResetPassword,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
