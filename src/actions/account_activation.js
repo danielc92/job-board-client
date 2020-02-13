@@ -1,16 +1,17 @@
 import jobApi from '../api'
 import { handleApiError } from '../helpers/api'
 
-export const sendResetPasswordEmail = payload => async (dispatch, getState) => {
+export const sendAccountActivation = payload => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'ACTIVATION_LOADING',
       payload: {
         loading: true,
-        header: 'Please wait while we try to activate your account.',
+        message: 'Please wait while we try to activate your account.',
+        header: 'Processing',
       },
     })
-    const response = await jobApi.post('auth/send-reset-password', payload)
+    const response = await jobApi.post(`auth/activate?token=${payload.token}`)
     dispatch({
       type: 'ACTIVATION_SUCCESS',
       payload: {
@@ -31,7 +32,7 @@ export const sendResetPasswordEmail = payload => async (dispatch, getState) => {
   }
 }
 
-export const resetSendPasswordEmail = payload => async (dispatch, getState) => {
+export const resetAccountActivation = payload => async (dispatch, getState) => {
   dispatch({
     type: 'ACTIVATION_RESET',
     payload: { error: false, modalIsClosed: true },

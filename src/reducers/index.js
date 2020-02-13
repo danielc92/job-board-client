@@ -24,6 +24,7 @@ import {
 } from './career_profile'
 import { newsListReducer, newsDetailReducer } from './news'
 import { TOKEN_NAME } from '../constants/'
+import { accountActivationReducer } from './account_activation'
 
 const appReducer = combineReducers({
   application_list_employer: applicationListEmployerReducer,
@@ -49,6 +50,7 @@ const appReducer = combineReducers({
   register: registerReducer,
   skill: skillReducer,
   theme: themeReducer,
+  account_activation: accountActivationReducer,
 })
 
 export const rootReducer = (state, action) => {

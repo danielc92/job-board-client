@@ -7,7 +7,8 @@ export const sendResetPasswordEmail = payload => async (dispatch, getState) => {
       type: 'SEND_RESET_PASSWORD_EMAIL_LOADING',
       payload: {
         loading: true,
-        header: 'Processing your request',
+        header: 'Processing',
+        message: 'Please wait while we process your request.',
       },
     })
     const response = await jobApi.post('auth/send-reset-password', payload)
