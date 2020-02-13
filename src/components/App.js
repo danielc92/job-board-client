@@ -19,7 +19,8 @@ import ProfilePage from './profile/ProfilePage'
 import React, { Component, Fragment } from 'react'
 import RegisterPage from './account/RegisterPage'
 import ProtectedRoute from './ProtectedRoute'
-import ResetPassword from './account/ResetPassword'
+import ResetPasswordPage from './account/ResetPasswordPage'
+import ActivationPage from './account/ActivationPage'
 
 class App extends Component {
   componentDidMount() {
@@ -54,7 +55,8 @@ class App extends Component {
           exact
           component={ApplicationPage}
         />
-        <Route path="/reset-password" exact component={ResetPassword} />
+        <Route path="/activate-account" exact component={ActivationPage} />
+        <Route path="/reset-password" exact component={ResetPasswordPage} />
         <Route path="/" exact component={HomePage} />
         <Route path="/job" exact component={JobDetailPage} />
         <Route path="/job/list" exact component={JobListPage} />
