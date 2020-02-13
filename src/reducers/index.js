@@ -25,32 +25,34 @@ import {
 import { newsListReducer, newsDetailReducer } from './news'
 import { TOKEN_NAME } from '../constants/'
 import { accountActivationReducer } from './account_activation'
+import { passwordResetReducer } from './reset_password_request'
 
 const appReducer = combineReducers({
+  account_activation: accountActivationReducer,
   application_list_employer: applicationListEmployerReducer,
   application_list: applicationListReducer,
   application_update: applicationUpdateReducer,
   application: applicationReducer,
   auth: authReducer,
   benefit: benefitReducer,
-  career_profile: careerProfileReducer,
   career_profile_employer: careerProfileEmployerReducer,
+  career_profile: careerProfileReducer,
   category: categoryReducer,
   job_details: jobDetailReducer,
-  job: jobReducer,
-  job_list_seeker: jobListReducer,
   job_list_employer: jobListEmployerReducer,
+  job_list_seeker: jobListReducer,
+  job: jobReducer,
   jobUpdateStatus: jobStatusUpdateReducer,
   locationList: locationListReducer,
   menu: menuReducer,
   news_detail: newsDetailReducer,
   news_list: newsListReducer,
-  reset_password_email: resetPasswordEmailReducer,
   profile: profileReducer,
   register: registerReducer,
+  reset_password_email: resetPasswordEmailReducer,
+  reset_password_request: passwordResetReducer,
   skill: skillReducer,
   theme: themeReducer,
-  account_activation: accountActivationReducer,
 })
 
 export const rootReducer = (state, action) => {

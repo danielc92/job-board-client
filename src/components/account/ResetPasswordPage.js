@@ -49,9 +49,6 @@ class LoginPage extends Component {
         token: searchObject.token,
       }
       console.log(payload)
-      this.setState({ submit_error: false })
-    } else {
-      this.setState({ submit_error: true })
     }
   }
 
@@ -60,12 +57,7 @@ class LoginPage extends Component {
   }
 
   render() {
-    const {
-      validation_errors,
-      submit_error,
-      password,
-      password_confirm,
-    } = this.state
+    const { validation_errors, password, password_confirm } = this.state
 
     return (
       <Container>
@@ -113,13 +105,6 @@ class LoginPage extends Component {
                       header="Validation reminder"
                       color="yellow"
                       list={validation_errors}
-                    ></Message>
-                  ) : null}
-                  {submit_error ? (
-                    <Message
-                      header="Reset error reminder"
-                      color="red"
-                      content="Something went wrong with submission"
                     ></Message>
                   ) : null}
                 </Segment>
