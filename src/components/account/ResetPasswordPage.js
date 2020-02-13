@@ -6,12 +6,18 @@ import {
   Container,
   Header,
   Grid,
+  Modal,
+  Button,
   Message,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import loginImage from '../../images/fingerprint_swrc.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import './LoginPage.css'
+import {
+  resetPasswordResetRequest,
+  sendResetPasswordRequest,
+} from '../../actions/reset_password_request'
 import { queryStringToObjectParser } from '../../helpers/query'
 import { PasswordMatcher, PasswordValidator } from '../../helpers/validation'
 
@@ -39,26 +45,28 @@ class LoginPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const { validation_errors, password, password_confirm } = this.state
+    const { validation_errors, password } = this.state
     const searchObject = queryStringToObjectParser(this.props.location.search)
 
     if (validation_errors.length === 0 && searchObject && searchObject.token) {
       const payload = {
         password,
-        password_confirm,
         token: searchObject.token,
       }
-      console.log(payload)
+      this.props.propsSendResetPasswordRequest(payload)
     }
   }
 
+  closeModal = () => {
+    this.props.propsResetPasswordResetRequest()
+  }
   componentDidMount() {
     this.validate()
   }
 
   render() {
     const { validation_errors, password, password_confirm } = this.state
-
+    const { reset_password_request } = this.props
     return (
       <Container>
         <VerticallyPaddedContainer size="4">
@@ -107,6 +115,21 @@ class LoginPage extends Component {
                       list={validation_errors}
                     ></Message>
                   ) : null}
+                  <Modal open={!reset_password_request.modalIsClosed}>
+                    <Modal.Header>{reset_password_request.header}</Modal.Header>
+                    <Modal.Content>
+                      {reset_password_request.message}
+                    </Modal.Content>
+                    <Modal.Actions>
+                      <Button
+                        loading={reset_password_request.loading}
+                        onClick={this.closeModal}
+                        color="green"
+                      >
+                        Confirm
+                      </Button>
+                    </Modal.Actions>
+                  </Modal>
                 </Segment>
               </Grid.Column>
               <Grid.Column verticalAlign="middle">
@@ -126,9 +149,13 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = state => {
-  return {}
+  const { reset_password_request } = state
+  return { reset_password_request }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  propsSendResetPasswordRequest: sendResetPasswordRequest,
+  propsResetPasswordResetRequest: resetPasswordResetRequest,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
