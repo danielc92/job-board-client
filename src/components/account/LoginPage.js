@@ -143,11 +143,7 @@ class LoginPage extends Component {
                     <Modal open={!reset_password_email.modalIsClosed}>
                       <Modal.Header>{reset_password_email.header}</Modal.Header>
                       <Modal.Content>
-                        {reset_password_email.error
-                          ? 'Something went wrong please check that the email is correct.'
-                          : reset_password_email.loading
-                          ? 'Please wait while we do the work.'
-                          : 'Successfully sent reset request to your email, please check your inbox.'}
+                        {reset_password_email.message}
                       </Modal.Content>
                       <Modal.Actions>
                         <Button
