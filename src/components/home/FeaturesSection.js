@@ -44,7 +44,7 @@ class FeaturesSection extends Component {
     const { featureHeader, featureData } = this.state
 
     return (
-      <Segment basic style={{ backgroundColor: '#f9f9f9' }}>
+      <Segment basic style={{ backgroundColor: '#f9f9f9', margin: 0 }}>
         <Container>
           <VerticallyPaddedContainer size="6">
             <Header

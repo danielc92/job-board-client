@@ -7,6 +7,7 @@ import SectionSplitHero from './HeroSection'
 import image2 from '../../images/process_e90d.svg'
 import image3 from '../../images/success_factors_fay0.svg'
 import image4 from '../../images/feedback.svg'
+import BannerSeperator from './BannerSeperator'
 
 class HomePage extends Component {
   componentDidMount() {
@@ -17,7 +18,6 @@ class HomePage extends Component {
       <Fragment>
         {/* Hero (split into two panes) */}
         <ReactHero />
-
         {/* Features */}
         <ReactFeatures />
 
