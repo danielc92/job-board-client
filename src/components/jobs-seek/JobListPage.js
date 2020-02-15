@@ -18,20 +18,28 @@ import SearchContainer from './JobListSearchSection'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import CustomErrorMessage from '../reusable/CustomErrorMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import {
+  queryStringToObjectParser,
+  objectToQueryStringParser,
+} from '../../helpers/query'
 const { Line, Paragraph } = Placeholder
 
 class JobListContainer extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('find')
-    this.props.propsGetJobList({ ...this.props.history.location.state })
+    const object = queryStringToObjectParser(this.props.history.location.search)
+    this.props.propsGetJobList(object)
   }
 
   handlePageChange = (event, data) => {
-    const { history } = this.props
-    const { activePage } = data
-    history.push({
+    const query = this.props.history.location.search
+    let object = query ? queryStringToObjectParser(query) : {}
+    object.page = data.activePage
+    const newQuery = objectToQueryStringParser(object)
+
+    this.props.history.push({
       pathname: '/job/list',
-      state: { ...history.location.state, page: activePage },
+      search: newQuery,
     })
   }
 
@@ -44,33 +52,11 @@ class JobListContainer extends Component {
   }
 
   componentWillReceiveProps() {
-    try {
-      if (
-        this.props.history.location.state.title !==
-          this.props.location.state.title ||
-        this.props.history.location.state.page !==
-          this.props.location.state.page ||
-        this.props.history.location.state.category !==
-          this.props.location.state.category ||
-        this.props.history.location.state.location_string !==
-          this.props.location.state.location_string
-      ) {
-        let queryObject = { ...this.props.history.location.state }
-
-        if (
-          this.props.history.location.state.title !==
-            this.props.location.state.title ||
-          this.props.history.location.state.category !==
-            this.props.location.state.category ||
-          this.props.history.location.state.location_string !==
-            this.props.location.state.location_string
-        ) {
-          delete queryObject['page']
-        }
-        this.props.propsGetJobList(queryObject)
-      }
-    } catch (error) {
-      console.error(error)
+    if (this.props.history.location.search !== this.props.location.search) {
+      const object = queryStringToObjectParser(
+        this.props.history.location.search
+      )
+      this.props.propsGetJobList(object)
     }
   }
 

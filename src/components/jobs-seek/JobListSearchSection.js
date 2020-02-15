@@ -7,6 +7,7 @@ import { getCategories } from '../../actions/category'
 import { getJobList } from '../../actions/job_list_seeker'
 import { getLocationList } from '../../actions/location'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import { objectToQueryStringParser } from '../../helpers/query'
 
 class JobListSearchSection extends Component {
   state = {
@@ -42,20 +43,28 @@ class JobListSearchSection extends Component {
     event.preventDefault()
     const { title, location_string, category } = this.state
     const { history, propsGetJobList } = this.props
-    history.push({
-      pathname: '/job/list',
-      state: {
-        title,
-        location_string: location_string.location_string,
-        category,
-      },
-    })
 
-    propsGetJobList({
+    const search = objectToQueryStringParser({
       title,
       location_string: location_string.location_string,
       category,
     })
+
+    history.push({
+      pathname: '/job/list',
+      search,
+      // state: {
+      //   title,
+      //   location_string: location_string.location_string,
+      //   category,
+      // },
+    })
+
+    // propsGetJobList({
+    //   title,
+    //   location_string: location_string.location_string,
+    //   category,
+    // })
   }
 
   componentDidMount() {
