@@ -33,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <Route component={ScrollToTop} />
         {/* Small message box indicating state of development*/}
         <Message
           style={{ textAlign: 'center', borderRadius: '0', margin: '0' }}
@@ -69,6 +70,11 @@ class App extends Component {
       </Fragment>
     )
   }
+}
+
+const ScrollToTop = () => {
+  window.scrollTo(0, 0)
+  return null
 }
 
 const mapStateToProps = state => {
