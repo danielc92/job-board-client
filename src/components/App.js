@@ -37,7 +37,6 @@ class App extends Component {
         <Message
           style={{ textAlign: 'center', borderRadius: '0', margin: '0' }}
           color="violet"
-          size="normal"
         >
           This application is currently in <strong>development</strong> phase.
         </Message>
@@ -58,8 +57,8 @@ class App extends Component {
         <Route path="/activate-account" exact component={ActivationPage} />
         <Route path="/reset-password" exact component={ResetPasswordPage} />
         <Route path="/" exact component={HomePage} />
-        <Route path="/job" exact component={JobDetailPage} />
-        <Route path="/job/list" exact component={JobListPage} />
+        <Route path="/job-detail/:id" exact component={JobDetailPage} />
+        <Route path="/job-list" exact component={JobListPage} />
         <Route path="/news" exact component={NewsDetailPage} />
         <Route path="/news/list" exact component={NewsListPage} />
         <Route path="/register" exact component={RegisterPage} />

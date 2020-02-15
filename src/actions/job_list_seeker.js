@@ -12,6 +12,7 @@ export const getJobList = object => async (dispatch, getState) => {
     })
     await new Promise(r => setTimeout(r, 1000))
     const queryString = objectToQueryStringParser(object)
+    console.log('REQUEST FOR', queryString, object)
     const response = await jobApi.get(`job/list${queryString}`)
     dispatch({
       type: 'GET_JOB_LIST_SUCCESS',

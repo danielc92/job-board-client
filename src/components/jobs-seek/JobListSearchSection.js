@@ -51,7 +51,7 @@ class JobListSearchSection extends Component {
     })
 
     history.push({
-      pathname: '/job/list',
+      pathname: '/job-list',
       search,
       // state: {
       //   title,

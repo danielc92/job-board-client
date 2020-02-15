@@ -34,5 +34,5 @@ export const queryStringToObjectParser = queryString => {
     }
   }
 
-  return Object.entries(obj).length > 0 ? obj : null
+  return Object.entries(obj).length > 0 ? obj : {}
 }

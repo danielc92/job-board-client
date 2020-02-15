@@ -30,7 +30,8 @@ class JobDetailContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.propsGetJob(this.props.location.state.job_id)
+    console.log('D', this.props)
+    this.props.propsGetJob(this.props.match.params.id)
     this.props.propsSetMenuItem('find')
   }
 

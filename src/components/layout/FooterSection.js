@@ -19,7 +19,7 @@ class FooterSection extends Component {
                   <Header inverted as="h4" content="Navigation" />
                   <List link inverted>
                     <List.Item as={Link} to="/" content="Home" />
-                    <List.Item as={Link} to="/job/list" content="Find a job" />
+                    <List.Item as={Link} to="/job-list" content="Find a job" />
                     <List.Item
                       as={Link}
                       to="/create-jobs"

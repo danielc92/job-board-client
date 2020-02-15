@@ -34,7 +34,7 @@ class MainBannerSection extends Component {
                       excepteur.
                     </p>
                     <Button
-                      to="/job/list"
+                      to="/job-list"
                       as={Link}
                       size="huge"
                       color={this.props.theme}

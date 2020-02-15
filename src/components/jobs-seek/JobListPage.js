@@ -26,6 +26,7 @@ const { Line, Paragraph } = Placeholder
 
 class JobListContainer extends Component {
   componentDidMount() {
+    console.log(this.props.history.location, this.props.location, 'MOUNTING')
     this.props.propsSetMenuItem('find')
     const object = queryStringToObjectParser(this.props.history.location.search)
     this.props.propsGetJobList(object)
@@ -38,7 +39,7 @@ class JobListContainer extends Component {
     const newQuery = objectToQueryStringParser(object)
 
     this.props.history.push({
-      pathname: '/job/list',
+      pathname: '/job-list',
       search: newQuery,
     })
   }
@@ -46,17 +47,23 @@ class JobListContainer extends Component {
   handleViewJob = job_id => {
     const { history } = this.props
     history.push({
-      pathname: '/job',
-      state: { job_id },
+      pathname: `/job-detail/${job_id}`,
     })
   }
 
   componentWillReceiveProps() {
-    if (this.props.history.location.search !== this.props.location.search) {
+    if (
+      this.props.history &&
+      this.props.history.location.search !== this.props.location.search
+    ) {
       const object = queryStringToObjectParser(
         this.props.history.location.search
       )
+      console.log(object, 'OBJECT')
       this.props.propsGetJobList(object)
+      console.log(this.props.history.location, this.props.location, 'RECEIVED')
+    } else {
+      console.log(this.props.history.location, this.props.location, 'FAILED')
     }
   }
 
@@ -92,8 +99,8 @@ class JobListContainer extends Component {
                   ) : null}
 
                   <Divider></Divider>
-                  {data.docs.map(item => (
-                    <Segment stacked key={item._id}>
+                  {data.docs.map((item, index) => (
+                    <Segment stacked key={index.toString()}>
                       <Header
                         as="h3"
                         content={properCaseTransform(item.title)}
@@ -140,8 +147,8 @@ class JobListContainer extends Component {
                 <Fragment>
                   <Header as="h1" content="Job listings" />
 
-                  {new Array(6).fill(true).map(item => (
-                    <Segment padded stacked>
+                  {new Array(6).fill(true).map((item, index) => (
+                    <Segment padded stacked key={index.toString()}>
                       <Placeholder>
                         <Paragraph>
                           <Line /> <Line /> <Line /> <Line /> <Line /> <Line />
