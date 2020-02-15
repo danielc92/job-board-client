@@ -108,7 +108,7 @@ class RegisterPage extends Component {
     } = this.state
 
     const { register } = this.props
-    const { flag, error, message } = register
+    const { error, message, showModal, modalHeader } = register
 
     return (
       <Container>
@@ -179,6 +179,7 @@ class RegisterPage extends Component {
               </Form.Field>
               <Form.Radio toggle onChange={this.handleRadioChange}></Form.Radio>
               <Form.Button
+                loading={register.loading}
                 disabled={errors.length > 0}
                 size="large"
                 color="green"
@@ -195,8 +196,8 @@ class RegisterPage extends Component {
             </Form>
           </Segment>
         </VerticallyPaddedContainer>
-        <Modal open={error || flag} dimmer="blurring" onClose={this.closeModal}>
-          <Modal.Header>{error ? 'Error' : 'Success'}</Modal.Header>
+        <Modal open={showModal} dimmer="blurring" onClose={this.closeModal}>
+          <Modal.Header>{modalHeader}</Modal.Header>
           <Modal.Content>{message}</Modal.Content>
           <Modal.Actions>
             <Button onClick={this.closeModal} color="green">

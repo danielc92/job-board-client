@@ -1,30 +1,15 @@
-export const registerReducer = (
-  state = { error: false, flag: false, message: '' },
-  action
-) => {
+export const registerReducer = (state = { error: false }, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case 'REGISTER_LOADING':
+      return payload
     case 'REGISTER_SUCCESS':
-      return {
-        ...state,
-        flag: true,
-        error: false,
-        message: payload.data.message,
-      }
+      return payload
     case 'REGISTER_FAILURE':
-      return {
-        ...state,
-        flag: false,
-        error: true,
-        message: payload.message,
-      }
+      return payload
     case 'REGISTER_RESET':
-      return {
-        ...state,
-        flag: false,
-        error: false,
-      }
+      return payload
     default:
       return state
   }
