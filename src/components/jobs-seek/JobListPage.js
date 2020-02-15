@@ -16,7 +16,7 @@ import { getJobList } from '../../actions/job_list_seeker'
 import { properCaseTransform } from '../../helpers/generic'
 import SearchContainer from './JobListSearchSection'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import CustomErrorMessage from '../reusable/CustomErrorMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 const { Line, Paragraph } = Placeholder
 

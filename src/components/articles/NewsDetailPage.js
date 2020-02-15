@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import CustomErrorMessage from '../reusable/CustomErrorMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
 class NewsDetailPage extends Component {

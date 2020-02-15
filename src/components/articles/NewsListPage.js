@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import { getNewsList } from '../../actions/news'
-import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import CustomErrorMessage from '../reusable/CustomErrorMessage'
 import { dateDiffString } from '../../helpers/generic'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 

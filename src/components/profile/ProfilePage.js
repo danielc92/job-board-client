@@ -14,7 +14,7 @@ import { setMenuItem } from '../../actions/menu'
 import { getUserDetails } from '../../actions/profile'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import Seeker from './SeekerProfile'
-import CustomErrorMessage from '../placeholder/CustomErrorMessage'
+import CustomErrorMessage from '../reusable/CustomErrorMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 const { Line, Paragraph } = Placeholder
 

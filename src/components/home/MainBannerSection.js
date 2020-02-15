@@ -50,7 +50,7 @@ class MainBannerSection extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <BannerSeperator />
+        <BannerSeperator fillColor="#f9f9f9" backgroundColor="#fff" />
       </section>
     )
   }

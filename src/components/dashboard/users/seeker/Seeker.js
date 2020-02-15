@@ -24,8 +24,8 @@ import {
   properCaseTransform,
 } from '../../../../helpers/generic'
 import SeekerTableHeader from './SeekerTableHeader'
-import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
-import CustomNoResultsMessage from '../../../placeholder/CustomNoResultsMessage'
+import CustomErrorMessage from '../../../reusable/CustomErrorMessage'
+import CustomNoResultsMessage from '../../../reusable/CustomNoResultsMessage'
 import { checkTokenIsValid } from '../../../../helpers/auth'
 import { logoutUser } from '../../../../actions/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'

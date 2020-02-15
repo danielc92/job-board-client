@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default function BannerSeperator() {
+export default function BannerSeperator(props) {
+  const { fillColor, backgroundColor } = props
   return (
     <svg
       style={{
         height: '7vh',
         width: '100%',
-        background: '#ffffff',
+        background: backgroundColor,
         position: 'absolute',
         bottom: '0',
       }}
@@ -14,7 +15,7 @@ export default function BannerSeperator() {
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
     >
-      <polygon fill="#f9f9f9" points="0,100 100,0 100,100" />
+      <polygon fill={fillColor} points="0,100 100,0 100,100" />
     </svg>
   )
 }

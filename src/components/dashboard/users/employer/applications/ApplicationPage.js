@@ -25,10 +25,10 @@ import {
 import { setMenuItem } from '../../../../../actions/menu'
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer'
 import ApplicationHeader from './ApplicationHeader'
-import CustomErrorMessage from '../../../../placeholder/CustomErrorMessage'
-import CustomNoResultsMessage from '../../../../placeholder/CustomNoResultsMessage'
+import CustomErrorMessage from '../../../../reusable/CustomErrorMessage'
+import CustomNoResultsMessage from '../../../../reusable/CustomNoResultsMessage'
 import RenderApplicantProfile from './RenderApplicantProfile'
-import CustomWithdrawnMessage from '../../../../placeholder/CustomWithdrawnMessage'
+import CustomWithdrawnMessage from '../../../../reusable/CustomWithdrawnMessage'
 import { checkTokenIsValid } from '../../../../../helpers/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../../../../constants'
 const { Line, Paragraph } = Placeholder

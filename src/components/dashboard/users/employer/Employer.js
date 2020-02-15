@@ -22,8 +22,8 @@ import {
 import { properCaseTransform } from '../../../../helpers/generic'
 import EmployerTableHeader from './EmployerTableHeader'
 import { dateDiffString } from '../../../../helpers/generic'
-import CustomErrorMessage from '../../../placeholder/CustomErrorMessage'
-import CustomNoResultsMessage from '../../../placeholder/CustomNoResultsMessage'
+import CustomErrorMessage from '../../../reusable/CustomErrorMessage'
+import CustomNoResultsMessage from '../../../reusable/CustomNoResultsMessage'
 import { checkTokenIsValid } from '../../../../helpers/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
 const { Line, Paragraph } = Placeholder

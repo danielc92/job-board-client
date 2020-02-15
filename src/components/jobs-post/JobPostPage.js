@@ -28,7 +28,7 @@ import {
 import { calculateProgress } from '../../helpers/progressbar'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ProgressSection'
-import CustomAuthMessage from '../placeholder/CustomAuthMessage'
+import CustomAuthMessage from '../reusable/CustomAuthMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 import { SESSION_EXPIRED_MESSAGE } from '../../constants'
 
