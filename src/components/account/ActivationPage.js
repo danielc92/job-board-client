@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import {
   sendAccountActivation,
   resetAccountActivation,
-} from '../../actions/account_activation'
+} from '../../actions/account/account_activation'
 import loginImage from '../../images/fingerprint_swrc.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import './LoginPage.css'

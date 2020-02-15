@@ -9,7 +9,7 @@ import { updateApplicationStatus } from '../../../../../actions/application'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import { logoutUser } from '../../../../../actions/auth'
+import { logoutUser } from '../../../../../actions/account/auth'
 import {
   Container,
   Segment,

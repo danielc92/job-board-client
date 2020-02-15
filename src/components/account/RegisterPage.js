@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { resetRegisterState, registerUser } from '../../actions/register'
+import {
+  resetRegisterState,
+  registerUser,
+} from '../../actions/account/register'
 import { setMenuItem } from '../../actions/menu'
 import {
   Container,

@@ -15,7 +15,7 @@ import {
   getCareerProfile,
   updateCareerProfile,
 } from '../../actions/career_profile'
-import { logoutUser } from '../../actions/auth'
+import { logoutUser } from '../../actions/account/auth'
 import { DateValidator } from '../../helpers/validation'
 import { getSkills } from '../../actions/skills'
 import { connect } from 'react-redux'

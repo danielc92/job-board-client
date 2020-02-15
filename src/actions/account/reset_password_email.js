@@ -1,22 +1,19 @@
-import jobApi from '../api'
-import { handleApiError } from '../helpers/api'
+import jobApi from '../../api'
+import { handleApiError } from '../../helpers/api'
 
-export const sendResetPasswordRequest = payload => async (
-  dispatch,
-  getState
-) => {
+export const sendResetPasswordEmail = payload => async (dispatch, getState) => {
   try {
     dispatch({
-      type: 'SEND_RESET_PASSWORD_LOADING',
+      type: 'SEND_RESET_PASSWORD_EMAIL_LOADING',
       payload: {
         loading: true,
         header: 'Processing',
         message: 'Please wait while we process your request.',
       },
     })
-    const response = await jobApi.post('auth/reset-password', payload)
+    const response = await jobApi.post('auth/send-reset-password', payload)
     dispatch({
-      type: 'SEND_RESET_PASSWORD_SUCCESS',
+      type: 'SEND_RESET_PASSWORD_EMAIL_SUCCESS',
       payload: {
         error: false,
         message: response.data.message,
@@ -25,7 +22,7 @@ export const sendResetPasswordRequest = payload => async (
     })
   } catch (error) {
     dispatch({
-      type: 'SEND_RESET_PASSWORD_FAILURE',
+      type: 'SEND_RESET_PASSWORD_EMAIL_FAILURE',
       payload: {
         error: true,
         message: handleApiError(error),
@@ -35,12 +32,9 @@ export const sendResetPasswordRequest = payload => async (
   }
 }
 
-export const resetPasswordResetRequest = payload => async (
-  dispatch,
-  getState
-) => {
+export const resetSendPasswordEmail = payload => async (dispatch, getState) => {
   dispatch({
-    type: 'SEND_RESET_PASSWORD_RESET',
+    type: 'SEND_RESET_PASSWORD_EMAIL_RESET',
     payload: { error: false, modalIsClosed: true },
   })
 }

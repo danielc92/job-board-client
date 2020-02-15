@@ -17,7 +17,7 @@ import './LoginPage.css'
 import {
   resetPasswordResetRequest,
   sendResetPasswordRequest,
-} from '../../actions/reset_password_request'
+} from '../../actions/account/reset_password_request'
 import { queryStringToObjectParser } from '../../helpers/query'
 import { PasswordMatcher, PasswordValidator } from '../../helpers/validation'
 

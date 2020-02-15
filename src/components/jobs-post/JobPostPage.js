@@ -18,7 +18,7 @@ import { getCategories } from '../../actions/category'
 import { getLocationList } from '../../actions/location'
 import { createJob, resetJob } from '../../actions/job'
 import { checkTokenIsValid } from '../../helpers/auth'
-import { logoutUser } from '../../actions/auth'
+import { logoutUser } from '../../actions/account/auth'
 import {
   StringValidator,
   IsEmptyValidator,

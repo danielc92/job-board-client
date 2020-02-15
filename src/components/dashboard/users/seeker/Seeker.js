@@ -27,7 +27,7 @@ import SeekerTableHeader from './SeekerTableHeader'
 import CustomErrorMessage from '../../../reusable/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../reusable/CustomNoResultsMessage'
 import { checkTokenIsValid } from '../../../../helpers/auth'
-import { logoutUser } from '../../../../actions/auth'
+import { logoutUser } from '../../../../actions/account/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
 
 const { Line, Paragraph } = Placeholder

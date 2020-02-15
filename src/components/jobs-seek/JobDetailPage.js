@@ -21,7 +21,7 @@ import { properCaseTransform } from '../../helpers/generic'
 import CustomErrorMessage from '../reusable/CustomErrorMessage'
 import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 import { checkTokenIsValid } from '../../helpers/auth'
-import { logoutUser } from '../../actions/auth'
+import { logoutUser } from '../../actions/account/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../constants'
 const { Line, Paragraph } = Placeholder
 class JobDetailContainer extends Component {

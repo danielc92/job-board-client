@@ -11,12 +11,12 @@ import {
   Grid,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { loginUser } from '../../actions/auth'
+import { loginUser } from '../../actions/account/auth'
 import { setMenuItem } from '../../actions/menu'
 import {
   sendResetPasswordEmail,
   resetSendPasswordEmail,
-} from '../../actions/reset_password_email'
+} from '../../actions/account/reset_password_email'
 import loginImage from '../../images/fingerprint_swrc.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import './LoginPage.css'
