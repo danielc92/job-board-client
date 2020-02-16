@@ -13,7 +13,7 @@ import {
   sendAccountActivation,
   resetAccountActivation,
 } from '../../actions/account/account_activation'
-import loginImage from '../../images/fingerprint_swrc.svg'
+import activationImage from '../../images/undraw_monitor_iqpq.svg'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
 import './LoginPage.css'
 import { queryStringToObjectParser } from '../../helpers/query'
@@ -63,7 +63,7 @@ class ActivationPage extends Component {
                   style={{ maxWidth: '350px' }}
                   centered
                   fluid
-                  src={loginImage}
+                  src={activationImage}
                 ></Image>
               </Grid.Column>
             </Grid.Row>
