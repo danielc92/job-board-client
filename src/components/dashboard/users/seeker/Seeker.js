@@ -57,10 +57,9 @@ class Seeker extends Component {
     this.props.history.push('/dashboard')
   }
 
-  handleViewJobPosting = job_id => {
+  handleViewJobPosting = slug => {
     this.props.history.push({
-      pathname: '/job',
-      state: { job_id },
+      pathname: `/job-detail/${slug}`,
     })
   }
 
@@ -132,7 +131,7 @@ class Seeker extends Component {
                             content="View job"
                             color="green"
                             onClick={() =>
-                              this.handleViewJobPosting(job_id._id)
+                              this.handleViewJobPosting(job_id.slug)
                             }
                           />
                         </Button.Group>

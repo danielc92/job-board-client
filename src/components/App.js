@@ -58,10 +58,10 @@ class App extends Component {
         <Route path="/activate-account" exact component={ActivationPage} />
         <Route path="/reset-password" exact component={ResetPasswordPage} />
         <Route path="/" exact component={HomePage} />
-        <Route path="/job-detail/:id" exact component={JobDetailPage} />
+        <Route path="/job-detail/:slug" exact component={JobDetailPage} />
         <Route path="/job-list" exact component={JobListPage} />
-        <Route path="/news" exact component={NewsDetailPage} />
-        <Route path="/news/list" exact component={NewsListPage} />
+        <Route path="/news-detail/:slug" exact component={NewsDetailPage} />
+        <Route path="/news-list" exact component={NewsListPage} />
         <Route path="/register" exact component={RegisterPage} />
         <Route path="/sign-in" exact component={LoginPage} />
 

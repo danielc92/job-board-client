@@ -29,7 +29,7 @@ class NewsListPage extends Component {
     const { history, location } = this.props
     if (!history.location.state || !location.state) {
       history.push({
-        pathname: '/news/list',
+        pathname: '/news-list',
         state: { page: 1 },
       })
     } else {
@@ -50,7 +50,7 @@ class NewsListPage extends Component {
 
   handlePageChange = (e, data) => {
     this.props.history.push({
-      pathname: '/news/list',
+      pathname: '/news-list',
       state: { page: data.activePage },
     })
   }

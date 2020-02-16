@@ -44,10 +44,10 @@ class JobListContainer extends Component {
     })
   }
 
-  handleViewJob = job_id => {
+  handleViewJob = slug => {
     const { history } = this.props
     history.push({
-      pathname: `/job-detail/${job_id}`,
+      pathname: `/job-detail/${slug}`,
     })
   }
 
@@ -114,7 +114,7 @@ class JobListContainer extends Component {
                       <Button
                         color={this.props.theme}
                         size="tiny"
-                        onClick={() => this.handleViewJob(item._id)}
+                        onClick={() => this.handleViewJob(item.slug)}
                       >
                         <Icon name="eye"></Icon>view this job
                       </Button>

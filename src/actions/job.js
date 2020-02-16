@@ -29,7 +29,7 @@ export const resetJob = () => async (dispatch, getState) => {
   })
 }
 
-export const getJob = id => async (dispatch, getState) => {
+export const getJob = slug => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'RESET_JOB_DETAIL',
@@ -39,7 +39,7 @@ export const getJob = id => async (dispatch, getState) => {
     })
     await new Promise(r => setTimeout(r, 500))
     const config = getConfig()
-    const response = await jobApi.get(`job?id=${id}`, null, config)
+    const response = await jobApi.get(`job?slug=${slug}`, null, config)
     dispatch({
       type: 'GET_JOB_DETAIL_SUCCESS',
       payload: {
