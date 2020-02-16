@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Segment, Container, Header, Grid, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import BannerSeperator from './BannerSeperator'
 
 class FeaturesSection extends Component {
   state = {
@@ -83,6 +84,8 @@ class FeaturesSection extends Component {
             </Grid>
           </VerticallyPaddedContainer>
         </Container>
+
+        <BannerSeperator fillColor="#fff" backgroundColor="#f9f9f9" />
       </Segment>
     )
   }
