@@ -10,6 +10,10 @@ import {
   Placeholder,
   Pagination,
 } from 'semantic-ui-react'
+import {
+  queryStringToObjectParser,
+  objectToQueryStringParser,
+} from '../../helpers/query'
 import { connect } from 'react-redux'
 import { setMenuItem } from '../../actions/menu'
 import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
@@ -21,37 +25,34 @@ import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 class NewsListPage extends Component {
   componentDidMount() {
     this.props.propsSetMenuItem('news')
-    this.props.propsGetNewsList({})
+    const object = queryStringToObjectParser(this.props.history.location.search)
+    this.props.propsGetNewsList(object)
   }
 
   componentWillReceiveProps() {
     // If the page has changed in router props call new data from api
-    const { history, location } = this.props
-    if (!history.location.state || !location.state) {
-      history.push({
-        pathname: '/news-list',
-        state: { page: 1 },
-      })
-    } else {
-      if (history.location.state.page !== location.state.page) {
-        this.props.propsGetNewsList({
-          page: history.location.state.page,
-        })
-      }
+    const { history, location, propsGetNewsList } = this.props
+    if (history && history.location.search !== location.search) {
+      const object = queryStringToObjectParser(history.location.search)
+      propsGetNewsList(object)
     }
   }
 
-  handleViewNewsArticle = news_id => {
+  handleViewNewsArticle = slug => {
     this.props.history.push({
-      pathname: '/news',
-      state: { news_id },
+      pathname: `/news-detail/${slug}`,
     })
   }
 
-  handlePageChange = (e, data) => {
+  handlePageChange = (event, data) => {
+    const query = this.props.history.location.search
+    let object = query ? queryStringToObjectParser(query) : {}
+    object.page = data.activePage
+    const newQuery = objectToQueryStringParser(object)
+
     this.props.history.push({
       pathname: '/news-list',
-      state: { page: data.activePage },
+      search: newQuery,
     })
   }
 
@@ -80,7 +81,7 @@ class NewsListPage extends Component {
                       <Button
                         compact
                         color="green"
-                        onClick={() => this.handleViewNewsArticle(item._id)}
+                        onClick={() => this.handleViewNewsArticle(item.slug)}
                       >
                         <Icon name="eye" />
                         Read more

@@ -32,7 +32,7 @@ export const getNewsList = object => async (dispatch, getState) => {
   }
 }
 
-export const getNewsDetail = _id => async (dispatch, getState) => {
+export const getNewsDetail = slug => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'RESET_NEWS_DETAIL',
@@ -40,8 +40,8 @@ export const getNewsDetail = _id => async (dispatch, getState) => {
         error: false,
       },
     })
-    await new Promise(r => setTimeout(r, 2000))
-    const response = await jobApi.get(`news?_id=${_id}`)
+    await new Promise(r => setTimeout(r, 500))
+    const response = await jobApi.get(`news?slug=${slug}`)
 
     dispatch({
       type: 'GET_NEWS_DETAIL_SUCCESS',

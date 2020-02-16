@@ -18,7 +18,7 @@ import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 
 class NewsDetailPage extends Component {
   componentDidMount() {
-    this.props.propsGetNewsDetail(this.props.location.state.news_id)
+    this.props.propsGetNewsDetail(this.props.match.params.slug)
     this.props.propsSetMenuItem('news')
   }
   render() {
