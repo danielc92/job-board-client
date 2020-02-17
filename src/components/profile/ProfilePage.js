@@ -74,7 +74,7 @@ class ProfilePage extends Component {
               {loaded ? (
                 <Fragment>
                   <Header as="h3" content="Personal Details" />
-                  <Segment stacked padded color="green">
+                  <Segment stacked padded>
                     <Grid divided="vertically">
                       <Grid.Row columns={2}>
                         <Grid.Column>

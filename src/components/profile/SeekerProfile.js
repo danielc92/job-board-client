@@ -361,7 +361,7 @@ class SeekerProfile extends Component {
           <Fragment>
             {/* CAREER SUMMARY SECTION */}
             <Header as="h3" content="Career Details" />
-            <Segment stacked padded color="green">
+            <Segment stacked padded>
               <Header as="h5" content="Summary" />
 
               {editSummary ? (
@@ -416,7 +416,7 @@ class SeekerProfile extends Component {
             </Segment>
 
             <Header as="h3" content="Skills" />
-            <Segment stacked padded color="green">
+            <Segment stacked padded>
               {editSkills ? (
                 <Form>
                   <Form.Dropdown
@@ -476,8 +476,8 @@ class SeekerProfile extends Component {
               )}
             </Segment>
 
-            <Header as="h3" content="Availability & Phone" />
-            <Segment stacked padded color="green">
+            <Header as="h3" content="Contact" />
+            <Segment stacked padded>
               <Header as="h5" content="Phone" />
               {editPhone ? (
                 <Fragment>
@@ -579,7 +579,7 @@ class SeekerProfile extends Component {
             </Segment>
 
             <Header as="h3" content="Work Experience" />
-            <Segment stacked padded color="green">
+            <Segment stacked padded>
               {editExperience ? (
                 <Fragment>
                   <Form>
@@ -705,7 +705,7 @@ class SeekerProfile extends Component {
             </Segment>
 
             <Header as="h3" content="Education" />
-            <Segment stacked padded color="green">
+            <Segment stacked padded>
               {editEducation ? (
                 <Fragment>
                   <Form>
