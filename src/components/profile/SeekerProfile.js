@@ -453,7 +453,7 @@ class SeekerProfile extends Component {
               ) : (
                 <Fragment>
                   {data.skills.length > 0 ? (
-                    <Label.Group>
+                    <Label.Group style={{ marginBottom: '1em' }}>
                       {data.skills.map(skill_name => (
                         <Label color="green" basic size="medium">
                           {skill_name}
