@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getNewsDetail } from '../../actions/news'
 import { dateDiffString } from '../../helpers/generic'
@@ -28,48 +28,61 @@ class NewsDetailPage extends Component {
       <section>
         <Container>
           <VerticallyPaddedContainer size={4}>
-            <Header as="h2" content="News Article Page" />
-            <Divider />
             {news_detail.error ? (
-              <CustomErrorMessage
-                header="An error has occured"
-                content={news_detail.message}
-              />
-            ) : data ? (
-              <Segment stacked padded>
-                <Header as="h3" content={data.title} />
-
-                {data.content.map(para => (
-                  <p>{para}</p>
-                ))}
+              <Fragment>
+                <Header as="h2" content="News Article Page" />
                 <Divider />
-                <Label.Group>
-                  <Label>
-                    <Icon name="clock" />
-                    Posted {dateDiffString(data.createdAt)}
-                  </Label>
-                  <Label color="violet">
-                    <Icon name="tag" />
-                    {data.category}
-                  </Label>
-                </Label.Group>
-              </Segment>
+                <CustomErrorMessage
+                  header="An error has occured"
+                  content={news_detail.message}
+                />
+              </Fragment>
+            ) : data ? (
+              <Fragment>
+                <Header as="h2" content={data.title} />
+                <Divider />
+                <Segment stacked padded>
+                  {data.content.map(para => (
+                    <p>{para}</p>
+                  ))}
+                  <Divider />
+                  <Label.Group>
+                    <Label>
+                      <Icon name="clock" />
+                      Posted {dateDiffString(data.createdAt)}
+                    </Label>
+                    <Label color="violet">
+                      <Icon name="tag" />
+                      {data.category}
+                    </Label>
+                  </Label.Group>
+                </Segment>
+              </Fragment>
             ) : (
-              <Segment stacked padded>
+              <Fragment>
                 <Placeholder fluid>
-                  <Placeholder.Paragraph>
-                    <Placeholder.Line /> <Placeholder.Line />{' '}
-                    <Placeholder.Line /> <Placeholder.Line />{' '}
-                    <Placeholder.Line /> <Placeholder.Line />{' '}
+                  <Placeholder.Header>
                     <Placeholder.Line />
-                    <Placeholder.Line /> <Placeholder.Line />{' '}
-                    <Placeholder.Line /> <Placeholder.Line />
-                    <Placeholder.Line /> <Placeholder.Line />{' '}
-                    <Placeholder.Line /> <Placeholder.Line />{' '}
-                    <Placeholder.Line /> <Placeholder.Line />
-                  </Placeholder.Paragraph>
+                    <Placeholder.Line />
+                  </Placeholder.Header>
                 </Placeholder>
-              </Segment>
+
+                <Segment stacked padded>
+                  <Placeholder fluid>
+                    <Placeholder.Paragraph>
+                      <Placeholder.Line /> <Placeholder.Line />{' '}
+                      <Placeholder.Line /> <Placeholder.Line />{' '}
+                      <Placeholder.Line /> <Placeholder.Line />{' '}
+                      <Placeholder.Line />
+                      <Placeholder.Line /> <Placeholder.Line />{' '}
+                      <Placeholder.Line /> <Placeholder.Line />
+                      <Placeholder.Line /> <Placeholder.Line />{' '}
+                      <Placeholder.Line /> <Placeholder.Line />{' '}
+                      <Placeholder.Line /> <Placeholder.Line />
+                    </Placeholder.Paragraph>
+                  </Placeholder>
+                </Segment>
+              </Fragment>
             )}
           </VerticallyPaddedContainer>
         </Container>

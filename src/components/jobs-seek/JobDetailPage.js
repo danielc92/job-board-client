@@ -23,6 +23,8 @@ import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
 import { checkTokenIsValid } from '../../helpers/auth'
 import { logoutUser } from '../../actions/account/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../constants'
+import JobDetailSegment from './JobDetailSegment'
+import JobUnavailableSegment from './JobUnavailableSegment'
 const { Line, Paragraph } = Placeholder
 class JobDetailContainer extends Component {
   state = {
@@ -77,84 +79,29 @@ class JobDetailContainer extends Component {
         <Segment basic>
           <Container>
             <VerticallyPaddedContainer size="3">
-              {job_details.data ? (
-                <Header as="h2">
-                  {properCaseTransform(job_details.data.title)}
-                  <Label
-                    color="violet"
-                    content={job_details.data.category}
-                    basic
-                  />
-                </Header>
-              ) : (
-                <Header as="h2" content="Job detail page" />
-              )}
-              <p>Quis laboris excepteur eiusmod aliqua nisi magna labore.</p>
               {job_details.error ? (
-                <CustomErrorMessage
-                  header="An error has occured"
-                  content={job_details.message}
-                />
+                <Fragment>
+                  <Header as="h2" content="Job detail page" />
+                  <CustomErrorMessage
+                    header="An error has occured"
+                    content={job_details.message}
+                  />
+                </Fragment>
               ) : job_details.data ? (
                 <Fragment>
-                  <Segment padded stacked>
-                    <Header as="h5" content="About the job" />
-                    <p>{job_details.data.job_summary}</p>
-                    <Grid stackable>
-                      <Grid.Row>
-                        <Grid.Column width={8}>
-                          <Header as="h5" content="Salary" />
-                          <Label color="blue" basic>
-                            ${job_details.data.salary_range_low} - $
-                            {job_details.data.salary_range_high}
-                          </Label>
-                        </Grid.Column>
-                        <Grid.Column width={8}>
-                          <Header as="h5" content="Location" />
-                          <p>{job_details.data.location_string}</p>
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
+                  <Header as="h2">
+                    {properCaseTransform(job_details.data.title)}
+                    <Label
+                      color="violet"
+                      content={job_details.data.category}
+                      basic
+                    />
+                  </Header>
+                  <JobDetailSegment job_details={job_details} />
 
-                    <Grid stackable>
-                      <Grid.Row>
-                        <Grid.Column width={8}>
-                          <Header as="h5" content="Skills" />
-                          <Label.Group>
-                            {job_details.data.skills.map(item => (
-                              <Label basic color="green">
-                                {item}
-                              </Label>
-                            ))}
-                          </Label.Group>
-                        </Grid.Column>
-                        <Grid.Column width={8}>
-                          <Header as="h5" content="Benefits" />
-                          <Label.Group>
-                            {job_details.data.benefits.map(item => (
-                              <Label basic color="green">
-                                {item}
-                              </Label>
-                            ))}
-                          </Label.Group>
-                        </Grid.Column>
-                      </Grid.Row>
-                    </Grid>
-
-                    <Header as="h5" content="About the company" />
-                    <p>{job_details.data.company_summary}</p>
-                    <Header as="h5" content="Contact Summary" />
-                    <p>{job_details.data.contact_summary}</p>
-                  </Segment>
                   {/* If the job is open allow user to apply */}
                   {!job_details.data.open ? (
-                    <Segment stacked color="orange">
-                      <Header content="Job Unavailable" />
-                      <p>
-                        The member who posted this job, has closed it off and is
-                        no longer accepting applications.
-                      </p>
-                    </Segment>
+                    <JobUnavailableSegment />
                   ) : (
                     <Fragment>
                       <Header content="Start your application." as="h2" />
@@ -203,22 +150,30 @@ class JobDetailContainer extends Component {
                   </Modal>
                 </Fragment>
               ) : (
-                <Segment padded stacked>
+                <Fragment>
                   <Placeholder fluid>
-                    <Paragraph>
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                    </Paragraph>
+                    <Placeholder.Header>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
                   </Placeholder>
-                </Segment>
+                  <Segment padded stacked>
+                    <Placeholder fluid>
+                      <Paragraph>
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                        <Line />
+                      </Paragraph>
+                    </Placeholder>
+                  </Segment>
+                </Fragment>
               )}
             </VerticallyPaddedContainer>
           </Container>
