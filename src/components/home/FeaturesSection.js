@@ -10,33 +10,45 @@ class FeaturesSection extends Component {
     featureData: [
       {
         key: '1',
-        icon: 'briefcase',
-        title: 'Variety',
-        content: 'Large variety of professions to choose from.',
+        icon: 'save outline',
+        title: 'Lorem Ipsum',
+        content:
+          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
       },
       {
         key: '2',
-        icon: 'user',
-        title: 'Profile based',
-        content: 'Optimized for job hunters and employers.',
+        icon: 'smile outline',
+        title: 'Lorem Ipsum',
+        content:
+          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
       },
       {
         key: '3',
-        icon: 'database',
-        title: 'Data driven',
-        content: 'Optimised search results. CV Free.',
+        icon: 'chart bar outline',
+        title: 'Lorem Ipsum',
+        content:
+          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
       },
       {
         key: '4',
-        icon: 'star',
-        title: 'Rate and review',
-        content: 'Rate applications',
+        icon: 'building outline',
+        title: 'Lorem Ipsum',
+        content:
+          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
       },
       {
         key: '5',
-        icon: 'chart line',
-        title: 'Analytics',
-        content: 'Gain insights into the job market.',
+        icon: 'money bill alternate outline',
+        title: 'Lorem Ipsum',
+        content:
+          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
+      },
+      {
+        key: '6',
+        icon: 'gem outline',
+        title: 'Lorem Ipsum',
+        content:
+          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
       },
     ],
   }
