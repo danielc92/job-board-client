@@ -21,6 +21,7 @@ import RegisterPage from './account/RegisterPage'
 import ProtectedRoute from './ProtectedRoute'
 import ResetPasswordPage from './account/ResetPasswordPage'
 import ActivationPage from './account/ActivationPage'
+import FeedbackPage from './feedback/FeedbackPage'
 
 class App extends Component {
   componentDidMount() {
@@ -54,6 +55,11 @@ class App extends Component {
           path="/dashboard/applications"
           exact
           component={ApplicationPage}
+        />
+        <ProtectedRoute
+          path="/provide-feedback"
+          exact
+          component={FeedbackPage}
         />
         <Route path="/activate-account" exact component={ActivationPage} />
         <Route path="/reset-password" exact component={ResetPasswordPage} />

@@ -42,7 +42,9 @@ class FooterSection extends Component {
                 <Grid.Column width={4}>
                   <Header inverted as="h4" content="Contact" />
                   <List link inverted>
-                    <List.Item as="a">Send feedback</List.Item>
+                    <List.Item as={Link} to="/provide-feedback">
+                      Send feedback
+                    </List.Item>
                   </List>
                 </Grid.Column>
               </Grid.Row>
