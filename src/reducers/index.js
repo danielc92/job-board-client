@@ -26,7 +26,7 @@ import { newsListReducer, newsDetailReducer } from './news'
 import { TOKEN_NAME } from '../constants/'
 import { accountActivationReducer } from './account_activation'
 import { passwordResetReducer } from './reset_password_request'
-
+import { feedbackReducer } from './feedback'
 const appReducer = combineReducers({
   account_activation: accountActivationReducer,
   application_list_employer: applicationListEmployerReducer,
@@ -35,6 +35,7 @@ const appReducer = combineReducers({
   application: applicationReducer,
   auth: authReducer,
   benefit: benefitReducer,
+  feedback: feedbackReducer,
   career_profile_employer: careerProfileEmployerReducer,
   career_profile: careerProfileReducer,
   category: categoryReducer,

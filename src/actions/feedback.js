@@ -1,5 +1,5 @@
-import jobApi from '../../api'
-import { handleApiError } from '../../helpers/api'
+import jobApi from '../api'
+import { handleApiError } from '../helpers/api'
 import { getConfig } from '../helpers/api'
 
 export const createFeedback = payload => async (dispatch, getState) => {
@@ -13,7 +13,8 @@ export const createFeedback = payload => async (dispatch, getState) => {
       },
     })
     const config = getConfig()
-    const response = await jobApi.post('feedback', config, payload)
+    console.log(config)
+    const response = await jobApi.post('feedback', payload, config)
     dispatch({
       type: 'CREATE_FEEDBACK_LOADING',
       payload: {
