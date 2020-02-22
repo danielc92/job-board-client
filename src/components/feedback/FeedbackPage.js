@@ -13,15 +13,14 @@ import feedbackImage from '../../images/feedback.svg'
 class FeedbackPage extends Component {
   state = {
     message: '',
-    selection: null,
+    category: null,
   }
 
   render() {
     const options = [
-      { text: 'Report something bad', value: 'report' },
       { text: 'Suggest a new feature', value: 'suggestion' },
+      { text: 'Report an issue', value: 'report' },
       { text: 'Other', value: 'other' },
-      {},
     ]
     const handleDropDownChange = (e, data) => {
       this.setState({ [data.name]: data.value })
@@ -29,6 +28,7 @@ class FeedbackPage extends Component {
     const handleChange = e => {
       this.setState({ [e.target.name]: e.target.value })
     }
+    const { message } = this.state
     return (
       <Container>
         <VerticallyPaddedContainer size="4">
@@ -44,22 +44,24 @@ class FeedbackPage extends Component {
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                       <Form.Dropdown
-                        name="selection"
+                        name="category"
                         onChange={handleDropDownChange}
                         search
                         selection
                         placeholder="Choose a category from the list.."
                         options={options}
                         maxLength={500}
-                        label="Category"
+                        label={`Category`}
                       />
                     </Form.Field>
                     <Form.Field>
                       <Form.TextArea
+                        rows={7}
                         onChange={handleChange}
                         placeholder="Adding this new feature would be great..."
                         maxLength={500}
-                        label="Message"
+                        label={`Message (${500 -
+                          message.length} chars remaining)`}
                         name="message"
                       />
                     </Form.Field>
