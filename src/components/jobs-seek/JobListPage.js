@@ -100,7 +100,7 @@ class JobListContainer extends Component {
 
                   <Divider></Divider>
                   {data.docs.map((item, index) => (
-                    <Segment stacked key={index.toString()}>
+                    <Segment stacked padded key={index.toString()}>
                       <Header
                         as="h3"
                         content={properCaseTransform(item.title)}
