@@ -57,8 +57,8 @@ class FeedbackPage extends Component {
                 <Segment basic>
                   <Header as="h1" content="Feedback Page" />
                   <p>
-                    222 It's important that we hear your feedback, so that we
-                    can improve our services for everyone.
+                    It's important that we hear your feedback, so that we can
+                    improve our services for everyone.
                   </p>
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
