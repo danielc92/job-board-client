@@ -26,36 +26,36 @@ import CustomErrorMessage from '../../../reusable/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../reusable/CustomNoResultsMessage'
 import { checkTokenIsValid } from '../../../../helpers/auth'
 import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
+import {
+  queryStringToObjectParser,
+  objectToQueryStringParser,
+} from '../../../../helpers/query'
 const { Line, Paragraph } = Placeholder
 
 class Employer extends Component {
   componentDidMount() {
-    this.props.propsGetJobListForEmployer({})
+    const object = queryStringToObjectParser(this.props.history.location.search)
+    this.props.propsGetJobListForEmployer(object)
   }
 
   componentWillReceiveProps() {
     // If the page has changed in router props call new data from api
-    const { history, location } = this.props
-    if (!history.location.state || !location.state) {
-      history.push({
-        pathname: '/dashboard',
-        state: { page: 1 },
-      })
-    } else {
-      if (history.location.state.page !== location.state.page) {
-        this.props.propsGetJobListForEmployer({
-          page: history.location.state.page,
-        })
-      }
+    const { history, location, propsGetJobListForEmployer } = this.props
+    if (history && history.location.search !== location.search) {
+      const object = queryStringToObjectParser(history.location.search)
+      propsGetJobListForEmployer(object)
     }
   }
 
   handlePageChange = (event, data) => {
-    const { history } = this.props
-    const { activePage } = data
-    history.push({
+    const query = this.props.history.location.search
+    let object = query ? queryStringToObjectParser(query) : {}
+    object.page = data.activePage
+    const newQuery = objectToQueryStringParser(object)
+
+    this.props.history.push({
       pathname: '/dashboard',
-      state: { page: activePage },
+      search: newQuery,
     })
   }
 
