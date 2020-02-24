@@ -14,25 +14,22 @@ import {
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { getApplicationList } from '../../../../actions/application_list'
+import { getApplicationList } from 'actions/application_list'
 import {
   updateApplicationStatus,
   resetApplicationUpdate,
-} from '../../../../actions/application'
-import {
-  dateDiffString,
-  properCaseTransform,
-} from '../../../../helpers/generic'
+} from 'actions/application'
+import { dateDiffString, properCaseTransform } from 'helpers/generic'
 import SeekerTableHeader from './SeekerTableHeader'
 import CustomErrorMessage from '../../../reusable/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../reusable/CustomNoResultsMessage'
-import { checkTokenIsValid } from '../../../../helpers/auth'
-import { logoutUser } from '../../../../actions/account/auth'
-import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
+import { checkTokenIsValid } from 'helpers/auth'
+import { logoutUser } from 'actions/account/auth'
+import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 import {
   queryStringToObjectParser,
   objectToQueryStringParser,
-} from '../../../../helpers/query'
+} from 'helpers/query'
 
 const { Line, Paragraph } = Placeholder
 

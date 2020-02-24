@@ -3,11 +3,11 @@ import { Segment, Container, Header, Form, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import { getCategories } from '../../actions/category'
-import { getJobList } from '../../actions/job_list_seeker'
-import { getLocationList } from '../../actions/location'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import { objectToQueryStringParser } from '../../helpers/query'
+import { getCategories } from 'actions/category'
+import { getJobList } from 'actions/job_list_seeker'
+import { getLocationList } from 'actions/location'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import { objectToQueryStringParser } from 'helpers/query'
 
 class JobListSearchSection extends Component {
   state = {

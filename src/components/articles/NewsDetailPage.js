@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { getNewsDetail } from '../../actions/news'
-import { dateDiffString } from '../../helpers/generic'
+import { getNewsDetail } from 'actions/news'
+import { dateDiffString } from 'helpers/generic'
 import {
   Container,
   Segment,
@@ -11,10 +11,10 @@ import {
   Divider,
   Icon,
 } from 'semantic-ui-react'
-import { setMenuItem } from '../../actions/menu'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import CustomErrorMessage from '../reusable/CustomErrorMessage'
-import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import { setMenuItem } from 'actions/menu'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
+import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 
 class NewsDetailPage extends Component {
   componentDidMount() {

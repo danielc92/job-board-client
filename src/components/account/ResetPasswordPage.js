@@ -11,15 +11,15 @@ import {
   Message,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import loginImage from '../../images/fingerprint_swrc.svg'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import loginImage from 'images/fingerprint_swrc.svg'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import './LoginPage.css'
 import {
   resetPasswordResetRequest,
   sendResetPasswordRequest,
-} from '../../actions/account/reset_password_request'
-import { queryStringToObjectParser } from '../../helpers/query'
-import { PasswordMatcher, PasswordValidator } from '../../helpers/validation'
+} from 'actions/account/reset_password_request'
+import { queryStringToObjectParser } from 'helpers/query'
+import { PasswordMatcher, PasswordValidator } from 'helpers/validation'
 
 class LoginPage extends Component {
   state = {

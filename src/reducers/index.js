@@ -23,7 +23,7 @@ import {
   careerProfileEmployerReducer,
 } from './career_profile'
 import { newsListReducer, newsDetailReducer } from './news'
-import { TOKEN_NAME } from '../constants/'
+import { TOKEN_NAME } from '../app_constants'
 import { accountActivationReducer } from './account_activation'
 import { passwordResetReducer } from './reset_password_request'
 import { feedbackReducer } from './feedback'

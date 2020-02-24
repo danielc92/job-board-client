@@ -11,26 +11,26 @@ import {
   Divider,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { setMenuItem } from '../../actions/menu'
-import { getSkills } from '../../actions/skills'
-import { getBenefits } from '../../actions/benefit'
-import { getCategories } from '../../actions/category'
-import { getLocationList } from '../../actions/location'
-import { createJob, resetJob } from '../../actions/job'
-import { checkTokenIsValid } from '../../helpers/auth'
-import { logoutUser } from '../../actions/account/auth'
+import { setMenuItem } from 'actions/menu'
+import { getSkills } from 'actions/skills'
+import { getBenefits } from 'actions/benefit'
+import { getCategories } from 'actions/category'
+import { getLocationList } from 'actions/location'
+import { createJob, resetJob } from 'actions/job'
+import { checkTokenIsValid } from 'helpers/auth'
+import { logoutUser } from 'actions/account/auth'
 import {
   StringValidator,
   IsEmptyValidator,
   SalaryRangeValidator,
   ListValidator,
-} from '../../helpers/validation'
-import { calculateProgress } from '../../helpers/progressbar'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+} from 'helpers/validation'
+import { calculateProgress } from 'helpers/progressbar'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ProgressSection'
-import CustomAuthMessage from '../reusable/CustomAuthMessage'
-import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
-import { SESSION_EXPIRED_MESSAGE } from '../../constants'
+import CustomAuthMessage from 'components/reusable/CustomAuthMessage'
+import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
+import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 
 class JobPostPage extends Component {
   //Internal state holds information pertaining to the form

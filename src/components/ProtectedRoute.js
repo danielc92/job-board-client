@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { checkTokenIsValid } from '../helpers/auth'
+import { checkTokenIsValid } from 'helpers/auth'
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route

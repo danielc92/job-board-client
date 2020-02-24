@@ -1,6 +1,6 @@
-import jobApi from '../api'
-import { handleApiError } from '../helpers/api'
-import { getConfig } from '../helpers/api'
+import jobApi from 'api'
+import { handleApiError } from 'helpers/api'
+import { getConfig } from 'helpers/api'
 
 export const createFeedback = payload => async (dispatch, getState) => {
   try {

@@ -8,10 +8,10 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react'
-import image from '../../images/undraw_interview_rmcf.svg'
+import image from 'images/undraw_interview_rmcf.svg'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import BannerSeperator from './BannerSeperator'
 
 class MainBannerSection extends Component {

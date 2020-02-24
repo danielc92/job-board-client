@@ -9,10 +9,10 @@ import {
   Grid,
   Modal,
 } from 'semantic-ui-react'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import feedbackImage from '../../images/feedback.svg'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import feedbackImage from 'images/feedback.svg'
 import { connect } from 'react-redux'
-import { createFeedback, resetCreateFeedback } from '../../actions/feedback'
+import { createFeedback, resetCreateFeedback } from 'actions/feedback'
 
 const options = [
   { text: 'General feedback', value: 'general' },

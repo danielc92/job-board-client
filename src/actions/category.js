@@ -1,6 +1,6 @@
-import jobApi from '../api'
-import { handleApiError } from '../helpers/api'
-import { properCaseTransform } from '../helpers/generic'
+import jobApi from 'api'
+import { handleApiError } from 'helpers/api'
+import { properCaseTransform } from 'helpers/generic'
 
 export const getCategories = () => async (dispatch, getState) => {
   try {

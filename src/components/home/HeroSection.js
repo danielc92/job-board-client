@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Grid, Container, Segment, Header, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 
 class HeroSection extends Component {
   render() {

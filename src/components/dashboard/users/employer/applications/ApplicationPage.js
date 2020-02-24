@@ -3,13 +3,13 @@ import {
   dateDiffString,
   properCaseTransform,
 } from '../../../../../helpers/generic'
-import { getApplicationEmployerList } from '../../../../../actions/application_list_employer'
-import { getCareerProfileEmployer } from '../../../../../actions/career_profile'
-import { updateApplicationStatus } from '../../../../../actions/application'
+import { getApplicationEmployerList } from 'actions/application_list_employer'
+import { getCareerProfileEmployer } from 'actions/career_profile'
+import { updateApplicationStatus } from 'actions/application'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import { logoutUser } from '../../../../../actions/account/auth'
+import { logoutUser } from 'actions/account/auth'
 import {
   Container,
   Segment,
@@ -22,7 +22,7 @@ import {
   Placeholder,
   Header,
 } from 'semantic-ui-react'
-import { setMenuItem } from '../../../../../actions/menu'
+import { setMenuItem } from 'actions/menu'
 import VerticallyPaddedContainer from '../../../../layout/VerticallyPaddedContainer'
 import ApplicationHeader from './ApplicationHeader'
 import CustomErrorMessage from '../../../../reusable/CustomErrorMessage'
@@ -30,7 +30,7 @@ import CustomNoResultsMessage from '../../../../reusable/CustomNoResultsMessage'
 import RenderApplicantProfile from './RenderApplicantProfile'
 import CustomWithdrawnMessage from '../../../../reusable/CustomWithdrawnMessage'
 import { checkTokenIsValid } from '../../../../../helpers/auth'
-import { SESSION_EXPIRED_MESSAGE } from '../../../../../constants'
+import { SESSION_EXPIRED_MESSAGE } from '../../../../../app_constants'
 const { Line, Paragraph } = Placeholder
 
 class ApplicationPage extends Component {

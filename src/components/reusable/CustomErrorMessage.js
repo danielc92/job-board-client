@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon, Image, Message, Button } from 'semantic-ui-react'
-import src from '../../images/page_not_found_su7k.svg'
+import src from 'images/page_not_found_su7k.svg'
 
 export default function CustomErrorMessage(props) {
   return (

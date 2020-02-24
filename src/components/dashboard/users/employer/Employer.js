@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import { logoutUser } from '../../../../actions/account/auth'
+import { logoutUser } from 'actions/account/auth'
 import {
   Divider,
   Modal,
@@ -14,22 +14,19 @@ import {
   Table,
   Pagination,
 } from 'semantic-ui-react'
-import { getJobListForEmployer } from '../../../../actions/job_list_employer'
-import {
-  resetJobStatus,
-  updateJobStatus,
-} from '../../../../actions/job_status_update'
-import { properCaseTransform } from '../../../../helpers/generic'
+import { getJobListForEmployer } from 'actions/job_list_employer'
+import { resetJobStatus, updateJobStatus } from 'actions/job_status_update'
+import { properCaseTransform } from 'helpers/generic'
 import EmployerTableHeader from './EmployerTableHeader'
-import { dateDiffString } from '../../../../helpers/generic'
+import { dateDiffString } from 'helpers/generic'
 import CustomErrorMessage from '../../../reusable/CustomErrorMessage'
 import CustomNoResultsMessage from '../../../reusable/CustomNoResultsMessage'
-import { checkTokenIsValid } from '../../../../helpers/auth'
-import { SESSION_EXPIRED_MESSAGE } from '../../../../constants'
+import { checkTokenIsValid } from 'helpers/auth'
+import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 import {
   queryStringToObjectParser,
   objectToQueryStringParser,
-} from '../../../../helpers/query'
+} from 'helpers/query'
 const { Line, Paragraph } = Placeholder
 
 class Employer extends Component {

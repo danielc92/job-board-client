@@ -1,5 +1,5 @@
-import jobApi from '../api'
-import { handleApiError, getConfig } from '../helpers/api'
+import jobApi from 'api'
+import { handleApiError, getConfig } from 'helpers/api'
 export const getApplicationEmployerList = query => async (
   dispatch,
   getState

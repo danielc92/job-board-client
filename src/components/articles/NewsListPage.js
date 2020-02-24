@@ -13,14 +13,14 @@ import {
 import {
   queryStringToObjectParser,
   objectToQueryStringParser,
-} from '../../helpers/query'
+} from 'helpers/query'
 import { connect } from 'react-redux'
-import { setMenuItem } from '../../actions/menu'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import { getNewsList } from '../../actions/news'
-import CustomErrorMessage from '../reusable/CustomErrorMessage'
-import { dateDiffString } from '../../helpers/generic'
-import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import { setMenuItem } from 'actions/menu'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import { getNewsList } from 'actions/news'
+import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
+import { dateDiffString } from 'helpers/generic'
+import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 
 class NewsListPage extends Component {
   componentDidMount() {

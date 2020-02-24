@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Segment, Container, Header, Grid, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import BannerSeperator from './BannerSeperator'
 
 class FeaturesSection extends Component {

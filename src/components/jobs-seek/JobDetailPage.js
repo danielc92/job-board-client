@@ -4,7 +4,6 @@ import {
   Header,
   Modal,
   Container,
-  Grid,
   Button,
   Label,
   Form,
@@ -12,17 +11,17 @@ import {
 } from 'semantic-ui-react'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import { getJob } from '../../actions/job'
-import { setMenuItem } from '../../actions/menu'
-import { createApplication, resetApplication } from '../../actions/application'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import { getJob } from 'actions/job'
+import { setMenuItem } from 'actions/menu'
+import { createApplication, resetApplication } from 'actions/application'
 import { connect } from 'react-redux'
-import { properCaseTransform } from '../../helpers/generic'
-import CustomErrorMessage from '../reusable/CustomErrorMessage'
-import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
-import { checkTokenIsValid } from '../../helpers/auth'
-import { logoutUser } from '../../actions/account/auth'
-import { SESSION_EXPIRED_MESSAGE } from '../../constants'
+import { properCaseTransform } from 'helpers/generic'
+import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
+import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
+import { checkTokenIsValid } from 'helpers/auth'
+import { logoutUser } from 'actions/account/auth'
+import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 import JobDetailSegment from './JobDetailSegment'
 import JobUnavailableSegment from './JobUnavailableSegment'
 const { Line, Paragraph } = Placeholder

@@ -11,17 +11,17 @@ import {
   Segment,
   Placeholder,
 } from 'semantic-ui-react'
-import { setMenuItem } from '../../actions/menu'
-import { getJobList } from '../../actions/job_list_seeker'
-import { properCaseTransform } from '../../helpers/generic'
+import { setMenuItem } from 'actions/menu'
+import { getJobList } from 'actions/job_list_seeker'
+import { properCaseTransform } from 'helpers/generic'
 import SearchContainer from './JobListSearchSection'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
-import CustomErrorMessage from '../reusable/CustomErrorMessage'
-import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
+import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import {
   queryStringToObjectParser,
   objectToQueryStringParser,
-} from '../../helpers/query'
+} from 'helpers/query'
 const { Line, Paragraph } = Placeholder
 
 class JobListContainer extends Component {

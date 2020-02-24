@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {
-  resetRegisterState,
-  registerUser,
-} from '../../actions/account/register'
-import { setMenuItem } from '../../actions/menu'
+import { resetRegisterState, registerUser } from 'actions/account/register'
+import { setMenuItem } from 'actions/menu'
 import {
   Container,
   Button,
@@ -19,8 +16,8 @@ import {
   StringValidator,
   PasswordMatcher,
   PasswordValidator,
-} from '../../helpers/validation'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+} from 'helpers/validation'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 
 class RegisterPage extends Component {
   state = {

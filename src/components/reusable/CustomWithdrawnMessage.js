@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Message } from 'semantic-ui-react'
-import src from '../../images/withdrawn.svg'
+import src from 'images/withdrawn.svg'
 
 export default function CustomWithdrawnMessage(props) {
   return (

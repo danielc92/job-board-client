@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Message } from 'semantic-ui-react'
-import src from '../../images/undraw_authentication_fsn5.svg'
+import src from 'images/undraw_authentication_fsn5.svg'
 
 export default function CustomAuthMessage(props) {
   return (

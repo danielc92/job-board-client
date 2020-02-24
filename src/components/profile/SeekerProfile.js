@@ -11,18 +11,15 @@ import {
   TextArea,
   Label,
 } from 'semantic-ui-react'
-import {
-  getCareerProfile,
-  updateCareerProfile,
-} from '../../actions/career_profile'
-import { logoutUser } from '../../actions/account/auth'
-import { DateValidator } from '../../helpers/validation'
-import { getSkills } from '../../actions/skills'
+import { getCareerProfile, updateCareerProfile } from 'actions/career_profile'
+import { logoutUser } from 'actions/account/auth'
+import { DateValidator } from 'helpers/validation'
+import { getSkills } from 'actions/skills'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { withRouter } from 'react-router'
-import { checkTokenIsValid } from '../../helpers/auth'
-import { SESSION_EXPIRED_MESSAGE } from '../../constants'
+import { checkTokenIsValid } from 'helpers/auth'
+import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 
 const uuidv4 = require('uuid/v4')
 const marginBottom = { marginBottom: '8px' }

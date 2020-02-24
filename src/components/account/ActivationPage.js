@@ -12,11 +12,11 @@ import { connect } from 'react-redux'
 import {
   sendAccountActivation,
   resetAccountActivation,
-} from '../../actions/account/account_activation'
-import activationImage from '../../images/undraw_monitor_iqpq.svg'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+} from 'actions/account/account_activation'
+import activationImage from 'images/undraw_monitor_iqpq.svg'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import './LoginPage.css'
-import { queryStringToObjectParser } from '../../helpers/query'
+import { queryStringToObjectParser } from 'helpers/query'
 
 class ActivationPage extends Component {
   componentDidMount() {

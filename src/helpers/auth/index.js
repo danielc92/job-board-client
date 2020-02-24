@@ -1,5 +1,5 @@
 import jwt_decode from 'jwt-decode'
-import { TOKEN_NAME } from '../../constants'
+import { TOKEN_NAME } from 'app_constants'
 
 export const checkTokenIsValid = () => {
   const token = localStorage.getItem(TOKEN_NAME)

@@ -1,5 +1,5 @@
-import jobApi from '../api'
-import { handleApiError, getConfig } from '../helpers/api'
+import jobApi from 'api'
+import { handleApiError, getConfig } from 'helpers/api'
 
 export const getSkills = () => async (dispatch, getState) => {
   const config = getConfig()

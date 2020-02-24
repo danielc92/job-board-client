@@ -1,6 +1,6 @@
-import jobApi from '../api'
-import { objectToQueryStringParser } from '../helpers/query'
-import { handleApiError } from '../helpers/api'
+import jobApi from 'api'
+import { objectToQueryStringParser } from 'helpers/query'
+import { handleApiError } from 'helpers/api'
 
 export const getJobList = object => async (dispatch, getState) => {
   try {

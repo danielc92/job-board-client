@@ -2,11 +2,11 @@ import React, { Component, Fragment } from 'react'
 import ReactHero from './MainBannerSection'
 import ReactFeatures from './FeaturesSection'
 import { connect } from 'react-redux'
-import { setMenuItem } from '../../actions/menu'
+import { setMenuItem } from 'actions/menu'
 import SectionSplitHero from './HeroSection'
-import image2 from '../../images/process_e90d.svg'
-import image3 from '../../images/success_factors_fay0.svg'
-import image4 from '../../images/feedback.svg'
+import image2 from 'images/process_e90d.svg'
+import image3 from 'images/success_factors_fay0.svg'
+import image4 from 'images/feedback.svg'
 
 class HomePage extends Component {
   componentDidMount() {

@@ -1,5 +1,5 @@
-import jobApi from '../../api'
-import { handleApiError } from '../../helpers/api'
+import jobApi from 'api'
+import { handleApiError } from 'helpers/api'
 
 export const sendResetPasswordRequest = payload => async (
   dispatch,

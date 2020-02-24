@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Message } from 'semantic-ui-react'
-import src from '../../images/empty_xct9.svg'
+import src from 'images/empty_xct9.svg'
 
 export default function CustomNoResultsMessage(props) {
   return (

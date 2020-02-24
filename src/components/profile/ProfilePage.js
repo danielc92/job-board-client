@@ -9,13 +9,13 @@ import {
   Divider,
 } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { dateDiffString, properCaseTransform } from '../../helpers/generic'
-import { setMenuItem } from '../../actions/menu'
-import { getUserDetails } from '../../actions/profile'
-import VerticallyPaddedContainer from '../layout/VerticallyPaddedContainer'
+import { dateDiffString, properCaseTransform } from 'helpers/generic'
+import { setMenuItem } from 'actions/menu'
+import { getUserDetails } from 'actions/profile'
+import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import Seeker from './SeekerProfile'
-import CustomErrorMessage from '../reusable/CustomErrorMessage'
-import FeedbackCtaSection from '../feedback/FeedbackCtaSection'
+import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
+import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 const { Line, Paragraph } = Placeholder
 
 class ProfilePage extends Component {
