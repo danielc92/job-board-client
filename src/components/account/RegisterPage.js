@@ -16,8 +16,10 @@ import {
   StringValidator,
   PasswordMatcher,
   PasswordValidator,
+  StringCharacterValidator,
 } from 'helpers/validation'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import { ALLOWED_CHARS_HUMAN_NAME } from 'app_constants'
 
 class RegisterPage extends Component {
   state = {
@@ -39,18 +41,22 @@ class RegisterPage extends Component {
       last_name,
     } = this.state
 
-    let firstNameErrors = StringValidator(first_name, 1, 100, 'First name')
-    let lastNameErrors = StringValidator(last_name, 1, 100, 'Last name')
-    let matchErrors = PasswordMatcher(password, confirm_password)
-    let passwordErrors = PasswordValidator(password, 8, 20, 6)
-    let emailErrors = EmailValidator(email, 6, 100)
-
     let errors = [
-      ...firstNameErrors,
-      ...lastNameErrors,
-      ...passwordErrors,
-      ...matchErrors,
-      ...emailErrors,
+      ...StringValidator(first_name, 1, 100, 'First name'),
+      ...StringCharacterValidator(
+        first_name,
+        ALLOWED_CHARS_HUMAN_NAME,
+        'First name'
+      ),
+      ...StringValidator(last_name, 1, 100, 'Last name'),
+      ...StringCharacterValidator(
+        last_name,
+        ALLOWED_CHARS_HUMAN_NAME,
+        'Last name'
+      ),
+      ...PasswordMatcher(password, confirm_password),
+      ...PasswordValidator(password, 8, 20, 6),
+      ...EmailValidator(email, 6, 100),
     ]
 
     this.setState({ errors })

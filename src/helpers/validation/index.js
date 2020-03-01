@@ -97,6 +97,21 @@ export const StringValidator = (string, minLength, maxLength, tag) => {
   return errors
 }
 
+export const StringCharacterValidator = (string, allowedChars, tag) => {
+  let errors = []
+  let string2 = string.toLowerCase().trim()
+  let chars = string2.split('')
+  for (let i = 0; i < chars.length; i++) {
+    if (!allowedChars.includes(chars[i])) {
+      errors.push(
+        `${tag} cannot contain character '${chars[i]}'. Only characters from '${allowedChars}' are allowed.`
+      )
+      return errors
+    }
+  }
+  return errors
+}
+
 export const EmailValidator = (string, minLength, maxLength) => {
   let errors = []
   let trimmed = string.trim()
