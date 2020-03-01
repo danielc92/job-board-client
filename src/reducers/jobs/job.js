@@ -1,23 +1,15 @@
-export const jobReducer = (state = { error: false, data: {} }, action) => {
+export const jobReducer = (state = { error: false }, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case 'JOB_CREATE_LOADING':
+      return payload
     case 'JOB_CREATE_SUCCESS':
-      return {
-        error: false,
-        data: payload.data,
-      }
+      return payload
     case 'JOB_CREATE_RESET':
-      return {
-        error: false,
-        data: {},
-      }
+      return payload
     case 'JOB_CREATE_FAILURE':
-      return {
-        error: true,
-        error_message: payload.error,
-        data: {},
-      }
+      return payload
 
     default:
       return state

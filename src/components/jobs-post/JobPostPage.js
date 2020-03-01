@@ -24,30 +24,35 @@ import {
   IsEmptyValidator,
   SalaryRangeValidator,
   ListValidator,
+  StringCharacterValidator,
 } from 'helpers/validation'
 import { calculateProgress } from 'helpers/progressbar'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ProgressSection'
 import CustomAuthMessage from 'components/reusable/CustomAuthMessage'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
-import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
+import { SESSION_EXPIRED_MESSAGE, ALLOWED_CHARS_JOB } from 'app_constants'
+
+const initialState = {
+  title: '',
+  category: '',
+  skills: [],
+  benefits: [],
+  company_summary: '',
+  job_summary: '',
+  contact_summary: '',
+  salary_range_low: '',
+  salary_range_high: '',
+  errors: [],
+  location: {},
+  percent: 0,
+  searchQuery: '',
+}
 
 class JobPostPage extends Component {
   //Internal state holds information pertaining to the form
   state = {
-    title: '',
-    category: '',
-    skills: [],
-    benefits: [],
-    company_summary: '',
-    job_summary: '',
-    contact_summary: '',
-    salary_range_low: '',
-    salary_range_high: '',
-    errors: [],
-    location: {},
-    percent: 0,
-    searchQuery: '',
+    ...initialState,
   }
 
   closeModal = () => {
@@ -72,44 +77,18 @@ class JobPostPage extends Component {
       salary_range_low,
     } = this.state
 
-    let companyErrors = StringValidator(
-      company_summary,
-      0,
-      500,
-      'Company summary'
-    )
-    let jobErrors = StringValidator(job_summary, 0, 500, 'Job summary')
-    let contactErrors = StringValidator(
-      contact_summary,
-      0,
-      500,
-      'Contact information'
-    )
-    let skillErrors = ListValidator(skills, 1, 'Skills')
-    let benefitErrors = ListValidator(benefits, 1, 'Benefits')
-    let titleErrors = StringValidator(title, 1, 50, 'Job title')
-    let categoryErrors = IsEmptyValidator(category, 'Job category')
-    let salaryLowErrors = IsEmptyValidator(salary_range_low, 'Salary (minimum)')
-    let salaryHighErrors = IsEmptyValidator(
-      salary_range_high,
-      'Salary (maximum)'
-    )
-    let salaryRangeErorrs = SalaryRangeValidator(
-      salary_range_low,
-      salary_range_high
-    )
-
-    let errors = [
-      ...companyErrors,
-      ...jobErrors,
-      ...contactErrors,
-      ...skillErrors,
-      ...benefitErrors,
-      ...titleErrors,
-      ...categoryErrors,
-      ...salaryLowErrors,
-      ...salaryHighErrors,
-      ...salaryRangeErorrs,
+    const errors = [
+      ...StringValidator(company_summary, 0, 500, 'Company summary'),
+      ...StringValidator(job_summary, 0, 500, 'Job summary'),
+      ...StringValidator(contact_summary, 0, 500, 'Contact information'),
+      ...ListValidator(skills, 1, 'Skills'),
+      ...ListValidator(benefits, 1, 'Benefits'),
+      ...StringValidator(title, 1, 50, 'Job title'),
+      ...StringCharacterValidator(title, ALLOWED_CHARS_JOB, 'Job title'),
+      ...IsEmptyValidator(category, 'Job category'),
+      ...IsEmptyValidator(salary_range_low, 'Salary (minimum)'),
+      ...IsEmptyValidator(salary_range_high, 'Salary (maximum)'),
+      ...SalaryRangeValidator(salary_range_low, salary_range_high),
     ]
 
     this.setState({ errors }, () => {
@@ -213,6 +192,7 @@ class JobPostPage extends Component {
       searchQuery,
     } = this.state
     const { auth, benefit, category, job, locations, skill } = this.props
+    console.log(job, 'rendering')
 
     const locationOptions = locations.filter(
       item => item.search === searchQuery
@@ -342,6 +322,7 @@ class JobPostPage extends Component {
                     />
 
                     <Form.Button
+                      loading={job.loading}
                       disabled={!(errors.length === 0)}
                       size="big"
                       color="green"
@@ -349,21 +330,18 @@ class JobPostPage extends Component {
                       <Icon name="add square"></Icon>Create job
                     </Form.Button>
 
-                    <Message
-                      error
-                      visible={job.error}
-                      header="Error"
-                      content={job.message}
-                    ></Message>
-
                     <Modal
-                      open={Object.entries(job.data).length > 0}
+                      open={job.data || job.error ? true : false}
                       dimmer="blurring"
                       onClose={this.closeModal}
                     >
-                      <Modal.Header>Success</Modal.Header>
+                      <Modal.Header>
+                        {job.error ? 'Error' : 'Success'}
+                      </Modal.Header>
                       <Modal.Content>
-                        Your job has been posted successfully!
+                        {job.error
+                          ? job.message
+                          : 'Your job has been posted successfully!'}
                       </Modal.Content>
                       <Modal.Actions>
                         <Button onClick={this.closeModal} color="green">

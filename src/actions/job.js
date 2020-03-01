@@ -3,11 +3,19 @@ import { handleApiError, getConfig } from 'helpers/api'
 
 export const createJob = payload => async (dispatch, getState) => {
   try {
+    dispatch({
+      type: 'JOB_CREATE_LOADING',
+      payload: {
+        loading: true,
+        error: false,
+      },
+    })
     const config = getConfig()
     const response = await jobApi.post('job', payload, config)
     dispatch({
       type: 'JOB_CREATE_SUCCESS',
       payload: {
+        error: false,
         data: response.data,
       },
     })
@@ -25,7 +33,9 @@ export const createJob = payload => async (dispatch, getState) => {
 export const resetJob = () => async (dispatch, getState) => {
   dispatch({
     type: 'JOB_CREATE_RESET',
-    payload: null,
+    payload: {
+      error: false,
+    },
   })
 }
 
