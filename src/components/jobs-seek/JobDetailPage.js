@@ -90,11 +90,6 @@ class JobDetailContainer extends Component {
                 <Fragment>
                   <Header as="h2">
                     {properCaseTransform(job_details.data.title)}
-                    <Label
-                      color="violet"
-                      content={job_details.data.category}
-                      basic
-                    />
                   </Header>
                   <JobDetailSegment job_details={job_details} />
 
