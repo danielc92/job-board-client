@@ -34,9 +34,21 @@ class FooterSection extends Component {
                 <Grid.Column width={4}>
                   <Header inverted as="h4" content="Documentation" />
                   <List link inverted>
-                    <List.Item as="a" content="Terms and conditions" />
-                    <List.Item as="a" content="Privacy" />
-                    <List.Item as="a" content="FAQ" />
+                    <List.Item
+                      as={Link}
+                      to="/documentation/terms-of-use"
+                      content="Terms of use"
+                    />
+                    <List.Item
+                      as={Link}
+                      to="/documentation/privacy-policy"
+                      content="Privacy policy"
+                    />
+                    <List.Item
+                      as={Link}
+                      to="/documentation/frequently-asked-questions-faq"
+                      content="FAQ"
+                    />
                   </List>
                 </Grid.Column>
                 <Grid.Column width={4}>

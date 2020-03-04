@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Container, Header } from 'semantic-ui-react'
+import { Header, Container } from 'semantic-ui-react'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 
-export default class PrivacyPage extends Component {
+export default class FaqPage extends Component {
   render() {
     return (
       <Container>
         <VerticallyPaddedContainer size="3">
-          <Header as="h1" content="Privacy Page" />
+          <Header as="h1" content="Frequently asked questions (FAQ)" />
           <p>
             Proident ipsum amet eu ut magna ex reprehenderit excepteur nisi
             dolore anim veniam commodo id. Sit excepteur ex ad elit consectetur
@@ -17,7 +17,7 @@ export default class PrivacyPage extends Component {
             cupidatat nisi Lorem non. Pariatur eu eiusmod magna mollit commodo
             consequat irure laboris. Ad pariatur ipsum enim ullamco laborum.
           </p>
-          <Header as="h3" content="Privacy Page" />
+          <Header as="h3" content="FAQ" />
           <p>
             Proident ipsum amet eu ut magna ex reprehenderit excepteur nisi
             dolore anim veniam commodo id. Sit excepteur ex ad elit consectetur

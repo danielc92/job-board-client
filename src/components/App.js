@@ -22,6 +22,10 @@ import ProtectedRoute from './ProtectedRoute'
 import ResetPasswordPage from './account/ResetPasswordPage'
 import ActivationPage from './account/ActivationPage'
 import FeedbackPage from './feedback/FeedbackPage'
+import PrivacyPage from './legal/PrivacyPage'
+import TermsPage from './legal/TermsPage'
+import FaqPage from './legal/FaqPage'
+import NotFoundPage from './legal/NotFoundPage'
 
 class App extends Component {
   componentDidMount() {
@@ -70,6 +74,18 @@ class App extends Component {
         <Route path="/news-list" exact component={NewsListPage} />
         <Route path="/register" exact component={RegisterPage} />
         <Route path="/sign-in" exact component={LoginPage} />
+
+        <Route
+          path="/documentation/privacy-policy"
+          exact
+          component={PrivacyPage}
+        />
+        <Route path="/documentation/terms-of-use" exact component={TermsPage} />
+        <Route
+          path="/documentation/frequently-asked-questions-faq"
+          exact
+          component={FaqPage}
+        />
 
         {/* Footer */}
         <FooterSection />
