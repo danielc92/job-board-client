@@ -10,7 +10,7 @@ export const getDocumentation = () => async (dispatch, getState) => {
       error: false,
     },
   })
-  await new Promise(r => setTimeout(r, 3500))
+  await new Promise(r => setTimeout(r, 250))
   try {
     const response = await jobApi.get('documentation/list', config)
 
