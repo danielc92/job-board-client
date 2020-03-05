@@ -18,6 +18,7 @@ import { profileReducer } from './profile'
 import { resetPasswordEmailReducer } from './reset_password_email'
 import { jobStatusUpdateReducer } from './jobs/job_status_update'
 import { applicationListEmployerReducer } from './applications/application_list_employer'
+import { documentationReducer } from './documentation'
 import {
   careerProfileReducer,
   careerProfileEmployerReducer,
@@ -34,6 +35,7 @@ const appReducer = combineReducers({
   application_update: applicationUpdateReducer,
   application: applicationReducer,
   auth: authReducer,
+  documentation: documentationReducer,
   benefit: benefitReducer,
   feedback: feedbackReducer,
   career_profile_employer: careerProfileEmployerReducer,
