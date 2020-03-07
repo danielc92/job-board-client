@@ -9,18 +9,10 @@ class FeaturesSection extends Component {
     featureHeader: 'h3',
     featureData: [
       {
-        key: '1',
-        icon: 'save outline',
-        title: 'Lorem Ipsum',
-        content:
-          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
-      },
-      {
         key: '2',
-        icon: 'smile outline',
-        title: 'Lorem Ipsum',
-        content:
-          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
+        icon: 'tasks',
+        title: 'Track and monitor',
+        content: 'Tracking your existing job applications with ease.',
       },
       {
         key: '3',
@@ -31,21 +23,27 @@ class FeaturesSection extends Component {
       },
       {
         key: '4',
-        icon: 'building outline',
-        title: 'Lorem Ipsum',
-        content:
-          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
+        icon: 'address card outline',
+        title: 'Profile driven system',
+        content: 'Configure your profile and let us handle the rest.',
       },
       {
         key: '5',
-        icon: 'money bill alternate outline',
-        title: 'Lorem Ipsum',
-        content:
-          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
+        icon: 'paper plane outline',
+        title: 'Diverse Range',
+        content: '...',
       },
       {
         key: '6',
         icon: 'gem outline',
+        title: 'Quality Services',
+        content:
+          'We ensure a high level of care, making sure our services are of the highest quality.',
+      },
+
+      {
+        key: '1',
+        icon: 'save outline',
         title: 'Lorem Ipsum',
         content:
           'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
