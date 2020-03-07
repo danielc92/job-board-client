@@ -7,7 +7,7 @@ export const getBenefits = () => async (dispatch, getState) => {
     const response = await jobApi.get('benefit/list', config)
 
     // Data needs to be transformed to meet structure from Semantic's <Dropdown>
-    const data = response.data.map(record => ({
+    const data = response.data.results.map(record => ({
       text: record.name,
       value: record.name,
       key: record._id,
