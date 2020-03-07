@@ -8,7 +8,6 @@ import {
   Button,
   Icon,
 } from 'semantic-ui-react'
-import image from 'images/undraw_interview_rmcf.svg'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
@@ -16,6 +15,7 @@ import BannerSeperator from './BannerSeperator'
 
 class MainBannerSection extends Component {
   render() {
+    const { theme, ctaHeader, buttonText, ctaSubHeader, imageSrc } = this.props
     return (
       <section style={{ position: 'relative' }}>
         <Segment basic style={{ margin: 0 }}>
@@ -27,23 +27,16 @@ class MainBannerSection extends Component {
                     <Header
                       as="h1"
                       style={{ fontSize: '3rem' }}
-                      content="Welcome to Daniel's Job Board."
+                      content={ctaHeader}
                     />
-                    <p>
-                      Irure nostrud ea aliqua incididunt ex irure sint
-                      excepteur.
-                    </p>
-                    <Button
-                      to="/job-list"
-                      as={Link}
-                      size="huge"
-                      color={this.props.theme}
-                    >
-                      <Icon name="paper plane"></Icon>Explore Jobs
+                    <p>{ctaSubHeader}</p>
+                    <Button to="/job-list" as={Link} size="huge" color={theme}>
+                      <Icon name="paper plane"></Icon>
+                      {buttonText}
                     </Button>
                   </Grid.Column>
                   <Grid.Column>
-                    <Image src={image} />
+                    <Image src={imageSrc} />
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
