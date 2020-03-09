@@ -78,9 +78,9 @@ class JobPostPage extends Component {
     } = this.state
 
     const errors = [
-      ...StringValidator(company_summary, 0, 500, 'Company summary'),
-      ...StringValidator(job_summary, 0, 500, 'Job summary'),
-      ...StringValidator(contact_summary, 0, 500, 'Contact information'),
+      ...StringValidator(company_summary, 1, 500, 'Company summary'),
+      ...StringValidator(job_summary, 1, 500, 'Job summary'),
+      ...StringValidator(contact_summary, 1, 500, 'Contact information'),
       ...ListValidator(skills, 1, 'Skills'),
       ...ListValidator(benefits, 1, 'Benefits'),
       ...StringValidator(title, 1, 50, 'Job title'),
