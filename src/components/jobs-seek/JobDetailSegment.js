@@ -16,24 +16,27 @@ export default function JobDetailSegment(props) {
               {/* <Icon name="money bill alternate outline" /> */}
               <Header.Content>Salary</Header.Content>
             </Header>
-            <p>
-              ${job_details.data.salary_range_low} - $
-              {job_details.data.salary_range_high}
-            </p>
+            <Label basic color="green">
+              {`$${job_details.data.salary_range_low} - ${job_details.data.salary_range_high}`}
+            </Label>
           </Grid.Column>
           <Grid.Column width={5}>
             <Header as="h5">
               {/* <Icon name="tag" /> */}
               <Header.Content>Category</Header.Content>
             </Header>
-            <p>{job_details.data.category}</p>
+            <Label basic color="green">
+              {job_details.data.category}
+            </Label>
           </Grid.Column>
           <Grid.Column width={5}>
             <Header as="h5">
               {/* <Icon name="map outline" /> */}
               <Header.Content>Location</Header.Content>
             </Header>
-            <p>{job_details.data.location_string}</p>
+            <Label basic color="green">
+              {job_details.data.location_string}
+            </Label>
           </Grid.Column>
         </Grid.Row>
       </Grid>
