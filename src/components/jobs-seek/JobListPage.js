@@ -13,7 +13,7 @@ import {
 } from 'semantic-ui-react'
 import { setMenuItem } from 'actions/menu'
 import { getJobList } from 'actions/job_list_seeker'
-import { properCaseTransform } from 'helpers/generic'
+import { properCaseTransform, dateDiffString } from 'helpers/generic'
 import SearchContainer from './JobListSearchSection'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
@@ -107,17 +107,28 @@ class JobListContainer extends Component {
                       />
 
                       <p>{item.job_summary}</p>
-                      <Label color="green" basic>
-                        ${item.salary_range_low} - ${item.salary_range_high}
-                      </Label>
-                      <Divider />
+
                       <Button
-                        color={this.props.theme}
+                        color="green"
                         size="tiny"
                         onClick={() => this.handleViewJob(item.slug)}
                       >
                         <Icon name="eye"></Icon>view this job
                       </Button>
+                      <Divider />
+                      <Label.Group>
+                        <Label
+                          icon="clock"
+                          size="tiny"
+                          content={`Posted ${dateDiffString(item.createdAt)}`}
+                        />
+                        <Label color="green" basic>
+                          ${item.salary_range_low} - ${item.salary_range_high}
+                        </Label>
+                        <Label color="green" basic>
+                          {item.category}
+                        </Label>
+                      </Label.Group>
                     </Segment>
                   ))}
 
