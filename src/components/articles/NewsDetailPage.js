@@ -15,6 +15,7 @@ import { setMenuItem } from 'actions/menu'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
+import { contentRenderer } from 'helpers/renderer'
 
 class NewsDetailPage extends Component {
   componentDidMount() {
@@ -42,9 +43,7 @@ class NewsDetailPage extends Component {
                 <Header as="h2" content={data.title} />
                 <Divider />
                 <Segment stacked padded>
-                  {data.content.map(para => (
-                    <p>{para}</p>
-                  ))}
+                  {contentRenderer(data.content)}
                   <Divider />
                   <Label.Group>
                     <Label>
