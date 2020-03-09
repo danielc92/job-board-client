@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Segment, Container, Button, Header, Icon } from 'semantic-ui-react'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
+import { withRouter } from 'react-router'
 
-export default class FeedbackCtaSection extends Component {
+class FeedbackCtaSection extends Component {
   render() {
     return (
       <Segment
@@ -23,7 +24,11 @@ export default class FeedbackCtaSection extends Component {
               Anytime of the day your feedback is 100% welcome. We strive to
               improve our platform based on user feedback.
             </p>
-            <Button inverted size="large">
+            <Button
+              inverted
+              size="large"
+              onClick={() => this.props.history.push('/provide-feedback')}
+            >
               <Icon name="star"></Icon>
               Provide feedback
             </Button>
@@ -33,3 +38,5 @@ export default class FeedbackCtaSection extends Component {
     )
   }
 }
+
+export default withRouter(FeedbackCtaSection)
