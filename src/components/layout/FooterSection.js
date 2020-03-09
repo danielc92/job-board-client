@@ -26,7 +26,7 @@ class FooterSection extends Component {
                       content="Post a job (employer only)"
                     />
                     <List.Item as={Link} to="/dashboard" content="Dashboard" />
-                    <List.Item as={Link} to="/news" content="News" />
+                    <List.Item as={Link} to="/news-list" content="News" />
                     <List.Item as={Link} to="/sign-in" content="Sign in" />
                     <List.Item as={Link} to="/register" content="Register" />
                   </List>

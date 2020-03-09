@@ -1,5 +1,6 @@
 import { Header, Divider } from 'semantic-ui-react'
 import React, { Fragment } from 'react'
+import { Segment } from 'semantic-ui-react'
 
 export const contentRenderer = data => {
   if (!data) return null
@@ -38,7 +39,9 @@ export const documentationRenderer = (data, key) => {
     <Fragment>
       <Header as="h1" content={content.title} />
       <Divider />
-      {items}
+      <Segment padded stacked>
+        {items}
+      </Segment>
     </Fragment>
   )
 }
