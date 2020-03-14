@@ -247,7 +247,7 @@ class JobPostPage extends Component {
                       <Form.Input
                         onChange={this.handleInputChange}
                         name="title"
-                        placeholder="Zoo keeper"
+                        placeholder="Construction Labourer"
                         label="Job Title"
                       />
 
@@ -282,7 +282,7 @@ class JobPostPage extends Component {
                         onChange={this.handleDropdownChange}
                         name="location"
                         label="Location"
-                        placeholder="Search for a location"
+                        placeholder="Search suburb, postcode, state"
                         fluid
                         selectOnNavigation={false}
                         selection
@@ -338,7 +338,7 @@ class JobPostPage extends Component {
                       onChange={this.handleInputChange}
                       name="company_summary"
                       maxLength="500"
-                      placeholder="A short description about the company"
+                      placeholder="A well established construction company based in the heart of Melbourne..."
                       label={`About the company (${500 -
                         company_summary.length} chars remaining)`}
                     />
