@@ -73,8 +73,7 @@ class FooterSection extends Component {
           Created with{' '}
           <span role="img" aria-label="with-love-heart">
             ❤️
-          </span>{' '}
-          by Daniel Corcoran.
+          </span>
         </Segment>
       </Fragment>
     )

@@ -9,6 +9,7 @@ import { getLocationList } from 'actions/location'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import { objectToQueryStringParser } from 'helpers/query'
 import { debounce } from 'lodash'
+
 class JobListSearchSection extends Component {
   constructor(props) {
     super(props)

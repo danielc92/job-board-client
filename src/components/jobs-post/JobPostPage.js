@@ -32,7 +32,7 @@ import ReactProgressContainer from './ProgressSection'
 import CustomAuthMessage from 'components/reusable/CustomAuthMessage'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import { SESSION_EXPIRED_MESSAGE, ALLOWED_CHARS_JOB } from 'app_constants'
-
+import { debounce } from 'lodash'
 const initialState = {
   title: '',
   category: '',
@@ -43,13 +43,36 @@ const initialState = {
   contact_summary: '',
   salary_range_low: '',
   salary_range_high: '',
+  employment_type: '',
   errors: [],
   location: {},
   percent: 0,
   searchQuery: '',
 }
 
+const employment_types = [
+  'full-time',
+  'part-time',
+  'casual',
+  'fixed-term',
+  'shift worker',
+  'daily/weekly hire',
+  'probatiton',
+  'outworkers',
+  'other',
+]
+
+const employment_types_transformed = employment_types.map(i => ({
+  text: i,
+  key: i,
+  value: i,
+}))
+
 class JobPostPage extends Component {
+  constructor(props) {
+    super(props)
+    this.handleSearchChange = debounce(this.handleSearchChange.bind(this), 500)
+  }
   //Internal state holds information pertaining to the form
   state = {
     ...initialState,
@@ -75,6 +98,7 @@ class JobPostPage extends Component {
       contact_summary,
       salary_range_high,
       salary_range_low,
+      employment_type,
     } = this.state
 
     const errors = [
@@ -86,6 +110,7 @@ class JobPostPage extends Component {
       ...StringValidator(title, 1, 50, 'Job title'),
       ...StringCharacterValidator(title, ALLOWED_CHARS_JOB, 'Job title'),
       ...IsEmptyValidator(category, 'Job category'),
+      ...IsEmptyValidator(employment_type, 'Employment type'),
       ...IsEmptyValidator(salary_range_low, 'Salary (minimum)'),
       ...IsEmptyValidator(salary_range_high, 'Salary (maximum)'),
       ...SalaryRangeValidator(salary_range_low, salary_range_high),
@@ -133,6 +158,7 @@ class JobPostPage extends Component {
         contact_summary,
         salary_range_high,
         salary_range_low,
+        employment_type,
       } = this.state
 
       let payload = {
@@ -145,6 +171,7 @@ class JobPostPage extends Component {
         contact_summary,
         salary_range_high,
         salary_range_low,
+        employment_type,
         creator_id: this.props.auth.user._id,
       }
 
@@ -169,7 +196,7 @@ class JobPostPage extends Component {
     this.props.propsGetLocations()
   }
 
-  handleBetaLocationHandler = (event, data) => {
+  handleSearchChange = (event, data) => {
     const { searchQuery } = data
     const { propsGetLocations, locations } = this.props
     const cleanQuery = searchQuery.trim()
@@ -198,6 +225,7 @@ class JobPostPage extends Component {
       item => item.search === searchQuery
     )
 
+    console.log(employment_types)
     return (
       <Fragment>
         <Segment basic>
@@ -250,7 +278,7 @@ class JobPostPage extends Component {
 
                     <Form.Group widths="equal">
                       <Form.Dropdown
-                        onSearchChange={this.handleBetaLocationHandler}
+                        onSearchChange={this.handleSearchChange}
                         onChange={this.handleDropdownChange}
                         name="location"
                         label="Location"
@@ -276,11 +304,24 @@ class JobPostPage extends Component {
                         search
                         options={category.data}
                       />
+
+                      <Form.Dropdown
+                        onChange={this.handleDropdownChange}
+                        name="employment_type"
+                        label="Employment Type"
+                        placeholder="Select employment type"
+                        fluid
+                        selection
+                        options={employment_types_transformed}
+                      />
+                    </Form.Group>
+                    <Form.Group>
                       <Form.Input
                         onChange={this.handleInputChange}
                         name="salary_range_low"
                         type="number"
                         label="Minimum salary ($)"
+                        min={0}
                       />
 
                       <Form.Input
@@ -288,6 +329,7 @@ class JobPostPage extends Component {
                         name="salary_range_high"
                         type="number"
                         label="Maximum salary ($)"
+                        min={0}
                       />
                     </Form.Group>
 

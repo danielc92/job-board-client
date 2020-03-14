@@ -11,7 +11,7 @@ export default function JobDetailSegment(props) {
       <p style={marginStyle}>{job_details.data.job_summary}</p>
       <Grid stackable>
         <Grid.Row style={marginStyle}>
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <Header as="h5">
               {/* <Icon name="money bill alternate outline" /> */}
               <Header.Content>Salary</Header.Content>
@@ -20,18 +20,24 @@ export default function JobDetailSegment(props) {
               {`$${job_details.data.salary_range_low} - ${job_details.data.salary_range_high}`}
             </Label>
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <Header as="h5">
-              {/* <Icon name="tag" /> */}
               <Header.Content>Category</Header.Content>
             </Header>
             <Label basic color="green">
               {job_details.data.category}
             </Label>
           </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <Header as="h5">
-              {/* <Icon name="map outline" /> */}
+              <Header.Content>Employment Type</Header.Content>
+            </Header>
+            <Label basic color="green">
+              {job_details.data.employment_type}
+            </Label>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Header as="h5">
               <Header.Content>Location</Header.Content>
             </Header>
             <Label basic color="green">
