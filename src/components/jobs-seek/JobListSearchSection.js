@@ -8,8 +8,13 @@ import { getJobList } from 'actions/job_list_seeker'
 import { getLocationList } from 'actions/location'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import { objectToQueryStringParser } from 'helpers/query'
-
+import { debounce } from 'lodash'
 class JobListSearchSection extends Component {
+  constructor(props) {
+    super(props)
+    this.handleSearchChange = debounce(this.handleSearchChange.bind(this), 500)
+  }
+
   state = {
     title: '',
     location_string: '',
@@ -112,6 +117,7 @@ class JobListSearchSection extends Component {
                   selectOnNavigation={false}
                   name="location_string"
                 />
+
                 <Form.Dropdown
                   style={{ marginBottom: '12px' }}
                   clearable
