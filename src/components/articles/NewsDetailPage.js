@@ -27,7 +27,7 @@ class NewsDetailPage extends Component {
     const { data } = news_detail
     return (
       <section>
-        <Container>
+        <Container text>
           <VerticallyPaddedContainer size={4}>
             {news_detail.error ? (
               <Fragment>

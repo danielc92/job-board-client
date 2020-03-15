@@ -61,7 +61,7 @@ class NewsListPage extends Component {
     return (
       <div>
         <Segment basic>
-          <Container>
+          <Container text>
             <VerticallyPaddedContainer size="4">
               <Header as="h1" content="News" />
               <p>Read about the latest updates and progress.</p>

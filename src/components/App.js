@@ -42,9 +42,9 @@ class App extends Component {
         {/* Small message box indicating state of development*/}
         <Message
           style={{ textAlign: 'center', borderRadius: '0', margin: '0' }}
-          color="violet"
+          color="green"
         >
-          This application is currently in <strong>development</strong> phase.
+          This website is currently in <strong>open beta</strong> phase.
         </Message>
 
         {/* Navigation Menu */}

@@ -46,7 +46,7 @@ class ProfilePage extends Component {
     return (
       <Fragment>
         <Segment basic>
-          <Container>
+          <Container text>
             <VerticallyPaddedContainer size="4">
               <Header as="h1" content="Profile" />
               <p>Customize your profile, career details and more.</p>

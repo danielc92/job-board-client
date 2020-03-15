@@ -88,7 +88,7 @@ class JobListSearchSection extends Component {
     )
     return (
       <Segment basic>
-        <Container>
+        <Container text>
           <VerticallyPaddedContainer size="3">
             <Header as="h1" content="Find your dream job." />
             <Form onSubmit={this.handleSubmit}>

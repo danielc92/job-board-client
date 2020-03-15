@@ -74,7 +74,7 @@ class JobListContainer extends Component {
       <Fragment>
         <SearchContainer />
         <Segment basic>
-          <Container>
+          <Container text>
             <VerticallyPaddedContainer size="1">
               {error ? (
                 <Fragment>
@@ -113,7 +113,7 @@ class JobListContainer extends Component {
                         size="tiny"
                         onClick={() => this.handleViewJob(item.slug)}
                       >
-                        <Icon name="eye"></Icon>view this job
+                        <Icon name="eye"></Icon>View this job
                       </Button>
                       <Divider />
                       <Label.Group>

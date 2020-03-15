@@ -18,7 +18,7 @@ class PrivacyPage extends Component {
     const { documentation } = this.props
 
     return (
-      <Container>
+      <Container text>
         <VerticallyPaddedContainer size="4">
           {documentation.error ? (
             <CustomErrorMessage content="An error has occured" />

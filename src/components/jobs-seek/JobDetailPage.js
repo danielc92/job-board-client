@@ -76,7 +76,7 @@ class JobDetailContainer extends Component {
     return (
       <Fragment>
         <Segment basic>
-          <Container>
+          <Container text>
             <VerticallyPaddedContainer size="3">
               {job_details.error ? (
                 <Fragment>
