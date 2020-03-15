@@ -118,7 +118,7 @@ class JobDetailContainer extends Component {
                                 this.applyForJob(job_details.data._id)
                               }
                               content="Apply for this job"
-                              color="violet"
+                              color="green"
                               icon="paper plane"
                             />
                           </Form.Field>
