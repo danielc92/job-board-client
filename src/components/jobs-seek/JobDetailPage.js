@@ -24,6 +24,7 @@ import { logoutUser } from 'actions/account/auth'
 import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 import JobDetailSegment from './JobDetailSegment'
 import JobUnavailableSegment from './JobUnavailableSegment'
+import BannerGroup from 'components/banners/BannerGroup'
 const { Line, Paragraph } = Placeholder
 class JobDetailContainer extends Component {
   state = {
@@ -172,7 +173,7 @@ class JobDetailContainer extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCtaSection />
+        <BannerGroup showfeedback />
       </Fragment>
     )
   }

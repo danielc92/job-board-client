@@ -8,6 +8,7 @@ import image4 from 'images/feedback.svg'
 import imageSrc from 'images/undraw_interview_rmcf.svg'
 import MainBannerSection from './MainBannerSection'
 import FeaturesSection from './FeaturesSection'
+import { SITE_NAME } from 'app_constants'
 
 class HomePage extends Component {
   componentDidMount() {
@@ -19,7 +20,7 @@ class HomePage extends Component {
         {/* Hero (split into two panes) */}
         <MainBannerSection
           imageSrc={imageSrc}
-          ctaHeader="Welcome to Daniel's Job Board"
+          ctaHeader={`Welcome to ${SITE_NAME}`}
           ctaSubHeader="A data driven system, helping people find jobs they need."
           buttonText="Explore jobs"
         />

@@ -21,6 +21,7 @@ import { getNewsList } from 'actions/news'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
 import { dateDiffString } from 'helpers/generic'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
+import BannerGroup from 'components/banners/BannerGroup'
 
 class NewsListPage extends Component {
   componentDidMount() {
@@ -147,7 +148,7 @@ class NewsListPage extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCtaSection />
+        <BannerGroup showFeedback />
       </div>
     )
   }

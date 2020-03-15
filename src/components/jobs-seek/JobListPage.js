@@ -22,6 +22,7 @@ import {
   queryStringToObjectParser,
   objectToQueryStringParser,
 } from 'helpers/query'
+import BannerGroup from 'components/banners/BannerGroup'
 const { Line, Paragraph } = Placeholder
 
 class JobListContainer extends Component {
@@ -172,7 +173,7 @@ class JobListContainer extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCtaSection />
+        <BannerGroup showFeedback />
       </Fragment>
     )
   }

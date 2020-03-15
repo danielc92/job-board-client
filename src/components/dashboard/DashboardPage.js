@@ -6,6 +6,7 @@ import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContain
 import Employer from './users/employer/Employer'
 import Seeker from './users/seeker/Seeker'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
+import BannerGroup from 'components/banners/BannerGroup'
 
 class DashboardPage extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class DashboardPage extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCtaSection />
+        <BannerGroup showFeedback />
       </Fragment>
     )
   }

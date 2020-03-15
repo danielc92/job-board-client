@@ -33,6 +33,7 @@ import CustomAuthMessage from 'components/reusable/CustomAuthMessage'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import { SESSION_EXPIRED_MESSAGE, ALLOWED_CHARS_JOB } from 'app_constants'
 import { debounce } from 'lodash'
+import BannerGroup from 'components/banners/BannerGroup'
 const initialState = {
   title: '',
   category: '',
@@ -406,7 +407,7 @@ class JobPostPage extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCtaSection />
+        <BannerGroup showFeedback />
       </Fragment>
     )
   }

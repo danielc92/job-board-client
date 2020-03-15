@@ -16,6 +16,7 @@ import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContain
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import { contentRenderer } from 'helpers/renderer'
+import BannerGroup from 'components/banners/BannerGroup'
 
 class NewsDetailPage extends Component {
   componentDidMount() {
@@ -85,7 +86,7 @@ class NewsDetailPage extends Component {
             )}
           </VerticallyPaddedContainer>
         </Container>
-        <FeedbackCtaSection />
+        <BannerGroup showFeedback />
       </section>
     )
   }

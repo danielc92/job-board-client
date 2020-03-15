@@ -16,6 +16,7 @@ import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContain
 import Seeker from './SeekerProfile'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
 import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
+import BannerGroup from 'components/banners/BannerGroup'
 const { Line, Paragraph } = Placeholder
 
 class ProfilePage extends Component {
@@ -106,7 +107,7 @@ class ProfilePage extends Component {
             </VerticallyPaddedContainer>
           </Container>
         </Segment>
-        <FeedbackCtaSection />
+        <BannerGroup showFeedback />
       </Fragment>
     )
   }
