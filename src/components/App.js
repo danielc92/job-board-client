@@ -25,7 +25,6 @@ import FeedbackPage from './feedback/FeedbackPage'
 import PrivacyPage from './legal/PrivacyPage'
 import TermsPage from './legal/TermsPage'
 import FaqPage from './legal/FaqPage'
-import NotFoundPage from './legal/NotFoundPage'
 
 class App extends Component {
   componentDidMount() {
