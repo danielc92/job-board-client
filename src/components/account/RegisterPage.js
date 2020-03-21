@@ -114,7 +114,7 @@ class RegisterPage extends Component {
     const { error, message, showModal, modalHeader } = register
 
     return (
-      <Container>
+      <Container text>
         <VerticallyPaddedContainer size="4">
           <Segment basic>
             <Header as="h1" content="Join the community" />
