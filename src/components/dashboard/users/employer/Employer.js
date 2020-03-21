@@ -37,20 +37,21 @@ class Employer extends Component {
 
   componentWillReceiveProps() {
     // If the page has changed in router props call new data from api
-    const { history, location, propsGetJobListForEmployer } = this.props
-    if (history && history.location.search !== location.search) {
+    const { history, propsGetJobListForEmployer } = this.props
+    if (history && history.location.search) {
       const object = queryStringToObjectParser(history.location.search)
       propsGetJobListForEmployer(object)
     }
   }
 
   handlePageChange = (event, data) => {
-    const query = this.props.history.location.search
+    const { history } = this.props
+    const query = history.location.search
     let object = query ? queryStringToObjectParser(query) : {}
     object.page = data.activePage
     const newQuery = objectToQueryStringParser(object)
 
-    this.props.history.push({
+    history.push({
       pathname: '/dashboard',
       search: newQuery,
     })
@@ -73,8 +74,13 @@ class Employer extends Component {
   handleCloseModal = () => {
     const { propsResetJobStatus, history } = this.props
     propsResetJobStatus()
-    this.props.propsGetJobListForEmployer({
-      page: history.location.state.page,
+
+    const query = history.location.search
+    let object = query ? queryStringToObjectParser(query) : {}
+    const newQuery = objectToQueryStringParser(object)
+    history.push({
+      pathname: '/dashboard',
+      search: newQuery,
     })
   }
 
