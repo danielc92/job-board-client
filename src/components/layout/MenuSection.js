@@ -32,14 +32,14 @@ class MenuSection extends Component {
           <Menu.Item
             as={Link}
             to="/job-list"
-            name="find"
+            name="Explore jobs"
             active={menu.item === 'find'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             as={Link}
             to="/create-jobs"
-            name="create"
+            name="Post jobs"
             active={menu.item === 'create'}
             onClick={this.handleItemClick}
           />
