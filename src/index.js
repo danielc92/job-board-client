@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import { rootReducer } from './reducers'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
+// require('dotenv').config()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
