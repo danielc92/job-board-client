@@ -9,44 +9,42 @@ class FeaturesSection extends Component {
     featureHeader: 'h3',
     featureData: [
       {
-        key: '2',
-        icon: 'tasks',
-        title: 'Track and monitor',
-        content: 'Tracking your existing job applications with ease.',
-      },
-      {
-        key: '3',
-        icon: 'chart bar outline',
-        title: 'Lorem Ipsum',
-        content:
-          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
-      },
-      {
-        key: '4',
-        icon: 'address card outline',
-        title: 'Profile driven system',
-        content: 'Configure your profile and let us handle the rest.',
-      },
-      {
         key: '5',
         icon: 'paper plane outline',
         title: 'Diverse Range',
-        content: '...',
+        content: 'Job creation through various skills, benefits and locations.',
       },
       {
         key: '6',
         icon: 'gem outline',
         title: 'Quality Services',
         content:
-          'We ensure a high level of care, making sure our services are of the highest quality.',
+          'We love to improve, making sure you receive high quality services.',
       },
 
       {
         key: '1',
-        icon: 'save outline',
-        title: 'Lorem Ipsum',
-        content:
-          'Id ullamco duis dolor eu labore est consectetur quis elit sit.',
+        icon: 'star outline',
+        title: 'Feedback system',
+        content: 'We hear your feedback and adapt to changes.',
+      },
+      {
+        key: '2',
+        icon: 'tasks',
+        title: 'Track and monitor',
+        content: 'Real-time tracking of applications and postings.',
+      },
+      {
+        key: '3',
+        icon: 'chart bar outline',
+        title: 'Analytics',
+        content: 'Metric driven analytics.',
+      },
+      {
+        key: '4',
+        icon: 'address card outline',
+        title: 'Profiles',
+        content: 'Fill out a few details and improve your job search.',
       },
     ],
   }
@@ -66,7 +64,7 @@ class FeaturesSection extends Component {
             />
             <Grid padded columns={3} stackable>
               <Grid.Row>
-                {featureData.slice(0, 3).map(item => (
+                {featureData.slice(0, 3).map((item) => (
                   <Grid.Column key={item.key} textAlign="center">
                     <Icon
                       color={this.props.theme}
@@ -79,7 +77,7 @@ class FeaturesSection extends Component {
                 ))}
               </Grid.Row>
               <Grid.Row>
-                {featureData.slice(3, 7).map(item => (
+                {featureData.slice(3, 7).map((item) => (
                   <Grid.Column textAlign="center" key={item.key}>
                     <Icon
                       color={this.props.theme}
@@ -101,7 +99,7 @@ class FeaturesSection extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     theme: state.theme,
   }
