@@ -1,8 +1,9 @@
-export const ListValidator = (list, minItems, listTag) => {
+export const ListValidator = (list, minItems, maxItems, listTag) => {
   let errors = []
+  const len = list.length
 
-  if (list.length === 0) {
-    errors.push(`${listTag} list must contain at least ${minItems} item.`)
+  if (len < minItems || len > maxItems) {
+    errors.push(`${listTag} items must be between ${minItems} and ${maxItems}.`)
   }
 
   return errors
