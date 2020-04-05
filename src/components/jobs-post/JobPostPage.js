@@ -30,7 +30,6 @@ import { calculateProgress } from 'helpers/progressbar'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import ReactProgressContainer from './ProgressSection'
 import CustomAuthMessage from 'components/reusable/CustomAuthMessage'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import { SESSION_EXPIRED_MESSAGE, ALLOWED_CHARS_JOB } from 'app_constants'
 import { debounce } from 'lodash'
 import BannerGroup from 'components/banners/BannerGroup'
@@ -41,6 +40,7 @@ const initialState = {
   benefits: [],
   company_summary: '',
   job_summary: '',
+  company_name: '',
   contact_summary: '',
   salary_range_low: '',
   salary_range_high: '',
@@ -63,7 +63,7 @@ const employment_types = [
   'other',
 ]
 
-const employment_types_transformed = employment_types.map(i => ({
+const employment_types_transformed = employment_types.map((i) => ({
   text: i,
   key: i,
   value: i,
@@ -83,7 +83,7 @@ class JobPostPage extends Component {
     this.props.propsResetJob()
   }
 
-  customRender = label => ({
+  customRender = (label) => ({
     color: 'green',
     content: label.text,
   })
@@ -95,6 +95,7 @@ class JobPostPage extends Component {
       skills,
       benefits,
       company_summary,
+      company_name,
       job_summary,
       contact_summary,
       salary_range_high,
@@ -106,8 +107,9 @@ class JobPostPage extends Component {
       ...StringValidator(company_summary, 1, 500, 'Company summary'),
       ...StringValidator(job_summary, 1, 500, 'Job summary'),
       ...StringValidator(contact_summary, 1, 500, 'Contact information'),
-      ...ListValidator(skills, 1, 'Skills'),
-      ...ListValidator(benefits, 1, 'Benefits'),
+      ...StringValidator(company_name, 0, 50, 'Company name'),
+      ...ListValidator(skills, 1, 8, 'Skills'),
+      ...ListValidator(benefits, 1, 8, 'Benefits'),
       ...StringValidator(title, 1, 50, 'Job title'),
       ...StringCharacterValidator(title, ALLOWED_CHARS_JOB, 'Job title'),
       ...IsEmptyValidator(category, 'Job category'),
@@ -123,7 +125,7 @@ class JobPostPage extends Component {
     })
   }
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target
     this.setState({ [name]: value }, () => this.validateForm())
   }
@@ -133,7 +135,7 @@ class JobPostPage extends Component {
     this.setState({ [name]: value }, () => this.validateForm())
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
 
     const { errors, location } = this.state
@@ -154,6 +156,7 @@ class JobPostPage extends Component {
         category,
         skills,
         benefits,
+        company_name,
         company_summary,
         job_summary,
         contact_summary,
@@ -167,6 +170,7 @@ class JobPostPage extends Component {
         category,
         skills,
         benefits,
+        company_name,
         company_summary,
         job_summary,
         contact_summary,
@@ -202,7 +206,7 @@ class JobPostPage extends Component {
     const { propsGetLocations, locations } = this.props
     const cleanQuery = searchQuery.trim()
     this.setState({ searchQuery: cleanQuery })
-    const exists = locations.filter(i => i.search === cleanQuery)
+    const exists = locations.filter((i) => i.search === cleanQuery)
 
     // No duplicate requests
     if (cleanQuery.length >= 2 && exists.length === 0) {
@@ -223,7 +227,7 @@ class JobPostPage extends Component {
     console.log(job, 'rendering')
 
     const locationOptions = locations.filter(
-      item => item.search === searchQuery
+      (item) => item.search === searchQuery
     )
 
     console.log(employment_types)
@@ -334,14 +338,25 @@ class JobPostPage extends Component {
                       />
                     </Form.Group>
 
+                    <Form.Group>
+                      <Form.Input
+                        onChange={this.handleInputChange}
+                        name="company_name"
+                        type="text"
+                        label="Company name"
+                        placeholder="XYZ ltd"
+                      />
+                    </Form.Group>
+
                     <Form.TextArea
                       width={12}
                       onChange={this.handleInputChange}
                       name="company_summary"
                       maxLength="500"
                       placeholder="A well established construction company based in the heart of Melbourne..."
-                      label={`About the company (${500 -
-                        company_summary.length} chars remaining)`}
+                      label={`About the company (${
+                        500 - company_summary.length
+                      } chars remaining)`}
                     />
 
                     <Form.TextArea
@@ -350,8 +365,9 @@ class JobPostPage extends Component {
                       name="job_summary"
                       maxLength="500"
                       placeholder="A short description about the job"
-                      label={`About the job (${500 -
-                        job_summary.length} chars remaining)`}
+                      label={`About the job (${
+                        500 - job_summary.length
+                      } chars remaining)`}
                     />
 
                     <Form.TextArea
@@ -360,8 +376,9 @@ class JobPostPage extends Component {
                       name="contact_summary"
                       maxLength="500"
                       placeholder="Enter any contact details..."
-                      label={`Contact details (${500 -
-                        contact_summary.length} chars remaining)`}
+                      label={`Contact details (${
+                        500 - contact_summary.length
+                      } chars remaining)`}
                     />
 
                     <Form.Button
@@ -413,7 +430,7 @@ class JobPostPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     benefit: state.benefit,
