@@ -224,13 +224,11 @@ class JobPostPage extends Component {
       searchQuery,
     } = this.state
     const { auth, benefit, category, job, locations, skill } = this.props
-    console.log(job, 'rendering')
 
     const locationOptions = locations.filter(
       (item) => item.search === searchQuery
     )
 
-    console.log(employment_types)
     return (
       <Fragment>
         <Segment basic>

@@ -30,12 +30,11 @@ class FeedbackPage extends Component {
   handleDropDownChange = (e, data) => {
     this.setState({ [data.name]: data.value })
   }
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
   }
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
-    console.log('hey')
     const { category, message } = this.state
     this.props.propsCreateFeedback({
       category,
@@ -79,8 +78,9 @@ class FeedbackPage extends Component {
                         onChange={this.handleChange}
                         placeholder="Adding this new feature would be great..."
                         maxLength={500}
-                        label={`Message (${500 -
-                          message.length} chars remaining)`}
+                        label={`Message (${
+                          500 - message.length
+                        } chars remaining)`}
                         name="message"
                       />
                     </Form.Field>
@@ -124,7 +124,7 @@ class FeedbackPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { feedback } = state
   return {
     feedback,

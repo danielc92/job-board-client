@@ -32,12 +32,11 @@ class JobDetailContainer extends Component {
   }
 
   componentDidMount() {
-    console.log('D', this.props)
     this.props.propsGetJob(this.props.match.params.slug)
     this.props.propsSetMenuItem('find')
   }
 
-  applyForJob = job_id => {
+  applyForJob = (job_id) => {
     if (!checkTokenIsValid()) {
       this.props.propsLogoutUser()
       this.props.history.push({
@@ -57,7 +56,7 @@ class JobDetailContainer extends Component {
     this.props.propsCreateApplication(payload)
   }
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target
     // Validate message
 
@@ -108,8 +107,9 @@ class JobDetailContainer extends Component {
                               onChange={this.handleInputChange}
                               name="user_message"
                               placeholder="Some words about why you're suitable for this job."
-                              label={`Enter a message for the employer (${charLimit -
-                                user_message.length} remaining).`}
+                              label={`Enter a message for the employer (${
+                                charLimit - user_message.length
+                              } remaining).`}
                             />
                           </Form.Field>
                           <Form.Field>
@@ -179,7 +179,7 @@ class JobDetailContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { job_details, auth, application } = state
   return {
     job_details,

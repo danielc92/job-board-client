@@ -27,7 +27,6 @@ const { Line, Paragraph } = Placeholder
 
 class JobListContainer extends Component {
   componentDidMount() {
-    console.log(this.props.history.location, this.props.location, 'MOUNTING')
     this.props.propsSetMenuItem('find')
     const object = queryStringToObjectParser(this.props.history.location.search)
     this.props.propsGetJobList(object)
@@ -45,7 +44,7 @@ class JobListContainer extends Component {
     })
   }
 
-  handleViewJob = slug => {
+  handleViewJob = (slug) => {
     const { history } = this.props
     history.push({
       pathname: `/job-detail/${slug}`,
@@ -60,11 +59,7 @@ class JobListContainer extends Component {
       const object = queryStringToObjectParser(
         this.props.history.location.search
       )
-      console.log(object, 'OBJECT')
       this.props.propsGetJobList(object)
-      console.log(this.props.history.location, this.props.location, 'RECEIVED')
-    } else {
-      console.log(this.props.history.location, this.props.location, 'FAILED')
     }
   }
 
@@ -95,7 +90,7 @@ class JobListContainer extends Component {
                         state.title,
                         state.location_string,
                         state.category,
-                      ].map(i => (i ? <Label size="tiny">{i}</Label> : null))}
+                      ].map((i) => (i ? <Label size="tiny">{i}</Label> : null))}
                     </Label.Group>
                   ) : null}
 
@@ -179,7 +174,7 @@ class JobListContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { job_list_seeker, theme } = state
   return {
     job_list_seeker,

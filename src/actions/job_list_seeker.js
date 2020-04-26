@@ -2,7 +2,7 @@ import jobApi from 'api'
 import { objectToQueryStringParser } from 'helpers/query'
 import { handleApiError } from 'helpers/api'
 
-export const getJobList = object => async (dispatch, getState) => {
+export const getJobList = (object) => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'RESET_JOB_LIST',
@@ -10,9 +10,8 @@ export const getJobList = object => async (dispatch, getState) => {
         error: false,
       },
     })
-    await new Promise(r => setTimeout(r, 1000))
+    await new Promise((r) => setTimeout(r, 1000))
     const queryString = objectToQueryStringParser(object)
-    console.log('REQUEST FOR', queryString, object)
     const response = await jobApi.get(`job/list${queryString}`)
     dispatch({
       type: 'GET_JOB_LIST_SUCCESS',

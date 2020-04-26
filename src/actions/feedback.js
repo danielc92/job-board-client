@@ -2,7 +2,7 @@ import jobApi from 'api'
 import { handleApiError } from 'helpers/api'
 import { getConfig } from 'helpers/api'
 
-export const createFeedback = payload => async (dispatch, getState) => {
+export const createFeedback = (payload) => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'CREATE_FEEDBACK_LOADING',
@@ -13,7 +13,6 @@ export const createFeedback = payload => async (dispatch, getState) => {
       },
     })
     const config = getConfig()
-    console.log(config)
     const response = await jobApi.post('feedback', payload, config)
     dispatch({
       type: 'CREATE_FEEDBACK_LOADING',
@@ -35,7 +34,7 @@ export const createFeedback = payload => async (dispatch, getState) => {
   }
 }
 
-export const resetCreateFeedback = payload => async (dispatch, getState) => {
+export const resetCreateFeedback = (payload) => async (dispatch, getState) => {
   dispatch({
     type: 'CREATE_FEEDBACK_RESET',
     payload: { error: false, modalIsClosed: true },
