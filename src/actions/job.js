@@ -1,7 +1,7 @@
 import jobApi from 'api'
 import { handleApiError, getConfig } from 'helpers/api'
 
-export const createJob = payload => async (dispatch, getState) => {
+export const createJob = (payload) => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'JOB_CREATE_LOADING',
@@ -39,7 +39,7 @@ export const resetJob = () => async (dispatch, getState) => {
   })
 }
 
-export const getJob = slug => async (dispatch, getState) => {
+export const getJob = (slug) => async (dispatch, getState) => {
   try {
     dispatch({
       type: 'RESET_JOB_DETAIL',
@@ -47,9 +47,9 @@ export const getJob = slug => async (dispatch, getState) => {
         error: false,
       },
     })
-    await new Promise(r => setTimeout(r, 500))
+    await new Promise((r) => setTimeout(r, 500))
     const config = getConfig()
-    const response = await jobApi.get(`job?slug=${slug}`, null, config)
+    const response = await jobApi.get(`job?slug=${slug}`, config)
     dispatch({
       type: 'GET_JOB_DETAIL_SUCCESS',
       payload: {
