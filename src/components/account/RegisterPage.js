@@ -62,12 +62,12 @@ class RegisterPage extends Component {
     this.setState({ errors })
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     const { value, name } = e.target
     this.setState({ [name]: value }, () => this.validateForm())
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
 
     const {
@@ -203,12 +203,9 @@ class RegisterPage extends Component {
           <Modal.Header>{modalHeader}</Modal.Header>
           <Modal.Content>{message}</Modal.Content>
           <Modal.Actions>
-            <Button onClick={this.closeModal} color="green">
-              Confirm
-            </Button>
             {!error ? (
               <Button onClick={this.handleNavigateToLogin} color="green">
-                Login
+                Go to login page
               </Button>
             ) : null}
           </Modal.Actions>
@@ -218,7 +215,7 @@ class RegisterPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     theme: state.theme,
     register: state.register,
