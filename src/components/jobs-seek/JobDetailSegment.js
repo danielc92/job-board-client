@@ -4,11 +4,22 @@ import { Header, Segment, Grid, Icon, Label } from 'semantic-ui-react'
 const marginStyle = { marginBottom: '24px' }
 
 export default function JobDetailSegment(props) {
-  const { job_details } = props
+  const {
+    job_summary,
+    salary_range_high,
+    contact_summary,
+    benefits,
+    company_summary,
+    location_string,
+    skills,
+    employment_type,
+    salary_range_low,
+    category,
+  } = props.job_details.data
   return (
     <Segment padded stacked>
       <Header as="h5" content="About the job" />
-      <p style={marginStyle}>{job_details.data.job_summary}</p>
+      <p style={marginStyle}>{job_summary}</p>
       <Grid stackable>
         <Grid.Row style={marginStyle}>
           <Grid.Column width={4}>
@@ -17,7 +28,7 @@ export default function JobDetailSegment(props) {
               <Header.Content>Salary</Header.Content>
             </Header>
             <Label basic color="green">
-              {`$${job_details.data.salary_range_low} - ${job_details.data.salary_range_high}`}
+              {`$${salary_range_low} - ${salary_range_high}`}
             </Label>
           </Grid.Column>
           <Grid.Column width={4}>
@@ -25,7 +36,7 @@ export default function JobDetailSegment(props) {
               <Header.Content>Category</Header.Content>
             </Header>
             <Label basic color="green">
-              {job_details.data.category}
+              {category}
             </Label>
           </Grid.Column>
           <Grid.Column width={4}>
@@ -33,15 +44,15 @@ export default function JobDetailSegment(props) {
               <Header.Content>Employment Type</Header.Content>
             </Header>
             <Label basic color="green">
-              {job_details.data.employment_type}
+              {employment_type}
             </Label>
           </Grid.Column>
           <Grid.Column width={4}>
             <Header as="h5">
               <Header.Content>Location</Header.Content>
             </Header>
-            <Label basic color="green">
-              {job_details.data.location_string}
+            <Label basic color={location_string ? 'green' : ''}>
+              {location_string ? location_string : 'No location specified.'}
             </Label>
           </Grid.Column>
         </Grid.Row>
@@ -52,7 +63,7 @@ export default function JobDetailSegment(props) {
           <Grid.Column width={8}>
             <Header as="h5" content="Skills" />
             <Label.Group>
-              {job_details.data.skills.map(item => (
+              {skills.map((item) => (
                 <Label basic color="green">
                   {item}
                 </Label>
@@ -62,7 +73,7 @@ export default function JobDetailSegment(props) {
           <Grid.Column width={8}>
             <Header as="h5" content="Benefits" />
             <Label.Group>
-              {job_details.data.benefits.map(item => (
+              {benefits.map((item) => (
                 <Label basic color="green">
                   {item}
                 </Label>
@@ -73,9 +84,9 @@ export default function JobDetailSegment(props) {
       </Grid>
 
       <Header as="h5" content="About the company" />
-      <p style={marginStyle}>{job_details.data.company_summary}</p>
+      <p style={marginStyle}>{company_summary}</p>
       <Header as="h5" content="Contact Summary" />
-      <p style={marginStyle}>{job_details.data.contact_summary}</p>
+      <p style={marginStyle}>{contact_summary}</p>
     </Segment>
   )
 }
