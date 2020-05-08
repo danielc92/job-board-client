@@ -283,10 +283,13 @@ class SeekerProfile extends Component {
   }
 
   handleChangeSkills = (event, data) => {
-    this.setState({ skills: data.value })
+    const { value } = data
+    if (value.length <= 15) {
+      this.setState({ skills: data.value })
+    }
   }
 
-  handleDeleteExperience = key => {
+  handleDeleteExperience = (key) => {
     if (!checkTokenIsValid()) {
       this.props.propsLogoutUser()
       this.props.history.push({
@@ -299,12 +302,12 @@ class SeekerProfile extends Component {
     }
 
     let experience = this.props.career_profile.data.experience.filter(
-      item => item.key !== key
+      (item) => item.key !== key
     )
     this.props.propsUpdateCareerProfile({ experience })
   }
 
-  handleDeleteEducation = key => {
+  handleDeleteEducation = (key) => {
     if (!checkTokenIsValid()) {
       this.props.propsLogoutUser()
       this.props.history.push({
@@ -317,7 +320,7 @@ class SeekerProfile extends Component {
     }
 
     let education = this.props.career_profile.data.education.filter(
-      item => item.key !== key
+      (item) => item.key !== key
     )
     this.props.propsUpdateCareerProfile({ education })
   }
@@ -368,7 +371,9 @@ class SeekerProfile extends Component {
                       maxLength="300"
                       style={marginBottom}
                       value={summary}
-                      onChange={e => this.setState({ summary: e.target.value })}
+                      onChange={(e) =>
+                        this.setState({ summary: e.target.value })
+                      }
                       placeholder={
                         data.summary.length === 0
                           ? 'You have no summary, you can create one now.'
@@ -418,6 +423,7 @@ class SeekerProfile extends Component {
                 <Form>
                   <Form.Dropdown
                     onChange={this.handleChangeSkills}
+                    value={this.state.skills}
                     name="skills"
                     label="Skills"
                     placeholder="Add skills"
@@ -451,7 +457,7 @@ class SeekerProfile extends Component {
                 <Fragment>
                   {data.skills.length > 0 ? (
                     <Label.Group style={{ marginBottom: '1em' }}>
-                      {data.skills.map(skill_name => (
+                      {data.skills.map((skill_name) => (
                         <Label color="green" basic size="medium">
                           {skill_name}
                         </Label>
@@ -483,7 +489,7 @@ class SeekerProfile extends Component {
                       maxLength={20}
                       style={marginBottom}
                       value={phone}
-                      onChange={e => this.setState({ phone: e.target.value })}
+                      onChange={(e) => this.setState({ phone: e.target.value })}
                       placeholder={
                         data.phone.length === 0 ? 'Enter phone number.' : null
                       }
@@ -585,7 +591,7 @@ class SeekerProfile extends Component {
                         maxLength={50}
                         label="Company/Organization"
                         value={experienceCompany}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ experienceCompany: e.target.value })
                         }
                       />
@@ -593,7 +599,7 @@ class SeekerProfile extends Component {
                         maxLength={50}
                         label="Job Title"
                         value={experienceTitle}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ experienceTitle: e.target.value })
                         }
                       />
@@ -601,7 +607,7 @@ class SeekerProfile extends Component {
                         maxLength={10}
                         label="Start Date"
                         value={experienceStart}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ experienceStart: e.target.value })
                         }
                       />
@@ -609,7 +615,7 @@ class SeekerProfile extends Component {
                         maxLength={10}
                         label="End Date"
                         value={experienceEnd}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ experienceEnd: e.target.value })
                         }
                       />
@@ -617,7 +623,7 @@ class SeekerProfile extends Component {
                         label="Additional Details"
                         placeholder="Achievements and/or highlights"
                         value={experienceDetails}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ experienceDetails: e.target.value })
                         }
                         maxLength={300}
@@ -662,7 +668,7 @@ class SeekerProfile extends Component {
                         <Table.HeaderCell content="Action" />
                       </Table.Header>
                       <Table.Body>
-                        {data.experience.map(e => (
+                        {data.experience.map((e) => (
                           <Table.Row key={e.key}>
                             <Table.Cell content={e.title} />
                             <Table.Cell content={e.company} />
@@ -711,7 +717,7 @@ class SeekerProfile extends Component {
                         maxLength={50}
                         label="School/University"
                         value={educationSchool}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ educationSchool: e.target.value })
                         }
                       />
@@ -719,7 +725,7 @@ class SeekerProfile extends Component {
                         label="Course"
                         maxLength={50}
                         value={educationCourse}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ educationCourse: e.target.value })
                         }
                       />
@@ -727,7 +733,7 @@ class SeekerProfile extends Component {
                         maxLength={10}
                         label="Start Date"
                         value={educationStart}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ educationStart: e.target.value })
                         }
                       />
@@ -735,7 +741,7 @@ class SeekerProfile extends Component {
                         maxLength={10}
                         label="End Date"
                         value={educationEnd}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ educationEnd: e.target.value })
                         }
                       />
@@ -743,7 +749,7 @@ class SeekerProfile extends Component {
                         type="number"
                         label="Grade/GPA"
                         value={educationGpa}
-                        onChange={e =>
+                        onChange={(e) =>
                           this.setState({ educationGpa: e.target.value })
                         }
                       />
@@ -787,7 +793,7 @@ class SeekerProfile extends Component {
                         <Table.HeaderCell content="Action" />
                       </Table.Header>
                       <Table.Body>
-                        {data.education.map(e => (
+                        {data.education.map((e) => (
                           <Table.Row key={e.key}>
                             <Table.Cell content={e.school} />
                             <Table.Cell content={e.course} />
@@ -832,7 +838,7 @@ class SeekerProfile extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { career_profile, skill } = state
   return {
     career_profile,
