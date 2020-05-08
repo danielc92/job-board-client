@@ -108,8 +108,8 @@ class JobPostPage extends Component {
       ...StringValidator(job_summary, 1, 500, 'Job summary'),
       ...StringValidator(contact_summary, 1, 500, 'Contact information'),
       ...StringValidator(company_name, 0, 50, 'Company name'),
-      ...ListValidator(skills, 1, 8, 'Skills'),
-      ...ListValidator(benefits, 1, 8, 'Benefits'),
+      ...ListValidator(skills, 1, 10, 'Skills'),
+      ...ListValidator(benefits, 1, 10, 'Benefits'),
       ...StringValidator(title, 1, 50, 'Job title'),
       ...StringCharacterValidator(title, ALLOWED_CHARS_JOB, 'Job title'),
       ...IsEmptyValidator(category, 'Job category'),
@@ -131,8 +131,11 @@ class JobPostPage extends Component {
   }
 
   handleDropdownChange = (event, data) => {
+    const limit = 10
     const { name, value } = data
-    this.setState({ [name]: value }, () => this.validateForm())
+    if (value.length <= limit) {
+      this.setState({ [name]: value }, () => this.validateForm())
+    }
   }
 
   handleSubmit = (e) => {
@@ -252,10 +255,11 @@ class JobPostPage extends Component {
                         name="title"
                         placeholder="Construction Labourer"
                         label="Job Title"
+                        maxLength={50}
                       />
-
                       <Form.Dropdown
                         onChange={this.handleDropdownChange}
+                        value={this.state.skills}
                         name="skills"
                         label="Skills"
                         placeholder="Add skills"
@@ -265,9 +269,9 @@ class JobPostPage extends Component {
                         options={skill.data}
                         renderLabel={this.customRender}
                       ></Form.Dropdown>
-
                       <Form.Dropdown
                         onChange={this.handleDropdownChange}
+                        value={this.state.benefits}
                         name="benefits"
                         label="Benefits"
                         placeholder="Add benefits"
@@ -343,6 +347,7 @@ class JobPostPage extends Component {
                         type="text"
                         label="Company name"
                         placeholder="XYZ ltd"
+                        maxLength={50}
                       />
                     </Form.Group>
 
