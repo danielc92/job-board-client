@@ -28,7 +28,7 @@ class LoginPage extends Component {
     validation_errors: [],
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value }, () => {
       this.validate()
     })
@@ -43,7 +43,7 @@ class LoginPage extends Component {
     this.setState({ validation_errors })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     const { validation_errors, password } = this.state
     const searchObject = queryStringToObjectParser(this.props.location.search)
@@ -75,10 +75,7 @@ class LoginPage extends Component {
               <Grid.Column>
                 <Segment basic>
                   <Header as="h1" content="Reset your password" />
-                  <p>
-                    Proident ad nisi esse aliquip consectetur non mollit
-                    reprehenderit magna nulla eu non occaecat.
-                  </p>
+                  <p>Please choose a new password below.</p>
                   <Form onSubmit={this.handleSubmit}>
                     <Form.Input
                       autoComplete="off"
@@ -148,7 +145,7 @@ class LoginPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { reset_password_request } = state
   return { reset_password_request }
 }
