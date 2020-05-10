@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Careernow'
+export const SITE_NAME = 'Applymer'
 export const TOKEN_NAME = 'JOB_TOKEN'
 export const SERVER_500_ERROR_MESAGE =
   'We apologise for the inconvenience. The server was unable to process your request.'
