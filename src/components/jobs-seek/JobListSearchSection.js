@@ -23,7 +23,7 @@ class JobListSearchSection extends Component {
     searchQuery: '',
   }
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target
     this.setState({ [name]: value })
   }
@@ -34,7 +34,7 @@ class JobListSearchSection extends Component {
     const cleanQuery = searchQuery.trim()
     this.setState({ searchQuery: cleanQuery })
 
-    const exists = locations.filter(i => i.search === cleanQuery)
+    const exists = locations.filter((i) => i.search === cleanQuery)
     // No duplicate requests
     if (cleanQuery.length >= 2 && exists.length === 0) {
       propsGetLocations(searchQuery)
@@ -45,10 +45,10 @@ class JobListSearchSection extends Component {
     this.setState({ [data.name]: data.value })
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault()
     const { title, location_string, category } = this.state
-    const { history, propsGetJobList } = this.props
+    const { history } = this.props
 
     const search = objectToQueryStringParser({
       title,
@@ -59,18 +59,7 @@ class JobListSearchSection extends Component {
     history.push({
       pathname: '/job-list',
       search,
-      // state: {
-      //   title,
-      //   location_string: location_string.location_string,
-      //   category,
-      // },
     })
-
-    // propsGetJobList({
-    //   title,
-    //   location_string: location_string.location_string,
-    //   category,
-    // })
   }
 
   componentDidMount() {
@@ -84,7 +73,7 @@ class JobListSearchSection extends Component {
     const { title, searchQuery } = this.state
     const { locations, category } = this.props
     const locationOptions = locations.filter(
-      item => item.search === searchQuery
+      (item) => item.search === searchQuery
     )
     return (
       <Segment basic>
@@ -145,7 +134,7 @@ class JobListSearchSection extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     locations: state.locationList,
     category: state.category,
