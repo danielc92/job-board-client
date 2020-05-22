@@ -14,7 +14,6 @@ import {
 import { setMenuItem } from 'actions/menu'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import { contentRenderer } from 'helpers/renderer'
 import BannerGroup from 'components/banners/BannerGroup'
 
@@ -92,7 +91,7 @@ class NewsDetailPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { news_detail } = state
   return {
     news_detail,

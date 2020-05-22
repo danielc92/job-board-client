@@ -20,7 +20,6 @@ import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContain
 import { getNewsList } from 'actions/news'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
 import { dateDiffString } from 'helpers/generic'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import BannerGroup from 'components/banners/BannerGroup'
 
 class NewsListPage extends Component {
@@ -39,7 +38,7 @@ class NewsListPage extends Component {
     }
   }
 
-  handleViewNewsArticle = slug => {
+  handleViewNewsArticle = (slug) => {
     this.props.history.push({
       pathname: `/news-detail/${slug}`,
     })
@@ -74,7 +73,7 @@ class NewsListPage extends Component {
                 />
               ) : news_list.docs ? (
                 <Fragment>
-                  {news_list.docs.map(item => (
+                  {news_list.docs.map((item) => (
                     <Segment key={item._id} stacked padded>
                       <Header as="h3" content={item.title} />
 
@@ -127,7 +126,7 @@ class NewsListPage extends Component {
                 </Fragment>
               ) : (
                 <Fragment>
-                  {new Array(5).fill(true).map(x => (
+                  {new Array(5).fill(true).map((x) => (
                     <Segment padded stacked>
                       <Placeholder fluid>
                         <Placeholder.Paragraph>
@@ -154,7 +153,7 @@ class NewsListPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { news_list } = state
   return {
     news_list,

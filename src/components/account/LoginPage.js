@@ -33,13 +33,13 @@ class LoginPage extends Component {
     this.props.propsResetSendPasswordEmail()
   }
 
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     const { name, value } = e.target
     let trimmed_value = value.trim()
     this.setState({ [name]: trimmed_value })
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault()
     const { email, password } = this.state
 
@@ -51,7 +51,7 @@ class LoginPage extends Component {
     }
   }
 
-  handleTogglePasswordView = e => {
+  handleTogglePasswordView = (e) => {
     this.setState({ passwordHidden: !this.state.passwordHidden })
   }
 
@@ -95,7 +95,6 @@ class LoginPage extends Component {
                       value={email}
                       name="email"
                     />
-
                     <Form.Input
                       icon="lock"
                       iconPosition="left"
@@ -106,20 +105,17 @@ class LoginPage extends Component {
                       placeholder="Enter password here..."
                       name="password"
                     />
-
                     <Form.Radio
                       label={passwordHidden ? 'Show password' : 'Hide password'}
                       toggle
                       onChange={this.handleTogglePasswordView}
                     />
-
                     <Message
                       visible={error}
                       warning
                       header="Action forbidden"
                       content="Email and password is required to login."
                     ></Message>
-
                     {location.state && location.state.redirect_message ? (
                       <Message
                         visible={error}
@@ -128,7 +124,6 @@ class LoginPage extends Component {
                         content={location.state.redirect_message}
                       ></Message>
                     ) : null}
-
                     {auth.error ? (
                       <Message
                         content={auth.message}
@@ -136,7 +131,6 @@ class LoginPage extends Component {
                         header="An error occured"
                       />
                     ) : null}
-
                     <Form.Button color="green" size="large">
                       Submit
                     </Form.Button>
@@ -156,15 +150,16 @@ class LoginPage extends Component {
                       </Modal.Actions>
                     </Modal>
                     <p>
-                      Forgotten password? Fill in your email and{' '}
-                      <a
-                        style={{ cursor: 'pointer' }}
-                        onClick={this.resetPassword}
-                      >
-                        click here
-                      </a>{' '}
-                      to reset your password.
+                      Forgotten password? Fill in your email above and press the
+                      button below.
                     </p>
+                    <Button
+                      size="tiny"
+                      color="green"
+                      onClick={this.resetPassword}
+                    >
+                      Reset password
+                    </Button>
                   </Form>
                 </Segment>
               </Grid.Column>
@@ -184,7 +179,7 @@ class LoginPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { auth, reset_password_email } = state
   return {
     auth,

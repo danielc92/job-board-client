@@ -17,7 +17,6 @@ import { properCaseTransform, dateDiffString } from 'helpers/generic'
 import SearchContainer from './JobListSearchSection'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import {
   queryStringToObjectParser,
   objectToQueryStringParser,
