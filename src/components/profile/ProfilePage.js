@@ -52,18 +52,74 @@ class ProfilePage extends Component {
               <p>Customize your profile, career details and more.</p>
               <Divider />
               {!loaded && !error ? (
-                <Segment stacked padded>
+                <React.Fragment>
                   <Placeholder fluid>
-                    <Paragraph>
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                      <Line />
-                    </Paragraph>
+                    <Placeholder.Header>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
                   </Placeholder>
-                </Segment>
+
+                  <Segment stacked padded>
+                    <Placeholder fluid>
+                      <Placeholder.Paragraph>
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                      </Placeholder.Paragraph>
+                    </Placeholder>
+                  </Segment>
+                  <Placeholder fluid>
+                    <Placeholder.Header>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                  </Placeholder>
+
+                  <Segment stacked padded>
+                    <Placeholder fluid>
+                      <Placeholder.Paragraph>
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                      </Placeholder.Paragraph>
+                    </Placeholder>
+                  </Segment>
+                  <Placeholder fluid>
+                    <Placeholder.Header>
+                      <Placeholder.Line />
+                      <Placeholder.Line />
+                    </Placeholder.Header>
+                  </Placeholder>
+
+                  <Segment stacked padded>
+                    <Placeholder fluid>
+                      <Placeholder.Paragraph>
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                      </Placeholder.Paragraph>
+                    </Placeholder>
+                  </Segment>
+                </React.Fragment>
               ) : null}
               {error ? (
                 <CustomErrorMessage
