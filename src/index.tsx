@@ -9,7 +9,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 // require('dotenv').config()
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
   rootReducer,
