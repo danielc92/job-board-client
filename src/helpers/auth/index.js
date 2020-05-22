@@ -1,10 +1,14 @@
 import jwt_decode from 'jwt-decode'
 import { TOKEN_NAME } from 'app_constants'
+import { store } from 'index'
 
 export const checkTokenIsValid = () => {
   const token = localStorage.getItem(TOKEN_NAME)
 
-  if (!token) return false
+  if (!token) {
+    store.dispatch({ type: 'LOGOUT_SUCCESS' })
+    return false
+  }
 
   const decoded = jwt_decode(token)
 
@@ -18,5 +22,8 @@ export const checkTokenIsValid = () => {
   const offset = diff - 300 // 5 minutes
   if (offset > 0) {
     return true
+  } else {
+    store.dispatch({ type: 'LOGOUT_SUCCESS' })
+    return false
   }
 }

@@ -11,10 +11,12 @@ import './index.css'
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   /* preloaded state, */ composeEnhancers(applyMiddleware(thunk))
 )
+
+
 
 ReactDOM.render(
   <Provider store={store}>
