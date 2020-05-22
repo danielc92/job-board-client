@@ -156,7 +156,10 @@ class LoginPage extends Component {
                     <Button
                       size="tiny"
                       color="green"
-                      onClick={this.resetPassword}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        this.resetPassword()
+                      }}
                     >
                       Reset password
                     </Button>
