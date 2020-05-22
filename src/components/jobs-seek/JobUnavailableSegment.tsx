@@ -1,7 +1,7 @@
 import React from 'react'
 import { Segment, Header } from 'semantic-ui-react'
 
-export default function JobUnavailableSegment() {
+const JobUnavailableSegment: React.FC = () => {
   return (
     <Segment stacked color="orange">
       <Header content="Job Unavailable" />
@@ -12,3 +12,5 @@ export default function JobUnavailableSegment() {
     </Segment>
   )
 }
+
+export default JobUnavailableSegment
