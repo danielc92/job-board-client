@@ -21,7 +21,7 @@ import { checkTokenIsValid } from 'helpers/auth'
 import { logoutUser } from 'actions/account/auth'
 import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
 import JobDetailSegment from './JobDetailSegment'
-import JobUnavailableSegment from './JobUnavailableSegment'
+import JobUnavailableSegment from 'components/jobs-seek/JobUnavailableSegment'
 import BannerGroup from 'components/banners/BannerGroup'
 const { Line, Paragraph } = Placeholder
 class JobDetailContainer extends Component {
