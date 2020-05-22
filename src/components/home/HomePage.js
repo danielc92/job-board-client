@@ -21,7 +21,7 @@ class HomePage extends Component {
         <MainBannerSection
           imageSrc={imageSrc}
           ctaHeader={`Welcome to ${SITE_NAME}`}
-          ctaSubHeader="A data driven system, helping people find jobs they need."
+          ctaSubHeader="A community driven job board, helping people find the jobs they need."
           buttonText="Explore jobs"
         />
 

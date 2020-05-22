@@ -29,7 +29,7 @@ class MainBannerSection extends Component {
                       style={{ fontSize: '3.5rem' }}
                       content={ctaHeader}
                     />
-                    <p>{ctaSubHeader}</p>
+                    <p style={{ fontSize: '1.4rem' }}>{ctaSubHeader}</p>
                     <Button to="/job-list" as={Link} size="huge" color={theme}>
                       <Icon name="paper plane"></Icon>
                       {buttonText}
