@@ -26,7 +26,7 @@ class MainBannerSection extends Component {
                   <Grid.Column verticalAlign="middle">
                     <Header
                       as="h1"
-                      style={{ fontSize: '3rem' }}
+                      style={{ fontSize: '3.5rem' }}
                       content={ctaHeader}
                     />
                     <p>{ctaSubHeader}</p>
@@ -49,7 +49,7 @@ class MainBannerSection extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     theme: state.theme,
   }
