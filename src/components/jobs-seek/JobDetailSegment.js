@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Segment, Grid, Icon, Label } from 'semantic-ui-react'
+import { Header, Segment, Grid, Label } from 'semantic-ui-react'
 
 const marginStyle = { marginBottom: '24px' }
 
