@@ -5,7 +5,6 @@ import { Segment, Container } from 'semantic-ui-react'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import Employer from './users/employer/Employer'
 import Seeker from './users/seeker/Seeker'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import BannerGroup from 'components/banners/BannerGroup'
 
 class DashboardPage extends Component {
@@ -31,7 +30,7 @@ class DashboardPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     menu: state.menu,
     auth: state.auth,
