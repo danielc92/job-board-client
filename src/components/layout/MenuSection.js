@@ -21,13 +21,20 @@ class MenuSection extends Component {
         style={{ margin: '0', borderRadius: '0', boxShadow: 'none' }}
       >
         <Container>
+          <Menu.Item>
+            <img
+              alt="Brand logo"
+              style={{ transform: 'scale(1.5)' }}
+              src="/logo/logo-cube.svg"
+            />
+          </Menu.Item>
           <Menu.Item
             as={Link}
             to="/"
-            name="home"
+            name="Home"
             active={menu.item === 'home'}
             onClick={this.handleItemClick}
-          />
+          ></Menu.Item>
 
           <Menu.Item
             as={Link}
@@ -95,7 +102,7 @@ class MenuSection extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.auth,
     theme: state.theme,
