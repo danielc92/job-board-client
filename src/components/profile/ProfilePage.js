@@ -15,7 +15,6 @@ import { getUserDetails } from 'actions/profile'
 import VerticallyPaddedContainer from 'components/layout/VerticallyPaddedContainer'
 import Seeker from './SeekerProfile'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import BannerGroup from 'components/banners/BannerGroup'
 const { Line, Paragraph } = Placeholder
 
@@ -113,7 +112,7 @@ class ProfilePage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { profile, auth } = state
   return {
     profile,

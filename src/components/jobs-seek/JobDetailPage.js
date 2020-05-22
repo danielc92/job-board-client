@@ -5,7 +5,6 @@ import {
   Modal,
   Container,
   Button,
-  Label,
   Form,
   Placeholder,
 } from 'semantic-ui-react'
@@ -18,7 +17,6 @@ import { createApplication, resetApplication } from 'actions/application'
 import { connect } from 'react-redux'
 import { properCaseTransform } from 'helpers/generic'
 import CustomErrorMessage from 'components/reusable/CustomErrorMessage'
-import FeedbackCtaSection from 'components/feedback/FeedbackCtaSection'
 import { checkTokenIsValid } from 'helpers/auth'
 import { logoutUser } from 'actions/account/auth'
 import { SESSION_EXPIRED_MESSAGE } from 'app_constants'
